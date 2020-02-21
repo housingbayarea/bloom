@@ -38,14 +38,19 @@ const AlamedaFooter = () => (
         <p className="footer-copyright">Alameda County © 2020 • All Rights Reserved</p>
 
         <nav className="footer-nav">
-          <a href="#">Give Feedback</a>
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link"
+            target="_blank"
+          >
+            Give Feedback
+          </a>
           <a href="#">Contact</a>
-          <Link href="/disclaimer">
-            <a>Disclaimer</a>
-          </Link>
-          <Link href="/privacy">
-            <a>Privacy Policy</a>
-          </Link>
+          <a href="https://www.acgov.org/government/legal.htm" target="_blank">
+            Disclaimer
+          </a>
+          <a href="https://www.acgov.org/government/legal.htm" target="_blank">
+            Privacy Policy
+          </a>
         </nav>
       </div>
     </section>

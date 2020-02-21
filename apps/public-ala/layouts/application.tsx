@@ -12,7 +12,18 @@ const Layout = props => (
     </Head>
     <SiteHeader
       logoSrc="/images/logo_glyph.svg"
-      notice="This is a preview of our new website. We're just getting started. We'd love to get your feedback."
+      notice={
+        <>
+          This is a preview of our new website. We're just getting started. We'd love to get{" "}
+          <a
+            href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link"
+            target="_blank"
+          >
+            your feedback
+          </a>
+          .
+        </>
+      }
       title={t("nav.siteTitle")}
     >
       <LocalizedLink href="/listings" className="navbar-item">
