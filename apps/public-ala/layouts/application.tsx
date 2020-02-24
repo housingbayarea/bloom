@@ -4,6 +4,7 @@ import t from "@bloom-housing/ui-components/src/helpers/translator"
 import LocalizedLink from "@bloom-housing/ui-components/src/atoms/LocalizedLink"
 import SiteHeader from "@bloom-housing/ui-components/src/headers/SiteHeader/SiteHeader"
 import AlamedaFooter from "../components/AlamedaFooter"
+import SVG from "react-inlinesvg"
 
 const Layout = props => (
   <div>
@@ -41,6 +42,7 @@ const Layout = props => (
     </SiteHeader>
     <main>{props.children}</main>
     <AlamedaFooter />
+    <SVG src="/images/icons.svg" />
   </div>
 )
 
