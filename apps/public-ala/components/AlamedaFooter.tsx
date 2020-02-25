@@ -1,5 +1,6 @@
 import * as React from "react"
 import Link from "next/link"
+import moment from "moment"
 
 const AlamedaFooter = () => (
   <footer className="site-footer">
@@ -30,12 +31,22 @@ const AlamedaFooter = () => (
         <a href="https://housing.sfgov.org" target="_blank">
           San Francisco Housing Portal
         </a>
+        <br />
+        <a href="https://smc.housingbayarea.org/" target="_blank">
+          San Mateo County Housing Portal
+        </a>
+        <br />
+        <a href="https://housing.sanjoseca.gov/" target="_blank">
+          City of San José Housing Portal
+        </a>
       </p>
     </div>
 
     <section className="footer-sock">
       <div className="footer-sock-inner">
-        <p className="footer-copyright">Alameda County © 2020 • All Rights Reserved</p>
+        <p className="footer-copyright">
+          Alameda County © {moment().format("YYYY")} • All Rights Reserved
+        </p>
 
         <nav className="footer-nav">
           <a
