@@ -1,5 +1,5 @@
 import Layout from "../layouts/application"
-import PageHeader from "@bloom-housing/ui-components/src/headers/PageHeader/PageHeader"
+import { PageHeader } from "@bloom-housing/ui-components"
 import "./AdditionalResources.scss"
 
 const Card = props => {
@@ -112,6 +112,7 @@ export default () => {
           </div>
           <aside>
             <div>
+              <h2>Contact</h2>
               <h3>San Mateo County's Department of Housing</h3>
               <a href="mailto:housing@smchousing.org">housing@smchousing.org</a>
               <h3 className="mt-2">Foster City Community Development</h3>
