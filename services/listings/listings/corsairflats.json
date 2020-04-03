@@ -13,7 +13,7 @@
     "latitude": null,
     "longitude": null
   },
-  "applicationDueDate": "2020-04-10T16:00:00.000-07:00",
+  "applicationDueDate": "2020-04-24T16:00:00.000-07:00",
   "applicationOrganization": "",
   "applicationPhone": "",
   "blankPaperApplicationCanBePickedUp": false,
@@ -60,17 +60,9 @@
   ],
   "applicationFee": "35.0",
   "criminalBackground": "Applicants for the waitlist lottery will be screened based on the following criteria: Involvement in criminal activity on the part of any applicant household member which would adversely affect the health, safety or welfare of other residents.",
-  "leasingAgentAddress": {
-    "city": "Alameda",
-    "street": "1041 W Midway Ave",
-    "zipCode": "94501",
-    "state": "CA",
-    "latitude": 37.785860,
-    "longitude": -122.304180
-  },
   "leasingAgentEmail": "",
   "leasingAgentName": "Eden Housing Lease-Up Team",
-  "leasingAgentOfficeHours": "Please call for online support in applying — Telephone assistance is available Monday through Saturday, 10 AM to 5 PM from 4/6/2020 to 4/24/2020",
+  "leasingAgentOfficeHours": "Please call for online support in applying — Telephone assistance is available Monday through Saturday, 10 AM to 4 PM from 4/6/2020 to 4/24/2020",
   "leasingAgentPhone": "510-499-2491",
   "leasingAgentTitle": "",
   "rentalHistory": "Applicants for the waitlist lottery will be screened based on the following criteria: A record of disturbance of neighbors, destruction of property, or living or housekeeping habits at prior residences which may adversely affect the health, safety or welfare of other residents, or cause damage to the apartment or development; A record of eviction from housing or termination from a residential program; An applicant's ability and willingness to comply with the terms of the Lease.",
