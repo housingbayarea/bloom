@@ -507,7 +507,7 @@
       "amiPercentage": "60",
       "annualIncomeMin": "41844",
       "monthlyIncomeMin": "3487",
-      "floor": 2,
+      "floor": 1,
       "annualIncomeMax": "66960",
       "maxOccupancy": 3,
       "minOccupancy": 1,
