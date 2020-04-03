@@ -63,6 +63,14 @@
   "criminalBackground": "Applicants for the waitlist lottery will be screened based on the following criteria: Involvement in criminal activity on the part of any applicant household member which would adversely affect the health, safety or welfare of other residents.",
   "leasingAgentEmail": "",
   "leasingAgentName": "Eden Housing Lease-Up Team",
+  "leasingAgentAddress": {
+    "city": null,
+    "street": null,
+    "zipCode": null,
+    "state": null,
+    "latitude": null,
+    "longitude": null
+  },
   "leasingAgentOfficeHours": "Please call for online support in applying — Telephone assistance is available Monday through Saturday, 10 AM to 4 PM from 4/6/2020 to 4/24/2020",
   "leasingAgentPhone": "510-499-2491",
   "leasingAgentTitle": "",
