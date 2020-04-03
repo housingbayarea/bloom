@@ -51,6 +51,7 @@
   "updatedAt": "2020-02-15T11:47:47.150-07:00",
   "groupId": 1,
   "hideUnitFeatures": false,
+  "disableUnitsAccordion": true,
   "unitAmenities": "Full size kitchen with stove, oven, refrigerator, garbage disposal. Ceiling fan and blinds",
   "attachments": [
     {
