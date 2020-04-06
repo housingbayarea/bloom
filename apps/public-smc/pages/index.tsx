@@ -27,7 +27,7 @@ export default class extends Component<IndexProps> {
   public render() {
     const heroTitle = (
       <>
-        {t("welcome.title")} <em>{t("region.name")}</em>
+        {t("welcome.title")} <em>{t("region.short")}</em>
       </>
     )
 

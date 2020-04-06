@@ -25,7 +25,8 @@
     "viewAdditionalOpportunities": "View Additional Housing Opportunities"
   },
   "region": {
-    "name": "San Mateo County Housing Portal"
+    "name": "San Mateo County Housing Portal",
+    "short": "San Mateo County"
   },
   "welcome": {
     "seeRentalListings": "See Rentals"
