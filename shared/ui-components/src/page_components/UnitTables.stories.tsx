@@ -15,13 +15,13 @@ const archer = Object.assign({}, Archer) as any
 
 // copied from listings service output
 const summaries = {
-  unitTypes: ["studio"],
+  unitTypes: ["SRO"],
   reservedTypes: ["senior"],
   priorityTypes: [],
   amiPercentages: ["45.0", "30.0"],
   byUnitType: [
     {
-      unitType: "studio",
+      unitType: "SRO",
       totalAvailable: 41,
       minIncomeRange: { min: "$1,438", max: "$2,208" },
       occupancyRange: { min: 1, max: 2 },
@@ -33,7 +33,7 @@ const summaries = {
   ],
   byNonReservedUnitType: [
     {
-      unitType: "studio",
+      unitType: "SRO",
       totalAvailable: 40,
       minIncomeRange: { min: "$1,438", max: "$2,208" },
       occupancyRange: { min: 1, max: 2 },
@@ -48,7 +48,7 @@ const summaries = {
       reservedType: "senior",
       byUnitType: [
         {
-          unitType: "studio",
+          unitType: "SRO",
           totalAvailable: 1,
           minIncomeRange: { min: "$2,208", max: "$2,208" },
           occupancyRange: { min: 1, max: 2 },
@@ -65,7 +65,7 @@ const summaries = {
       percent: "45.0",
       byNonReservedUnitType: [
         {
-          unitType: "studio",
+          unitType: "SRO",
           totalAvailable: 24,
           minIncomeRange: { min: "$2,208", max: "$2,208" },
           occupancyRange: { min: 1, max: 2 },
@@ -80,7 +80,7 @@ const summaries = {
           reservedType: "senior",
           byUnitType: [
             {
-              unitType: "studio",
+              unitType: "SRO",
               totalAvailable: 1,
               minIncomeRange: { min: "$2,208", max: "$2,208" },
               occupancyRange: { min: 1, max: 2 },
@@ -97,7 +97,7 @@ const summaries = {
       percent: "30.0",
       byNonReservedUnitType: [
         {
-          unitType: "studio",
+          unitType: "SRO",
           totalAvailable: 16,
           minIncomeRange: { min: "$1,438", max: "$1,438" },
           occupancyRange: { min: 1, max: 2 },

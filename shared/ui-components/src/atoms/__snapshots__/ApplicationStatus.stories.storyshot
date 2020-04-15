@@ -97,7 +97,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -121,7 +121,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -145,7 +145,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -169,7 +169,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -193,7 +193,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -217,7 +217,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -241,7 +241,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -265,7 +265,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -289,7 +289,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -313,7 +313,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -337,7 +337,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -361,7 +361,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -385,7 +385,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -409,7 +409,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -433,7 +433,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -457,7 +457,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -481,7 +481,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -505,7 +505,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -529,7 +529,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -553,7 +553,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -577,7 +577,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -601,7 +601,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -625,7 +625,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -649,7 +649,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -673,7 +673,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -697,7 +697,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -721,7 +721,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -745,7 +745,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -769,7 +769,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -793,7 +793,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -817,7 +817,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -841,7 +841,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -865,7 +865,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -889,7 +889,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -913,7 +913,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -937,7 +937,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -961,7 +961,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -985,7 +985,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -1009,7 +1009,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -1033,7 +1033,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -1057,7 +1057,7 @@ exports[`Storyshots Listing Sidebar|Application Status Due Soon And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],
@@ -1199,7 +1199,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -1223,7 +1223,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -1247,7 +1247,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -1271,7 +1271,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -1295,7 +1295,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -1319,7 +1319,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -1343,7 +1343,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -1367,7 +1367,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -1391,7 +1391,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -1415,7 +1415,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -1439,7 +1439,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -1463,7 +1463,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -1487,7 +1487,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -1511,7 +1511,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -1535,7 +1535,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -1559,7 +1559,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -1583,7 +1583,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -1607,7 +1607,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -1631,7 +1631,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -1655,7 +1655,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -1679,7 +1679,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -1703,7 +1703,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -1727,7 +1727,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -1751,7 +1751,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -1775,7 +1775,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -1799,7 +1799,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -1823,7 +1823,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -1847,7 +1847,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -1871,7 +1871,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -1895,7 +1895,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -1919,7 +1919,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -1943,7 +1943,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -1967,7 +1967,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -1991,7 +1991,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -2015,7 +2015,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -2039,7 +2039,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -2063,7 +2063,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -2087,7 +2087,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -2111,7 +2111,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -2135,7 +2135,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -2159,7 +2159,7 @@ exports[`Storyshots Listing Sidebar|Application Status Open Soon 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],
@@ -2300,7 +2300,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -2324,7 +2324,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -2348,7 +2348,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -2372,7 +2372,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -2396,7 +2396,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -2420,7 +2420,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -2444,7 +2444,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -2468,7 +2468,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -2492,7 +2492,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -2516,7 +2516,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -2540,7 +2540,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -2564,7 +2564,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -2588,7 +2588,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -2612,7 +2612,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -2636,7 +2636,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -2660,7 +2660,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -2684,7 +2684,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -2708,7 +2708,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -2732,7 +2732,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -2756,7 +2756,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -2780,7 +2780,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -2804,7 +2804,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -2828,7 +2828,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -2852,7 +2852,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -2876,7 +2876,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -2900,7 +2900,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -2924,7 +2924,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -2948,7 +2948,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -2972,7 +2972,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -2996,7 +2996,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -3020,7 +3020,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -3044,7 +3044,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -3068,7 +3068,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -3092,7 +3092,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -3116,7 +3116,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -3140,7 +3140,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -3164,7 +3164,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -3188,7 +3188,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -3212,7 +3212,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -3236,7 +3236,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -3260,7 +3260,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened Already 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],
@@ -3401,7 +3401,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -3425,7 +3425,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -3449,7 +3449,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -3473,7 +3473,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -3497,7 +3497,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -3521,7 +3521,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -3545,7 +3545,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -3569,7 +3569,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -3593,7 +3593,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -3617,7 +3617,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -3641,7 +3641,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -3665,7 +3665,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -3689,7 +3689,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -3713,7 +3713,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -3737,7 +3737,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -3761,7 +3761,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -3785,7 +3785,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -3809,7 +3809,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -3833,7 +3833,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -3857,7 +3857,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -3881,7 +3881,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -3905,7 +3905,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -3929,7 +3929,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -3953,7 +3953,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -3977,7 +3977,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -4001,7 +4001,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -4025,7 +4025,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -4049,7 +4049,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -4073,7 +4073,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -4097,7 +4097,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -4121,7 +4121,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -4145,7 +4145,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -4169,7 +4169,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -4193,7 +4193,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -4217,7 +4217,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -4241,7 +4241,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -4265,7 +4265,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -4289,7 +4289,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -4313,7 +4313,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -4337,7 +4337,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -4361,7 +4361,7 @@ exports[`Storyshots Listing Sidebar|Application Status Opened With No Due 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],
@@ -4502,7 +4502,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -4526,7 +4526,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -4550,7 +4550,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -4574,7 +4574,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -4598,7 +4598,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -4622,7 +4622,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -4646,7 +4646,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -4670,7 +4670,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -4694,7 +4694,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -4718,7 +4718,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -4742,7 +4742,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -4766,7 +4766,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -4790,7 +4790,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -4814,7 +4814,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -4838,7 +4838,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -4862,7 +4862,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -4886,7 +4886,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -4910,7 +4910,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -4934,7 +4934,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -4958,7 +4958,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -4982,7 +4982,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -5006,7 +5006,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -5030,7 +5030,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -5054,7 +5054,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -5078,7 +5078,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -5102,7 +5102,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -5126,7 +5126,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -5150,7 +5150,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -5174,7 +5174,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -5198,7 +5198,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -5222,7 +5222,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -5246,7 +5246,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -5270,7 +5270,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -5294,7 +5294,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -5318,7 +5318,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -5342,7 +5342,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -5366,7 +5366,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -5390,7 +5390,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -5414,7 +5414,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -5438,7 +5438,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -5462,7 +5462,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due 1`] = `
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],
@@ -5604,7 +5604,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:05:43.913Z",
           },
           Object {
@@ -5628,7 +5628,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.015Z",
           },
           Object {
@@ -5652,7 +5652,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.023Z",
           },
           Object {
@@ -5676,7 +5676,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.031Z",
           },
           Object {
@@ -5700,7 +5700,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.039Z",
           },
           Object {
@@ -5724,7 +5724,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.046Z",
           },
           Object {
@@ -5748,7 +5748,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.053Z",
           },
           Object {
@@ -5772,7 +5772,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.161Z",
           },
           Object {
@@ -5796,7 +5796,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.167Z",
           },
           Object {
@@ -5820,7 +5820,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.173Z",
           },
           Object {
@@ -5844,7 +5844,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.179Z",
           },
           Object {
@@ -5868,7 +5868,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.186Z",
           },
           Object {
@@ -5892,7 +5892,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.192Z",
           },
           Object {
@@ -5916,7 +5916,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.198Z",
           },
           Object {
@@ -5940,7 +5940,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.204Z",
           },
           Object {
@@ -5964,7 +5964,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.210Z",
           },
           Object {
@@ -5988,7 +5988,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.216Z",
           },
           Object {
@@ -6012,7 +6012,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.222Z",
           },
           Object {
@@ -6036,7 +6036,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.229Z",
           },
           Object {
@@ -6060,7 +6060,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.235Z",
           },
           Object {
@@ -6084,7 +6084,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.241Z",
           },
           Object {
@@ -6108,7 +6108,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.247Z",
           },
           Object {
@@ -6132,7 +6132,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.254Z",
           },
           Object {
@@ -6156,7 +6156,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.260Z",
           },
           Object {
@@ -6180,7 +6180,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.267Z",
           },
           Object {
@@ -6204,7 +6204,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.060Z",
           },
           Object {
@@ -6228,7 +6228,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": "senior",
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.067Z",
           },
           Object {
@@ -6252,7 +6252,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.074Z",
           },
           Object {
@@ -6276,7 +6276,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.080Z",
           },
           Object {
@@ -6300,7 +6300,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.086Z",
           },
           Object {
@@ -6324,7 +6324,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.093Z",
           },
           Object {
@@ -6348,7 +6348,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.099Z",
           },
           Object {
@@ -6372,7 +6372,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.105Z",
           },
           Object {
@@ -6396,7 +6396,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.111Z",
           },
           Object {
@@ -6420,7 +6420,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.118Z",
           },
           Object {
@@ -6444,7 +6444,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.124Z",
           },
           Object {
@@ -6468,7 +6468,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.130Z",
           },
           Object {
@@ -6492,7 +6492,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.136Z",
           },
           Object {
@@ -6516,7 +6516,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.142Z",
           },
           Object {
@@ -6540,7 +6540,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.148Z",
           },
           Object {
@@ -6564,7 +6564,7 @@ exports[`Storyshots Listing Sidebar|Application Status Past Due And Vivid 1`] = 
             "reservedType": null,
             "sqFeet": 285,
             "status": "occupied",
-            "unitType": "studio",
+            "unitType": "SRO",
             "updatedAt": "2019-08-14T23:06:59.155Z",
           },
         ],

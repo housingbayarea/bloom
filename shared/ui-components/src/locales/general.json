@@ -140,7 +140,7 @@
       "oneBdrm": "1 BR",
       "twoBdrm": "2 BR",
       "threeBdrm": "3 BR",
-      "studio": "Studio"
+      "SRO": "Studio"
     },
     "units": "units",
     "unitsAreFor": "These units are for %{type}.",
