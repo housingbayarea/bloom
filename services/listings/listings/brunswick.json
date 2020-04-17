@@ -17,6 +17,7 @@
   "blankPaperApplicationCanBePickedUp": true,
   "buildingAddress": {
     "city": "Daly City",
+    "county": "San Mateo",
     "state": "CA",
     "street": "4619 Brunswick St",
     "zipCode": "94014",
