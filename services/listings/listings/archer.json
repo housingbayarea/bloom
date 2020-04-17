@@ -53,6 +53,7 @@
   "updatedAt": "2019-10-18T16:21:37.024Z",
   "groupId": 1,
   "hideUnitFeatures": false,
+  "disableUnitsAccordion": true,
   "unitAmenities": "Dishwasher",
   "attachments": [
     {
