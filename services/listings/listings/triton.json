@@ -90,7 +90,7 @@
       "annualIncomeMax": "177300.0",
       "maxOccupancy": 5,
       "minOccupancy": 2,
-      "monthlyRent": "3529.0",
+      "monthlyRent": "3340.0",
       "numBathrooms": null,
       "numBedrooms": 2,
       "number": null,
@@ -102,7 +102,7 @@
       "createdAt": "2019-06-03T10:42:43.134Z",
       "updatedAt": "2019-07-10T09:44:01.384Z",
       "listingId": 3,
-      "amiChartId": 1,
+      "amiChartId": 7,
       "monthlyRentAsPercentOfIncome": null
     },
     {
@@ -114,7 +114,7 @@
       "annualIncomeMax": "103350.0",
       "maxOccupancy": 2,
       "minOccupancy": 1,
-      "monthlyRent": "2429.0",
+      "monthlyRent": "2624.0",
       "numBathrooms": null,
       "numBedrooms": 1,
       "number": null,
@@ -126,7 +126,7 @@
       "createdAt": "2019-06-03T10:42:43.134Z",
       "updatedAt": "2019-07-10T09:44:01.384Z",
       "listingId": 3,
-      "amiChartId": 1,
+      "amiChartId": 7,
       "monthlyRentAsPercentOfIncome": null
     },
     {
@@ -138,7 +138,7 @@
       "annualIncomeMax": "103350.0",
       "maxOccupancy": 2,
       "minOccupancy": 1,
-      "monthlyRent": "2429.0",
+      "monthlyRent": "2624.0",
       "numBathrooms": null,
       "numBedrooms": 1,
       "number": null,
@@ -150,7 +150,7 @@
       "createdAt": "2019-06-03T10:42:43.134Z",
       "updatedAt": "2019-07-10T09:44:01.384Z",
       "listingId": 3,
-      "amiChartId": 1,
+      "amiChartId": 7,
       "monthlyRentAsPercentOfIncome": null
     },
     {
@@ -162,7 +162,7 @@
       "annualIncomeMax": "103350.0",
       "maxOccupancy": 2,
       "minOccupancy": 1,
-      "monthlyRent": "2429.0",
+      "monthlyRent": "2624.0",
       "numBathrooms": null,
       "numBedrooms": 1,
       "number": null,
@@ -174,7 +174,7 @@
       "createdAt": "2019-06-03T10:42:43.134Z",
       "updatedAt": "2019-07-10T09:44:01.384Z",
       "listingId": 3,
-      "amiChartId": 1,
+      "amiChartId": 7,
       "monthlyRentAsPercentOfIncome": null
     },
     {
@@ -186,7 +186,7 @@
       "annualIncomeMax": "103350.0",
       "maxOccupancy": 2,
       "minOccupancy": 1,
-      "monthlyRent": "1623.0",
+      "monthlyRent": "1575.0",
       "numBathrooms": null,
       "numBedrooms": 1,
       "number": null,
@@ -198,7 +198,7 @@
       "createdAt": "2019-06-03T10:42:43.134Z",
       "updatedAt": "2019-07-10T09:43:16.766Z",
       "listingId": 3,
-      "amiChartId": 1,
+      "amiChartId": 7,
       "monthlyRentAsPercentOfIncome": null
     }
   ],
