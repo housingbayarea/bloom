@@ -39,6 +39,7 @@ module.exports = withCSS(
           listingServiceUrl: LISTING_SERVICE_URL,
           mapBoxToken: MAPBOX_TOKEN,
           housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL,
+          gtmKey: process.env.GTM_KEY || null,
         },
         sassLoaderOptions: {
           prependData: tailwindVars,
@@ -47,7 +48,6 @@ module.exports = withCSS(
         async exportPathMap() {
           // we fetch our list of listings, this allow us to dynamically generate the exported pages
           let listings = []
-
           try {
             const response = await axios.get(LISTING_SERVICE_URL)
             listings = response.data.listings
@@ -59,9 +59,14 @@ module.exports = withCSS(
           const listingPaths = listings.reduce(
             (listingPaths, listing) =>
               Object.assign({}, listingPaths, {
-                [`/listing/${listing.id}`]: {
+                [`/listing/${listing.id}/${listing.urlSlug}`]: {
                   page: "/listing",
                   query: { id: listing.id },
+                },
+                // Create a redirect so that the base ID redirects to the ID with URL slug
+                [`/listing/${listing.id}`]: {
+                  page: "/redirect",
+                  query: { to: `/listing/${listing.id}/${listing.urlSlug}` },
                 },
               }),
             {}
