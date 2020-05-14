@@ -11,8 +11,15 @@ import {
   t,
 } from "@bloom-housing/ui-components"
 
-const notice = <a href="https://www.surveymonkey.com/r/2QLBYML">We love to get your feedback</a>
-const Layout = (props) => (
+const notice = (
+  <>
+    {t("nav.getFeedback")}
+    <a href="https://www.surveymonkey.com/r/2QLBYML" target="_blank">
+      {t("nav.yourFeedback")}
+    </a>
+  </>
+)
+const Layout = props => (
   <div>
     <Head>
       <title>{t("nav.siteTitle")}</title>
@@ -41,24 +48,34 @@ const Layout = (props) => (
             {t("footer.headerLink")}
           </a>
           <br />
-          {t("footer.inPartnershipWith")}
-          <br />
-          <a href={t("footer.sanMateoISDurl")} target="_blank">
-            {t("footer.sanMateoISD")}
-          </a>
-          <br />
-          <a href={t("footer.cityOfSouthSFurl")} target="_blank">
-            {t("footer.cityOfSouthSF")}
-          </a>
+          <span className="text-md">
+            {t("footer.inPartnershipWith")}
+            <br />
+            <a href={t("footer.sanMateoISDurl")} target="_blank">
+              {t("footer.sanMateoISD")}
+            </a>
+            <br />
+            <a href={t("footer.cityOfSouthSFurl")} target="_blank">
+              {t("footer.cityOfSouthSF")}
+            </a>
+          </span>
         </p>
-        <p className="mt-10 text-sm">{t("footer.forListingQuestions")}</p>
-        <p className="text-sm">{t("footer.forGeneralInquiries")}</p>
+        <p className="mt-8 text-md">{t("footer.forListingQuestions")}</p>
+        <p className="text-md">{t("footer.forGeneralInquiries")}</p>
 
-        <p className="mt-10 text-sm">
+        <p className="mt-8 text-md">
           {t("footer.forAdditionalOpportunities")}
           <br />
-          <a href={t("footer.SFHousingUrl")} target="_blank">
+          <a className="px-2" href={t("footer.SFHousingUrl")} target="_blank">
             {t("footer.SFHousingPortal")}
+          </a>
+          |
+          <a className="px-2" href={t("footer.SJHousingUrl")} target="_blank">
+            {t("footer.SJHousingPortal")}
+          </a>
+          |
+          <a className="px-2" href={t("footer.ALAHousingUrl")} target="_blank">
+            {t("footer.ALAHousingPortal")}
           </a>
         </p>
       </FooterSection>
