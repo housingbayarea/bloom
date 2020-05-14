@@ -38,10 +38,10 @@ module.exports = withCSS(
         env: {
           listingServiceUrl: LISTING_SERVICE_URL,
           mapBoxToken: MAPBOX_TOKEN,
-          housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL
+          housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL,
         },
         sassLoaderOptions: {
-          prependData: tailwindVars
+          prependData: tailwindVars,
         },
         // exportPathMap adapted from https://github.com/zeit/next.js/blob/canary/examples/with-static-export/next.config.js
         async exportPathMap() {
@@ -61,8 +61,8 @@ module.exports = withCSS(
               Object.assign({}, listingPaths, {
                 [`/listing/${listing.id}`]: {
                   page: "/listing",
-                  query: { id: listing.id }
-                }
+                  query: { id: listing.id },
+                },
               }),
             {}
           )
@@ -72,18 +72,18 @@ module.exports = withCSS(
             "/": { page: "/" },
             "/listings": { page: "/listings" },
             "/housing-counselors": { page: "/HousingCounselors" },
-            "/additional-resources": { page: "/AdditionalResources" }
+            "/additional-resources": { page: "/AdditionalResources" },
           })
           const languages = ["es"] // add new language codes here
           const languagePaths = {}
           Object.entries(translatablePaths).forEach(([key, value]) => {
             languagePaths[key] = value
-            languages.forEach(language => {
+            languages.forEach((language) => {
               const query = Object.assign({}, value.query)
               query.language = language
               languagePaths[`/${language}${key.replace(/^\/$/, "")}`] = {
                 ...value,
-                query: query
+                query: query,
               }
             })
           })
@@ -91,9 +91,9 @@ module.exports = withCSS(
           // combine the map of all various types of page paths
           return Object.assign({}, languagePaths, {
             "/disclaimer": { page: "/disclaimer" },
-            "/privacy": { page: "/privacy" }
+            "/privacy": { page: "/privacy" },
           })
-        }
+        },
       })
     )
   )
