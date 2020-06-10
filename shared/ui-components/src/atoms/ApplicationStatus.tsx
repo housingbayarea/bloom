@@ -21,7 +21,6 @@ const ApplicationStatus = (props: ApplicationStatusProps) => {
   const textColor = vivid ? "text-white" : "text-gray-800"
   const textSize = vivid ? "text-xs" : "text-sm"
 
-  console.log("test-actual")
   if (openDateState(listing)) {
     const date = listing.applicationOpenDate
     const openDate = moment(date)
