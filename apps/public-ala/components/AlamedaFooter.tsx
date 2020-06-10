@@ -22,7 +22,8 @@ const AlamedaFooter = () => (
       </p>
 
       <p className="text-sm">
-        For general program inquiries, you may call the Alameda County HCD at 510-670-5404.
+        For general program inquiries, or to access translation services for content on this website
+        by phone, you may call Alameda County HCD at 510-670-5404.
       </p>
 
       <p className="mt-10 text-sm">
