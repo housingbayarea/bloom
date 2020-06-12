@@ -5,7 +5,6 @@ import axios from "axios"
 import { Listing } from "@bloom-housing/core"
 import {
   AdditionalFees,
-  ApplicationSection,
   ApplicationStatus,
   BasicTable,
   Description,
@@ -30,6 +29,7 @@ import {
   t,
 } from "@bloom-housing/ui-components"
 import Layout from "../layouts/application"
+import ApplicationSection from "../components/ApplicationSection"
 
 interface ListingProps {
   listing: Listing
