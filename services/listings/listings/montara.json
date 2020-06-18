@@ -85,10 +85,10 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 1,
-      "amiPercentage": "60.0",
+      "amiPercentage": "80.0",
       "annualIncomeMin": "45864",
       "listingId": 3,
-      "amiChartId": 7
+      "amiChartId": 8
     },
     {
       "number": "6",
@@ -109,9 +109,9 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 2,
-      "amiPercentage": "60.0",
+      "amiPercentage": "80.0",
       "listingId": 3,
-      "amiChartId": 7,
+      "amichartId": 8,
       "annualIncomeMin": "54864"
     },
     {
@@ -133,10 +133,10 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 3,
-      "amiPercentage": "60.0",
+      "amiPercentage": "80.0",
       "annualIncomeMin": "63144",
       "listingId": 3,
-      "amiChartId": 7
+      "amichartId": 8
     }
   ],
   "preferences": [
