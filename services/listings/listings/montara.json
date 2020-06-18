@@ -31,9 +31,9 @@
     "latitude": null
   },
   "leasingAgentOfficeHours": "Closed to public due to COVID-19 Shelter in Place",
-  "applicationFee": "25.0",
-  "depositMin": "800.0",
-  "depositMax": "1000.0",
+  "applicationFee": "25.00",
+  "depositMin": "800.00",
+  "depositMax": "1000.00",
   "costsNotIncluded": "Tenants pay electricity (heating, cooking, lighting), telephone, internet and cable.  Rent is due by the 1st of each month. Late fee is $20 if rent is not received by the 5th of the month.",
   "unitsAvailable": 17,
   "waitlistMaxSize": 400,
