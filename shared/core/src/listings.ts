@@ -43,6 +43,7 @@ export interface Listing {
   criminalBackground: string
   depositMin: string
   depositMax?: string
+  depositMaxExtraText?: string
   developer: string
   disableUnitsAccordion?: boolean
   id: string

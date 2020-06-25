@@ -30,6 +30,7 @@
   "leasingAgentName": "Leopoldo Batlle",
   "leasingAgentTitle": "Director of Property Management",
   "leasingAgentEmail": "montara.leasing@bridgehousing.com",
+  "depositMaxExtraText": "or tenant portion if applicant has a Section 8 Voucher",
   "leasingAgentPhone": "415-748-3984",
   "leasingAgentAddress": {
     "street": "",
@@ -39,6 +40,9 @@
     "county": "San Mateo",
     "longitude": null,
     "latitude": null
+  },
+  "whatToExpect": {
+    "bePreparedIfChosen": "Should your application be chosen from the lottery, be prepared to fill out a more detailed application and provide required supporting documents within 5 business days of being contacted."
   },
   "leasingAgentOfficeHours": "Closed to public due to COVID-19 Shelter in Place. Please see PDF Application for further instructions on submitting application.",
   "applicationFee": "25.00",
@@ -66,7 +70,7 @@
   "reservedCommunityMinimumAge": 0,
   "amenities": "Community room with kitchen, community garden, an outdoor courtyard, picnic area, elevator, bike parking, garage parking, on-site laundry, children's play area and on-site professional management.",
   "unitAmenities": "Electric kitchen, dishwasher, heating ",
-  "accessibility": "Lobby and community room are wheelchair accessible. Building has common area accessible bathrooms and elevators and an accessible multipurpose room.  Specific units are built out for handicapped and hearing accessibility.  ADA built out units have the following modifications:  Bathroom  Accessible bathtub with seat and controls with clearance for wheelchair  Bathtub surround with grab bars  Accessible bathroom sink and faucet  Accessible medicine cabinet  Grab bars at toilet  Lowered towel bars Kitchen  Accessible range with space for wheelchair  Accessible switch for circulating hood (stove)  Kitchen electrical outlets and controls in proper reach range  Kitchen cabinets with 34\" high counter top and 30\" work surface Living room/Bedroom  Closet rod and shelf at ADA height (48\")  Entry door and door hardware for ADA units includes lockset with levers, closer and peepholes  Hearing Units have the following modifications:  Fire alarm has Strobes  Doorbell with visual notification",
+  "accessibility": "Lobby and community room are wheelchair accessible. Building has common area accessible bathrooms and elevators and an accessible multipurpose room.\n\nSpecific units are built out for handicapped and hearing accessibility.\n\nADA built out units have the following modifications:\n\nBathroom\n- Accessible bathtub with seat and controls with clearance for wheelchair\n- Bathtub surround with grab bars\n- Accessible bathroom sink and faucet\n- Accessible medicine cabinet\n- Grab bars at toilet\n- Lowered towel bars\n\nKitchen\n- Accessible range with space for wheelchair\n- Accessible switch for circulating hood (stove)\n- Kitchen electrical outlets and controls in proper reach range\n- Kitchen cabinets with 34\" high counter top and 30\" work surface\n\nLiving room/Bedroom\n- Closet rod and shelf at ADA height (48\")\n- Entry door and door hardware for ADA units includes lockset with levers, closer and peepholes\n\nHearing Units have the following modifications:\n- Fire alarm has Strobes\n- Doorbell with visual notification",
   "smokingPolicy": "Non-Smoking",
   "petPolicy": "Montara does not allow pets of any kind. Service and Companion Animals are not considered pets. Please refer to our reasonable accommodation policy. ",
   "requiredDocuments": "See Application Checklist within the Building Selection Criteria for required income and asset documents due at the time of interview.",
@@ -165,7 +169,7 @@
   "applicationOrganization": "",
   "attachments": [
     {
-      "fileUrl": "https://drive.google.com/file/d/1ewZxK-QWLWHW5ZiqrLw2QnxvCWzBGfL1/view?usp=sharing",
+      "fileUrl": "https://drive.google.com/file/d/1buT2rESbwrDjOZyIaiKrC7e6NzvqxWTQ/view?usp=sharing",
       "label": "English",
       "type": 1
     }
