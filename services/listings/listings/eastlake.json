@@ -13,7 +13,7 @@
     "latitude": null,
     "longitude": null
   },
-  "applicationDueDate": "",
+  "applicationDueDate": null,
   "applicationOpenDate": "2020-06-09T00:00:00.000Z",
   "applicationOrganization": "",
   "applicationPhone": "",
