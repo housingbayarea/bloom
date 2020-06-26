@@ -24,6 +24,8 @@ export interface Listing {
   acceptingApplicationsByPoBox: boolean
   acceptingOnlineApplications: boolean
   acceptsPostmarkedApplications: boolean
+  applicationPickUpAddress: Address
+  applicationPickUpAddressOfficeHours: string
   accessibility: string
   amenities: string
   applicationDueDate: string

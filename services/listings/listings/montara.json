@@ -2,10 +2,20 @@
   "name": "Montara",
   "id": "UtW_vcodmsINLZKsvmjEY",
   "imageUrl": "https://bridgehousing.com/wp-content/uploads/2019/03/Bay-Meadows-web.jpg",
-  "acceptingApplicationsAtLeasingAgent": true,
+  "acceptingApplicationsAtLeasingAgent": false,
   "acceptingApplicationsByPoBox": true,
   "blankPaperApplicationCanBePickedUp": true,
   "applicationDueDate": "2020-07-17T17:00:00.000-07:00",
+  "applicationPickUpAddressOfficeHours": "8am to 5pm Monday - Friday",
+  "applicationPickUpAddress": {
+    "street": "330 W 20th Ave",
+    "city": "San Mateo",
+    "state": "CA",
+    "zipCode": "94403",
+    "county": "San Mateo",
+    "longitude": 37.5473044,
+    "latitude": -122.3173693
+  },
   "applicationAddress": {
     "street": "PO Box 7060",
     "city": "San Mateo ",
@@ -15,12 +25,12 @@
     "longitude": null,
     "latitude": null
   },
-  "applicationPhone": "",
-  "acceptingOnlineApplications": true,
+  "applicationPhone": "415-748-3984",
+  "acceptingOnlineApplications": false,
   "leasingAgentName": "Leopoldo Batlle",
   "leasingAgentTitle": "Director of Property Management",
   "leasingAgentEmail": "montara.leasing@bridgehousing.com",
-  "leasingAgentPhone": "",
+  "leasingAgentPhone": "415-748-3984",
   "leasingAgentAddress": {
     "street": "",
     "city": "",
@@ -30,7 +40,7 @@
     "longitude": null,
     "latitude": null
   },
-  "leasingAgentOfficeHours": "Closed to public due to COVID-19 Shelter in Place",
+  "leasingAgentOfficeHours": "Closed to public due to COVID-19 Shelter in Place. Please see PDF Application for further instructions on submitting application.",
   "applicationFee": "25.00",
   "depositMin": "800.00",
   "depositMax": "1000.00",
@@ -59,8 +69,8 @@
   "accessibility": "Lobby and community room are wheelchair accessible. Building has common area accessible bathrooms and elevators and an accessible multipurpose room.  Specific units are built out for handicapped and hearing accessibility.  ADA built out units have the following modifications:  Bathroom  Accessible bathtub with seat and controls with clearance for wheelchair  Bathtub surround with grab bars  Accessible bathroom sink and faucet  Accessible medicine cabinet  Grab bars at toilet  Lowered towel bars Kitchen  Accessible range with space for wheelchair  Accessible switch for circulating hood (stove)  Kitchen electrical outlets and controls in proper reach range  Kitchen cabinets with 34\" high counter top and 30\" work surface Living room/Bedroom  Closet rod and shelf at ADA height (48\")  Entry door and door hardware for ADA units includes lockset with levers, closer and peepholes  Hearing Units have the following modifications:  Fire alarm has Strobes  Doorbell with visual notification",
   "smokingPolicy": "Non-Smoking",
   "petPolicy": "Montara does not allow pets of any kind. Service and Companion Animals are not considered pets. Please refer to our reasonable accommodation policy. ",
-  "requiredDocuments": "See Application Checklist for required income and asset documents due at time of interview.",
-  "programRules": "In addition to qualifying under the rules for income and household size, applicants must qualify under the rules of the building as outlined in the Application Cover Letter.",
+  "requiredDocuments": "See Application Checklist within the Building Selection Criteria for required income and asset documents due at the time of interview.",
+  "programRules": "In addition to qualifying under the rules for income and household size, applicants must qualify under the rules of the building as outlined within the Building Selection Criteria.",
   "creditHistory": "(student loans and medical expenses are excluded) Total unmet credit problems (including governmental tax liens), within the last three (3) years must not be in excess of $2,500. May not have a bankruptcy discharged (within the last three years). May not have had a total of seven (7) unmet credit problems of any value within the last three (3) years.",
   "rentalHistory": "May not have a judgment against an applicant obtained by the current or previous landlord (no\u2010fault evictions will not count against applicant) within the last three (3) years. May not have an unmet obligation owed to a previous landlord within the last three (3) years. Applicant must have made timely payments of the last year's rental payments.",
   "criminalBackground": "(Based on individual analysis and review of circumstances) If any adult household member is subject to any state\u2019s sex offender lifetime registration requirement. Conviction for violent criminal activity that would threaten the health, safety, or right to  peaceful enjoyment by other residents or employees and contractors who work with the project. Conviction for drug related criminal activity that would threaten the health, safety, or right  to peaceful enjoyment by other residents or employees and contractors who work with the project. Other criminal conviction that would threaten the health, safety, or right to peaceful enjoyment by other residents or employees and contractors who work with the project.",
@@ -85,7 +95,7 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 1,
-      "amiPercentage": "80.0",
+      "amiPercentage": "60.0",
       "annualIncomeMin": "45864",
       "listingId": 3,
       "amiChartId": 8
@@ -101,7 +111,7 @@
       "maxOccupancy": 5.0,
       "reservedType": null,
       "priorityType": "N/A",
-      "sqFeet": "844-979",
+      "sqFeet": "826-979",
       "floor": "",
       "createdAt": "2020-06-18T12:47:26.824547",
       "updatedAt": "2020-06-18T12:47:26.824549",
@@ -109,7 +119,7 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 2,
-      "amiPercentage": "80.0",
+      "amiPercentage": "60.0",
       "listingId": 3,
       "amichartId": 8,
       "annualIncomeMin": "54864"
@@ -125,7 +135,7 @@
       "maxOccupancy": 7.0,
       "reservedType": null,
       "priorityType": "Mobility and hearing ",
-      "sqFeet": "1.078-1.184",
+      "sqFeet": "1,078-1,185",
       "floor": "",
       "createdAt": "2020-06-18T12:47:26.824551",
       "updatedAt": "2020-06-18T12:47:26.824553",
@@ -133,7 +143,7 @@
       "numBathrooms": null,
       "numBedrooms": null,
       "id": 3,
-      "amiPercentage": "80.0",
+      "amiPercentage": "60.0",
       "annualIncomeMin": "63144",
       "listingId": 3,
       "amichartId": 8
@@ -153,7 +163,13 @@
   "reservedDescriptor": null,
   "groupId": null,
   "applicationOrganization": "",
-  "attachments": [],
+  "attachments": [
+    {
+      "fileUrl": "https://drive.google.com/file/d/1ewZxK-QWLWHW5ZiqrLw2QnxvCWzBGfL1/view?usp=sharing",
+      "label": "English",
+      "type": 1
+    }
+  ],
   "hideUnitFeatures": false,
   "acceptsPostmarkedApplications": false,
   "totalUnits": 3,
