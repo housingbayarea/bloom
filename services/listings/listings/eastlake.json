@@ -19,13 +19,13 @@
   "applicationPhone": "",
   "blankPaperApplicationCanBePickedUp": false,
   "buildingAddress": {
-    "city": "Alameda",
+    "city": "Oakland",
     "county": "Alameda",
-    "street": "2505 10th Avenue",
-    "zipCode": "94501",
+    "street": "1825 San Pablo Ave., Suite 200",
+    "zipCode": "94612",
     "state": "CA",
-    "latitude": 37.799621,
-    "longitude": -122.239460
+    "latitude": 37.808368,
+    "longitude": -122.272786
   },
   "buildingSelectionCriteria": "https://ebaldc.org/how-to-apply/residential-selection-criteria",
   "costsNotIncluded": "Residents responsible for PG&E and Internet.",
