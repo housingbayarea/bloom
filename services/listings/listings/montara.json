@@ -43,6 +43,8 @@
     "latitude": null
   },
   "whatToExpect": {
+    "applicantsWillBeContacted": "Applicants will be contacted by the agent in lottery rank order until vacancies are filled.",
+    "allInfoWillBeVerified": "All of the information that you have provided will be verified and your eligibility confirmed. Your application will be removed from the lottery if you have made any fraudulent statements, or if any household members appears on more than one application from this listing. If we cannot verify a housing lottery preference that you have claimed, you will not receive the preference but will not be otherwise penalized.",
     "bePreparedIfChosen": ""
   },
   "leasingAgentOfficeHours": "Closed to public due to COVID-19 Shelter in Place. Please see PDF Application for further instructions on submitting application.",
