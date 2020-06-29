@@ -8,6 +8,7 @@
   "applicationDueDate": "2020-07-17T17:00:00.000-07:00",
   "applicationPickUpAddressOfficeHours": "8am to 5pm Monday - Friday",
   "applicationPickUpAddress": {
+    "placeName": "San Mateo City Hall",
     "street": "330 W 20th Ave",
     "city": "San Mateo",
     "state": "CA",
