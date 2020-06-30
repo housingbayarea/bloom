@@ -277,7 +277,11 @@ export default class extends Component<ListingProps> {
                   <Description term={t("t.petsPolicy")} description={listing.petPolicy} />
                   <Description term={t("t.propertyAmenities")} description={listing.amenities} />
                   <Description term={t("t.unitAmenities")} description={listing.unitAmenities} />
-                  <Description term={t("t.accessibility")} description={listing.accessibility} />
+                  <Description
+                    markdown
+                    term={t("t.accessibility")}
+                    description={listing.accessibility}
+                  />
                   <Description
                     term={t("t.unitFeatures")}
                     description={
