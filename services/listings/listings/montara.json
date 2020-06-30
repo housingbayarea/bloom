@@ -513,7 +513,7 @@
   ],
   "createdAt": "2020-06-18T12:47:26.824522",
   "updatedAt": "2020-06-18T12:47:26.824539",
-  "disableUnitsAccordion": null,
+  "disableUnitsAccordion": true,
   "postmarkedApplicationsReceivedByDate": null,
   "reservedDescriptor": null,
   "groupId": null,
