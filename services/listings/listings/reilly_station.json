@@ -1,6 +1,6 @@
 {
   "name": "Reilly Station",
-  "imageUrl": "",
+  "imageUrl": "/images/reillystation.jpg",
   "acceptingApplicationsAtLeasingAgent": false,
   "acceptingApplicationsByPoBox": false,
   "acceptingApplicationsByPostmark": false,
@@ -14,7 +14,7 @@
     "city": "",
     "state": "",
     "zipCode": "",
-    "county": "San Mateo",
+    "county": "Alameda",
     "longitude": 0,
     "latitude": 0
   },
@@ -28,7 +28,7 @@
     "city": "",
     "state": "",
     "zipCode": "",
-    "county": "San Mateo",
+    "county": "Alameda",
     "longitude": 0,
     "latitude": 0
   },
@@ -49,7 +49,7 @@
     "zipCode": "94539",
     "longitude": -121.9380935,
     "latitude": 37.5040525,
-    "county": "San Mateo"
+    "county": "Alameda"
   },
   "developer": "Eden Housing",
   "neighborhood": "Metro Crossing/Warms Springs",
@@ -150,13 +150,8 @@
   ],
   "preferences": [
     {
-      "title": "Live and Work in Foster City",
-      "subtitle": "For households in which at least one member lives and works in Foster City. Requires submission of proof. Please note in order to claim Work Preference, the applicant currently work in Foster City at least 75% of their working hours.",
-      "ordinal": "1st"
-    },
-    {
-      "title": "School Employee",
-      "subtitle": "Classroom teachers who are employees of the San Mateo-Foster City School District, the San Mateo Union High School District and the San Mateo County Community College District.",
+      "title": "Live/work in the City of Fremont",
+      "subtitle": "Household that currenlty live or work in the City of Fremont are given priority.",
       "ordinal": "1st"
     }
   ],
