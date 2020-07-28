@@ -38,7 +38,7 @@
   "depositMax": "2,036",
   "costsNotIncluded": "Application fee is only charged if selected to be interviewed. Electric, cable & internet not included. Rent is due on the first considered late on the 6th of each month, however fees & payments arrangements are made sue to COVID. $25 late fee, waived during COVID, $10 NSF plus bank fees, Pet Deposit is $150.",
   "unitsAvailable": 60,
-  "waitlistMaxSize": 0,
+  "waitlistMaxSize": 500,
   "waitlistCurrentSize": 0,
   "buildingTotalUnits": 61,
   "buildingName": "Eden Housing",
@@ -63,16 +63,16 @@
   "accessibility": "All common areas are wheelchair accessible. 50% of the units are built out for persons with mobility disabilities with all units that can easily be adapted.",
   "smokingPolicy": "No smoking building.",
   "petPolicy": "No pets will be allowed without prior approval from the management.  All pets, except fish, must be brought into the office for inspection and appropriate documentation and evidence of shots, neutering, good health, etc. must be provided where appropriate. Only the following types and number of pets will be allowed:  Dogs -- Maximum Number: One, Maximum Size: 25lbs, Minimum Age: 1 Year, Spayed or Neutered & Distemper & Rabies Shots.  Cats -- Maximum Number: One (Domestic only), Maximum size: N/A, Minimum age: 6 months, spayed or neutered & Distemper & rabies shots.  Birds --Maximum number:  Two.  Fish -- Maximum Aquarium Size: 20 gallons.  Small Mammals -- (Gerbils, Hamsters, Guinea Pigs) & Maximum number: Two.  NOTE: NO RABBITS 0R MICE PERMITTED & CERTAIN BREEDS of DOGS.",
-  "requiredDocuments": "Due Post Lottery as applicable to household: \u2022 Picture ID/Driver\u2019s License for all household members 18 and older. \u2022 Social Security cards for all household members. \u2022 Complete copy of most current filed Income Tax Returns or proof of non-filing and W-2s. \u2022 Payroll stubs from the past three current consecutive months. \u2022 Current annual (SS) Social Security award letter, current (SSDI) Social Security Disability Insurance and/or current (SSI) Supplement Security Income award letter from Social Security Administration. \u2022 Most current pension, annuity or other retirement account statement(s). \u2022 Checking Account statements for the last six consecutive months. \u2022 Current month bank statement for Savings Accounts. \u2022 Current Statement from all 401-K/IRA and/or other asset account(s) including debit cards and whole life insurance policies. \u2022 Contact address information for Income, Assets and Housing references. \u2022 Copy of Birth certificates for anyone 17 or younger \u2022 Copy of your Veteran status, DD-214 \u2022 Applicable documentation for verification of household size that may include custody agreement or marital separation to determine eligibility for unit size occupancy standards.",
-  "programRules": "All low income Housing tax credit program requirements including a maximum income limit that can not be exceeded.",
-  "creditHistory": "All rental accounts must be in good standing with no balance owed and/or evictions within the past five years. \u2022  All utility accounts must be paid in full.  \u2022  No bankruptcies filed within the last twelve months. \u2022 No unpaid judgements, collections, and liens exceeding $5,000 excluding student loans and medical bills.",
+  "requiredDocuments": "Due Post Lottery as applicable to household: \n\n - Picture ID/Driver\u2019s License for all household members 18 and older. \n\n - Social Security cards for all household members. \n\n - Complete copy of most current filed Income Tax Returns or proof of non-filing and W-2s. \n\n - Payroll stubs from the past three current consecutive months. \n\n - Current annual (SS) Social Security award letter, current (SSDI) Social Security Disability Insurance and/or current (SSI) Supplement Security Income award letter from Social Security Administration. \n\n - Most current pension, annuity or other retirement account statement(s). \n\n - Checking Account statements for the last six consecutive months. \n\n - Current month bank statement for Savings Accounts. \n\n - Current Statement from all 401-K/IRA and/or other asset account(s) including debit cards and whole life insurance policies. \n\n - Contact address information for Income, Assets and Housing references. \n\n - Copy of Birth certificates for anyone 17 or younger \n\n - Copy of your Veteran status, DD-214 \n\n - Applicable documentation for verification of household size that may include custody agreement or marital separation to determine eligibility for unit size occupancy standards.",
+  "programRules": "- All low income Housing tax credit program requirements including a maximum income limit that can not be exceeded. \n\n - Applicants not chosen for Reilly Station will have their application put into the Canyon Flats lottery. ",
+  "creditHistory": "All rental accounts must be in good standing with no balance owed and/or evictions within the past five years. \n\n -  All utility accounts must be paid in full.  \n\n -  No bankruptcies filed within the last twelve months. \n\n - No unpaid judgements, collections, and liens exceeding $5,000 excluding student loans and medical bills.",
   "rentalHistory": "A rental housing history & credit report will be ran & Housing references sent out for 5 years of housing history.",
-  "criminalBackground": "A criminal background check will be ran going back 5 years. \u2022 Applicants with unsatisfactory criminal backgrounds may be declined depending upon the nature and severity of the offense and the time that has passed since the conviction occurred. A household with a member who is subject to lifetime registration under a State Sex Offender Registration Program or has been convicted of drug-related criminal activity for manufacture or production of methamphetamine on the premises of federally assisted housing will not be admitted under any circumstance. An application also may be denied if the information available regarding a conviction is insufficient to allow proper classification. Criminal history and/or activity within the past five (5) years that may result in the rejection of an application may include, for example:  \u2022  Sexual assault, \u2022  Domestic violence \u2022 Discharging a firearm \u2022 Gang participation; \u2022 Burglary and/ or vandalism \u2022 Assault \u2022 Disorderly conduct \u2022 Stalking; etc. \u2022  Current engagement in use of a drug or if the owner has reasonable cause to believe that a household member\u2019s illegal use of a drug or pattern of illegal use may interfere with the health, safety, or right to peaceful enjoyment of the premises by other residents will not be approved for residency; \u2022 Abuse or pattern of abuse of alcohol that interferes with the health, safety, or peaceful enjoyment of the premises by other residents will not be approved for residency; \u2022 Involvement in drug related criminal activity or violent criminal activity or other criminal and ongoing criminal activity that is current or an indication of repeated criminal behavior will not be approved for residency; \u2022 An applicant\u2019s misrepresentation of any information related to eligibility, allowance, household composition or rent will not be approved for residency.",
+  "criminalBackground": "A criminal background check will be ran going back 5 years. \n\n - Applicants with unsatisfactory criminal backgrounds may be declined depending upon the nature and severity of the offense and the time that has passed since the conviction occurred. A household with a member who is subject to lifetime registration under a State Sex Offender Registration Program or has been convicted of drug-related criminal activity for manufacture or production of methamphetamine on the premises of federally assisted housing will not be admitted under any circumstance. An application also may be denied if the information available regarding a conviction is insufficient to allow proper classification. Criminal history and/or activity within the past five (5) years that may result in the rejection of an application may include, for example:  \n\n -  Sexual assault, \n\n -  Domestic violence \n\n - Discharging a firearm \n\n - Gang participation; \n\n - Burglary and/ or vandalism \n\n - Assault \n\n - Disorderly conduct \n\n - Stalking; etc. \n\n -  Current engagement in use of a drug or if the owner has reasonable cause to believe that a household member\u2019s illegal use of a drug or pattern of illegal use may interfere with the health, safety, or right to peaceful enjoyment of the premises by other residents will not be approved for residency; \n\n - Abuse or pattern of abuse of alcohol that interferes with the health, safety, or peaceful enjoyment of the premises by other residents will not be approved for residency; \n\n - Involvement in drug related criminal activity or violent criminal activity or other criminal and ongoing criminal activity that is current or an indication of repeated criminal behavior will not be approved for residency; \n\n - An applicant's misrepresentation of any information related to eligibility, allowance, household composition or rent will not be approved for residency.",
   "buildingSelectionCriteria": "Optional link to offsite building selection criteria if the information provided on the listing are not sufficient.",
   "units": [
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "734.0",
       "monthlyIncomeMin": "1468.0",
@@ -96,7 +96,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "734.0",
       "monthlyIncomeMin": "1468.0",
@@ -120,7 +120,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -144,7 +144,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -168,7 +168,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -192,7 +192,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -216,7 +216,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -240,7 +240,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
@@ -264,7 +264,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
@@ -288,7 +288,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
@@ -312,7 +312,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
@@ -336,7 +336,7 @@
     },
     {
       "number": "",
-      "unitType": "studio",
+      "unitType": "oneBdrm",
       "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
@@ -360,7 +360,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -384,7 +384,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -408,7 +408,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -432,7 +432,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -456,7 +456,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -480,7 +480,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -504,7 +504,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -528,7 +528,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
@@ -552,7 +552,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -576,7 +576,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -600,7 +600,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -624,7 +624,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -648,7 +648,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -672,7 +672,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -696,7 +696,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -720,7 +720,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -744,7 +744,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -768,7 +768,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -792,7 +792,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -816,7 +816,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
@@ -840,7 +840,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -864,7 +864,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -888,7 +888,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -912,7 +912,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -936,7 +936,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -960,7 +960,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -984,7 +984,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1008,7 +1008,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1032,7 +1032,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1056,7 +1056,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1080,7 +1080,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1104,7 +1104,7 @@
     },
     {
       "number": "",
-      "unitType": "oneBdrm",
+      "unitType": "twoBdrm",
       "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
@@ -1128,7 +1128,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1018",
       "monthlyIncomeMin": "2036",
@@ -1152,7 +1152,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1018",
       "monthlyIncomeMin": "2036",
@@ -1176,7 +1176,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1200,7 +1200,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1224,7 +1224,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1248,7 +1248,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1272,7 +1272,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1296,7 +1296,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
@@ -1320,7 +1320,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1344,7 +1344,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1368,7 +1368,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1392,7 +1392,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1416,7 +1416,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1440,7 +1440,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1464,7 +1464,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
@@ -1488,7 +1488,7 @@
     },
     {
       "number": "",
-      "unitType": "twoBdrm",
+      "unitType": "threeBdrm",
       "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
