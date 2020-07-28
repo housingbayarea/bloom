@@ -6,7 +6,7 @@
   "acceptingApplicationsByPostmark": false,
   "acceptingOnlineApplications": true,
   "blankPaperApplicationCanBePickedUp": false,
-  "applicationDueDate": "2020-08-21T23:00:00",
+  "applicationDueDate": "2020-08-21T16:00:00.000-0700",
   "applicationPostmarkDueDate": false,
   "applicationOrganization": "Eden Housing",
   "applicationAddress": {
@@ -34,8 +34,8 @@
   },
   "leasingAgentOfficeHours": "Message line returns calls during application intake, 8/3/20 to 8/21/20, Monday thru Saturday from 10am to 4pm. \u00a0Saturday hours are only during application intake (August 8th and August 15th), then it returns to Monday \u2013Friday.",
   "applicationFee": "35",
-  "depositMin": "500.0",
-  "depositMax": "2.036",
+  "depositMin": "500",
+  "depositMax": "2,036",
   "costsNotIncluded": "Application fee is only charged if selected to be interviewed. Electric, cable & internet not included. Rent is due on the first considered late on the 6th of each month, however fees & payments arrangements are made sue to COVID. $25 late fee, waived during COVID, $10 NSF plus bank fees, Pet Deposit is $150.",
   "unitsAvailable": 60,
   "waitlistMaxSize": 0,
@@ -58,9 +58,9 @@
   "reservedCommunityMaximumAge": 0,
   "reservedCommunityMinimumAge": 0,
   "priorityDescription": "A preference is provide to household that currently live or work in the City of Fremont.",
-  "amenities": "Community room, lounge areas, Computer Lab, Courtyard with BBQ and Community Gardens, Fitness room, Bicycle Storage & extra Tenant storage,Onsite laundry room, parcel lockers, Stacker parking, EV car charging & Car Share.",
-  "unitAmenities": "Blinds on all windows, full size refrigerator, garbage disposal, seperate cook top & oven.",
-  "accessibility": "All common areas are wheelchair accessable. 50% of the units are built out for persons with mobility disabilities with all units that can eaisly be adapted.",
+  "amenities": "Community room, lounge areas, Computer Lab, Courtyard with BBQ and Community Gardens, Fitness room, Bicycle Storage & extra Tenant storage, on-site laundry room, parcel lockers, Stacker parking, EV car charging & Car Share.",
+  "unitAmenities": "Blinds on all windows, full size refrigerator, garbage disposal, separate cook top & oven.",
+  "accessibility": "All common areas are wheelchair accessible. 50% of the units are built out for persons with mobility disabilities with all units that can easily be adapted.",
   "smokingPolicy": "No smoking building.",
   "petPolicy": "No pets will be allowed without prior approval from the management.  All pets, except fish, must be brought into the office for inspection and appropriate documentation and evidence of shots, neutering, good health, etc. must be provided where appropriate. Only the following types and number of pets will be allowed:  Dogs -- Maximum Number: One, Maximum Size: 25lbs, Minimum Age: 1 Year, Spayed or Neutered & Distemper & Rabies Shots.  Cats -- Maximum Number: One (Domestic only), Maximum size: N/A, Minimum age: 6 months, spayed or neutered & Distemper & rabies shots.  Birds --Maximum number:  Two.  Fish -- Maximum Aquarium Size: 20 gallons.  Small Mammals -- (Gerbils, Hamsters, Guinea Pigs) & Maximum number: Two.  NOTE: NO RABBITS 0R MICE PERMITTED & CERTAIN BREEDS of DOGS.",
   "requiredDocuments": "Due Post Lottery as applicable to household: \u2022 Picture ID/Driver\u2019s License for all household members 18 and older. \u2022 Social Security cards for all household members. \u2022 Complete copy of most current filed Income Tax Returns or proof of non-filing and W-2s. \u2022 Payroll stubs from the past three current consecutive months. \u2022 Current annual (SS) Social Security award letter, current (SSDI) Social Security Disability Insurance and/or current (SSI) Supplement Security Income award letter from Social Security Administration. \u2022 Most current pension, annuity or other retirement account statement(s). \u2022 Checking Account statements for the last six consecutive months. \u2022 Current month bank statement for Savings Accounts. \u2022 Current Statement from all 401-K/IRA and/or other asset account(s) including debit cards and whole life insurance policies. \u2022 Contact address information for Income, Assets and Housing references. \u2022 Copy of Birth certificates for anyone 17 or younger \u2022 Copy of your Veteran status, DD-214 \u2022 Applicable documentation for verification of household size that may include custody agreement or marital separation to determine eligibility for unit size occupancy standards.",
@@ -73,7 +73,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "734.0",
       "monthlyIncomeMin": "1468.0",
       "annualIncomeMax": "17616.0",
@@ -97,7 +97,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "734.0",
       "monthlyIncomeMin": "1468.0",
       "annualIncomeMax": "17616.0",
@@ -121,7 +121,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -145,7 +145,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -169,7 +169,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -193,7 +193,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -217,7 +217,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -241,7 +241,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1223.0",
       "monthlyIncomeMin": "2446.0",
       "annualIncomeMax": "29352.0",
@@ -265,7 +265,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
       "annualIncomeMax": "35232.0",
@@ -289,7 +289,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
       "annualIncomeMax": "35232.0",
@@ -313,7 +313,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
       "annualIncomeMax": "35232.0",
@@ -337,7 +337,7 @@
     {
       "number": "",
       "unitType": "oneBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468.0",
       "monthlyIncomeMin": "2936.0",
       "annualIncomeMax": "35232.0",
@@ -361,7 +361,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -385,7 +385,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -409,7 +409,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -433,7 +433,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -457,7 +457,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -481,7 +481,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -505,7 +505,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -529,7 +529,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "881",
       "monthlyIncomeMin": "1762",
       "annualIncomeMax": "21144",
@@ -553,7 +553,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -577,7 +577,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -601,7 +601,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -625,7 +625,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -649,7 +649,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -673,7 +673,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -697,7 +697,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -721,7 +721,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -745,7 +745,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -769,7 +769,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -793,7 +793,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -817,7 +817,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1468",
       "monthlyIncomeMin": "2936",
       "annualIncomeMax": "35232",
@@ -841,7 +841,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -865,7 +865,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -889,7 +889,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -913,7 +913,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -937,7 +937,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -961,7 +961,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -985,7 +985,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1009,7 +1009,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1033,7 +1033,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1057,7 +1057,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1081,7 +1081,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1105,7 +1105,7 @@
     {
       "number": "",
       "unitType": "twoBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1762",
       "monthlyIncomeMin": "3524",
       "annualIncomeMax": "42288",
@@ -1129,7 +1129,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1018",
       "monthlyIncomeMin": "2036",
       "annualIncomeMax": "24432",
@@ -1153,7 +1153,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1018",
       "monthlyIncomeMin": "2036",
       "annualIncomeMax": "24432",
@@ -1177,7 +1177,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1201,7 +1201,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1225,7 +1225,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1249,7 +1249,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1273,7 +1273,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1297,7 +1297,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "1696",
       "monthlyIncomeMin": "3392",
       "annualIncomeMax": "40704",
@@ -1321,7 +1321,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1345,7 +1345,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1369,7 +1369,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1393,7 +1393,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1417,7 +1417,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1441,7 +1441,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1465,7 +1465,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1489,7 +1489,7 @@
     {
       "number": "",
       "unitType": "threeBdrm",
-      "status": "Available",
+      "status": "available",
       "monthlyRent": "2036",
       "monthlyIncomeMin": "4072",
       "annualIncomeMax": "48864",
@@ -1524,10 +1524,15 @@
   "disableUnitsAccordion": true,
   "reservedDescriptor": null,
   "groupId": null,
-  "attachments": [],
+  "attachments": [
+    {
+      "fileUrl": "https://www.on-site.com/apply/property/341392",
+      "type": 2
+    }
+  ],
   "hideUnitFeatures": false,
   "externalId": null,
   "prioritiesDescriptor": null,
-  "totalUnits": 3,
+  "totalUnits": 60,
   "acceptsPostmarkedApplications": false
 }
