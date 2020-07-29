@@ -1,12 +1,12 @@
 [
   {
     "householdSize": 1,
-    "income": 27420,
+    "income": 27450,
     "percentOfAmi": 30
   },
   {
     "householdSize": 2,
-    "income": 31320,
+    "income": 31350,
     "percentOfAmi": 30
   },
   {
@@ -26,12 +26,17 @@
   },
   {
     "householdSize": 6,
-    "income": 45420,
+    "income": 45450,
     "percentOfAmi": 30
   },
   {
     "householdSize": 7,
-    "income": 48570,
+    "income": 48550,
+    "percentOfAmi": 30
+  },
+  {
+    "householdSize": 8,
+    "income": 51700,
     "percentOfAmi": 30
   },
   {
@@ -70,6 +75,11 @@
     "percentOfAmi": 50
   },
   {
+    "householdSize": 8,
+    "income": 86150,
+    "percentOfAmi": 50
+  },
+  {
     "householdSize": 1,
     "income": 54840,
     "percentOfAmi": 60
@@ -102,6 +112,11 @@
   {
     "householdSize": 7,
     "income": 97140,
+    "percentOfAmi": 60
+  },
+  {
+    "householdSize": 8,
+    "income": 103380,
     "percentOfAmi": 60
   }
 ]
