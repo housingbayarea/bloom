@@ -4,24 +4,30 @@ Question asks if anyone on the application receives a housing voucher or subsidy
 */
 import Link from "next/link"
 import { useRouter } from "next/router"
-import { Button, ErrorMessage, FormCard, ProgressNav, t } from "@bloom-housing/ui-components"
+import {
+  AlertBox,
+  Button,
+  ErrorMessage,
+  Form,
+  FormCard,
+  ProgressNav,
+  t,
+} from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
-import ApplicationConductor from "../../../lib/ApplicationConductor"
 import { useContext } from "react"
 import FormStep from "../../../src/forms/applications/FormStep"
 
 export default () => {
-  const context = useContext(AppSubmissionContext)
+  const { conductor, application, listing } = useContext(AppSubmissionContext)
   const router = useRouter()
-  const { application } = context
-  const conductor = new ApplicationConductor(application, context)
   const currentPageStep = 3
 
   /* Form Handler */
   const { register, handleSubmit, errors } = useForm({
     defaultValues: { incomeVouchers: application.incomeVouchers?.toString() },
+    shouldFocusError: false,
   })
 
   const onSubmit = (data) => {
@@ -31,14 +37,16 @@ export default () => {
 
     router.push("/applications/financial/income").then(() => window.scrollTo(0, 0))
   }
+  const onError = () => {
+    window.scrollTo(0, 0)
+  }
 
   return (
     <FormsLayout>
-      <FormCard header="LISTING">
+      <FormCard header={listing?.name}>
         <ProgressNav
           currentPageStep={currentPageStep}
           completedSteps={application.completedStep}
-          totalNumberOfSteps={conductor.totalNumberOfSteps()}
           labels={["You", "Household", "Income", "Preferences", "Review"]}
         />
       </FormCard>
@@ -46,7 +54,9 @@ export default () => {
       <FormCard>
         <p className="form-card__back">
           <strong>
-            <Link href="/applications/reserved/units">Back</Link>
+            <Link href="/applications/household/ada">
+              <a>{t("t.back")}</a>
+            </Link>
           </strong>
         </p>
 
@@ -71,7 +81,13 @@ export default () => {
           </p>
         </div>
 
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        {Object.entries(errors).length > 0 && (
+          <AlertBox type="alert" inverted closeable>
+            {t("t.errorsToResolve")}
+          </AlertBox>
+        )}
+
+        <Form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className={`form-card__group field text-lg ${errors.incomeVouchers ? "error" : ""}`}>
             <p className="field-note mb-4">{t("application.financial.vouchers.prompt")}</p>
 
@@ -116,11 +132,11 @@ export default () => {
                   // Do nothing - handled by React Hook Forms
                 }}
               >
-                Next
+                {t("t.next")}
               </Button>
             </div>
           </div>
-        </form>
+        </Form>
       </FormCard>
     </FormsLayout>
   )

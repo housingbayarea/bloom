@@ -3,16 +3,22 @@ import { useForm } from "react-hook-form"
 import {
   Button,
   Field,
+  Form,
   FormCard,
   Icon,
   LinkButton,
-  ErrorMessage,
   UserContext,
+  t,
+  AlertBox,
+  SiteAlert,
+  setSiteAlertMessage,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../layouts/forms"
+import { useRedirectToPrevPage } from "../lib/hooks"
 
-export default () => {
+const SignIn = () => {
   const { login } = useContext(UserContext)
+  const redirectToPrev = useRedirectToPrevPage()
   /* Form Handler */
   const { register, handleSubmit, errors } = useForm()
   const [requestError, setRequestError] = useState<string>()
@@ -21,16 +27,17 @@ export default () => {
     const { email, password } = data
 
     try {
-      await login(email, password)
-      console.log("Login success!")
+      const user = await login(email, password)
+      setSiteAlertMessage(t(`authentication.signIn.success`, { name: user.firstName }), "success")
+      redirectToPrev()
     } catch (err) {
-      const { status } = err.response
+      const { status } = err.response || {}
       if (status === 401) {
-        setRequestError(`Error signing you in: ${err.message}`)
+        setRequestError(`${t("authentication.signIn.error")}: ${err.message}`)
       } else {
         console.error(err)
         setRequestError(
-          "There was an error signing you in. Please try again, or contact support for help."
+          `${t("authentication.signIn.error")}. ${t("authentication.signIn.errorGenericMessage")}`
         )
       }
     }
@@ -39,16 +46,20 @@ export default () => {
   return (
     <FormsLayout>
       <FormCard>
-        <div className="form-card__lead pb-0 text-center">
+        <div className="form-card__lead text-center border-b mx-0">
           <Icon size="2xl" symbol="profile" />
           <h2 className="form-card__title">Sign In</h2>
         </div>
-
+        {requestError && (
+          <AlertBox className="" onClose={() => setRequestError(undefined)} type="alert">
+            {requestError}
+          </AlertBox>
+        )}
+        <SiteAlert type="notice" dismissable />
         <div className="form-card__group pt-0 border-b">
-          <ErrorMessage error={Boolean(requestError)}>{requestError}</ErrorMessage>
-
-          <form id="sign-in" className="mt-10" onSubmit={handleSubmit(onSubmit)}>
+          <Form id="sign-in" className="mt-10" onSubmit={handleSubmit(onSubmit)}>
             <Field
+              caps={true}
               name="email"
               label="Email"
               validation={{ required: true }}
@@ -58,6 +69,7 @@ export default () => {
             />
 
             <Field
+              caps={true}
               name="password"
               label="Password"
               validation={{ required: true }}
@@ -77,7 +89,7 @@ export default () => {
                 Sign In
               </Button>
             </div>
-          </form>
+          </Form>
         </div>
         <div className="form-card__group text-center">
           <h2 className="mb-6">Don't have an account?</h2>
@@ -88,3 +100,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export { SignIn as default, SignIn }

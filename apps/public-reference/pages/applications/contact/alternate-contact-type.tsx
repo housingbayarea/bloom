@@ -4,39 +4,51 @@ Type of alternate contact
 */
 import Link from "next/link"
 import Router from "next/router"
-import { Button, ErrorMessage, Field, FormCard, ProgressNav, t } from "@bloom-housing/ui-components"
+import {
+  AlertBox,
+  Button,
+  ErrorMessage,
+  Field,
+  Form,
+  FormCard,
+  ProgressNav,
+  t,
+} from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
 import ApplicationConductor from "../../../lib/ApplicationConductor"
-import { useContext } from "react"
+import { useContext, useMemo, Fragment } from "react"
 
 export default () => {
-  const context = useContext(AppSubmissionContext)
-  const { application } = context
-  const conductor = new ApplicationConductor(application, context)
+  const { conductor, application, listing } = useContext(AppSubmissionContext)
   const currentPageStep = 1
   /* Form Handler */
-  const { register, handleSubmit, errors, watch } = useForm<Record<string, any>>()
+  const { register, handleSubmit, errors, watch } = useForm<Record<string, any>>({
+    shouldFocusError: false,
+  })
   const onSubmit = (data) => {
     application.alternateContact.type = data.type
+    conductor.completeStep(1)
     conductor.sync()
     if (data.type == "noContact") {
-      Router.push("/applications/household/live-alone").then(() => window.scrollTo(0, 0))
+      conductor.routeTo("/applications/household/live-alone")
     } else {
-      Router.push("/applications/contact/alternate-contact-name").then(() => window.scrollTo(0, 0))
+      conductor.routeTo("/applications/contact/alternate-contact-name")
     }
+  }
+  const onError = () => {
+    window.scrollTo(0, 0)
   }
   const options = ["familyMember", "friend", "caseManager", "other", "noContact"]
   const type = watch("type")
 
   return (
     <FormsLayout>
-      <FormCard header="LISTING">
+      <FormCard header={listing?.name}>
         <ProgressNav
           currentPageStep={currentPageStep}
           completedSteps={application.completedStep}
-          totalNumberOfSteps={conductor.totalNumberOfSteps()}
           labels={["You", "Household", "Income", "Preferences", "Review"]}
         />
       </FormCard>
@@ -44,7 +56,7 @@ export default () => {
         <p className="form-card__back">
           <strong>
             <Link href="/applications/contact/address">
-              <a>Back</a>
+              <a>{t("t.back")}</a>
             </Link>
           </strong>
         </p>
@@ -54,7 +66,14 @@ export default () => {
           </h2>
           <p className="field-note mt-4">{t("application.alternateContact.type.description")}</p>
         </div>
-        <form id="applications-contact-alternate-type" onSubmit={handleSubmit(onSubmit)}>
+
+        {Object.entries(errors).length > 0 && (
+          <AlertBox type="alert" inverted closeable>
+            {t("t.errorsToResolve")}
+          </AlertBox>
+        )}
+
+        <Form id="applications-contact-alternate-type" onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="form-card__group">
             <label className="field-label--caps" htmlFor="type">
               {t("application.alternateContact.type.label")}
@@ -64,7 +83,7 @@ export default () => {
             </p>
             {options.map((option, i) => {
               return (
-                <>
+                <Fragment key={option}>
                   <div className={"field " + (errors.type ? "error" : "")}>
                     <input
                       key={option}
@@ -101,7 +120,7 @@ export default () => {
                       </ErrorMessage>
                     )}
                   </div>
-                </>
+                </Fragment>
               )
             })}
           </div>
@@ -113,11 +132,11 @@ export default () => {
                   //
                 }}
               >
-                Next
+                {t("t.next")}
               </Button>
             </div>
           </div>
-        </form>
+        </Form>
       </FormCard>
     </FormsLayout>
   )

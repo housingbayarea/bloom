@@ -22,31 +22,32 @@ body {
 main {
 }
 
-// Sticky footer\
-html {
-  @apply h-full;
+.site-container {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
-  body {
-    @apply table;
-    @apply h-full;
-    @apply w-full;
-  }
+.site-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
-  .site-container {
-    @apply table-row;
-    @apply h-full;
-  }
-
-  .footer-section {
-    @apply table-row;
-    height: 1px;
+    > section {
+      flex: 1;
+    }
   }
 }
 
-html,
-body {
-  @screen md {
-    @apply overflow-x-hidden;
+.site-content--wide-content {
+  .navbar,
+  .page-header__group {
+    @apply max-w-screen-xl;
   }
 }
 
@@ -62,6 +63,8 @@ body {
 @import "lists.scss";
 @import "tables.scss";
 @import "homepage.scss";
+@import "print.scss";
+@import "ag_grid.scss";
 /* ***********/
 /* Additional stylesheets are contained within individual component folders */
 /* ***********/

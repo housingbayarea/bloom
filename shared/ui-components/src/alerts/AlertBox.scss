@@ -1,6 +1,7 @@
 .alert-box {
   @apply relative;
   @apply p-4;
+  @apply pr-10;
   @apply leading-snug;
   @apply flex;
   @apply items-center;
@@ -45,7 +46,7 @@
 
 .alert-box__body {
   @apply ml-2;
-  @apply font-bold;
+  @apply font-semibold;
   @apply text-tiny;
 }
 

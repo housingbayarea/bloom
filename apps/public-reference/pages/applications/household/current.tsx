@@ -4,17 +4,15 @@ Ask housing applicant if their current is temporary or homeless
 */
 import Link from "next/link"
 import Router from "next/router"
-import { Button, FormCard, ProgressNav } from "@bloom-housing/ui-components"
+import { Button, FormCard, ProgressNav, t, Form } from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
 import ApplicationConductor from "../../../lib/ApplicationConductor"
-import { useContext } from "react"
+import { useContext, useMemo } from "react"
 
 export default () => {
-  const context = useContext(AppSubmissionContext)
-  const { application } = context
-  const conductor = new ApplicationConductor(application, context)
+  const { conductor, application, listing } = useContext(AppSubmissionContext)
   const currentPageStep = 2
 
   /* Form Handler */
@@ -33,7 +31,6 @@ export default () => {
         <ProgressNav
           currentPageStep={currentPageStep}
           completedSteps={application.completedStep}
-          totalNumberOfSteps={conductor.totalNumberOfSteps()}
           labels={["You", "Household", "Income", "Preferences", "Review"]}
         />
       </FormCard>
@@ -41,7 +38,9 @@ export default () => {
       <FormCard>
         <p className="text-bold">
           <strong>
-            <Link href="/applications/household/preferred-units">Back</Link>
+            <Link href="/applications/household/preferred-units">
+              <a>{t("t.back")}</a>
+            </Link>
           </strong>
         </p>
 
@@ -49,7 +48,7 @@ export default () => {
 
         <hr />
 
-        <form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
+        <Form className="mt-10" onSubmit={handleSubmit(onSubmit)}>
           (FORM)
           <div className="text-center mt-6">
             <Button
@@ -61,7 +60,7 @@ export default () => {
               Next
             </Button>
           </div>
-        </form>
+        </Form>
       </FormCard>
     </FormsLayout>
   )

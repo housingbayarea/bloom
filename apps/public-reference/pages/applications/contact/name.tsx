@@ -3,43 +3,49 @@
 Primary applicant details. Name, DOB and Email Address
 https://github.com/bloom-housing/bloom/issues/255
 */
-import Router from "next/router"
-import { Button, Field, FormCard, ProgressNav, t } from "@bloom-housing/ui-components"
+import {
+  AlertBox,
+  Button,
+  DOBField,
+  Field,
+  Form,
+  FormCard,
+  ProgressNav,
+  t,
+} from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
-import ApplicationConductor from "../../../lib/ApplicationConductor"
 import FormStep from "../../../src/forms/applications/FormStep"
 import { useContext } from "react"
 import { emailRegex } from "../../../lib/emailRegex"
 
 export default () => {
-  const context = useContext(AppSubmissionContext)
-  const { application } = context
-  const conductor = new ApplicationConductor(application, context)
+  const { conductor, application, listing } = useContext(AppSubmissionContext)
   const currentPageStep = 1
 
   /* Form Handler */
-  const { register, handleSubmit, setValue, watch, errors } = useForm<Record<string, any>>({
-    defaultValues: {
-      noEmail: application.applicant.noEmail,
-    },
+  const { register, handleSubmit, setValue, watch, errors, clearErrors } = useForm<
+    Record<string, any>
+  >({
+    shouldFocusError: false,
   })
   const onSubmit = (data) => {
     new FormStep(conductor).save({ applicant: { ...application.applicant, ...data.applicant } })
-
-    Router.push("/applications/contact/address").then(() => window.scrollTo(0, 0))
+    conductor.routeToNextOrReturnUrl("/applications/contact/address")
+  }
+  const onError = () => {
+    window.scrollTo(0, 0)
   }
 
-  const noEmail = watch("noEmail")
+  const noEmail: boolean = watch("applicant.noEmail", application.applicant.noEmail)
 
   return (
     <FormsLayout>
-      <FormCard header="LISTING">
+      <FormCard header={listing?.name}>
         <ProgressNav
           currentPageStep={currentPageStep}
           completedSteps={application.completedStep}
-          totalNumberOfSteps={conductor.totalNumberOfSteps()}
           labels={["You", "Household", "Income", "Preferences", "Review"]}
         />
       </FormCard>
@@ -49,7 +55,13 @@ export default () => {
           <h2 className="form-card__title is-borderless">{t("application.name.title")}</h2>
         </div>
 
-        <form className="" onSubmit={handleSubmit(onSubmit)}>
+        {Object.entries(errors).length > 0 && (
+          <AlertBox type="alert" inverted closeable>
+            {t("t.errorsToResolve")}
+          </AlertBox>
+        )}
+
+        <Form onSubmit={handleSubmit(onSubmit, onError)}>
           <div className="form-card__group border-b">
             <label className="field-label--caps" htmlFor="firstName">
               {t("application.name.yourName")}
@@ -84,67 +96,15 @@ export default () => {
           </div>
 
           <div className="form-card__group border-b">
-            <label className="field-label--caps" htmlFor="birthMonth">
-              {t("application.name.yourDateOfBirth")}
-            </label>
-
-            <div className="field-group--dob">
-              <Field
-                name="applicant.birthMonth"
-                placeholder="MM"
-                defaultValue={
-                  "" +
-                  (application.applicant.birthMonth > 0 ? application.applicant.birthMonth : "")
-                }
-                error={errors.applicant?.birthMonth}
-                validation={{
-                  required: true,
-                  validate: {
-                    monthRange: (value) => parseInt(value) > 0 && parseInt(value) <= 12,
-                  },
-                }}
-                register={register}
-              />
-              <Field
-                name="applicant.birthDay"
-                placeholder="DD"
-                defaultValue={
-                  "" + (application.applicant.birthDay > 0 ? application.applicant.birthDay : "")
-                }
-                error={errors.applicant?.birthDay}
-                validation={{
-                  required: true,
-                  validate: {
-                    dayRange: (value) => parseInt(value) > 0 && parseInt(value) <= 31,
-                  },
-                }}
-                register={register}
-              />
-              <Field
-                name="applicant.birthYear"
-                placeholder="YYYY"
-                defaultValue={
-                  "" + (application.applicant.birthYear > 0 ? application.applicant.birthYear : "")
-                }
-                error={errors.applicant?.birthYear}
-                validation={{
-                  required: true,
-                  validate: {
-                    yearRange: (value) =>
-                      parseInt(value) > 1900 && parseInt(value) <= new Date().getFullYear() - 18,
-                  },
-                }}
-                register={register}
-              />
-            </div>
-
-            {(errors.applicant?.birthMonth ||
-              errors.applicant?.birthDay ||
-              errors.applicant?.birthYear) && (
-              <div className="field error">
-                <span className="error-message">{t("application.name.dateOfBirthError")}</span>
-              </div>
-            )}
+            <DOBField
+              applicant={application.applicant}
+              register={register}
+              error={errors.applicant}
+              name="applicant"
+              watch={watch}
+              atAge={true}
+              label={t("application.name.yourDateOfBirth")}
+            />
           </div>
 
           <div className="form-card__group">
@@ -159,7 +119,7 @@ export default () => {
               name="applicant.emailAddress"
               placeholder={noEmail ? t("t.none") : "example@web.com"}
               defaultValue={application.applicant.emailAddress}
-              validation={{ pattern: emailRegex }}
+              validation={{ required: !noEmail, pattern: !noEmail ? emailRegex : false }}
               error={errors.applicant?.emailAddress}
               errorMessage={t("application.name.emailAddressError")}
               register={register}
@@ -175,7 +135,8 @@ export default () => {
                 ref={register}
                 onChange={(e) => {
                   if (e.target.checked) {
-                    setValue("emailAddress", "")
+                    setValue("applicant.emailAddress", "")
+                    clearErrors("applicant.emailAddress")
                   }
                 }}
               />
@@ -190,14 +151,27 @@ export default () => {
               <Button
                 filled={true}
                 onClick={() => {
-                  //
+                  conductor.returnToReview = false
                 }}
               >
                 {t("t.next")}
               </Button>
             </div>
+
+            {conductor.canJumpForwardToReview() && (
+              <div className="form-card__pager-row">
+                <Button
+                  className="button is-unstyled mb-4"
+                  onClick={() => {
+                    conductor.returnToReview = true
+                  }}
+                >
+                  {t("application.form.general.saveAndReturn")}
+                </Button>
+              </div>
+            )}
           </div>
-        </form>
+        </Form>
       </FormCard>
     </FormsLayout>
   )
