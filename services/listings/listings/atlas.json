@@ -32,7 +32,7 @@
   "depositMax": "1,995",
   "depositMin": "600",
   "developer": "Carmel Partners",
-  "imageUrl": "/images/cosairflats.jpg",
+  "imageUrl": "/images/atlas.jpg",
   "programRules": null,
   "externalId": null,
   "waitlistMaxSize": 500,
@@ -542,10 +542,6 @@
       "amiChartId": 10,
       "monthlyRentAsPercentOfIncome": null
     },
-
-
-
-
     {
       "id": "ikRy0lVB4EecZgYpUAycKw",
       "amiPercentage": "50",
