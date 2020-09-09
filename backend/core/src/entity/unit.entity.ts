@@ -50,6 +50,8 @@ class Unit {
     onUpdate: "CASCADE",
   })
   listing: Listing
+  @Column({ type: "boolean", nullable: true })
+  bmrProgramChart?: boolean
 }
 
 export { Unit as default, Unit }
