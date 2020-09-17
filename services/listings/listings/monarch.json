@@ -1,8 +1,5 @@
 {
   "id": "ab67b61190aa4a4db7547b0161854ff8",
-  "acceptingApplicationsAtLeasingAgent": false,
-  "acceptingApplicationsByPoBox": false,
-  "acceptingOnlineApplications": true,
   "accessibility": "Monarch Homes has some units that are accessible for residents with mobility, hearing, and vision impairments. Some units include an audible and visual fire alarm and door chime, grab bars, adjustable shelving, easy to reach outlets, switches, counters, and appliances; and 36\" door width throughout unit. The building has an elevator with a generous waiting area on each residential floor, and laundry room with front loading washers and dryers. There is limited on-site parking. We will provide reasonable accommodations when requested, verified, and necessary.",
   "amenities": "On-site proeprty management, on-site laundry, community room, exercise room, community garden, close to AC Transit bus lines",
   "applicationAddress": {
@@ -17,7 +14,6 @@
   "applicationOpenDate": "2020-06-09T00:00:00.000Z",
   "applicationOrganization": "Satellite Affordable Housing Associates",
   "applicationPhone": "510-629-9097",
-  "blankPaperApplicationCanBePickedUp": false,
   "buildingAddress": {
     "city": "Oakland",
     "county": "Alameda",
@@ -33,7 +29,6 @@
   "depositMax": "1811.00",
   "depositMin": "1811.00",
   "developer": "Satellite Affordable Housing Associates",
-  "imageUrl": "/images/monarch.jpg",
   "programRules": "",
   "externalId": null,
   "waitlistMaxSize": 240,
@@ -54,12 +49,6 @@
   "hideUnitFeatures": false,
   "disableUnitsAccordion": true,
   "unitAmenities": "",
-  "attachments": [
-    {
-      "fileUrl": "https://www.rentcafe.com/onlineleasing/monarch-homes/guestlogin.aspx",
-      "type": 2
-    }
-  ],
   "applicationFee": "0.00",
   "criminalBackground": "",
   "leasingAgentEmail": "monarch@sahahomes.org",
@@ -93,6 +82,21 @@
     }
   ],
   "buildingTotalUnits": 50,
+  "applicationMethods": [
+    {
+      "type": "ExternalLink",
+      "acceptsPostmarkedApplications": false,
+      "externalReference": "https://www.rentcafe.com/onlineleasing/monarch-homes/guestlogin.aspx"
+    }
+  ],
+  "assets": [
+    {
+      "referenceType": "Listing",
+      "referenceId": "",
+      "label": "building",
+      "fileId": "/images/monarch.jpg"
+    }
+  ],
   "units": [
     {
       "id": "MFaowAxySJW3utZBPNxr2",
