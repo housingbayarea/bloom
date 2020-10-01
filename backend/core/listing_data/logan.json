@@ -98,7 +98,7 @@
   ],
   "buildingTotalUnits": 17,
   "acceptsPostmarkedApplications": true,
-  "postmarkedApplicationsReceivedByDate": "2022-11-15",
+  "postmarkedApplicationsReceivedByDate": "2022-11-15T17:00:00.000-07:00",
   "applicationMethods": [
     {
       "type": "LeasingAgent",
