@@ -55,10 +55,10 @@
   "leasingAgentEmail": "BMR@livethelogan.com",
   "leasingAgentName": "Skye Santos",
   "leasingAgentAddress": {
-    "city": null,
-    "street": "N/A due to COVID - no drop in meetings",
-    "zipCode": null,
-    "state": null,
+    "city": "",
+    "street": null,
+    "zipCode": "",
+    "state": "",
     "latitude": null,
     "longitude": null
   },
@@ -79,6 +79,12 @@
     {
       "type": "Internal",
       "acceptsPostmarkedApplications": true
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "English",
+      "externalReference": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/Alameda.Common.Application.Main.pdf"
     }
   ],
   "assets": [
