@@ -18,7 +18,7 @@ import {
   relationshipKeys,
   t,
 } from "@bloom-housing/ui-components"
-import { HouseholdMember } from "@bloom-housing/core"
+import { HouseholdMember, HouseholdMemberUpdate } from "@bloom-housing/core"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
@@ -26,8 +26,9 @@ import React, { useContext } from "react"
 import { Select } from "@bloom-housing/ui-components/src/forms/Select"
 import { stateKeys } from "@bloom-housing/ui-components/src/helpers/formOptions"
 
-class Member implements HouseholdMember {
-  id: number
+class Member implements HouseholdMemberUpdate {
+  id: string
+  orderId = undefined
   firstName = ""
   middleName = ""
   lastName = ""
@@ -40,8 +41,8 @@ class Member implements HouseholdMember {
   phoneNumberType = ""
   noPhone = null
 
-  constructor(id) {
-    this.id = id
+  constructor(orderId) {
+    this.orderId = orderId
   }
   address = {
     placeName: null,
@@ -102,8 +103,8 @@ export default () => {
     window.scrollTo(0, 0)
   }
   const deleteMember = () => {
-    if (member.id != undefined) {
-      application.householdMembers.splice(member.id, 1)
+    if (member.orderId != undefined) {
+      application.householdMembers.splice(member.orderId, 1)
       conductor.sync()
     }
     void router.push("/applications/household/add-members").then(() => window.scrollTo(0, 0))
@@ -117,13 +118,13 @@ export default () => {
       id: "sameAddressYes",
       label: t("t.yes"),
       value: "yes",
-      defaultChecked: member.sameAddress === "yes",
+      defaultChecked: member?.sameAddress === "yes",
     },
     {
       id: "sameAddressNo",
       label: t("t.no"),
       value: "no",
-      defaultChecked: member.sameAddress === "no",
+      defaultChecked: member?.sameAddress === "no",
     },
   ]
 
@@ -132,13 +133,13 @@ export default () => {
       id: "workInRegionYes",
       label: t("t.yes"),
       value: "yes",
-      defaultChecked: member.workInRegion === "yes",
+      defaultChecked: member?.workInRegion === "yes",
     },
     {
       id: "workInRegionNo",
       label: t("t.no"),
       value: "no",
-      defaultChecked: member.workInRegion === "no",
+      defaultChecked: member?.workInRegion === "no",
     },
   ]
 
@@ -164,7 +165,7 @@ export default () => {
           <>
             {Object.entries(errors).length > 0 && (
               <AlertBox type="alert" inverted>
-                {t("t.errorsToResolve")}
+                {t("errors.errorsToResolve")}
               </AlertBox>
             )}
 
@@ -184,7 +185,7 @@ export default () => {
                     defaultValue={member.firstName}
                     validation={{ required: true }}
                     error={errors.firstName}
-                    errorMessage={t("application.name.firstNameError")}
+                    errorMessage={t("errors.firstNameError")}
                     register={register}
                   />
 
@@ -207,7 +208,7 @@ export default () => {
                     defaultValue={member.lastName}
                     validation={{ required: true }}
                     error={errors.lastName}
-                    errorMessage={t("application.name.lastNameError")}
+                    errorMessage={t("errors.lastNameError")}
                     register={register}
                   />
                 </fieldset>
@@ -216,6 +217,7 @@ export default () => {
               <div className="form-card__group border-b">
                 <DOBField
                   id="applicant.member.dateOfBirth"
+                  required={true}
                   applicant={member}
                   register={register}
                   error={errors}
@@ -235,7 +237,7 @@ export default () => {
                     register={register}
                     validation={{ required: true }}
                     error={errors.sameAddress}
-                    errorMessage={t("application.form.errors.selectOption")}
+                    errorMessage={t("errors.selectOption")}
                     fields={sameAddressOptions}
                   />
                 </fieldset>
@@ -253,7 +255,7 @@ export default () => {
                       defaultValue={member.address.street}
                       validation={{ required: true }}
                       error={errors.address?.street}
-                      errorMessage={t("application.contact.streetError")}
+                      errorMessage={t("errors.streetError")}
                       register={register}
                     />
 
@@ -275,7 +277,7 @@ export default () => {
                         defaultValue={member.address.city}
                         validation={{ required: true }}
                         error={errors.address?.city}
-                        errorMessage={t("application.contact.cityError")}
+                        errorMessage={t("errors.cityError")}
                         register={register}
                       />
 
@@ -286,11 +288,11 @@ export default () => {
                         defaultValue={member.address.state}
                         validation={{ required: true }}
                         error={errors.address?.state}
-                        errorMessage={t("application.contact.stateError")}
+                        errorMessage={t("errors.stateError")}
                         register={register}
                         controlClassName="control"
                         options={stateKeys}
-                        keyPrefix="application.form.options.states"
+                        keyPrefix="states"
                       />
                     </div>
 
@@ -302,7 +304,7 @@ export default () => {
                       defaultValue={member.address.zipCode}
                       validation={{ required: true }}
                       error={errors.address?.zipCode}
-                      errorMessage={t("application.contact.zipCodeError")}
+                      errorMessage={t("errors.zipCodeError")}
                       register={register}
                     />
                   </fieldset>
@@ -321,7 +323,7 @@ export default () => {
                     register={register}
                     validation={{ required: true }}
                     error={errors.workInRegion}
-                    errorMessage={t("application.form.errors.selectOption")}
+                    errorMessage={t("errors.selectOption")}
                     fields={workInRegionOptions}
                   />
                 </fieldset>
@@ -339,7 +341,7 @@ export default () => {
                       defaultValue={member.workAddress.street}
                       validation={{ required: true }}
                       error={errors.workAddress?.street}
-                      errorMessage={t("application.contact.streetError")}
+                      errorMessage={t("errors.streetError")}
                       register={register}
                     />
 
@@ -361,7 +363,7 @@ export default () => {
                         defaultValue={member.workAddress.city}
                         validation={{ required: true }}
                         error={errors.workAddress?.city}
-                        errorMessage={t("application.contact.cityError")}
+                        errorMessage={t("errors.cityError")}
                         register={register}
                       />
 
@@ -372,11 +374,11 @@ export default () => {
                         defaultValue={member.workAddress.state}
                         validation={{ required: true }}
                         error={errors.workAddress?.state}
-                        errorMessage={t("application.contact.stateError")}
+                        errorMessage={t("errors.stateError")}
                         register={register}
                         controlClassName="control"
                         options={stateKeys}
-                        keyPrefix="application.form.options.states"
+                        keyPrefix="states"
                       />
                     </div>
 
@@ -388,7 +390,7 @@ export default () => {
                       defaultValue={member.workAddress.zipCode}
                       validation={{ required: true }}
                       error={errors.workAddress?.zipCode}
-                      errorMessage={t("application.contact.zipCodeError")}
+                      errorMessage={t("errors.zipCodeError")}
                       register={register}
                     />
                   </fieldset>
@@ -415,7 +417,7 @@ export default () => {
                     </select>
                   </div>
                   <ErrorMessage id="relationship-error" error={errors.relationship}>
-                    {t("application.form.errors.selectOption")}
+                    {t("errors.selectOption")}
                   </ErrorMessage>
                 </div>
               </div>

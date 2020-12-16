@@ -1,13 +1,10 @@
-import { ApiHideProperty, OmitType } from "@nestjs/swagger"
+import { OmitType } from "@nestjs/swagger"
 import { ListingEvent } from "../entity/listing-event.entity"
-import { Exclude, Expose } from "class-transformer"
-import { IsString, IsUUID } from "class-validator"
+import { Expose, Type } from "class-transformer"
+import { IsDate, IsOptional, IsUUID } from "class-validator"
+import { ValidationsGroupsEnum } from "../shared/validations-groups.enum"
 
-export class ListingEventDto extends OmitType(ListingEvent, ["listing"] as const) {
-  @Exclude()
-  @ApiHideProperty()
-  listing
-}
+export class ListingEventDto extends OmitType(ListingEvent, ["listing"] as const) {}
 
 export class ListingEventCreateDto extends OmitType(ListingEventDto, [
   "id",
@@ -15,9 +12,25 @@ export class ListingEventCreateDto extends OmitType(ListingEventDto, [
   "updatedAt",
 ] as const) {}
 
-export class ListingEventUpdateDto extends ListingEventCreateDto {
+export class ListingEventUpdateDto extends OmitType(ListingEventDto, [
+  "id",
+  "createdAt",
+  "updatedAt",
+] as const) {
   @Expose()
-  @IsString()
-  @IsUUID()
-  id: string
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsUUID(4, { groups: [ValidationsGroupsEnum.default] })
+  id?: string
+
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
+  createdAt?: Date
+
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
+  updatedAt?: Date
 }

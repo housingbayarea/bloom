@@ -15,10 +15,10 @@ import {
   OnClientSide,
   ProgressNav,
   t,
+  emailRegex,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
-import { emailRegex } from "../../../lib/helpers"
 import { useFormConductor } from "../../../lib/hooks"
 
 export default () => {
@@ -67,7 +67,7 @@ export default () => {
 
         {Object.entries(errors).length > 0 && (
           <AlertBox type="alert" inverted closeable>
-            {t("t.errorsToResolve")}
+            {t("errors.errorsToResolve")}
           </AlertBox>
         )}
 
@@ -84,7 +84,7 @@ export default () => {
                 defaultValue={application.applicant.firstName}
                 validation={{ required: true }}
                 error={errors.applicant?.firstName}
-                errorMessage={t("application.name.firstNameError")}
+                errorMessage={t("errors.firstNameError")}
                 register={register}
               />
 
@@ -105,7 +105,7 @@ export default () => {
                 defaultValue={application.applicant.lastName}
                 validation={{ required: true }}
                 error={errors.applicant?.lastName}
-                errorMessage={t("application.name.lastNameError")}
+                errorMessage={t("errors.lastNameError")}
                 register={register}
               />
             </fieldset>
@@ -115,6 +115,7 @@ export default () => {
             <DOBField
               applicant={application.applicant}
               register={register}
+              required={true}
               error={errors.applicant}
               name="applicant"
               id="applicant.dateOfBirth"
@@ -138,7 +139,7 @@ export default () => {
               defaultValue={application.applicant.emailAddress}
               validation={{ required: !noEmail, pattern: !noEmail ? emailRegex : false }}
               error={errors.applicant?.emailAddress}
-              errorMessage={t("application.name.emailAddressError")}
+              errorMessage={t("errors.emailAddressError")}
               register={register}
               disabled={clientLoaded && noEmail}
             />

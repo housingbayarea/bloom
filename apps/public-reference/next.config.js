@@ -57,7 +57,7 @@ module.exports = withCSS(
             let listings = []
             try {
               const response = await axios.get(BACKEND_API_BASE + LISTINGS_QUERY)
-              listings = response.data.listings
+              listings = response.data
             } catch (error) {
               console.log(error)
             }
@@ -154,7 +154,7 @@ module.exports = withCSS(
                 page: "/applications/contact/name",
               },
             })
-            const languages = ["es"] // add new language codes here
+            const languages = ["es", "zh", "vi"] // add new language codes here
             const languagePaths = {}
             Object.entries(translatablePaths).forEach(([key, value]) => {
               languagePaths[key] = value

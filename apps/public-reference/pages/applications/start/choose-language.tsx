@@ -22,8 +22,7 @@ import React, { useContext, useEffect, useState } from "react"
 
 const loadListing = async (listingId, stateFunction, conductor, context) => {
   const response = await axios.get(process.env.listingServiceUrl)
-  conductor.listing =
-    response.data.listings.find((listing) => listing.id == listingId) || response.data.listings[2] // FIXME: temporary fallback
+  conductor.listing = response.data.find((listing) => listing.id == listingId) || response.data[0] // FIXME: temporary fallback
   const applicationConfig = retrieveApplicationConfig() // TODO: load from backend
   conductor.config = applicationConfig
   stateFunction(conductor.listing)
@@ -41,6 +40,8 @@ export default () => {
   useEffect(() => {
     if (!context.listing) {
       void loadListing(listingId, setListing, conductor, context)
+    } else {
+      setListing(context.listing)
     }
   }, [conductor, context, listingId])
 
@@ -132,7 +133,7 @@ export default () => {
 
           <div className="form-card__pager-row primary px-4 border-t border-gray-450">
             <h2 className="form-card__title w-full border-none pt-0 mt-0">
-              {t("application.chooseLanguage.haveAnAccount")}
+              {t("account.haveAnAccount")}
             </h2>
 
             <p className="my-6">{t("application.chooseLanguage.signInSaveTime")}</p>

@@ -10,10 +10,12 @@ import {
   Query,
   Request,
   UseGuards,
+  UsePipes,
+  ValidationPipe,
 } from "@nestjs/common"
-import type { Request as ExpressRequest } from "express"
+import { Request as ExpressRequest } from "express"
 import { ApplicationsService } from "./applications.service"
-import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger"
+import { ApiBearerAuth, ApiOperation, ApiProperty, ApiTags } from "@nestjs/swagger"
 import { OptionalAuthGuard } from "../auth/optional-auth.guard"
 import { AuthzGuard } from "../auth/authz.guard"
 import { ResourceType } from "../auth/resource_type.decorator"
@@ -24,17 +26,72 @@ import { mapTo } from "../shared/mapTo"
 import {
   ApplicationCreateDto,
   ApplicationDto,
-  ApplicationsCsvListQueryParams,
-  ApplicationsListQueryParams,
   ApplicationUpdateDto,
   PaginatedApplicationDto,
-} from "./application.dto"
+} from "./dto/application.dto"
+import { Expose, Transform } from "class-transformer"
+import { IsBoolean, IsOptional, IsString } from "class-validator"
+import { Pagination, PaginationQueryParams } from "../utils/pagination.dto"
+import { Application } from "./entities/application.entity"
+import { ValidationsGroupsEnum } from "../shared/validations-groups.enum"
+import { defaultValidationPipeOptions } from "../shared/default-validation-pipe-options"
+
+export class ApplicationsListQueryParams extends PaginationQueryParams {
+  @Expose()
+  @ApiProperty({
+    type: String,
+    example: "listingId",
+    required: false,
+  })
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  listingId?: string
+
+  @Expose()
+  @ApiProperty({
+    type: String,
+    example: "search",
+    required: false,
+  })
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  search?: string
+}
+
+export class ApplicationsCsvListQueryParams {
+  @Expose()
+  @ApiProperty({
+    type: String,
+    example: "listingId",
+    required: false,
+  })
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  listingId?: string
+
+  @Expose()
+  @ApiProperty({
+    type: Boolean,
+    example: true,
+    required: false,
+  })
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  @Transform((value: string | undefined) => value === "true", { toClassOnly: true })
+  includeHeaders?: boolean
+}
 
 @Controller("applications")
 @ApiTags("applications")
 @ApiBearerAuth()
 @ResourceType("application")
 @UseGuards(OptionalAuthGuard, AuthzGuard)
+@UsePipes(
+  new ValidationPipe({
+    ...defaultValidationPipeOptions,
+    groups: [ValidationsGroupsEnum.default, ValidationsGroupsEnum.partners],
+  })
+)
 export class ApplicationsController {
   constructor(
     private readonly applicationsService: ApplicationsService,
@@ -49,7 +106,7 @@ export class ApplicationsController {
     @Request() req: ExpressRequest,
     @Query() queryParams: ApplicationsListQueryParams
   ): Promise<PaginatedApplicationDto> {
-    let response: PaginatedApplicationDto
+    let response: Pagination<Application>
     if (await this.authzService.can(req.user, "application", authzActions.listAll)) {
       response = await this.applicationsService.listPaginated(queryParams)
     } else {
@@ -77,7 +134,7 @@ export class ApplicationsController {
   ): Promise<ApplicationDto> {
     const application = await this.applicationsService.create(applicationCreateDto, req.user)
     const listing = await this.listingsService.findOne(application.listing.id)
-    if (application.application.applicant.emailAddress) {
+    if (application.applicant.emailAddress) {
       await this.emailService.confirmation(listing, application, applicationCreateDto.appUrl)
     }
     return mapTo(ApplicationDto, application)

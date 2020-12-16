@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -7,10 +6,11 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm"
-import { Expose } from "class-transformer"
+import { Expose, Type } from "class-transformer"
 import { IsDate, IsDefined, IsEnum, IsOptional, IsString, IsUUID } from "class-validator"
 import { Listing } from "./listing.entity"
 import { ApiProperty } from "@nestjs/swagger"
+import { ValidationsGroupsEnum } from "../shared/validations-groups.enum"
 
 export enum ListingEventType {
   openHouse = "openHouse",
@@ -18,21 +18,23 @@ export enum ListingEventType {
 }
 
 @Entity({ name: "listing_events" })
-export class ListingEvent extends BaseEntity {
+export class ListingEvent {
   @PrimaryGeneratedColumn("uuid")
   @Expose()
-  @IsString()
-  @IsUUID()
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  @IsUUID(4, { groups: [ValidationsGroupsEnum.default] })
   id: string
 
   @CreateDateColumn()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   createdAt: Date
 
   @UpdateDateColumn()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   updatedAt: Date
 
   @Column({
@@ -40,31 +42,33 @@ export class ListingEvent extends BaseEntity {
     enum: ListingEventType,
   })
   @Expose()
-  @IsDefined()
-  @IsEnum(ListingEventType)
+  @IsDefined({ groups: [ValidationsGroupsEnum.default] })
+  @IsEnum(ListingEventType, { groups: [ValidationsGroupsEnum.default] })
   @ApiProperty({ enum: ListingEventType, enumName: "ListingEventType" })
   type: ListingEventType
 
   @Column()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   startTime: Date
 
   @Column()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   endTime: Date
 
   @Column({ type: "text", nullable: true })
   @Expose()
-  @IsOptional()
-  @IsString()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
   url?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
-  @IsOptional()
-  @IsString()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
   note?: string | null
 
   @ManyToOne(() => Listing, (listing) => listing.events, {

@@ -1,5 +1,4 @@
 import {
-  BaseEntity,
   Column,
   CreateDateColumn,
   Entity,
@@ -8,35 +7,38 @@ import {
   UpdateDateColumn,
 } from "typeorm"
 import { Listing } from "./listing.entity"
-import { IsDate, IsDateString, IsObject, IsString, IsUUID } from "class-validator"
-import { Expose } from "class-transformer"
+import { IsDate, IsString, IsUUID } from "class-validator"
+import { Expose, Type } from "class-transformer"
+import { ValidationsGroupsEnum } from "../shared/validations-groups.enum"
 
 @Entity({ name: "assets" })
-export class Asset extends BaseEntity {
+export class Asset {
   @PrimaryGeneratedColumn("uuid")
   @Expose()
-  @IsString()
-  @IsUUID()
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  @IsUUID(4, { groups: [ValidationsGroupsEnum.default] })
   id: string
 
   @CreateDateColumn()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   createdAt: Date
 
   @UpdateDateColumn()
   @Expose()
-  @IsDate()
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
   updatedAt: Date
 
   @Column({ type: "text" })
   @Expose()
-  @IsString()
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
   label: string
 
   @Column({ type: "text" })
   @Expose()
-  @IsString()
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
   fileId: string
 
   @ManyToOne(() => Listing, (listing) => listing.assets, { nullable: true })

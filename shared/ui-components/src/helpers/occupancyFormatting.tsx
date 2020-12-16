@@ -5,20 +5,20 @@ import { Listing } from "@bloom-housing/core"
 export const occupancyTable = (listing: Listing) => {
   let occupancyData = [] as any
 
-  if (listing.unitsSummarized) {
-    occupancyData = listing.unitsSummarized.byUnitType.map((unitSummary) => {
+  if (listing.property.unitsSummarized) {
+    occupancyData = listing.property.unitsSummarized.byUnitType.map((unitSummary) => {
       let occupancy = ""
 
       if (unitSummary.occupancyRange.max == null) {
         occupancy = `at least ${unitSummary.occupancyRange.min} ${
-          unitSummary.occupancyRange.min == 1 ? t("listings.person") : t("listings.people")
+          unitSummary.occupancyRange.min == 1 ? t("t.person") : t("t.people")
         }`
       } else if (unitSummary.occupancyRange.max > 1) {
         occupancy = `${unitSummary.occupancyRange.min}-${unitSummary.occupancyRange.max} ${
-          unitSummary.occupancyRange.max == 1 ? t("listings.person") : t("listings.people")
+          unitSummary.occupancyRange.max == 1 ? t("t.person") : t("t.people")
         }`
       } else {
-        occupancy = `1 ${t("listings.person")}`
+        occupancy = `1 ${t("t.person")}`
       }
 
       return {
@@ -32,7 +32,7 @@ export const occupancyTable = (listing: Listing) => {
 }
 
 export const getOccupancyDescription = (listing: Listing) => {
-  const unitsSummarized = listing.unitsSummarized
+  const unitsSummarized = listing.property.unitsSummarized
   if (unitsSummarized && unitsSummarized.unitTypes.includes("SRO")) {
     return unitsSummarized.unitTypes.length == 1
       ? t("listings.occupancyDescriptionAllSro")

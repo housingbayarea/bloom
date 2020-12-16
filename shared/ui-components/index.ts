@@ -3,7 +3,6 @@ export * from "./src/actions/Button"
 export * from "./src/actions/ExpandableText"
 export * from "./src/actions/LinkButton"
 export * from "./src/actions/LocalizedLink"
-export * from "./src/actions/InlineButton"
 
 /* Blocks */
 export * from "./src/blocks/AppStatusItem"
@@ -21,7 +20,6 @@ export * from "./src/config"
 
 /* Elements */
 export * from "./src/elements/MetaTags"
-export * from "./src/elements/Tag"
 
 /* Footers */
 export * from "./src/footers/ExygyFooter"
@@ -30,6 +28,7 @@ export * from "./src/footers/SiteFooter"
 /* Forms */
 export * from "./src/forms/DOBField"
 export * from "./src/forms/Field"
+export * from "./src/forms/PhoneField"
 export * from "./src/forms/HouseholdMemberForm"
 export * from "./src/forms/HouseholdSizeField"
 export * from "./src/forms/FieldGroup"
@@ -58,7 +57,8 @@ export * from "./src/helpers/tableSummaries"
 export * from "./src/helpers/translator"
 export * from "./src/helpers/useLanguageChange"
 export * from "./src/helpers/debounce"
-
+export * from "./src/helpers/formatIncome"
+export * from "./src/helpers/validators"
 /* Icons */
 export * from "./src/icons/HeaderBadge"
 export * from "./src/icons/Icon"
@@ -116,3 +116,7 @@ export * from "./src/tables/MinimalTable"
 
 /* Text */
 export * from "./src/text/Description"
+export * from "./src/text/Tag"
+
+/* Archer listing */
+export * from "@bloom-housing/core/src/archer-listing"

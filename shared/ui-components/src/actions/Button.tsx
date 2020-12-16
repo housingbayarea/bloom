@@ -1,19 +1,14 @@
 import * as React from "react"
 import "./Button.scss"
-import {
-  AppearanceStyleType,
-  AppearanceSizeType,
-  AppearanceBorderType,
-} from "../global/AppearanceTypes"
+import { AppearanceProps, classNamesForAppearanceTypes } from "../global/AppearanceTypes"
+import { Icon } from "../icons/Icon"
 
-export interface ButtonProps {
+export interface ButtonProps extends AppearanceProps {
   id?: string
   children: React.ReactNode
   onClick: (e: React.MouseEvent) => void
-  type?: AppearanceStyleType
-  border?: AppearanceBorderType
-  size?: AppearanceSizeType
-  normalCase?: boolean
+  icon?: string
+  inlineIcon?: "left" | "right"
   unstyled?: boolean
   fullWidth?: boolean
   className?: string
@@ -21,15 +16,33 @@ export interface ButtonProps {
 }
 
 export const buttonClassesForProps = (props: Omit<ButtonProps, "onClick">) => {
-  const classNames = ["button"]
-  if (props.type) classNames.push(props.type)
-  if (props.border) classNames.push(props.border)
-  if (props.size) classNames.push(props.size)
-  if (props.normalCase) classNames.push("is-normal-case")
+  const classNames = ["button"].concat(classNamesForAppearanceTypes(props))
+  if (props.inlineIcon) {
+    classNames.push("is-inline")
+    classNames.push(`inline-icon--${props.inlineIcon}`)
+  }
   if (props.unstyled) classNames.push("is-unstyled")
   if (props.fullWidth) classNames.push("is-fullwidth")
   if (props.className) classNames.push(props.className)
   return classNames
+}
+
+export const buttonInner = (props: Omit<ButtonProps, "onClick">) => {
+  if (props.icon) {
+    return props.inlineIcon == "left" ? (
+      <>
+        <Icon className="button__icon" size="tiny" symbol={props.icon} />
+        <span className="button__content">{props.children}</span>
+      </>
+    ) : (
+      <>
+        <span className="button__content">{props.children}</span>
+        <Icon className="button__icon" size="tiny" symbol={props.icon} />
+      </>
+    )
+  } else {
+    return <>{props.children}</>
+  }
 }
 
 const Button = (props: ButtonProps) => {
@@ -42,7 +55,7 @@ const Button = (props: ButtonProps) => {
       onClick={props.onClick}
       disabled={props.disabled}
     >
-      {props.children}
+      {buttonInner(props)}
     </button>
   )
 }
