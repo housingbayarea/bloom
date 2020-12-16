@@ -78,8 +78,8 @@ class ListingConverter
       json_listing = listing.as_json
       # unit_summaries = ListingService.create_unit_summaries(listing)
       # json_listing[:unit_summaries] = unit_summaries
-      json_listing[:total_units] = listing.units.count
-      json_listing[:units_available] = listing.units.available.count
+      json_listing[:total_units] = listing.property.units.count
+      json_listing[:units_available] = listing.property.units.available.count
       json_listing[:units] = listing.units
       json_listing[:preferences] = listing.preferences
       if json_listing['reserved_descriptor'].present?

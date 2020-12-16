@@ -38,9 +38,9 @@ export default () => {
     application.acceptedTerms = acceptedTerms
     application.completedSections = 5
     applicationsService
-      .create({
+      .submit({
         body: {
-          application,
+          ...application,
           listing: {
             id: listing.id,
           },
