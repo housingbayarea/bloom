@@ -50,12 +50,15 @@ class MyApp extends App {
       "@bloom-housing/ui-components/src/locales/general.json"
     )
     const spanishTranslations = await import("@bloom-housing/ui-components/src/locales/es.json")
+
     const translations = {
       general: generalTranslations,
       es: spanishTranslations,
       custom: {
         general: await import("../page_content/locale_overrides/general.json"),
         es: await import("../page_content/locale_overrides/es.json"),
+        zh: await import("../page_content/locale_overrides/zh.json"),
+        vi: await import("../page_content/locale_overrides/vi.json"),
       },
     }
     return { pageProps, translations }
