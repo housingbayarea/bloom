@@ -16,6 +16,13 @@ import { useContext } from "react"
 
 const Layout = (props) => {
   const { profile, signOut } = useContext(UserContext)
+
+  const LANGUAGES =
+    process.env.languages?.split(",")?.map((item) => ({
+      prefix: item === "en" ? "" : item,
+      label: t(`languages.${item}`),
+    })) || []
+
   return (
     <div className="site-wrapper">
       <div className="site-content">
@@ -38,6 +45,7 @@ const Layout = (props) => {
             </>
           }
           title={t("nav.siteTitle")}
+          languages={LANGUAGES}
         >
           <LocalizedLink href="/listings" className="navbar-item">
             {t("nav.browseProperties")}

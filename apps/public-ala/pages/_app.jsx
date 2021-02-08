@@ -56,6 +56,8 @@ class MyApp extends App {
       custom: {
         general: await import("../page_content/locale_overrides/general.json"),
         es: await import("../page_content/locale_overrides/es.json"),
+        zh: await import("../page_content/locale_overrides/zh.json"),
+        vi: await import("../page_content/locale_overrides/vi.json"),
       },
     }
     return { pageProps, translations }
