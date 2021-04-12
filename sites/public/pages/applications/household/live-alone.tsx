@@ -19,9 +19,7 @@ import { useFormConductor } from "../../../lib/hooks"
 
 export default () => {
   const { conductor, application, listing } = useFormConductor("liveAlone")
-  // Skip any household size validation for SoHay listing -JW
-  /* const [validateHousehold, setValidateHousehold] = useState(true) */
-  const validateHousehold = false
+  const [validateHousehold, setValidateHousehold] = useState(true)
   const currentPageSection = 2
 
   /* Form Handler */
@@ -73,7 +71,7 @@ export default () => {
                 onClick={() => {
                   application.householdSize = 1
                   application.householdMembers = []
-                  /* setValidateHousehold(true) */
+                  setValidateHousehold(true)
                 }}
               >
                 {t("application.household.liveAlone.willLiveAlone")}
@@ -86,7 +84,7 @@ export default () => {
                 className="w-full md:w-3/4"
                 onClick={() => {
                   if (application.householdSize === 1) application.householdSize = 0
-                  /* setValidateHousehold(false) */
+                  setValidateHousehold(false)
                 }}
               >
                 {t("application.household.liveAlone.liveWithOtherPeople")}

@@ -9,7 +9,7 @@ import {
   Button,
   ImageCard,
   imageUrlFromListing,
-  // LinkButton,
+  LinkButton,
   FormCard,
   ProgressNav,
   t,
@@ -20,9 +20,9 @@ import { useForm } from "react-hook-form"
 import { AppSubmissionContext, retrieveApplicationConfig } from "../../../lib/AppSubmissionContext"
 import React, { useContext, useEffect, useState } from "react"
 
-const loadListing = async (listingId: string, stateFunction, conductor, context) => {
-  const response = await axios.get(process.env.backendApiBase + "/listings/" + listingId)
-  conductor.listing = response.data
+const loadListing = async (listingId, stateFunction, conductor, context) => {
+  const response = await axios.get(process.env.listingServiceUrl)
+  conductor.listing = response.data.find((listing) => listing.id == listingId) || response.data[0] // FIXME: temporary fallback
   const applicationConfig = retrieveApplicationConfig() // TODO: load from backend
   conductor.config = applicationConfig
   stateFunction(conductor.listing)
@@ -36,7 +36,7 @@ export default () => {
   const context = useContext(AppSubmissionContext)
   const { conductor, application } = context
 
-  const listingId = router.query.listingId as string
+  const listingId = router.query.listingId
 
   useEffect(() => {
     if (!context.listing) {
@@ -114,7 +114,7 @@ export default () => {
             </div>
           </Form>
 
-          {/* <div className="form-card__pager-row primary px-4 border-t border-gray-450">
+          <div className="form-card__pager-row primary px-4 border-t border-gray-450">
             <h2 className="form-card__title w-full border-none pt-0 mt-0">
               {t("account.haveAnAccount")}
             </h2>
@@ -126,7 +126,7 @@ export default () => {
                 {t("nav.signIn")}
               </LinkButton>
             </div>
-          </div> */}
+          </div>
         </div>
       </FormCard>
     </FormsLayout>

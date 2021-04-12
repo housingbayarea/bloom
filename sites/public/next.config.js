@@ -84,8 +84,7 @@ module.exports = withCSS(
             const translatablePaths = Object.assign({}, listingPaths, {
               "/": { page: "/" },
               "/listings": { page: "/listings" },
-              "/additional-resources": { page: "/additional-resources" },
-              // "/housing-counselors": { page: "/housing-counselors" },
+              "/housing-counselors": { page: "/housing-counselors" },
               "/applications/start/choose-language": {
                 page: "/applications/start/choose-language",
               },
@@ -177,10 +176,10 @@ module.exports = withCSS(
             return Object.assign({}, languagePaths, {
               "/disclaimer": { page: "/disclaimer" },
               "/privacy": { page: "/privacy" },
-              // "/sign-in": { page: "/sign-in" },
-              // "/forgot-password": { page: "/forgot-password" },
-              // "/reset-password": { page: "/reset-password" },
-              // "/create-account": { page: "/create-account" },
+              "/sign-in": { page: "/sign-in" },
+              "/forgot-password": { page: "/forgot-password" },
+              "/reset-password": { page: "/reset-password" },
+              "/create-account": { page: "/create-account" },
               "/account/applications": { page: "/account/applications" },
               "/account/dashboard": { page: "/account/dashboard" },
               "/account/settings": { page: "/account/settings" },
