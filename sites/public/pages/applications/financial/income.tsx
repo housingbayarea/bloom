@@ -68,7 +68,7 @@ export default () => {
     // Skip validation of total income if the applicant has income vouchers.
 
     // Skip validation entirely for SoHay listing -JW
-/*    const validationError = application.incomeVouchers
+    /*    const validationError = application.incomeVouchers
       ? null
       : verifyIncome(listing, income, incomePeriod) */
     const validationError = null
