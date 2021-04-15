@@ -52,7 +52,7 @@ class Index extends Component<IndexProps> {
   public render() {
     const heroTitle = (
       <>
-        {t("welcome.title")} <em>{t("region.name")}</em>
+        {t("welcome.title")} <em>{t("region.short")}</em>
       </>
     )
 
@@ -76,7 +76,7 @@ class Index extends Component<IndexProps> {
           </AlertBox>
         )}
         <Hero
-          backgroundImage="/images/hero-background.jpg"
+          backgroundImage="/images/hero.jpg"
           title={heroTitle}
           buttonTitle={t("welcome.seeRentalListings")}
           buttonLink="/listings"
