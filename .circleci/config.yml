@@ -15,6 +15,7 @@ executors:
     environment:
       EMAIL_API_KEY: "SOME-LONG-SECRET-KEY"
       EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
+      PORT: "3100"
   cypress-node:
     docker:
       - image: "cypress/base:12.18.2"
@@ -27,7 +28,7 @@ executors:
     environment:
       EMAIL_API_KEY: "SOME-LONG-SECRET-KEY"
       EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
-
+      PORT: "3100"
 jobs:
   setup:
     executor: standard-node
