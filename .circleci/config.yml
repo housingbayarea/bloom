@@ -12,6 +12,9 @@ executors:
           # Never do this in production or with any sensitive / non-test data:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: bloom
+    environment:
+      EMAIL_API_KEY: "SOME-LONG-SECRET-KEY"
+      EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
   cypress-node:
     docker:
       - image: "cypress/base:12.18.2"
@@ -21,6 +24,9 @@ executors:
           # Never do this in production or with any sensitive / non-test data:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: bloom
+    environment:
+      EMAIL_API_KEY: "SOME-LONG-SECRET-KEY"
+      EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
 
 jobs:
   setup:
