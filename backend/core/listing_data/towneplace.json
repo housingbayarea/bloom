@@ -1,0 +1,266 @@
+{
+  "id": "HOLNx_F7fUCeax5GCoIr9g",
+  "events": [
+    {
+      "type": "openHouse",
+      "startTime": null,
+      "endTime": null,
+      "url": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/SoHayQRcodes.pdf",
+      "label": "Virtual Tours"
+    },
+    {
+      "type": "publicLottery",
+      "startTime": "2021-04-14T10:30:00.000-08:00",
+      "endTime": "2021-04-14T11:00:00.000-08:00"
+    }
+  ],
+  "postmarkedApplicationsReceivedByDate": "2021-05-30T16:00:00.000-08:00",
+  "applicationAddress": {
+    "city": "Redwood City",
+    "street": "1000 Twin Dolphin Dr",
+    "zipCode": "94062",
+    "state": "CA",
+    "latitude": null,
+    "longitude": null
+  },
+  "applicationDueDate": "2021-05-30T16:00:00.000-08:00",
+  "applicationOrganization": "MidPen Housing",
+  "applicationPhone": null,
+  "buildingSelectionCriteria": null,
+  "costsNotIncluded": "None",
+  "creditHistory": null,
+  "CSVFormattingType": "withDisplaceeNameAndAddress",
+  "depositMax": "0",
+  "depositMin": "0",
+  "programRules": null,
+  "externalId": null,
+  "waitlistMaxSize": 9999,
+  "name": "Towneplace Suites",
+  "waitlistCurrentSize": 0,
+  "prioritiesDescriptor": null,
+  "requiredDocuments": "Photo ID for all adult applicants; proof of date of birth; proof of income source, if applicable (such as, most recent Social Security Award Letter or one month of consecutive paystubs, etc.); current bank statement for all bank accounts and/or other assets); Social Security card, if available.",
+  "reservedCommunityMaximumAge": null,
+  "reservedCommunityMinimumAge": 62,
+  "reservedDescriptor": "Senior",
+  "status": "active",
+  "createdAt": "2020-11-06T15:11:26.446-08:00",
+  "updatedAt": "2020-11-06T11:47:47.150-08:00",
+  "groupId": 1,
+  "hideUnitFeatures": false,
+  "disableUnitsAccordion": true,
+  "applicationFee": "45.00",
+  "criminalBackground": null,
+  "leasingAgentEmail": "nloredo@midpen-housing.org",
+  "leasingAgentName": "Natalie Loredo",
+  "leasingAgentAddress": {
+    "city": "Redwood City",
+    "street": "1000 Twin Dolphin Dr",
+    "zipCode": "94062",
+    "state": "CA",
+    "latitude": 37.518196,
+    "longitude": -122.248855
+  },
+  "leasingAgentOfficeHours": "Mon-Fri 8:30AM-5PM.",
+  "leasingAgentPhone": "510-980-5587",
+  "leasingAgentTitle": "Community Manager",
+  "rentalHistory": null,
+  "preferences": [
+    {
+      "ordinal": 1,
+      "title": "Displacee Tenant or Mission Boulevard Corridor (SR 238) Displacee Tenant Housing Preference",
+      "subtitle": "",
+      "description": "At least one member of my household was displaced from a residential property due to redevelopment activity by the Hayward Housing Authority, the Redevelopment Agency or the City of Hayward.\nOR\n At least one member of my household is an SR 238 Program Participant as required under the terms of the SR 238 Settlement Implementation Project. Program Participants are tenants of previously sold Caltrans properties along the SR 238 Mission Boulevard Corridor and are given occupancy preference when new below-market housing is constructed in the Corridor.",
+      "links": [],
+      "formMetadata": {
+        "key": "displacedTenant",
+        "options": [
+          {
+            "key": "general",
+            "extraData": [
+              {
+                "key": "name",
+                "type": "text"
+              },
+              {
+                "key": "address",
+                "type": "address"
+              }
+            ]
+          },
+          {
+            "key": "missionCorridor",
+            "extraData": [
+              {
+                "key": "name",
+                "type": "text"
+              },
+              {
+                "key": "address",
+                "type": "address"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ordinal": 2,
+      "title": "Live or Work in City of Hayward",
+      "subtitle": "",
+      "description": "For households in which at least one member lives or works in City of Hayward",
+      "links": [],
+      "formMetadata": {
+        "key": "liveWork",
+        "options": [
+          {
+            "key": "live",
+            "extraData": []
+          },
+          {
+            "key": "work",
+            "extraData": []
+          }
+        ]
+      }
+    }
+  ],
+  "property": {
+    "createdAt": "2021-02-02T17:00:00.000-08:00",
+    "updatedAt": "2021-02-02T17:00:00.000-08:00",
+    "householdSizeMin": 1,
+    "householdSizeMax": 5,
+    "smokingPolicy": "Non-smoking building with designated smoking area located outdoors on-site",
+    "unitsAvailable": 45,
+    "unitsSummarized": null,
+    "unitAmenities": "Queen beds, pillows, linens, night stands, alarm clock, desk chair, desk lamp, phone, television, television stand, sofa, ottoman, end table, lamps, wall art, full refridgerator, dishwasher, oven/range, microwave, toaster, iron/ironing board, coffee maker, dishes, pots and pans, utensils, curtains,/ drapes, towels/ bath linens, trash cans",
+    "developer": "Marriott",
+    "yearBuilt": 2002,
+    "accessibility": "Common Area includes wheelchair ramps, wheelchair accessible bathrooms and elevators. Some units are wheelchair accessible with roll-in shower.",
+    "amenities": "Onsite parking, a co-working lounge, package locker, and a bike storage.",
+    "buildingTotalUnits": 93,
+    "buildingAddress": {
+      "city": "Redwood City",
+      "county": "San Mateo",
+      "state": "CA",
+      "street": "1000 Twin Dolphin Dr",
+      "zipCode": "94065",
+      "latitude": 37.518196,
+      "longitude": -122.248855
+    },
+    "neighborhood": "Redwood Shores",
+    "petPolicy": "1 pet allowed with pet deposit. Breed and size restrictions apply. $300 pet deposit required.",
+    "units": [
+      {
+        "id": "AmVp9wBP7kSMil8mTBw1_Q",
+        "amiPercentage": "60",
+        "annualIncomeMin": "32904",
+        "monthlyIncomeMin": "2502",
+        "floor": 12,
+        "annualIncomeMax": "52200",
+        "maxOccupancy": 3,
+        "minOccupancy": 1,
+        "monthlyRent": "1251",
+        "numBathrooms": 1,
+        "numBedrooms": null,
+        "number": null,
+        "priorityType": null,
+        "reservedType": null,
+        "sqFeet": "501",
+        "status": "available",
+        "unitType": "studio",
+        "createdAt": "2020-02-18T21:20:34.291Z",
+        "updatedAt": "2020-02-18T21:20:34.291Z",
+        "listingId": "HOLNx_F7fUCeax5GCoIr5g",
+        "amiChart": "AlamedaCountyHCD2020",
+        "bmrProgramChart": false,
+        "monthlyRentAsPercentOfIncome": null
+      }
+    ]
+  },
+  "applicationMethods": [
+    {
+      "type": "LeasingAgent",
+      "acceptsPostmarkedApplications": true
+    },
+    {
+      "type": "Internal",
+      "acceptsPostmarkedApplications": true
+    },
+    {
+      "type": "PaperPickup",
+      "acceptsPostmarkedApplications": true
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "English",
+      "externalReference": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/SoHay_English_Final.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Spanish",
+      "externalReference": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/SoHay_Spanish_Final.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Vietnamese",
+      "externalReference": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/SoHay_Vietnamese_Final.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Chinese",
+      "externalReference": "https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/SoHay_Chinese_Final.pdf"
+    }
+  ],
+  "assets": [
+    {
+      "referenceType": "Listing",
+      "referenceId": "",
+      "label": "building",
+      "fileId": "/images/towneplace.jpeg"
+    }
+  ],
+  "amiChart": {
+    "name": "AlamedaCountyHCD2020",
+    "items": [
+      {
+        "percentOfAmi": 60,
+        "householdSize": 1,
+        "income": 73100
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 2,
+        "income": 83550
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 3,
+        "income": 94000
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 4,
+        "income": 104400
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 5,
+        "income": 112800
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 6,
+        "income": 121150
+      },
+      {
+        "percentOfAmi": 60,
+        "householdSize": 7,
+        "income": 129500
+      }
+    ]
+  }
+}
