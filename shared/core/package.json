@@ -4,7 +4,7 @@
   "description": "Shared types for Bloom affordable housing system",
   "homepage": "https://github.com/bloom-housing/bloom/tree/master/shared/core",
   "main": "index.js",
-  "license": "GPL-3.0",
+  "license": "Apache-2.0",
   "private": false,
   "scripts": {
     "test": "jest"
