@@ -11,12 +11,6 @@
       }
     },
     "preferences": {
-      "title": "Your household may qualify for the following housing preferences.",
-      "preamble": "If you qualify for this preference, you'll get a higher ranking.",
-      "selectBelow": "If you have one of these housing preferences, select it below:",
-      "dontWant": "I don't want these preferences",
-      "stillHaveOpportunity": "You'll still have the opportunity to claim other preferences.",
-      "youHaveClaimed": "You have claimed:",
       "liveWork": {
         "live": {
           "label": "Live in City of Hayward Preference",
@@ -38,14 +32,6 @@
           "label": "Mission Boulevard Corridor (SR 238) Displacee Tenant Housing Preference",
           "description": "At least one member of my household is an SR 238 Program Participant as required under the terms of the SR 238 Settlement Implementation Project. Program Participants are tenants of previously sold Caltrans properties along the SR 238 Mission Boulevard Corridor and are given occupancy preference when new below-market housing is constructed in the Corridor."
         }
-      },
-      "general": {
-        "title": "Based on the information you have entered, your household has not claimed any housing preferences.",
-        "preamble": "You will be in the general pool of applicants."
-      },
-      "options": {
-        "address": "Displaced Address",
-        "name": "Claimant"
       }
     }
   },
