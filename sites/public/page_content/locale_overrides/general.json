@@ -12,6 +12,7 @@
     },
     "preferences": {
       "liveWork": {
+        "title": "Live or Work in Alameda County",
         "live": {
           "label": "Live in Alameda County Preference",
           "description": "At least one member of my household lives in the Alameda County"
@@ -22,6 +23,7 @@
         }
       },
       "displacedTenant": {
+        "title": "Displaced Tenant Housing Preference",
         "whichHouseholdMember": "Which household member is claiming this preference?",
         "whatAddress": "What address was the household member displaced from?",
         "general": {
