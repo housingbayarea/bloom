@@ -56,6 +56,7 @@
   "specialNotes": null,
   "preferences": [
     {
+      "page": 1,
       "ordinal": 1,
       "title": "Live/Work in Alameda County",
       "subtitle": "",
@@ -70,6 +71,43 @@
           },
           {
             "key": "work",
+            "extraData": []
+          }
+        ]
+      }
+    },
+    {
+      "page": 2,
+      "ordinal": 1,
+      "title": "Oakland Housing Authority Project-Based Voucher",
+      "subtitle": "",
+      "description": "You are currently applying to be in a general applicant list at Coliseum Place. The apartments for lease in this application process have rental subsidies provided by the Oakland Housing Authority. With that subsidy, tenant households pay 30% of their income as rent. These tenants are required to verify their income annually with the property manager as well as the Oakland Housing Authority. Please answer the following housing preference questions to determine your eligibility for these specific units,",
+      "links": [],
+      "formMetadata": {
+        "key": "PBV",
+        "options": [
+          {
+            "key": "residency",
+            "extraData": []
+          },
+          {
+            "key": "family",
+            "extraData": []
+          },
+          {
+            "key": "veteran",
+            "extraData": []
+          },
+          {
+            "key": "homeless",
+            "extraData": []
+          },
+          {
+            "key": "noneApplyButConsider",
+            "extraData": []
+          },
+          {
+            "key": "doNotConsider",
             "extraData": []
           }
         ]
