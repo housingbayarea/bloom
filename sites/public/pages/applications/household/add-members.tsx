@@ -78,17 +78,15 @@ const ApplicationAddMembers = () => {
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            {shouldValidationHouseholdSize && (
-              <HouseholdSizeField
-                listing={listing}
-                householdSize={householdSize}
-                validate={true}
-                register={register}
-                error={errors.householdSize}
-                clearErrors={clearErrors}
-                assistanceUrl={t("application.household.assistanceUrl")}
-              />
-            )}
+            <HouseholdSizeField
+              listing={listing}
+              householdSize={householdSize}
+              validate={true}
+              register={register}
+              error={errors.householdSize}
+              clearErrors={clearErrors}
+              assistanceUrl={t("application.household.assistanceUrl")}
+            />
           </div>
           <div className="form-card__group my-0 mx-0 pb-4 pt-4">
             <HouseholdMemberForm
