@@ -61,7 +61,10 @@
       "subtitle": "",
       "description": "Current eligible residents in the Broadway Valdez District Specific Plan (BVDSP) area.",
       "links": [
-        "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
+        {
+          "title": "Read More",
+          "url": "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
+        }
       ],
       "formMetadata": {
         "key": "displacedTenant",
@@ -101,7 +104,12 @@
       "title": "Oakland School District Employees",
       "subtitle": "",
       "description": "Teachers and staff of the Oakland Unified School District. ",
-      "links": ["https://www.ousd.org/"],
+      "links": [
+        {
+          "title": "Read More",
+          "url": "https://www.ousd.org/"
+        }
+      ],
       "formMetadata": {
         "key": "liveWork",
         "options": [
