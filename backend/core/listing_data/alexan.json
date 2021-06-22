@@ -24,7 +24,7 @@
   "externalId": null,
   "waitlistMaxSize": null,
   "name": "Alexan Webster",
-  "waitlistCurrentSize": 500,
+  "waitlistCurrentSize": null,
   "prioritiesDescriptor": null,
   "requiredDocuments": "ID, SS,paystubs, bank statement, 401K, tax return, W-2, SSI...etc",
   "reservedCommunityMaximumAge": null,
@@ -57,10 +57,12 @@
     {
       "page": 1,
       "ordinal": 1,
-      "title": "Displaced Preference",
+      "title": "Broadway Valdez Specific Plan District",
       "subtitle": "",
-      "description": "1. Displaced Preference - Households who have been displaced as a result of the City of Oakland’s public project or the City’s code enforcement activities.",
-      "links": [],
+      "description": "Current eligible residents in the Broadway Valdez District Specific Plan (BVDSP) area.",
+      "links": [
+        "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
+      ],
       "formMetadata": {
         "key": "displacedTenant",
         "options": [
@@ -96,10 +98,10 @@
     {
       "page": 2,
       "ordinal": 2,
-      "title": "Live or Work Preference",
+      "title": "Oakland School District Employees",
       "subtitle": "",
-      "description": "1. Oakland Resident - Households who are current residents of the City of Oakland. 2. Oakland Worker - Households with at least one member who is currently employed in the city of Oakland, have been notified that they are hired to work in the city of Oakland, or are active participants in an educational or job training program located in the city of Oakland. ",
-      "links": [],
+      "description": "Teachers and staff of the Oakland Unified School District. ",
+      "links": ["https://www.ousd.org/"],
       "formMetadata": {
         "key": "liveWork",
         "options": [
@@ -315,7 +317,7 @@
       "referenceType": "Listing",
       "referenceId": "",
       "label": "building",
-      "fileId": "/images/new-skyline.jpg"
+      "fileId": "/images/alexan.jpg"
     }
   ],
   "amiChart": {
