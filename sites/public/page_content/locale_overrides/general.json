@@ -71,6 +71,18 @@
           "label": "Displacee Tenant Housing Preference",
           "description": "At least one member of my household was displaced from a residential property due to redevelopment activity by the Hayward Housing Authority, the Redevelopment Agency or the City of Hayward."
         }
+      },
+      "BVSPD": {
+        "title": "Broadway Valdez Specific Plan District",
+        "bvspd": {
+          "label": "Broadway Valdez Specific Plan District"
+        }
+      },
+      "OSDE": {
+        "title": "Oakland School District Employees",
+        "osde": {
+          "label": "Oakland School District Employees"
+        }
       }
     }
   },

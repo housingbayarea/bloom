@@ -67,33 +67,14 @@
         }
       ],
       "formMetadata": {
-        "key": "displacedTenant",
+        "key": "BVSPD",
+        "hideGenericDecline": false,
+        "hideFromListing": false,
         "options": [
           {
-            "key": "general",
-            "extraData": [
-              {
-                "type": "hhMemberSelect",
-                "key": "name"
-              },
-              {
-                "type": "address",
-                "key": "address"
-              }
-            ]
-          },
-          {
-            "key": "missionCorridor",
-            "extraData": [
-              {
-                "type": "hhMemberSelect",
-                "key": "name"
-              },
-              {
-                "type": "address",
-                "key": "address"
-              }
-            ]
+            "key": "bvspd",
+            "description": false,
+            "extraData": []
           }
         ]
       }
@@ -103,7 +84,7 @@
       "ordinal": 2,
       "title": "Oakland School District Employees",
       "subtitle": "",
-      "description": "Teachers and staff of the Oakland Unified School District. ",
+      "description": "Teachers and staff of the Oakland Unified School District.",
       "links": [
         {
           "title": "Read More",
@@ -111,14 +92,13 @@
         }
       ],
       "formMetadata": {
-        "key": "liveWork",
+        "key": "OSDE",
+        "hideGenericDecline": false,
+        "hideFromListing": false,
         "options": [
           {
-            "key": "live",
-            "extraData": []
-          },
-          {
-            "key": "work",
+            "key": "osde",
+            "description": false,
             "extraData": []
           }
         ]
