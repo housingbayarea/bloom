@@ -38,8 +38,8 @@
   "disableUnitsAccordion": true,
   "applicationFee": "0.00",
   "criminalBackground": "Not applicable due to the Oakland Fair Chance Ordinance",
-  "leasingAgentEmail": "",
-  "leasingAgentName": "",
+  "leasingAgentEmail": "JordanCourt@sahahomes.org",
+  "leasingAgentName": "Rent Cafe Connect",
   "leasingAgentAddress": {
     "city": "Emeryville",
     "street": "P.O. Box 8310",
@@ -48,11 +48,11 @@
     "latitude": null,
     "longitude": null
   },
-  "leasingAgentOfficeHours": "",
+  "leasingAgentOfficeHours": "24 hours / 7 days a week",
   "leasingAgentPhone": "",
-  "leasingAgentTitle": "",
+  "leasingAgentTitle": "Live agent",
   "rentalHistory": "Applicants with an eviction or unlawful detainer judgment date within the last five (5) years will be denied. Stipulations, dismissals, and cases without a final disposition are not a reason for denial. Management will verify residency with current and prior landlords for the past two (2) years. Management is specifically looking at payment history, incidents of damage and/or housekeeping issues, lease violations and eviction proceedings. If a negative landlord reference is received, the application will be denied. Lack of residential history does not necessarily disqualify you.",
-  "specialNotes": "For initial lease-up, SAHA will maintain one site-based waiting list for the ten (10) non-referral units and twelve (12) Project-Based Section 8 units. Applicants for the PBVS8 units will also need to meet eligibility criteria through the Berkeley Housing Authority.  The head of household must be age 62 year or older at the time of application.",
+  "specialNotes": "The head of household must be age 62 year or older at the time of application.  For initial lease-up, SAHA will maintain one site-based waiting list for the ten (10) non-referral Tax Credit units and twelve (12) Project-Based Section 8 units. Applicants for the PBVS8 units will also need to meet eligibility criteria through the Berkeley Housing Authority.",
   "preferences": [
     {
       "page": 1,
@@ -60,6 +60,27 @@
       "title": "ALAMEDA COUNTY RESIDENTS OR ALAMEDA COUNTY WORKERS",
       "subtitle": "",
       "description": "Alameda County resident means a household with at least one adult member whose principal place of residence on the date of application is within Alameda County. An 'Alameda County worker' means a household with at least one adult member who is employed by an employer located within Alameda County or owns a business located within Alameda County.",
+      "links": [],
+      "formMetadata": {
+        "key": "liveWork",
+        "options": [
+          {
+            "key": "live",
+            "extraData": []
+          },
+          {
+            "key": "work",
+            "extraData": []
+          }
+        ]
+      }
+    },
+    {
+      "page": 2,
+      "ordinal": 2,
+      "title": "Berkeley Housing Authority",
+      "subtitle": "",
+      "description": "Project-based voucher units funded by the Berkeley Housing Authority",
       "links": [],
       "formMetadata": {
         "key": "liveWork",
