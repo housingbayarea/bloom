@@ -45,6 +45,14 @@
         "osde": {
           "label": "Oakland School District Employees"
         }
+      },
+      "BHA": {
+        "title": "Berkeley Housing Authority Apartments",
+        "description": "These apartments have a monthly rent that is approximately 30% of household income. I understand I must also qualify through the Berkeley Housing Authority’s requirements for this unit and that there will be both a screening process with SAHA and an additional application process through the Berkeley Housing Authority.",
+        "bha": {
+          "label": "Berkeley Housing Authority Project Based Voucher Section 8 apartments",
+          "description": "The minimum monthly income is $0. The maximum monthly income is $3,995 for 1 person or $4,566 for 2 persons. The maximum annual income is $47,950 for 1 person or $54,800 for 2 persons."
+        }
       }
     }
   },
