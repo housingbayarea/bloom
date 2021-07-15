@@ -25,6 +25,7 @@
   "waitlistMaxSize": null,
   "name": "Alexan Webster",
   "waitlistCurrentSize": null,
+  "displayWaitlistSize": false,
   "prioritiesDescriptor": null,
   "requiredDocuments": "ID, SS,paystubs, bank statement, 401K, tax return, W-2, SSI...etc",
   "reservedCommunityMaximumAge": null,
@@ -53,166 +54,108 @@
   "leasingAgentTitle": "Manager, Leasing agent",
   "rentalHistory": "Credit recommendations other than an accept decision, will require a rental verification. Applications for residency will automatically be denied for the following reasons:  a.An outstanding debt to a previous landlord or an outstanding NSF checkmust be paid in full  b.An unsatisfied breach of a prior lease or a prior eviction of any applicant oroccupant  c.More than four (4) late pays and two (2) NSF’s in the last twenty-four (24) monthsIf",
   "specialNotes": null,
-  "preferences": [
+  "preferences": [],
+  "servicesOffered": null,
+  "householdSizeMin": 1,
+  "householdSizeMax": 5,
+  "smokingPolicy": "No smoking",
+  "unitsAvailable": 6,
+  "unitsSummarized": null,
+  "unitAmenities": "9’ or higher ceilings throughout  Stainless steel finish appliances with gas ranges and french door refrigerators*  Quartz countertops and spacious undermount sinks in kitchens and bathrooms  Kitchens featuring custom, contemporary cabinets, soft-close drawers, tile backsplashes and waterfall islands*  Vinyl plank flooring in living and dining areas  Washer/dryer combos in every home  USB outlets  Wood-like blinds  Private balconies or patios*  Walk-in closets*",
+  "developer": "Trammel Crow Residential",
+  "yearBuilt": 2020,
+  "accessibility": " wheelchair accessible and elevators.",
+  "amenities": "Sky deck, Pool, Hot Tub, clubroom, Fitness Center, Business Center, Dog wash and Dog park.",
+  "buildingTotalUnits": 36,
+  "buildingAddress": {
+    "county": "Alameda",
+    "city": "Oakland",
+    "street": "2330 webster street",
+    "zipCode": "94612",
+    "state": "CA",
+    "latitude": 37.812782,
+    "longitude": -122.264837
+  },
+  "neighborhood": "Uptown",
+  "petPolicy": "https://alexanwebster.com/wp-content/uploads/2020/02/Legacy-Alexan-Webster-Pet-Policy-Partner-Flyer-PS.com_.pdf",
+  "units": [
     {
-      "page": 1,
-      "ordinal": 1,
-      "title": "Broadway Valdez Specific Plan District",
-      "subtitle": "",
-      "description": "Current eligible residents in the Broadway Valdez District Specific Plan (BVDSP) area.",
-      "links": [
-        {
-          "title": "Read More",
-          "url": "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
-        }
-      ],
-      "formMetadata": {
-        "key": "BVSPD",
-        "hideGenericDecline": false,
-        "hideFromListing": false,
-        "options": [
-          {
-            "key": "bvspd",
-            "extraData": []
-          }
-        ]
-      }
+      "id": "AmVp9wBP7kSMil8mTBw1_Q",
+      "amiPercentage": "120",
+      "annualIncomeMin": "70704",
+      "monthlyIncomeMin": "5892",
+      "floor": 4,
+      "annualIncomeMax": "169140",
+      "maxOccupancy": 5,
+      "minOccupancy": 3,
+      "monthlyRent": "2541",
+      "numBathrooms": 2,
+      "numBedrooms": null,
+      "number": "308",
+      "priorityType": "mobility",
+      "reservedType": null,
+      "sqFeet": "908",
+      "status": "available",
+      "unitType": "twoBdrm",
+      "createdAt": "2020-02-18T21:20:34.291Z",
+      "updatedAt": "2020-02-18T21:20:34.291Z",
+      "listingId": "HOLNx_F7fUCeax5GCoIr5g",
+      "amiChart": "AlamedaCountyTCAC2021",
+      "bmrProgramChart": false,
+      "monthlyRentAsPercentOfIncome": null
     },
     {
-      "page": 2,
-      "ordinal": 2,
-      "title": "Oakland School District Employees",
-      "subtitle": "",
-      "description": "Teachers and staff of the Oakland Unified School District.",
-      "links": [
-        {
-          "title": "Read More",
-          "url": "https://www.ousd.org/"
-        }
-      ],
-      "formMetadata": {
-        "key": "OSDE",
-        "hideGenericDecline": false,
-        "hideFromListing": false,
-        "options": [
-          {
-            "key": "osde",
-            "description": false,
-            "extraData": []
-          }
-        ]
-      }
+      "id": "AmVp9wBP7kSMil8mTBw1_Q",
+      "amiPercentage": "120",
+      "annualIncomeMin": "70704",
+      "monthlyIncomeMin": "5892",
+      "floor": 4,
+      "annualIncomeMax": "169140",
+      "maxOccupancy": 5,
+      "minOccupancy": 3,
+      "monthlyRent": "2541",
+      "numBathrooms": 2,
+      "numBedrooms": null,
+      "number": "308",
+      "priorityType": "mobility",
+      "reservedType": null,
+      "sqFeet": "908",
+      "status": "available",
+      "unitType": "twoBdrm",
+      "createdAt": "2020-02-18T21:20:34.291Z",
+      "updatedAt": "2020-02-18T21:20:34.291Z",
+      "listingId": "HOLNx_F7fUCeax5GCoIr5g",
+      "amiChart": "AlamedaCountyTCAC2021",
+      "bmrProgramChart": false,
+      "monthlyRentAsPercentOfIncome": null
+    },
+    {
+      "id": "AmVp9wBP7kSMil8mTBw1_Q",
+      "amiPercentage": "120",
+      "annualIncomeMin": "70704",
+      "monthlyIncomeMin": "5892",
+      "floor": 6,
+      "annualIncomeMax": "169140",
+      "maxOccupancy": 5,
+      "minOccupancy": 3,
+      "monthlyRent": "2541",
+      "numBathrooms": 2,
+      "numBedrooms": null,
+      "number": "308",
+      "priorityType": "mobility",
+      "reservedType": null,
+      "sqFeet": "968",
+      "status": "available",
+      "unitType": "twoBdrm",
+      "createdAt": "2020-02-18T21:20:34.291Z",
+      "updatedAt": "2020-02-18T21:20:34.291Z",
+      "listingId": "HOLNx_F7fUCeax5GCoIr5g",
+      "amiChart": "AlamedaCountyTCAC2021",
+      "bmrProgramChart": false,
+      "monthlyRentAsPercentOfIncome": null
     }
   ],
-  "property": {
-    "createdAt": "2021-02-02T17:00:00.000-08:00",
-    "updatedAt": "2021-02-02T17:00:00.000-08:00",
-    "servicesOffered": null,
-    "householdSizeMin": 1,
-    "householdSizeMax": 5,
-    "smokingPolicy": "No smoking",
-    "unitsAvailable": 6,
-    "unitsSummarized": null,
-    "unitAmenities": "9’ or higher ceilings throughout  Stainless steel finish appliances with gas ranges and french door refrigerators*  Quartz countertops and spacious undermount sinks in kitchens and bathrooms  Kitchens featuring custom, contemporary cabinets, soft-close drawers, tile backsplashes and waterfall islands*  Vinyl plank flooring in living and dining areas  Washer/dryer combos in every home  USB outlets  Wood-like blinds  Private balconies or patios*  Walk-in closets*",
-    "developer": "Trammel Crow Residential",
-    "yearBuilt": 2020,
-    "accessibility": " wheelchair accessible and elevators.",
-    "amenities": "Sky deck, Pool, Hot Tub, clubroom, Fitness Center, Business Center, Dog wash and Dog park.",
-    "buildingTotalUnits": 36,
-    "buildingAddress": {
-      "county": "Alameda",
-      "city": "Oakland",
-      "street": "2330 webster street",
-      "zipCode": "94612",
-      "state": "CA",
-      "latitude": 37.812782,
-      "longitude": -122.264837
-    },
-    "neighborhood": "Up-town",
-    "petPolicy": "https://alexanwebster.com/wp-content/uploads/2020/02/Legacy-Alexan-Webster-Pet-Policy-Partner-Flyer-PS.com_.pdf",
-    "units": [
-      {
-        "id": "AmVp9wBP7kSMil8mTBw1_Q",
-        "amiPercentage": "120",
-        "annualIncomeMin": "70704",
-        "monthlyIncomeMin": "5892",
-        "floor": 4,
-        "annualIncomeMax": "169140",
-        "maxOccupancy": 5,
-        "minOccupancy": 3,
-        "monthlyRent": "2541",
-        "numBathrooms": 2,
-        "numBedrooms": null,
-        "number": "308",
-        "priorityType": "mobility",
-        "reservedType": null,
-        "sqFeet": "908",
-        "status": "available",
-        "unitType": "twoBdrm",
-        "createdAt": "2020-02-18T21:20:34.291Z",
-        "updatedAt": "2020-02-18T21:20:34.291Z",
-        "listingId": "HOLNx_F7fUCeax5GCoIr5g",
-        "amiChart": "AlamedaCountyTCAC2021",
-        "bmrProgramChart": false,
-        "monthlyRentAsPercentOfIncome": null
-      },
-      {
-        "id": "AmVp9wBP7kSMil8mTBw1_Q",
-        "amiPercentage": "120",
-        "annualIncomeMin": "70704",
-        "monthlyIncomeMin": "5892",
-        "floor": 4,
-        "annualIncomeMax": "169140",
-        "maxOccupancy": 5,
-        "minOccupancy": 3,
-        "monthlyRent": "2541",
-        "numBathrooms": 2,
-        "numBedrooms": null,
-        "number": "308",
-        "priorityType": "mobility",
-        "reservedType": null,
-        "sqFeet": "908",
-        "status": "available",
-        "unitType": "twoBdrm",
-        "createdAt": "2020-02-18T21:20:34.291Z",
-        "updatedAt": "2020-02-18T21:20:34.291Z",
-        "listingId": "HOLNx_F7fUCeax5GCoIr5g",
-        "amiChart": "AlamedaCountyTCAC2021",
-        "bmrProgramChart": false,
-        "monthlyRentAsPercentOfIncome": null
-      },
-      {
-        "id": "AmVp9wBP7kSMil8mTBw1_Q",
-        "amiPercentage": "120",
-        "annualIncomeMin": "70704",
-        "monthlyIncomeMin": "5892",
-        "floor": 6,
-        "annualIncomeMax": "169140",
-        "maxOccupancy": 5,
-        "minOccupancy": 3,
-        "monthlyRent": "2541",
-        "numBathrooms": 2,
-        "numBedrooms": null,
-        "number": "308",
-        "priorityType": "mobility",
-        "reservedType": null,
-        "sqFeet": "968",
-        "status": "available",
-        "unitType": "twoBdrm",
-        "createdAt": "2020-02-18T21:20:34.291Z",
-        "updatedAt": "2020-02-18T21:20:34.291Z",
-        "listingId": "HOLNx_F7fUCeax5GCoIr5g",
-        "amiChart": "AlamedaCountyTCAC2021",
-        "bmrProgramChart": false,
-        "monthlyRentAsPercentOfIncome": null
-      }
-    ]
-  },
   "applicationMethods": [
-    {
-      "type": "LeasingAgent",
-      "acceptsPostmarkedApplications": true
-    },
     {
       "type": "PaperPickup",
       "acceptsPostmarkedApplications": true
@@ -220,6 +163,30 @@
     {
       "type": "Internal",
       "acceptsPostmarkedApplications": true
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "English",
+      "externalReference": "https://org-housingbayarea-public-assets.s3.us-west-1.amazonaws.com/Alameda+Applications+English.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Spanish",
+      "externalReference": "https://org-housingbayarea-public-assets.s3.us-west-1.amazonaws.com/Alameda+Applications+Spanish.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Vietnamese",
+      "externalReference": "https://org-housingbayarea-public-assets.s3.us-west-1.amazonaws.com/Alameda+Applications+Viet.pdf"
+    },
+    {
+      "type": "FileDownload",
+      "acceptsPostmarkedApplications": false,
+      "label": "Chinese",
+      "externalReference": "https://org-housingbayarea-public-assets.s3.us-west-1.amazonaws.com/Alameda+Applications+Chinese.pdf"
     }
   ],
   "assets": [
