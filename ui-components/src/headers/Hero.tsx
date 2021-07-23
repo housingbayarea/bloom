@@ -1,9 +1,6 @@
 import * as React from "react"
 import { LinkButton } from "../actions/LinkButton"
 import { Listing } from "@bloom-housing/backend-core/types"
-import moment from "moment"
-import { t } from "../helpers/translator"
-import { openDateState } from "../helpers/state"
 import "./Hero.scss"
 
 export interface HeroProps {
@@ -18,10 +15,6 @@ export interface HeroProps {
   centered?: boolean
 }
 
-const listingOpen = (listing: Listing) => {
-  return moment() < moment(listing.applicationDueDate)
-}
-
 const HeroButton = (props: { title: string; href: string; className?: string }) => (
   <span className={props.className + " hero__button"}>
     <LinkButton href={props.href}>{props.title}</LinkButton>
@@ -31,11 +24,7 @@ const HeroButton = (props: { title: string; href: string; className?: string }) 
 const Hero = (props: HeroProps) => {
   let subHeader, styles
   let classNames = ""
-  if (props.listings) {
-    if (!props.listings.some(listingOpen) && !props.listings.some(openDateState)) {
-      subHeader = <h2 className="hero__subtitle">{t("welcome.allApplicationClosed")}</h2>
-    }
-  } else if (props.children) {
+  if (!props.listings && props.children) {
     subHeader = <h2 className="hero__subtitle">{props.children}</h2>
   }
   if (props.backgroundImage) {
