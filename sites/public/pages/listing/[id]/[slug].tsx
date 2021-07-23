@@ -58,7 +58,7 @@ export async function getStaticPaths(context: { locales: Array<string> }) {
         locale: locale,
       }))
     ),
-    fallback: true,
+    fallback: false,
   }
 }
 
@@ -69,6 +69,5 @@ export async function getStaticProps(context: { params: Record<string, string> }
     props: {
       listing: response.data,
     },
-    revalidate: process.env.cacheRevalidate,
   }
 }
