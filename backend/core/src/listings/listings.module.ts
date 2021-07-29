@@ -13,7 +13,7 @@ import { Property } from "../property/entities/property.entity"
   imports: [
     CacheModule.register({
       ttl: 24 * 60 * 60,
-      max: 10,
+      max: 25,
     }),
     TypeOrmModule.forFeature([Listing, Preference, Unit, User, Property]),
     AuthModule,

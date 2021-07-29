@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import Head from "next/head"
-import { Listing } from "@bloom-housing/backend-core/types"
 import {
   AlertBox,
   LinkButton,
@@ -10,15 +9,10 @@ import {
   SiteAlert,
 } from "@bloom-housing/ui-components"
 import Layout from "../layouts/application"
-import axios from "axios"
 import { ConfirmationModal } from "../src/ConfirmationModal"
 import { MetaTags } from "../src/MetaTags"
 
-interface IndexProps {
-  listings: Listing[]
-}
-
-export default function Home(props: IndexProps) {
+export default function Home() {
   const blankAlertInfo = {
     alertMessage: null,
     alertType: null,
@@ -58,7 +52,6 @@ export default function Home(props: IndexProps) {
         title={heroTitle}
         buttonTitle={t("welcome.seeRentalListings")}
         buttonLink="/listings"
-        listings={props.listings}
         centered
       />
       <div className="homepage-extra">
@@ -76,19 +69,4 @@ export default function Home(props: IndexProps) {
       />
     </Layout>
   )
-}
-
-export async function getStaticProps() {
-  let listings = []
-  try {
-    // const response = await axios.get(process.env.listingServiceUrl)
-    const response = await axios.get(
-      process.env.listingServiceUrl + "?filter[$comparison]=<>&filter[status]=pending"
-    )
-    listings = response.data
-  } catch (error) {
-    console.error(error)
-  }
-
-  return { props: { listings } }
 }
