@@ -92,6 +92,9 @@
         "bha": {
           "label": "Berkeley Housing Authority Project Based Voucher Section 8 apartments",
           "description": "The minimum monthly income is $0. The maximum monthly income is $3,995 for 1 person or $4,566 for 2 persons. The maximum annual income is $47,950 for 1 person or $54,800 for 2 persons."
+        },
+        "doNotConsider": {
+          "label": "I don't want to be considered"
         }
       }
     }
