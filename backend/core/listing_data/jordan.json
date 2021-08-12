@@ -1,7 +1,7 @@
 {
   "id": "HOLNx_F7fUCeax5GCoIr9g",
   "events": [],
-  "postmarkedApplicationsReceivedByDate": "2021-08-06T17:00:00.000-07:00",
+  "postmarkedApplicationsReceivedByDate": "2021-08-24T17:00:00.000-07:00",
   "applicationAddress": {
     "city": "Emeryville",
     "street": "P.O. Box 8310",
@@ -10,14 +10,14 @@
     "latitude": null,
     "longitude": null
   },
-  "applicationDueDate": "2021-08-06T17:00:00.000-07:00",
+  "applicationDueDate": "2021-08-24T17:00:00.000-07:00",
   "applicationOrganization": "Satellite Affordable Housing Associates",
   "applicationPhone": "(833) 351-1887",
   "buildingSelectionCriteria": "https://www.sahahomes.org/apply",
   "countyCode": "Alameda",
   "costsNotIncluded": null,
   "creditHistory": "Not applicable",
-  "CSVFormattingType": "basic",
+  "CSVFormattingType": "bhaFormat",
   "depositMax": "1,295",
   "depositMin": "0",
   "programRules": null,
@@ -51,7 +51,7 @@
     "latitude": null,
     "longitude": null
   },
-  "leasingAgentOfficeHours": "24 hours / 7 days a week",
+  "leasingAgentOfficeHours": "24 hours / 7 days a week | For help completing an application, please call (833) 351-1887. TTY: 510-653-0828. To request to have an application mailed to you, only as a reasonable accommodation, please email JordanCourt@sahahomes.org",
   "leasingAgentPhone": "(833) 351-1887",
   "leasingAgentTitle": "Live agent",
   "rentalHistory": "Applicants with an eviction or unlawful detainer judgment date within the last five (5) years will be denied. Stipulations, dismissals, and cases without a final disposition are not a reason for denial. Management will verify residency with current and prior landlords for the past two (2) years. Management is specifically looking at payment history, incidents of damage and/or housekeeping issues, lease violations and eviction proceedings. If a negative landlord reference is received, the application will be denied. Lack of residential history does not necessarily disqualify you.",
