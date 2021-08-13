@@ -617,12 +617,12 @@ export const formatBHAPreference = {
     if (bhaPreferences.length !== 1) {
       return ""
     }
-    return (
-      bhaPreferences[0].options
-        .filter((option) => option.checked)
-        .map((option) => option.key)
-        .join(",") || ""
-    )
+    return bhaPreferences[0].options
+      .filter((option) => option.checked)
+      .map((option) => option.key)
+      .join(",") === "bha"
+      ? "claimed"
+      : ""
   },
 }
 
