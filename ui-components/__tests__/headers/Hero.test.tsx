@@ -33,9 +33,11 @@ describe("<Hero>", () => {
       />
     )
     expect(getByText("Say Hello to Your Hero")).toBeTruthy()
+    /* 
+    This has been removed from alameda
     expect(
       getByText("All applications are currently closed, but you can view closed listings.")
-    ).toBeTruthy()
+    ).toBeTruthy() */
     expect(getByText("I am a Button")).toBeTruthy()
   })
   it("renders with some listings open", () => {
