@@ -619,10 +619,9 @@ export const formatBHAPreference = {
     }
     return bhaPreferences[0].options
       .filter((option) => option.checked)
-      .map((option) => option.key)
-      .join(",") === "bha"
+      .map((option) => option.key)[0] === "bha"
       ? "claimed"
-      : ""
+      : "do not consider"
   },
 }
 
