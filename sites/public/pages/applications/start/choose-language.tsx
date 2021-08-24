@@ -101,7 +101,7 @@ const ApplicationChooseLanguage = () => {
             <ImageCard
               title={listing.name}
               imageUrl={imageUrl}
-              appStatusContent={appStatusContent}
+              statuses={[{ content: appStatusContent }]}
             />
           </div>
         )}
