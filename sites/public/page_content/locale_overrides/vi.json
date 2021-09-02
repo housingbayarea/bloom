@@ -1,0 +1,98 @@
+{
+  "application": {
+    "contact": {
+      "doYouWorkIn": "Quý vị có làm việc tại %{county} không?",
+      "doYouWorkInDescription": ""
+    },
+    "household": {
+      "member": {
+        "workInRegion": "Họ có làm việc tại %{county} không?",
+        "workInRegionNote": ""
+      }
+    },
+    "preferences": {
+      "dontWant": "Tôi không muốn chọn bất kỳ ưu tiên nào trong số này",
+      "liveWork": {
+        "live": {
+          "label": "Sống tại %{county} Ưu tiên",
+          "description": "Ít nhất một thành viên trong hộ gia đình tôi sống tại Thành phố %{county}"
+        },
+        "work": {
+          "label": "Làm việc tại %{county} Ưu tiên",
+          "description": "Ít nhất một thành viên trong hộ gia đình tôi đã làm việc hoặc được đề nghị làm việc tại Thành phố %{county}"
+        }
+      },
+      "displacedTenant": {
+        "general": {
+          "label": "Lựa chọn Ưu tiên Nhà ở dành cho Người Thuê Nhà phải Chuyển chỗ",
+          "description": "Ít nhất một thành viên trong hộ gia đình tôi phải chuyển chỗ ở khỏi một bất động sản gia cư do hoạt động xây dựng lại bởi Cơ quan Quản lý Nhà Ở Hayward (Hayward Housing Authority), Cơ quan Tái Phát triển hay Thành phố Hayward."
+        },
+        "missionCorridor": {
+          "label": "Mission Boulevard Corridor (SR 238) Lựa chọn Ưu tiên Nhà ở dành cho Người Thuê Nhà phải Chuyển chỗ",
+          "description": "Ít nhất một thành viên trong gia đình tôi là Người Tham gia Chương trình SR 238 theo yêu cầu của các điều khoản của Dự án Triển khai Tái Định cư SR 238. Những Người Tham gia Chương trình là người thuê nhà của các bất động sản Caltrans trước đây đã bán dọc theo Hành lang SR 238 Mission Boulevard và đang được ưu tiên cho cư ngụ khi có nhà ở mới thấp hơn giá thị trường được xây dựng trong Hành lang."
+        }
+      },
+      "BVSPD": {
+        "title": "Broadway Valdez Specific Plan District",
+        "bvspd": {
+          "label": "Broadway Valdez Specific Plan District",
+          "description": "At least one member of my household lives in the Broadway Valdez Specific Plan District. Boundaries for the District area can be found in the Broadway Valdez District Specific Plan Map",
+          "link": "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
+        }
+      },
+      "OSDE": {
+        "title": "Oakland School District Employees",
+        "osde": {
+          "label": "Oakland School District Employees"
+        }
+      },
+      "BHA": {
+        "title": "Berkeley Housing Authority Apartments",
+        "description": "These apartments have a monthly rent that is approximately 30% of household income. I understand I must also qualify through the Berkeley Housing Authority’s requirements for this unit and that there will be both a screening process with SAHA and an additional application process through the Berkeley Housing Authority.",
+        "bha": {
+          "label": "Berkeley Housing Authority Project Based Voucher Section 8 apartments",
+          "description": "The minimum monthly income is $0. The maximum monthly income is $3,995 for 1 person or $4,566 for 2 persons. The maximum annual income is $47,950 for 1 person or $54,800 for 2 persons."
+        },
+        "doNotConsider": {
+          "label": "I don't want to be considered"
+        }
+      }
+    }
+  },
+  "footer": {
+    "copyRight": "City of San Josè © 2020 • Giữ Mọi Bản quyền",
+    "disclaimer": "Tuyên bố miễn trách nhiệm",
+    "getAssistance": "Nhận Hỗ trợ",
+    "giveFeedback": "Đưa ra Phản hồi",
+    "header": "Cổng thông tin về Gia cư của Quận San Josè là một dự án của",
+    "headerUrl": "https://www.acgov.org/cda/hcd/",
+    "headerLink": "Quận San Josè - Sở Gia cư và Phát triển Cộng đồng (HCD)",
+    "forAdditionalOpportunities": "Để có thêm các cơ hội tại Bay Area, vui lòng truy cập:",
+    "forGeneralInquiries": "Đối với các thắc mắc chung về chương trình, hoặc để tiếp cận các dịch vụ thông dịch cho nội dung trên trang web này qua điện thoại, quý vị có thể gọi cho HCD của Quận San Josè theo số 408-535-3860.",
+    "forListingQuestions": "Đối với các thắc mắc về danh sách nhà và đơn ghi danh, vui lòng liên hệ với Nhân viên Đại diện Bất động sản có trên mỗi danh sách nhà.",
+    "privacyPolicy": "Chính sách Quyền Riêng tư",
+    "SFHousingPortal": "Cổng thông tin về Gia cư của San Francisco",
+    "SFHousingUrl": "https://housing.sfgov.org"
+  },
+  "nav": {
+    "siteTitle": "Cổng thông tin về Gia cư của Quận San Josè",
+    "getFeedback": "Chúng tôi rất mong nhận được ",
+    "yourFeedback": "ý kiến phản hồi của quý vị",
+    "bonusFeedback": ""
+  },
+  "pageTitle": {
+    "additionalResources": "Các Cơ hội Nhà ở Bổ sung"
+  },
+  "pageDescription": {
+    "additionalResources": "Chúng tôi khuyến khích quý vị xem các nguồn thông tin trợ giúp về nhà ở giá phải chăng khác."
+  },
+  "region": {
+    "name": "Quận San Josè"
+  },
+  "listings": {
+    "depositOrMonthsRent": "",
+    "publicLottery": {
+      "header": "XỔ SỐ"
+    }
+  }
+}
