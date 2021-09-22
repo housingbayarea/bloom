@@ -5,9 +5,9 @@ const RenderIf = (props: { language: string; children: JSX.Element }) => {
 
   if (props.language == "all") {
     return props.children
-  } else if (props.language == router.query.language) {
+  } else if (props.language == router.locale) {
     return props.children
-  } else if (!router.query.language && props.language == "default") {
+  } else if (router.locale == "en" && props.language == "default") {
     return props.children
   } else {
     return null
