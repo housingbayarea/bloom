@@ -11,7 +11,7 @@
       }
     },
     "referralApplication": {
-      "instructions": "The permanent supportive housing units are referred directly through City of San Josè's Coordinated Entry System. Households experiencing homelessness can call 211 in order to get connected to an Access Point to learn more about the coordinated entry system and access housing-related resources and information. Although this property is only accepting applications through the Permanent Supportive Housing (PSH) target list, calling 211 can help you with other homeless resources through the Coordinated Entry System.",
+      "instructions": "The permanent supportive housing units are referred directly through City of San José's Coordinated Entry System. Households experiencing homelessness can call 211 in order to get connected to an Access Point to learn more about the coordinated entry system and access housing-related resources and information. Although this property is only accepting applications through the Permanent Supportive Housing (PSH) target list, calling 211 can help you with other homeless resources through the Coordinated Entry System.",
       "furtherInformation": "For further information",
       "phoneNumber": "211"
     },
@@ -100,22 +100,22 @@
     }
   },
   "footer": {
-    "copyRight": "City of San Josè © 2020 • All Rights Reserved",
+    "copyRight": "City of San José © 2020 • All Rights Reserved",
     "disclaimer": "Disclaimer",
     "getAssistance": "Get Assistance",
     "giveFeedback": "Give Feedback",
-    "header": "City of San Josè Housing Portal is a project of the",
+    "header": "City of San José Housing Portal is a project of the",
     "headerUrl": "https://www.acgov.org/cda/hcd/",
-    "headerLink": "City of San Josè - Housing and Community Development (HCD) Department",
+    "headerLink": "City of San José - Housing and Community Development (HCD) Department",
     "forAdditionalOpportunities": "For additional Bay Area opportunities, please visit:",
-    "forGeneralInquiries": "For general program inquiries, or to access translation services for content on this website by phone, you may call City of San Josè HCD at 408-535-3860.",
+    "forGeneralInquiries": "For general program inquiries, or to access translation services for content on this website by phone, you may call City of San José HCD at 408-535-3860.",
     "forListingQuestions": "For listing and application questions, please contact the Property Agent displayed on each listing.",
     "privacyPolicy": "Privacy Policy",
     "SFHousingPortal": "San Francisco Housing Portal",
     "SFHousingUrl": "https://housing.sfgov.org"
   },
   "nav": {
-    "siteTitle": "City of San Josè Housing Portal",
+    "siteTitle": "City of San José Housing Portal",
     "getFeedback": "We'd love to get ",
     "yourFeedback": "your feedback!",
     "bonusFeedback": ""
@@ -127,7 +127,7 @@
     "additionalResources": "We encourage you to browse other affordable housing resources."
   },
   "region": {
-    "name": "San Josè"
+    "name": "San José"
   },
   "listings": {
     "depositOrMonthsRent": "",

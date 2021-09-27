@@ -86,7 +86,7 @@ const Layout = (props) => {
 
       <SiteFooter>
         <FooterSection>
-          <img src="/images/san-jose-logo-white.png" alt="San Josè" />
+          <img src="/images/san-jose-logo-white.png" alt="San José" />
         </FooterSection>
         <FooterSection>
           <p>
