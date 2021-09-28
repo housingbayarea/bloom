@@ -1,13 +1,12 @@
 import * as React from "react"
 import ReactDOMServer from "react-dom/server"
-import { Icon } from "../../../icons/Icon"
-import { Address } from "@bloom-housing/backend-core/types"
-import { OneLineAddress, MultiLineAddress } from "../../../helpers/address"
+import { Icon, IconFillColors } from "../../../icons/Icon"
+import { OneLineAddress, MultiLineAddress, Address } from "../../../helpers/address"
 import { t } from "../../../helpers/translator"
 import Markdown from "markdown-to-jsx"
 
 export interface SidebarAddressProps {
-  address: Address
+  address?: Address
   officeHours?: string
 }
 
@@ -17,7 +16,7 @@ const SidebarAddress = (props: SidebarAddressProps) => {
   let googleMapsHref = ""
   let hours = <></>
 
-  if (address.street) {
+  if (address?.street) {
     const oneLineAddress = <OneLineAddress address={address} />
     mainAddress = <MultiLineAddress address={address} />
 
@@ -38,12 +37,13 @@ const SidebarAddress = (props: SidebarAddressProps) => {
 
   return (
     <>
-      {address.street && (
+      {address?.street && (
         <>
           <p className="text-gray-700 mb-1">{mainAddress}</p>
           <p className="mb-4">
             <a href={googleMapsHref} className="inline-block pt-1" target="_blank">
-              <Icon symbol="map" size="medium" /> {t("t.getDirections")}
+              <Icon symbol="map" size="medium" fill={IconFillColors.primary} />{" "}
+              {t("t.getDirections")}
             </a>
           </p>
         </>

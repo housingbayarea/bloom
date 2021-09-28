@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react"
-import { useRouter } from "next/router"
+import Link from "next/link"
 import { useForm } from "react-hook-form"
 import {
   AppearanceStyleType,
@@ -9,23 +9,23 @@ import {
   FormCard,
   Icon,
   LinkButton,
-  UserContext,
+  AuthContext,
   t,
   AlertBox,
   SiteAlert,
   setSiteAlertMessage,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../layouts/forms"
-import Link from "next/link"
+import { useRedirectToPrevPage } from "../lib/hooks"
 
 const SignIn = () => {
-  const { login } = useContext(UserContext)
+  const { login } = useContext(AuthContext)
   /* Form Handler */
   // This is causing a linting issue with unbound-method, see open issue as of 10/21/2020:
   // https://github.com/react-hook-form/react-hook-form/issues/2887
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, handleSubmit, errors } = useForm()
-  const router = useRouter()
+  const redirectToPage = useRedirectToPrevPage("/account/dashboard")
   const [requestError, setRequestError] = useState<string>()
 
   const onSubmit = async (data: { email: string; password: string }) => {
@@ -34,8 +34,7 @@ const SignIn = () => {
     try {
       const user = await login(email, password)
       setSiteAlertMessage(t(`authentication.signIn.success`, { name: user.firstName }), "success")
-      await router.push("/account/dashboard")
-      window.scrollTo(0, 0)
+      await redirectToPage()
     } catch (err) {
       const { status } = err.response || {}
       if (status === 401) {
@@ -74,7 +73,7 @@ const SignIn = () => {
               register={register}
             />
 
-            <aside className="float-right font-bold">
+            <aside className="float-right text-tiny font-semibold">
               <Link href="/forgot-password">
                 <a>{t("authentication.signIn.forgotPassword")}</a>
               </Link>
@@ -92,14 +91,7 @@ const SignIn = () => {
             />
 
             <div className="text-center mt-6">
-              <Button
-                styleType={AppearanceStyleType.primary}
-                onClick={() => {
-                  //
-                }}
-              >
-                Sign In
-              </Button>
+              <Button styleType={AppearanceStyleType.primary}>Sign In</Button>
             </div>
           </Form>
         </div>

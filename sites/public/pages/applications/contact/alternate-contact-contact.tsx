@@ -55,7 +55,10 @@ export default () => {
         />
       </FormCard>
       <FormCard>
-        <FormBackLink url={conductor.determinePreviousUrl()} />
+        <FormBackLink
+          url={conductor.determinePreviousUrl()}
+          onClick={() => conductor.setNavigatedBack(true)}
+        />
 
         <div className="form-card__lead border-b">
           <h2 className="form-card__title is-borderless">
@@ -100,7 +103,7 @@ export default () => {
               name="emailAddress"
               label={t("application.alternateContact.contact.emailAddressFormLabel")}
               readerOnly={true}
-              placeholder={t("application.alternateContact.contact.emailAddressFormPlaceHolder")}
+              placeholder={t("t.emailAddressPlaceHolder")}
               defaultValue={application.alternateContact.emailAddress || null}
               register={register}
             />
@@ -159,6 +162,7 @@ export default () => {
                 styleType={AppearanceStyleType.primary}
                 onClick={() => {
                   conductor.returnToReview = false
+                  conductor.setNavigatedBack(false)
                 }}
               >
                 {t("t.next")}
@@ -172,6 +176,7 @@ export default () => {
                   className="mb-4"
                   onClick={() => {
                     conductor.returnToReview = true
+                    conductor.setNavigatedBack(false)
                   }}
                 >
                   {t("application.form.general.saveAndReturn")}

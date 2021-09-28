@@ -3,7 +3,7 @@ import "./AppStatusItem.scss"
 import moment from "moment"
 import { Application, Listing } from "@bloom-housing/backend-core/types"
 import { LocalizedLink } from "../actions/LocalizedLink"
-import { t } from "@bloom-housing/ui-components"
+import { t } from "../helpers/translator"
 
 interface AppStatusItemProps {
   application: Application
@@ -45,7 +45,7 @@ const AppStatusItem = (props: AppStatusItemProps) => {
                 {t("application.status")}: {t("application.statuses.submitted")}
               </span>
             </p>
-            <a href={`application?id=${application.id}`} className="button is-small">
+            <a href={`application/${application.id}`} className="button is-small">
               {t("application.viewApplication")}
             </a>
           </div>
@@ -55,8 +55,7 @@ const AppStatusItem = (props: AppStatusItemProps) => {
           <div className="status-item_links">
             <LocalizedLink
               className="status-item__link lined"
-              href={`listing/id=${listing.id}`}
-              as={`/listing/${listing.id}/${listing.urlSlug}`}
+              href={`/listing/${listing.id}/${listing.urlSlug}`}
             >
               {t("t.seeListing")}
             </LocalizedLink>

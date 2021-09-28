@@ -6,8 +6,9 @@ import {
   ManyToOne,
   OneToMany,
   OneToOne,
+  RelationId,
 } from "typeorm"
-import { User } from "../../user/entities/user.entity"
+import { User } from "../../auth/entities/user.entity"
 import { Listing } from "../../listings/entities/listing.entity"
 import {
   ArrayMaxSize,
@@ -30,31 +31,12 @@ import { Accessibility } from "./accessibility.entity"
 import { Demographics } from "./demographics.entity"
 import { HouseholdMember } from "./household-member.entity"
 import { ApiProperty } from "@nestjs/swagger"
-import { ValidationsGroupsEnum } from "../../shared/validations-groups.enum"
+import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
 import { ApplicationPreference } from "./application-preferences.entity"
-
-export enum ApplicationStatus {
-  draft = "draft",
-  submitted = "submitted",
-  removed = "removed",
-}
-
-export enum ApplicationSubmissionType {
-  paper = "paper",
-  electronical = "electronical",
-}
-
-export enum Language {
-  en = "en",
-  es = "es",
-  vi = "vi",
-  zh = "zh",
-}
-
-export enum IncomePeriod {
-  perMonth = "perMonth",
-  perYear = "perYear",
-}
+import { Language } from "../../shared/types/language-enum"
+import { ApplicationStatus } from "../types/application-status-enum"
+import { ApplicationSubmissionType } from "../types/application-submission-type-enum"
+import { IncomePeriod } from "../types/income-period-enum"
 
 @Entity({ name: "applications" })
 export class Application extends AbstractEntity {
@@ -72,11 +54,19 @@ export class Application extends AbstractEntity {
   @MaxLength(256, { groups: [ValidationsGroupsEnum.default] })
   appUrl?: string | null
 
-  @ManyToOne(() => User, (user) => user.applications, { nullable: true })
+  @ManyToOne(() => User, { nullable: true })
   user: User | null
+
+  @RelationId((application: Application) => application.user)
+  @Expose()
+  userId?: string
 
   @ManyToOne(() => Listing, (listing) => listing.applications)
   listing: Listing
+
+  @RelationId((application: Application) => application.listing)
+  @Expose()
+  listingId: string
 
   @OneToOne(() => Applicant, { eager: true, cascade: true })
   @JoinColumn()
@@ -252,4 +242,10 @@ export class Application extends AbstractEntity {
   @Expose()
   @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
   markedAsDuplicate: boolean
+
+  // This is a 'virtual field' needed for CSV export
+  @Expose()
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  @IsOptional({ groups: [ValidationsGroupsEnum.partners] })
+  flagged?: boolean
 }

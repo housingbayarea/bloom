@@ -7,18 +7,22 @@ import { Waitlist } from "./Waitlist"
 export interface ApplicationSectionProps {
   listing: Listing
   internalFormRoute: string
+  preview?: boolean
+  cloudName?: string
 }
 
 const showWaitlist = (listing: Listing) => {
-  const hasWaitlist =
-    !isNaN(listing.waitlistMaxSize) && listing.waitlistMaxSize - listing.waitlistCurrentSize > 0
-
-  // Hide waitlist for FCFS and when ther are no waitlist spots
-  return listing.applicationDueDate != null && hasWaitlist
+  // Hide waitlist for FCFS and when there are no waitlist spots
+  return (
+    listing.applicationDueDate != null &&
+    listing.isWaitlistOpen &&
+    listing.waitlistOpenSpots &&
+    listing.waitlistOpenSpots > 0
+  )
 }
 
 const ApplicationSection = (props: ApplicationSectionProps) => {
-  const listing = props.listing
+  const { listing, preview } = props
   const dueDate = moment(listing.applicationDueDate)
   const nowTime = moment()
 
@@ -26,14 +30,19 @@ const ApplicationSection = (props: ApplicationSectionProps) => {
   if (nowTime > dueDate) return null
 
   return (
-    <div>
+    <>
       {showWaitlist(listing) && (
-        <section className="aside-block bg-primary-lighter border-t">
+        <section className="aside-block is-tinted">
           <Waitlist listing={listing} />
         </section>
       )}
-      <Apply listing={listing} internalFormRoute={props.internalFormRoute} />
-    </div>
+      <Apply
+        listing={listing}
+        preview={preview}
+        internalFormRoute={props.internalFormRoute}
+        cloudName={props.cloudName}
+      />
+    </>
   )
 }
 

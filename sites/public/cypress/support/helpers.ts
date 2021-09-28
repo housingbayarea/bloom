@@ -1,6 +1,8 @@
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 import { Listing } from "@bloom-housing/backend-core/types"
 
+export const listingsUrl = "http://localhost:3100/listings"
+
 type getIncomeReturn = {
   monthlyMin: number
   monthlyMax: number
@@ -38,7 +40,7 @@ export const getListingIncome = (): getIncomeReturn => {
 
   const listingObj: Listing = JSON.parse(listing)
 
-  const { units } = listingObj.property
+  const { units } = listingObj
 
   const [annualMin, annualMax, monthlyMin] =
     units &&

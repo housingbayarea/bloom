@@ -1,17 +1,21 @@
-import { forwardRef, Module } from "@nestjs/common"
+import { Module } from "@nestjs/common"
 import { JwtModule } from "@nestjs/jwt"
-import { LocalStrategy } from "./local.strategy"
-import { JwtStrategy } from "./jwt.strategy"
-import { AuthController } from "./auth.controller"
+import { LocalStrategy } from "./passport-strategies/local.strategy"
+import { JwtStrategy } from "./passport-strategies/jwt.strategy"
 import { PassportModule } from "@nestjs/passport"
-import { AuthService } from "./auth.service"
 import { TypeOrmModule } from "@nestjs/typeorm"
-import { RevokedToken } from "./entities/revokedToken.entity"
+import { RevokedToken } from "./entities/revoked-token.entity"
 import { SharedModule } from "../shared/shared.module"
-import { AuthzService } from "./authz.service"
 import { ConfigModule, ConfigService } from "@nestjs/config"
-import { UserModule } from "../user/user.module"
-import Joi from "joi"
+import { AuthService } from "./services/auth.service"
+import { AuthzService } from "./services/authz.service"
+import { AuthController } from "./controllers/auth.controller"
+import { User } from "./entities/user.entity"
+import { UserService } from "./services/user.service"
+import { UserController } from "./controllers/user.controller"
+import { EmailModule } from "../shared/email/email.module"
+import { PasswordService } from "./services/password.service"
+import { JurisdictionsModule } from "../jurisdictions/jurisdictions.module"
 
 @Module({
   imports: [
@@ -26,17 +30,13 @@ import Joi from "joi"
         },
       }),
     }),
-    TypeOrmModule.forFeature([RevokedToken]),
+    TypeOrmModule.forFeature([RevokedToken, User]),
     SharedModule,
-    forwardRef(() => UserModule),
-    ConfigModule.forRoot({
-      validationSchema: Joi.object({
-        APP_SECRET: Joi.string().required().min(16),
-      }),
-    }),
+    JurisdictionsModule,
+    EmailModule,
   ],
-  providers: [LocalStrategy, JwtStrategy, AuthService, AuthzService],
-  exports: [AuthzService, AuthService],
-  controllers: [AuthController],
+  providers: [LocalStrategy, JwtStrategy, AuthService, AuthzService, UserService, PasswordService],
+  exports: [AuthzService, AuthService, UserService],
+  controllers: [AuthController, UserController],
 })
 export class AuthModule {}

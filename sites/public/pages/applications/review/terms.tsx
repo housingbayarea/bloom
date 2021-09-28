@@ -8,24 +8,24 @@ import {
   Button,
   FormCard,
   ProgressNav,
-  lRoute,
   t,
-  UserContext,
-  ApiClientContext,
+  AuthContext,
   FieldGroup,
   Form,
+  AlertBox,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useForm } from "react-hook-form"
-import React, { useContext } from "react"
+import React, { useContext, useState } from "react"
 import Markdown from "markdown-to-jsx"
 import { useFormConductor } from "../../../lib/hooks"
 
-export default () => {
-  const { conductor, application, listing } = useFormConductor("terms")
-  const { applicationsService } = useContext(ApiClientContext)
-  const { profile } = useContext(UserContext)
+const ApplicationTerms = () => {
   const router = useRouter()
+  const { conductor, application, listing } = useFormConductor("terms")
+  const { applicationsService, profile } = useContext(AuthContext)
+  const [apiError, setApiError] = useState(false)
+  const [submitting, setSubmitting] = useState(false)
 
   const currentPageSection = 5
   const applicationDueDate = new Date(listing?.applicationDueDate).toDateString()
@@ -34,6 +34,7 @@ export default () => {
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, handleSubmit, errors } = useForm()
   const onSubmit = (data) => {
+    setSubmitting(true)
     const acceptedTerms = data.agree === "agree"
     conductor.currentStep.save({ acceptedTerms })
     application.acceptedTerms = acceptedTerms
@@ -55,11 +56,14 @@ export default () => {
       })
       .then((result) => {
         conductor.currentStep.save({ confirmationId: result.id })
-        return router
-          .push(lRoute("/applications/review/confirmation"))
-          .then(() => window.scrollTo(0, 0))
+        return router.push("/applications/review/confirmation")
       })
-      .catch((err) => console.error(`Error creating application: ${err}`))
+      .catch((err) => {
+        setSubmitting(false)
+        setApiError(true)
+        window.scrollTo(0, 0)
+        console.error(`Error creating application: ${err}`)
+      })
   }
 
   const agreeField = [
@@ -83,6 +87,13 @@ export default () => {
         <div className="form-card__lead border-b">
           <h2 className="form-card__title is-borderless">{t("application.review.terms.title")}</h2>
         </div>
+
+        {apiError && (
+          <AlertBox type="alert" inverted onClose={() => setApiError(false)}>
+            {t("errors.rateLimitExceeded")}
+          </AlertBox>
+        )}
+
         <Form id="review-terms" className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-card__pager-row">
             <Markdown options={{ disableParsingRawHTML: false }}>
@@ -98,12 +109,13 @@ export default () => {
                 validation={{ required: true }}
                 error={errors.agree}
                 errorMessage={t("errors.agreeError")}
+                fieldLabelClassName={"text-primary"}
               />
             </div>
           </div>
           <div className="form-card__pager">
             <div className="form-card__pager-row primary">
-              <Button styleType={AppearanceStyleType.primary} onClick={() => false}>
+              <Button loading={submitting} styleType={AppearanceStyleType.primary}>
                 {t("t.submit")}
               </Button>
             </div>
@@ -113,3 +125,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationTerms

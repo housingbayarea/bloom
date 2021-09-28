@@ -1,11 +1,13 @@
 import React from "react"
 import { ErrorMessage } from "../notifications/ErrorMessage"
+import { UseFormMethods } from "react-hook-form"
 
 interface FieldSingle {
   id: string
   label: string
   value?: string
   defaultChecked?: boolean
+  note?: string
 }
 
 interface FieldGroupProps {
@@ -16,10 +18,11 @@ interface FieldGroupProps {
   groupLabel?: string
   fields?: FieldSingle[]
   groupNote?: string
-  register: any
-  validation?: Record<string, any>
+  register: UseFormMethods["register"]
+  validation?: Record<string, unknown>
   fieldGroupClassName?: string
   fieldClassName?: string
+  fieldLabelClassName?: string
 }
 
 const FieldGroup = ({
@@ -34,7 +37,13 @@ const FieldGroup = ({
   register,
   fieldGroupClassName,
   fieldClassName,
+  fieldLabelClassName,
 }: FieldGroupProps) => {
+  // Always align two-option radio groups side by side
+  if (fields?.length === 2) {
+    fieldGroupClassName = `${fieldGroupClassName} flex`
+    fieldClassName = `${fieldClassName} flex-initial mr-4`
+  }
   return (
     <>
       {groupLabel && <label className="field-label--caps">{groupLabel}</label>}
@@ -53,9 +62,10 @@ const FieldGroup = ({
               defaultChecked={item.defaultChecked || false}
               ref={register(validation)}
             />
-            <label htmlFor={item.id} className="font-semibold">
+            <label htmlFor={item.id} className={`font-semibold ${fieldLabelClassName}`}>
               {item.label}
             </label>
+            {item.note && <span className={"field-note font-normal"}>{item.note}</span>}
           </div>
         ))}
 

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import {
-  ApiClientContext,
+  AuthContext,
   t,
   Form,
   AlertBox,
@@ -41,6 +41,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
   const { listingDto } = useSingleListingData(listingId)
 
   const preferences = listingDto?.preferences
+  const countyCode = listingDto?.countyCode
 
   const defaultValues = editMode ? mapApiToForm(application) : {}
 
@@ -50,7 +51,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
 
   const router = useRouter()
 
-  const { applicationsService } = useContext(ApiClientContext)
+  const { applicationsService } = useContext(AuthContext)
 
   const [alert, setAlert] = useState<AlertErrorType | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -116,7 +117,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
         )
 
         if (redirect === "details") {
-          void router.push(`/application?id=${result.id}`)
+          void router.push(`/application/${result.id}`)
         } else {
           reset()
           clearErrors()
@@ -137,7 +138,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
   async function deleteApplication() {
     try {
       await applicationsService.delete({ applicationId: application?.id })
-      void router.push(`/listings/applications?listing=${listingId}`)
+      void router.push(`/listings/${listingId}/applications`)
     } catch (err) {
       setAlert("api")
     }
@@ -150,9 +151,9 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
           backButton={
             <Button
               inlineIcon="left"
-              icon="arrow-back"
+              icon="arrowBack"
               onClick={() =>
-                editMode ? router.push(`/application?id=${application.id}`) : router.back()
+                editMode ? router.push(`/application/${application.id}`) : router.back()
               }
             >
               {t("t.back")}
@@ -197,7 +198,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
 
                     <FormHouseholdDetails />
 
-                    <FormPreferences preferences={preferences} />
+                    <FormPreferences preferences={preferences} county={countyCode} />
 
                     <FormHouseholdIncome />
 

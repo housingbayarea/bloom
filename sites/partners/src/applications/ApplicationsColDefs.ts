@@ -1,6 +1,6 @@
-import { t, formatIncome, formatYesNoLabel } from "@bloom-housing/ui-components"
+import { t, formatYesNoLabel } from "@bloom-housing/ui-components"
 import { IncomePeriod, ApplicationSubmissionType } from "@bloom-housing/backend-core/types"
-import { convertDataToPst } from "../../lib/helpers"
+import { convertDataToPst, formatIncome } from "../../lib/helpers"
 import moment from "moment"
 
 function compareDates(a, b, node, nextNode, isInverted) {
@@ -23,16 +23,16 @@ function compareDates(a, b, node, nextNode, isInverted) {
 function compareStrings(a, b, node, nextNode, isInverted) {
   if (a === b) {
     return 0
-  } else if (a === "") {
+  } else if (a === null) {
     return isInverted ? -1 : 1
-  } else if (b === "") {
+  } else if (b === null) {
     return isInverted ? 1 : -1
   } else {
     return a.localeCompare(b)
   }
 }
 
-export function getColDefs(maxHouseholdSize: number) {
+export function getColDefs(maxHouseholdSize: number, countyCode: string) {
   const defs = [
     {
       headerName: t("application.details.submittedDate"),
@@ -72,7 +72,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("applications.table.applicationType"),
       field: "submissionType",
-      sortable: true,
+      sortable: false,
       unSortIcon: true,
       filter: false,
       width: 150,
@@ -85,6 +85,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("application.name.firstName"),
       field: "applicant.firstName",
+      colId: "firstName",
       sortable: true,
       unSortIcon: true,
       filter: false,
@@ -96,6 +97,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("application.name.lastName"),
       field: "applicant.lastName",
+      colId: "lastName",
       sortable: true,
       unSortIcon: true,
       filter: "agTextColumnFilter",
@@ -107,7 +109,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("application.details.householdSize"),
       field: "householdSize",
-      sortable: true,
+      sortable: false,
       unSortIcon: true,
       filter: false,
       width: 140,
@@ -117,7 +119,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("applications.table.declaredAnnualIncome"),
       field: "income",
-      sortable: true,
+      sortable: false,
       unSortIcon: true,
       filter: false,
       width: 180,
@@ -137,7 +139,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("applications.table.declaredMonthlyIncome"),
       field: "income",
-      sortable: true,
+      sortable: false,
       unSortIcon: true,
       filter: false,
       width: 180,
@@ -157,7 +159,7 @@ export function getColDefs(maxHouseholdSize: number) {
     {
       headerName: t("applications.table.subsidyOrVoucher"),
       field: "incomeVouchers",
-      sortable: true,
+      sortable: false,
       unSortIcon: true,
       filter: false,
       width: 120,
@@ -207,12 +209,8 @@ export function getColDefs(maxHouseholdSize: number) {
         const { preferences } = row.data
 
         const claimed = preferences.reduce((acc, curr) => {
-          const options = curr.options
-            .filter((option) => option?.checked)
-            ?.map((item) => t(`application.preferences.options.${item.key}`))
-
-          if (curr?.claimed) {
-            acc.push(options.join(", "))
+          if (curr.claimed) {
+            acc.push(t(`application.preferences.${curr.key}.title`, { county: countyCode }))
           }
 
           return acc

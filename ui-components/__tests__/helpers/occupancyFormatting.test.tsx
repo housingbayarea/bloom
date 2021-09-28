@@ -3,15 +3,43 @@ import { cleanup } from "@testing-library/react"
 import { occupancyTable, getOccupancyDescription } from "../../src/helpers/occupancyFormatting"
 import Archer from "../../__tests__/fixtures/archer.json"
 import { t } from "../../src/helpers/translator"
+import { Listing } from "@bloom-housing/backend-core/types"
 
-let ArcherListing = Object.assign({}, Archer) as any
-ArcherListing.property = {}
-ArcherListing.property.unitsSummarized = {}
-ArcherListing.property.unitsSummarized = {
-  unitTypes: ["threeBdrm", "twoBdrm", "SRO"],
+let ArcherListing: Listing = Object.assign({}, Archer) as any
+// @ts-ignore
+ArcherListing.unitsSummarized = {
+  unitTypes: [
+    {
+      id: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      name: "threeBdrm",
+      numBedrooms: 3,
+    },
+    {
+      id: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      name: "twoBdrm",
+      numBedrooms: 2,
+    },
+    {
+      id: "",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+      name: "SRO",
+      numBedrooms: 1,
+    },
+  ],
   byUnitType: [
     {
-      unitType: "threeBdrm",
+      unitType: {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "threeBdrm",
+        numBedrooms: 3,
+      },
       minIncomeRange: {
         min: "10",
         max: "20",
@@ -35,13 +63,21 @@ ArcherListing.property.unitsSummarized = {
       },
     },
     {
-      unitType: "twoBdrm",
+      unitType: {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "twoBdrm",
+        numBedrooms: 2,
+      },
       minIncomeRange: {
         min: "10",
         max: "20",
       },
       occupancyRange: {
         min: 1,
+        // TODO null is allowed on frontend but not in backend defined types
+        // @ts-ignore
         max: null,
       },
       rentAsPercentIncomeRange: {
@@ -59,7 +95,13 @@ ArcherListing.property.unitsSummarized = {
       },
     },
     {
-      unitType: "SRO",
+      unitType: {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "SRO",
+        numBedrooms: 1,
+      },
       minIncomeRange: {
         min: "10",
         max: "20",
@@ -109,12 +151,35 @@ describe("occupancy formatting helper", () => {
   })
   it("properly creates occupany description for no SRO", () => {
     const NewListing = ArcherListing
-    NewListing.property.unitsSummarized.unitTypes = ["threeBdrm", "twoBdrm"]
+    NewListing.unitsSummarized.unitTypes = [
+      {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "threeBdrm",
+        numBedrooms: 3,
+      },
+      {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "twoBdrm",
+        numBedrooms: 2,
+      },
+    ]
     expect(getOccupancyDescription(NewListing)).toBe(t("listings.occupancyDescriptionNoSro"))
   })
   it("properly creates occupany description for all SRO", () => {
     const NewListing = ArcherListing
-    NewListing.property.unitsSummarized.unitTypes = ["SRO"]
+    NewListing.unitsSummarized.unitTypes = [
+      {
+        id: "",
+        createdAt: new Date(),
+        updatedAt: new Date(),
+        name: "SRO",
+        numBedrooms: 1,
+      },
+    ]
     expect(getOccupancyDescription(NewListing)).toBe(t("listings.occupancyDescriptionAllSro"))
   })
 })

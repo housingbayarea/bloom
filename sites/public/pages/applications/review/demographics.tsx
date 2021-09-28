@@ -25,7 +25,7 @@ import {
 import FormBackLink from "../../../src/forms/applications/FormBackLink"
 import { useFormConductor } from "../../../lib/hooks"
 
-const Demographics = () => {
+const ApplicationDemographics = () => {
   const { conductor, application, listing } = useFormConductor("demographics")
   const currentPageSection = 5
 
@@ -66,7 +66,6 @@ const Demographics = () => {
 
   return (
     <FormsLayout>
-      {console.log(application)}
       <FormCard header={listing?.name}>
         <ProgressNav
           currentPageSection={currentPageSection}
@@ -76,7 +75,10 @@ const Demographics = () => {
       </FormCard>
 
       <FormCard>
-        <FormBackLink url={conductor.determinePreviousUrl()} />
+        <FormBackLink
+          url={conductor.determinePreviousUrl()}
+          onClick={() => conductor.setNavigatedBack(true)}
+        />
 
         <div className="form-card__lead border-b">
           <h2 className="form-card__title is-borderless">
@@ -156,14 +158,7 @@ const Demographics = () => {
 
           <div className="form-card__pager">
             <div className="form-card__pager-row primary">
-              <Button
-                styleType={AppearanceStyleType.primary}
-                onClick={() => {
-                  //
-                }}
-              >
-                Next
-              </Button>
+              <Button styleType={AppearanceStyleType.primary}>Next</Button>
             </div>
           </div>
 
@@ -178,4 +173,4 @@ const Demographics = () => {
   )
 }
 
-export default Demographics
+export default ApplicationDemographics

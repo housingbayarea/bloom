@@ -7,7 +7,7 @@ import {
   FormCard,
   Icon,
   LinkButton,
-  UserContext,
+  AuthContext,
   Form,
   emailRegex,
   t,
@@ -15,13 +15,14 @@ import {
   AlertBox,
   SiteAlert,
   Modal,
+  passwordRegex,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../layouts/forms"
 import moment from "moment"
 import { useRouter } from "next/router"
 
 export default () => {
-  const { createUser, resendConfirmation } = useContext(UserContext)
+  const { createUser, resendConfirmation } = useContext(AuthContext)
   const [confirmationResent, setConfirmationResent] = useState<boolean>(false)
   /* Form Handler */
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -29,6 +30,7 @@ export default () => {
   const [requestError, setRequestError] = useState<string>()
   const [openModal, setOpenModal] = useState<boolean>(false)
   const router = useRouter()
+  const language = router.locale
   const email = useRef({})
   const password = useRef({})
   email.current = watch("email", "")
@@ -40,6 +42,7 @@ export default () => {
       await createUser({
         ...rest,
         dob: moment(`${dob.birthYear}-${dob.birthMonth}-${dob.birthDay}`),
+        language,
       })
 
       setOpenModal(true)
@@ -109,7 +112,8 @@ export default () => {
               name="dob"
               id="dob"
               watch={watch}
-              atAge={true}
+              validateAge18={true}
+              errorMessage={t("errors.dateOfBirthErrorAge")}
               label={t("authentication.createAccount.yourDateOfBirth")}
             />
           </div>
@@ -126,7 +130,7 @@ export default () => {
               errorMessage={t("authentication.signIn.loginError")}
               register={register}
             />
-            <p className="text text-gray-600 text-sm">
+            <p className="text text-gray-750 text-tiny">
               {t("authentication.createAccount.reEnterEmail")}
             </p>
             <Field
@@ -164,13 +168,13 @@ export default () => {
               validation={{
                 required: true,
                 minLength: 8,
-                pattern: /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$/,
+                pattern: passwordRegex,
               }}
               error={errors.password}
               errorMessage={t("authentication.signIn.passwordError")}
               register={register}
             />
-            <p className="text text-gray-600 text-sm">
+            <p className="text text-gray-750 text-tiny">
               {t("authentication.createAccount.reEnterPassword")}
             </p>
             <Field

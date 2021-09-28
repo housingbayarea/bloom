@@ -2,7 +2,7 @@ import {
   AppearanceStyleType,
   Button,
   Modal,
-  UserContext,
+  AuthContext,
   t,
   Form,
   Field,
@@ -19,10 +19,11 @@ export interface ConfirmationModalProps {
 
 const ConfirmationModal = (props: ConfirmationModalProps) => {
   const { setSiteAlertMessage } = props
-  const { resendConfirmation, profile, confirmAccount } = useContext(UserContext)
+  const { resendConfirmation, profile, confirmAccount } = useContext(AuthContext)
   const [openModal, setOpenModal] = useState(false)
   const [modalMessage, setModalMessage] = useState(null)
   const router = useRouter()
+
   /* Form Handler */
   // This is causing a linting issue with unbound-method, see open issue as of 10/21/2020:
   // https://github.com/react-hook-form/react-hook-form/issues/2887
@@ -48,9 +49,10 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
     if (router?.query?.token && !profile) {
       confirmAccount(router.query.token.toString())
         .then(() => {
-          setSiteAlertMessage(t(`authentication.createAccount.accountConfirmed`), "success")
-
-          void router.push("/account/dashboard", undefined, { shallow: true })
+          void router.push({
+            pathname: "/account/dashboard",
+            query: { alert: t(`authentication.createAccount.accountConfirmed`) },
+          })
           window.scrollTo(0, 0)
         })
         .catch(() => {

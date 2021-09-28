@@ -1,30 +1,14 @@
 import React from "react"
 import { render, cleanup, fireEvent } from "@testing-library/react"
 import { ListingsGroup } from "../../src/page_components/listing/ListingsGroup"
-import Archer from "../fixtures/archer.json"
-import Triton from "../fixtures/triton-test.json"
-import { Listing } from "@bloom-housing/backend-core/types"
 
 afterEach(cleanup)
-
-const archer = Object.assign({}, Archer) as any
-const triton = Object.assign({}, Triton) as any
-archer.property = {}
-archer.property.unitsSummarized = {}
-archer.property.unitsSummarized.byNonReservedUnitType = []
-archer.property.unitsSummarized.byReservedType = []
-
-triton.property = {}
-triton.property.unitsSummarized = {}
-triton.property.unitsSummarized.byNonReservedUnitType = []
-triton.property.unitsSummarized.byReservedType = []
-const listings = [archer, triton] as Listing[]
 
 describe("<ListingsGroup>", () => {
   it("renders with show text", () => {
     const { getByText } = render(
       <ListingsGroup
-        listings={listings}
+        listingsCount={2}
         header={"Header Text"}
         showButtonText={"Show"}
         hideButtonText={"Hide"}
@@ -38,7 +22,7 @@ describe("<ListingsGroup>", () => {
   it("can toggle to hide text", () => {
     const { getByText } = render(
       <ListingsGroup
-        listings={listings}
+        listingsCount={2}
         header={"Header Text"}
         showButtonText={"Show"}
         hideButtonText={"Hide"}

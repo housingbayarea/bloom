@@ -18,7 +18,10 @@ const getOrdinal = (n: number) => {
 }
 
 const PreferencesList = (props: PreferencesListProps) => {
-  const preferences = props.preferences.map((preference: Preference, index: number) => {
+  const filteredPreferences = props.preferences.filter(
+    (pref) => !pref.formMetadata?.hideFromListing
+  )
+  const preferences = filteredPreferences.map((preference: Preference, index: number) => {
     const itemClasses = ["preferences-list__item", "info-card"]
 
     if (!preference.subtitle && !preference.description && !preference.links) {
@@ -29,7 +32,7 @@ const PreferencesList = (props: PreferencesListProps) => {
       <li key={index} className={itemClasses.join(" ")}>
         <div className="preferences-list__number">
           {preference.ordinal}
-          <sup>{getOrdinal(preference.ordinal)}</sup>
+          <sup>{preference.ordinal ? getOrdinal(preference.ordinal) : ""}</sup>
         </div>
         <h4 className="info-card__title">{preference.title}</h4>
         {preference.subtitle && (

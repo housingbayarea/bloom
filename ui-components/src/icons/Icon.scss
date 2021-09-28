@@ -1,3 +1,16 @@
+@keyframes icons-svg-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(359deg);
+  }
+}
+
+.spinner-animation > svg {
+  animation: icons-svg-spin 1s linear infinite;
+}
+
 .ui-icon svg {
   @apply inline-block;
   @apply align-middle;
@@ -39,6 +52,11 @@
   @apply h-12;
 }
 
+.ui-3xl svg {
+  @apply w-16;
+  @apply h-16;
+}
+
 .ui-white svg use {
   fill: #fff !important;
 }
@@ -49,4 +67,10 @@ a svg use {
 
 .bg-alert-light svg use {
   fill: $tailwind-alert;
+}
+
+.ui-icon {
+  &.is-primary svg use {
+    fill: $tailwind-primary;
+  }
 }

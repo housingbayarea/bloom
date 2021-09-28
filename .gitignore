@@ -12,8 +12,8 @@ yarn-error.log*
 storybook-static
 
 # Cypress test output videos
-apps/**/cypress/videos
-apps/**/cypress/screenshots
+**/cypress/videos
+**/cypress/screenshots
 
 # Complied Typescript
 dist
@@ -86,3 +86,6 @@ launch.json
 
 # Jest unit test coverage
 test-coverage/
+
+# redis dumps
+dump.rdb

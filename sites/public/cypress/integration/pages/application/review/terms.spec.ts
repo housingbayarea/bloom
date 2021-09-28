@@ -20,6 +20,7 @@ describe("applications/review/terms", function () {
     cy.getByID("agree-error").should("be.visible").and("not.to.be.empty")
   })
 
+  // Broken on master, addressed by PR #1155
   it("Should redirect to the next step", function () {
     cy.getByID("agree").check()
 

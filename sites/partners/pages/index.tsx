@@ -1,31 +1,65 @@
-import React, { useMemo, useContext } from "react"
+import React, { useMemo, useContext, useState } from "react"
 import Head from "next/head"
-import { PageHeader, MetaTags, t, lRoute, UserContext } from "@bloom-housing/ui-components"
-import { useListingsData } from "../lib/hooks"
-import Layout from "../layouts/application"
+import {
+  PageHeader,
+  t,
+  lRoute,
+  AuthContext,
+  Button,
+  LocalizedLink,
+  AgPagination,
+  AG_PER_PAGE_OPTIONS,
+} from "@bloom-housing/ui-components"
 import moment from "moment"
-import { UserRole, Listing } from "@bloom-housing/backend-core/types"
-
 import { AgGridReact } from "ag-grid-react"
 import { GridOptions } from "ag-grid-community"
 
-export default function ListingsList() {
-  const { profile } = useContext(UserContext)
-  const leasingAgentInListings = profile.leasingAgentInListings?.map((item) => item.id)
-  class formatLinkCell {
-    link: HTMLAnchorElement
+import { useListingsData } from "../lib/hooks"
+import Layout from "../layouts"
+import { MetaTags } from "../src/MetaTags"
 
-    init(params) {
-      this.link = document.createElement("a")
-      this.link.classList.add("text-blue-700")
-      this.link.setAttribute("href", lRoute(`/listings/applications?listing=${params.data.id}`))
-      this.link.innerText = params.value
-    }
+class formatLinkCell {
+  link: HTMLAnchorElement
 
-    getGui() {
-      return this.link
-    }
+  init(params) {
+    this.link = document.createElement("a")
+    this.link.classList.add("text-blue-700")
+    this.link.setAttribute("href", lRoute(`/listings/${params.data.id}/applications`))
+    this.link.innerText = params.valueFormatted || params.value
   }
+
+  getGui() {
+    return this.link
+  }
+}
+
+class ApplicationsLink extends formatLinkCell {
+  init(params) {
+    super.init(params)
+    this.link.setAttribute("href", lRoute(`/listings/${params.data.id}/applications`))
+  }
+}
+
+class ListingsLink extends formatLinkCell {
+  init(params) {
+    super.init(params)
+    this.link.setAttribute("href", lRoute(`/listings/${params.data.id}`))
+  }
+}
+
+export default function ListingsList() {
+  const { profile } = useContext(AuthContext)
+  const leasingAgentInListings = profile.leasingAgentInListings
+    ?.map((leasingAgent) => leasingAgent.id)
+    .join(",")
+  const isAdmin = profile.roles?.isAdmin || false
+
+  /* Pagination */
+  const [itemsPerPage, setItemsPerPage] = useState<number>(AG_PER_PAGE_OPTIONS[0])
+  const [currentPage, setCurrentPage] = useState<number>(1)
+
+  const metaDescription = t("pageDescription.welcome", { regionName: t("region.name") })
+  const metaImage = "" // TODO: replace with hero image
 
   class formatWaitlistStatus {
     text: HTMLSpanElement
@@ -44,23 +78,32 @@ export default function ListingsList() {
 
   const gridOptions: GridOptions = {
     components: {
-      formatLinkCell: formatLinkCell,
-      formatWaitlistStatus: formatWaitlistStatus,
+      ApplicationsLink,
+      formatLinkCell,
+      formatWaitlistStatus,
+      ListingsLink,
     },
   }
 
-  const metaDescription = t("pageDescription.welcome", { regionName: t("region.name") })
-  const metaImage = "" // TODO: replace with hero image
-
-  const columnDefs = useMemo(
-    () => [
+  const columnDefs = useMemo(() => {
+    const columns = [
       {
         headerName: t("listings.listingName"),
         field: "name",
         sortable: false,
         filter: false,
         resizable: true,
-        cellRenderer: "formatLinkCell",
+        cellRenderer: "ListingsLink",
+      },
+      {
+        headerName: t("listings.listingStatusText"),
+        field: "status",
+        sortable: false,
+        filter: false,
+        resizable: true,
+        flex: 1,
+        valueFormatter: ({ value }) => t(`listings.${value}`),
+        cellRenderer: "ApplicationsLink",
       },
       {
         headerName: t("listings.applicationDeadline"),
@@ -68,11 +111,11 @@ export default function ListingsList() {
         sortable: false,
         filter: false,
         resizable: true,
-        valueFormatter: ({ value }) => moment(value).format("MM/DD/YYYY"),
+        valueFormatter: ({ value }) => (value ? moment(value).format("MM/DD/YYYY") : t("t.none")),
       },
       {
         headerName: t("listings.availableUnits"),
-        field: "property.unitsAvailable",
+        field: "unitsAvailable",
         sortable: false,
         filter: false,
         resizable: true,
@@ -85,33 +128,15 @@ export default function ListingsList() {
         resizable: true,
         cellRenderer: "formatWaitlistStatus",
       },
-      {
-        headerName: t("listings.listingStatus"),
-        field: "status",
-        sortable: false,
-        filter: false,
-        resizable: true,
-        flex: 1,
-        valueFormatter: ({ value }) => t(`listings.${value}`),
-      },
-    ],
-    []
-  )
+    ]
+    return columns
+  }, [])
 
-  const { listingDtos, listingsLoading, listingsError } = useListingsData()
-
-  // filter listings to show items depends on user role
-  const filteredListings = useMemo(() => {
-    if (profile.roles.includes(UserRole.admin)) return listingDtos
-
-    return listingDtos?.reduce((acc, curr) => {
-      if (leasingAgentInListings.includes(curr.id)) {
-        acc.push(curr)
-      }
-
-      return acc
-    }, []) as Listing[]
-  }, [leasingAgentInListings, listingDtos, profile.roles])
+  const { listingDtos, listingsLoading, listingsError } = useListingsData({
+    page: currentPage,
+    limit: itemsPerPage,
+    userId: !isAdmin ? profile?.id : undefined,
+  })
 
   if (listingsLoading) return "Loading..."
   if (listingsError) return "An error has occurred."
@@ -119,32 +144,53 @@ export default function ListingsList() {
   return (
     <Layout>
       <Head>
-        <title>{t("nav.siteTitle")}</title>
+        <title>{t("nav.siteTitlePartners")}</title>
       </Head>
-      <MetaTags title={t("nav.siteTitle")} image={metaImage} description={metaDescription} />
+      <MetaTags
+        title={t("nav.siteTitlePartners")}
+        image={metaImage}
+        description={metaDescription}
+      />
       <PageHeader title={t("nav.listings")} />
       <section>
         <article className="flex-row flex-wrap relative max-w-screen-xl mx-auto py-8 px-4">
           <div className="ag-theme-alpine ag-theme-bloom">
-            <AgGridReact
-              gridOptions={gridOptions}
-              columnDefs={columnDefs}
-              rowData={filteredListings}
-              domLayout={"autoHeight"}
-              headerHeight={83}
-              rowHeight={58}
-              suppressScrollOnNewData={true}
-            ></AgGridReact>
-
-            <div className="data-pager">
-              <div className="data-pager__control-group">
-                <span className="data-pager__control">
-                  <span className="field-label" id="lbTotalPages">
-                    {filteredListings?.length}
-                  </span>
-                  <span className="field-label">{t("listings.totalListings")}</span>
-                </span>
+            <div className="flex justify-between">
+              <div className="w-56"></div>
+              <div className="flex-row">
+                {isAdmin && (
+                  <LocalizedLink href={`/listings/add`}>
+                    <Button className="mx-1" onClick={() => false}>
+                      {t("listings.addListing")}
+                    </Button>
+                  </LocalizedLink>
+                )}
               </div>
+            </div>
+
+            <div className="applications-table mt-5">
+              <AgGridReact
+                gridOptions={gridOptions}
+                columnDefs={columnDefs}
+                rowData={listingDtos.items}
+                domLayout={"autoHeight"}
+                headerHeight={83}
+                rowHeight={58}
+                suppressPaginationPanel={true}
+                paginationPageSize={AG_PER_PAGE_OPTIONS[0]}
+                suppressScrollOnNewData={true}
+              ></AgGridReact>
+
+              <AgPagination
+                totalItems={listingDtos.meta.totalItems}
+                totalPages={listingDtos.meta.totalPages}
+                currentPage={currentPage}
+                itemsPerPage={itemsPerPage}
+                quantityLabel={t("listings.totalListings")}
+                setCurrentPage={setCurrentPage}
+                setItemsPerPage={setItemsPerPage}
+                onPerPageChange={() => setCurrentPage(1)}
+              />
             </div>
           </div>
         </article>

@@ -6,7 +6,7 @@
     "haveAnAccount": "已開立帳戶？",
     "myApplications": "我的申請",
     "myApplicationsSubtitle": "查看您已申請物業的抽簽日期和上市名單"
-  }, 
+  },
   "application": {
     "form": {
       "general": {
@@ -37,6 +37,12 @@
       "letsGetStarted": "我們來展開申請程序",
       "chooseYourLanguage": "選擇您使用的語言",
       "signInSaveTime": "登入網站從上次申請的詳情開始，這可節省您的時間，並讓您隨時查看這次申請的進展情況。"
+    },
+    "autofill": {
+      "saveTime": "使用上次申請中的詳細資料可節省時間",
+      "prefillYourApplication": "我們只要將以下詳細資料預先填入您的申請，您就可隨時隨地進行更新。",
+      "start": "開始使用這些詳細資料",
+      "reset": "重設並開始重新整理"
     },
     "start": {
       "whatToExpect": {
@@ -113,7 +119,6 @@
         "description": "我們只會為您的申請事宜使用此資料聯絡他們。",
         "phoneNumberFormLabel": "聯絡人電話號碼",
         "emailAddressFormLabel": "聯絡人電郵地址",
-        "emailAddressFormPlaceHolder": "you@myemail.com",
         "contactMailingAddressLabel": "聯絡人郵寄地址",
         "contactMailingAddressHelperText": "請選擇一個他們可收到您最新申請消息和資料的地址"
       }
@@ -366,7 +371,7 @@
   },
   "errors": {
     "alert": {
-      "badRequest": "糟糕！好像出了點問題。請再試一次。\n\n如果仍然遇到問題，請聯絡 sfhousing.info@sfgov.org。",
+      "badRequest": "糟糕！好像出了點問題。請再試一次。\n\n如果您仍然遇到问题，请联系您的住房部门。",
       "timeoutPleaseTryAgain": "糟糕！好像出了點問題。請再試一次。"
     },
     "notFound": {
@@ -413,7 +418,6 @@
     "officeHours": "辦公時間"
   },
   "listings": {
-    "additionalFees": "其他費用",
     "additionalInformation": "其他資訊",
     "allUnits": "所有單位",
     "allUnitsReservedFor": "保留給 %{type} 的所有單位",
@@ -498,6 +502,7 @@
     "reservedUnitsDescription": "您或您的家庭成員必須符合以下其中一項條件，才符合這些單位的申請資格：",
     "reservedUnitsForWhoAre": "保留給是 %{reservedType} 的 %{communityType}",
     "sections": {
+      "additionalFees": "其他費用",
       "eligibilityTitle": "資格要求",
       "eligibilitySubtitle": "收入、入住人數、優先權和補貼",
       "rentalAssistanceTitle": "租屋援助",
@@ -667,6 +672,7 @@
     "deposit": "訂金",
     "edit": "編輯",
     "email": "電子郵件",
+    "emailAddressPlaceHolder": "you@myemail.com",
     "floor": "樓層",
     "floors": "樓層",
     "getDirections": "取得路線",
@@ -720,6 +726,7 @@
     "unitType": "單位類型",
     "viewMap": "檢視地圖",
     "viewOnMap": "在地圖上檢視",
+    "website": "网站",
     "year": "年",
     "yes": "是",
     "you": "您"
@@ -733,8 +740,6 @@
   },
   "whatToExpect": {
     "label": "預期事項",
-    "applicantsWillBeContacted": "物業經紀人將按排名次序聯絡申請人，直到沒有空缺為止。",
-    "allInfoWillBeVerified": "您提供的所有資料都會受到查證，以確定您的資格。如果您作出任何不實陳述，則您的申請會從候補名單被刪除。如果我們無法證實您要求的住房優先權，您將不會獲得該優先權，但不會受到其他處罰。",
-    "bePreparedIfChosen": "若您的申請被選中，請準備填寫一份更加詳盡的申請表，並提供所需的證明文件。"
+    "default": "物業經紀人將按排名次序聯絡申請人，直到沒有空缺為止。您提供的所有資料都會受到查證，以確定您的資格。如果您作出任何不實陳述，則您的申請會從候補名單被刪除。如果我們無法證實您要求的住房優先權，您將不會獲得該優先權，但不會受到其他處罰。若您的申請被選中，請準備填寫一份更加詳盡的申請表，並提供所需的證明文件。"
   }
 }

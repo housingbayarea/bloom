@@ -1,5 +1,4 @@
 import React from "react"
-import Link from "next/link"
 import { MinimalTable } from "../tables/MinimalTable"
 import { ViewItem } from "../blocks/ViewItem"
 import { GridSection, GridCell } from "./GridSection"
@@ -333,17 +332,13 @@ export const GridSectionTable = () => (
 export const ButtonGrid = () => (
   <GridSection columns={2} tightSpacing={true}>
     <GridCell>
-      <Button fullWidth={true} onClick={() => {}}>
-        I'm a Button!
-      </Button>
+      <Button fullWidth={true}>I'm a Button!</Button>
     </GridCell>
     <GridCell>
-      <Button fullWidth={true} onClick={() => {}}>
-        Another Button
-      </Button>
+      <Button fullWidth={true}>Another Button</Button>
     </GridCell>
     <GridCell span={2}>
-      <Button styleType={AppearanceStyleType.primary} fullWidth={true} onClick={() => {}}>
+      <Button styleType={AppearanceStyleType.primary} fullWidth={true}>
         I'm a Button!
       </Button>
     </GridCell>

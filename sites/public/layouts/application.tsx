@@ -1,27 +1,24 @@
-import React from "react"
-// import React, { useContext } from "react"
-// import { useRouter } from "next/router"
+import React /* , { useContext } */ from "react"
+import { useRouter } from "next/router"
+import Link from "next/link"
 import Head from "next/head"
 import {
-  LocalizedLink,
   SiteHeader,
   SiteFooter,
   FooterNav,
   FooterSection,
   ExygyFooter,
   t,
-  // UserNav,
-  // UserContext,
+  // AuthContext,
   // setSiteAlertMessage,
 } from "@bloom-housing/ui-components"
-import SVG from "react-inlinesvg"
 
 const Layout = (props) => {
-  // const { profile, signOut } = useContext(UserContext)
-  // const router = useRouter()
+  // const { profile, signOut } = useContext(AuthContext)
+  const router = useRouter()
 
-  const LANGUAGES =
-    process.env.languages?.split(",")?.map((item) => ({
+  const languages =
+    router?.locales?.map((item) => ({
       prefix: item === "en" ? "" : item,
       label: t(`languages.${item}`),
     })) || []
@@ -45,16 +42,19 @@ const Layout = (props) => {
           logoSrc="/images/logo_glyph.svg"
           notice={notice}
           title={t("nav.siteTitle")}
-          languages={LANGUAGES}
+          language={{
+            list: languages,
+            codes: router?.locales,
+          }}
         >
-          <LocalizedLink href="/listings" className="navbar-item">
-            {t("nav.listings")}
-          </LocalizedLink>
+          <Link href="/listings">
+            <a className="navbar-item">{t("nav.listings")}</a>
+          </Link>
           {/* Only show Get Assistance if housing counselor data is available */}
           {process.env.housingCounselorServiceUrl && (
-            <LocalizedLink href={process.env.housingCounselorServiceUrl} className="navbar-item">
-              {t("nav.getAssistance")}
-            </LocalizedLink>
+            <Link href="/housing-counselors">
+              <a className="navbar-item">{t("nav.getAssistance")}</a>
+            </Link>
           )}
           {/* <UserNav
             signedIn={!!profile}
@@ -62,85 +62,35 @@ const Layout = (props) => {
               setSiteAlertMessage(t(`authentication.signOut.success`), "notice")
               await router.push("/sign-in")
               signOut()
-              window.scrollTo(0, 0)
             }}
           >
-            <LocalizedLink href="/account/dashboard" className="navbar-item">
-              {t("nav.myDashboard")}
-            </LocalizedLink>
-            <LocalizedLink href="/account/applications" className="navbar-item">
-              {t("nav.myApplications")}
-            </LocalizedLink>
-            <LocalizedLink href="/account/settings" className="navbar-item">
-              {t("nav.accountSettings")}
-            </LocalizedLink>
-          </UserNav> */}
+            <Link href="/account/dashboard">
+              <a className="navbar-item">{t("nav.myDashboard")}</a>
+            </Link>
+            <Link href="/account/applications">
+              <a className="navbar-item">{t("nav.myApplications")}</a>
+            </Link>
+            <Link href="/account/edit">
+              <a className="navbar-item">{t("nav.accountSettings")}</a>
+            </Link>
+          </UserNav>*/}
         </SiteHeader>
         <main id="main-content">{props.children}</main>
       </div>
 
       <SiteFooter>
-        <FooterSection>
-          <img src="/images/logo-smc.png" />
-        </FooterSection>
-        <FooterSection>
-          <p>
-            {t("footer.header")}
-            <br />
-            <a href={t("footer.headerUrl")} target="_blank">
-              {t("footer.headerLink")}
-            </a>
-            <br />
-            <span className="text-tiny">
-              {t("footer.inPartnershipWith")}
-              <br />
-              <a href={t("footer.sanMateoISDurl")} target="_blank">
-                {t("footer.sanMateoISD")}
-              </a>
-              <br />
-              <a href={t("footer.cityOfSouthSFurl")} target="_blank">
-                {t("footer.cityOfSouthSF")}
-              </a>
-            </span>
-          </p>
-          <p className="mt-8 text-tiny">{t("footer.forListingQuestions")}</p>
-          <p className="text-tiny">{t("footer.forGeneralInquiries")}</p>
-          <p className="mt-8 text-tiny">
-            {t("footer.forAdditionalOpportunities")}
-            <br />
-            <a className="px-2" href={t("footer.SFHousingUrl")} target="_blank">
-              {t("footer.SFHousingPortal")}
-            </a>
-            |
-            <a className="px-2" href={t("footer.SJHousingUrl")} target="_blank">
-              {t("footer.SJHousingPortal")}
-            </a>
-            |
-            <a className="px-2" href={t("footer.ALAHousingUrl")} target="_blank">
-              {t("footer.ALAHousingPortal")}
-            </a>
-          </p>
-        </FooterSection>
-        <FooterSection>
-          <img
-            className="h-16 w-16"
-            src="/images/eho-logo-white.svg"
-            alt="Equal Housing Opportunity Logo"
-          />
-        </FooterSection>
-        <FooterNav copyright={t("footer.copyRight")}>
-          <a href="https://www.surveymonkey.com/r/2QLBYML" target="_blank">
-            {t("footer.giveFeedback")}
-          </a>
-          <a href="mailto:housing@smchousing.org">{t("footer.contact")}</a>
-          <LocalizedLink href="/disclaimer">{t("footer.disclaimer")}</LocalizedLink>
-          <LocalizedLink href="/privacy">{t("footer.privacyPolicy")}</LocalizedLink>
+        <FooterNav copyright={t("footer.copyright")}>
+          <Link href="/privacy">
+            <a>{t("pageTitle.privacy")}</a>
+          </Link>
+          <Link href="/disclaimer">
+            <a>{t("pageTitle.disclaimer")}</a>
+          </Link>
         </FooterNav>
         <FooterSection className="bg-black" small>
           <ExygyFooter />
         </FooterSection>
       </SiteFooter>
-      <SVG src="/images/icons.svg" />
     </div>
   )
 }

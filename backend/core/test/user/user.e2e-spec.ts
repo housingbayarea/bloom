@@ -3,17 +3,16 @@ import { INestApplication } from "@nestjs/common"
 import { TypeOrmModule } from "@nestjs/typeorm"
 import { applicationSetup } from "../../src/app.module"
 import { AuthModule } from "../../src/auth/auth.module"
-import { EmailService } from "../../src/shared/email.service"
+import { EmailService } from "../../src/shared/email/email.service"
 import { getUserAccessToken } from "../utils/get-user-access-token"
 
 // Use require because of the CommonJS/AMD style export.
 // See https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require
 import dbOptions = require("../../ormconfig.test")
-import { UserModule } from "../../src/user/user.module"
 import supertest from "supertest"
 import { setAuthorization } from "../utils/set-authorization-helper"
-import { UserCreateDto, UserDto, UserUpdateDto } from "../../src/user/dto/user.dto"
-import { UserService } from "../../src/user/user.service"
+import { UserCreateDto, UserDto, UserUpdateDto } from "../../src/auth/dto/user.dto"
+import { UserService } from "../../src/auth/services/user.service"
 
 // Cypress brings in Chai types for the global expect, but we want to use jest
 // expect here so we need to re-declare it.
@@ -25,18 +24,22 @@ describe("Applications", () => {
   let app: INestApplication
   let user1AccessToken: string
   let user2AccessToken: string
-  let user1Profile: UserDto
   let user2Profile: UserDto
 
-  beforeAll(async () => {
+  const testEmailService = {
     /* eslint-disable @typescript-eslint/no-empty-function */
-    const testEmailService = {
-      confirmation: async () => {},
-      welcome: async () => {},
-    }
+    confirmation: async () => {},
+    welcome: async () => {},
     /* eslint-enable @typescript-eslint/no-empty-function */
+  }
+
+  beforeEach(() => {
+    jest.clearAllMocks()
+  })
+
+  beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
-      imports: [TypeOrmModule.forRoot(dbOptions), AuthModule, UserModule],
+      imports: [TypeOrmModule.forRoot(dbOptions), AuthModule],
     })
       .overrideProvider(EmailService)
       .useValue(testEmailService)
@@ -48,36 +51,11 @@ describe("Applications", () => {
     user1AccessToken = await getUserAccessToken(app, "test@example.com", "abcdef")
     user2AccessToken = await getUserAccessToken(app, "test2@example.com", "ghijkl")
 
-    user1Profile = (
-      await supertest(app.getHttpServer())
-        .get("/user")
-        .set(...setAuthorization(user1AccessToken))
-    ).body
     user2Profile = (
       await supertest(app.getHttpServer())
         .get("/user")
         .set(...setAuthorization(user2AccessToken))
     ).body
-  })
-
-  it("should not allow user to change the email, change should be ignored", async () => {
-    const userUpdateDto: UserUpdateDto = {
-      id: user1Profile.id,
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore
-      email: "change@email.com",
-      firstName: "First",
-      middleName: "Mid",
-      lastName: "Last",
-      dob: new Date(),
-    }
-    const res = await supertest(app.getHttpServer())
-      .put(`/user/${user1Profile.id}`)
-      .send(userUpdateDto)
-      .set(...setAuthorization(user1AccessToken))
-      .expect(200)
-    expect(res.body.id).toBe(user1Profile.id)
-    expect(res.body.email).toBe(user1Profile.email)
   })
 
   it("should not allow user to create an account with weak password", async () => {
@@ -94,6 +72,87 @@ describe("Applications", () => {
     await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(400)
   })
 
+  it("should not allow user to create an account which is already confirmed nor confirm it using PUT", async () => {
+    const userCreateDto: UserCreateDto = {
+      password: "Abcdef1!",
+      passwordConfirmation: "Abcdef1!",
+      email: "abc@b.com",
+      emailConfirmation: "abc@b.com",
+      firstName: "First",
+      middleName: "Mid",
+      lastName: "Last",
+      dob: new Date(),
+      confirmedAt: new Date(),
+    }
+    await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(403)
+
+    delete userCreateDto.confirmedAt
+    const userCreateResponse = await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
+
+    expect(userCreateResponse.body.confirmedAt).toBe(null)
+
+    // Not confirmed user should not be able to log in
+    await supertest(app.getHttpServer())
+      .post("/auth/login")
+      .send({ email: userCreateDto.email, password: userCreateDto.password })
+      .expect(401)
+
+    const adminAccessToken = await getUserAccessToken(app, "admin@example.com", "abcdef")
+    const userModifyResponse = await supertest(app.getHttpServer())
+      .put(`/user/${userCreateResponse.body.id}`)
+      .set(...setAuthorization(adminAccessToken))
+      .send({
+        ...userCreateResponse.body,
+        confirmedAt: new Date(),
+      })
+      .expect(200)
+
+    expect(userModifyResponse.body.confirmedAt).toBeDefined()
+
+    const userLoginResponse = await supertest(app.getHttpServer())
+      .post("/auth/login")
+      .send({ email: userCreateDto.email, password: userCreateDto.password })
+      .expect(201)
+
+    await supertest(app.getHttpServer())
+      .put(`/user/${userCreateResponse.body.id}`)
+      .send({
+        ...userCreateResponse.body,
+        confirmedAt: new Date(),
+      })
+      .set(...setAuthorization(userLoginResponse.body.accessToken))
+      .expect(403)
+  })
+
+  it("should allow anonymous user to create an account", async () => {
+    const userCreateDto: UserCreateDto = {
+      password: "Abcdef1!",
+      passwordConfirmation: "Abcdef1!",
+      email: "a@b.com",
+      emailConfirmation: "a@b.com",
+      firstName: "First",
+      middleName: "Mid",
+      lastName: "Last",
+      dob: new Date(),
+    }
+    const mockWelcome = jest.spyOn(testEmailService, "welcome")
+    const res = await supertest(app.getHttpServer())
+      .post(`/user`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+    expect(mockWelcome.mock.calls.length).toBe(1)
+    expect(res.body).toHaveProperty("id")
+    expect(res.body).not.toHaveProperty("passwordHash")
+  })
+
   it("should not allow user to sign in before confirming the account", async () => {
     const userCreateDto: UserCreateDto = {
       password: "Abcdef1!",
@@ -105,13 +164,17 @@ describe("Applications", () => {
       lastName: "Last",
       dob: new Date(),
     }
-    await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(201)
+    await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
     await supertest(app.getHttpServer())
       .post("/auth/login")
       .send({ email: userCreateDto.email, password: userCreateDto.password })
       .expect(401)
 
-    const userService = app.get<UserService>(UserService)
+    const userService = await app.resolve<UserService>(UserService)
     const user = await userService.findByEmail(userCreateDto.email)
 
     await supertest(app.getHttpServer())
@@ -137,26 +200,11 @@ describe("Applications", () => {
     userCreateDto.emailConfirmation = "a1@b.com"
     await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(400)
     userCreateDto.emailConfirmation = "a2@b.com"
-    await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(201)
-  })
-
-  it("should allow anonymous user to create an account", async () => {
-    const userCreateDto: UserCreateDto = {
-      password: "Abcdef1!",
-      passwordConfirmation: "Abcdef1!",
-      email: "a@b.com",
-      emailConfirmation: "a@b.com",
-      firstName: "First",
-      middleName: "Mid",
-      lastName: "Last",
-      dob: new Date(),
-    }
-    const res = await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto)
-    delete userCreateDto.passwordConfirmation
-    delete userCreateDto.emailConfirmation
-    delete userCreateDto.password
-    expect(res.body).toHaveProperty("status")
-    expect(res.body).not.toHaveProperty("passwordHash")
+    await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
   })
 
   it("should not allow to create a new account with duplicate email", async () => {
@@ -170,8 +218,12 @@ describe("Applications", () => {
       lastName: "Last",
       dob: new Date(),
     }
-    const res = await supertest(app.getHttpServer()).post(`/user`).send(userCreateDto).expect(201)
-    expect(res.body).toMatchObject({ status: "ok" })
+    const res = await supertest(app.getHttpServer())
+      .post(`/user`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
+    expect(res.body).toHaveProperty("id")
     await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(400)
   })
 
@@ -181,6 +233,10 @@ describe("Applications", () => {
       dob: new Date(),
       firstName: "First",
       lastName: "Last",
+      email: "test2@example.com",
+      jurisdictions: user2Profile.jurisdictions.map((jurisdiction) => ({
+        id: jurisdiction.id,
+      })),
     }
     await supertest(app.getHttpServer())
       .put(`/user/${user2UpdateDto.id}`)
@@ -204,7 +260,11 @@ describe("Applications", () => {
       lastName: "Last",
       dob: new Date(),
     }
-    await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(201)
+    await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
     await supertest(app.getHttpServer())
       .post("/user/resend-confirmation")
       .send({ email: userCreateDto.email })
@@ -222,8 +282,12 @@ describe("Applications", () => {
       lastName: "Last",
       dob: new Date(),
     }
-    await supertest(app.getHttpServer()).post(`/user/`).send(userCreateDto).expect(201)
-    const userService = app.get<UserService>(UserService)
+    await supertest(app.getHttpServer())
+      .post(`/user/`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
+    const userService = await app.resolve<UserService>(UserService)
     const user = await userService.findByEmail(userCreateDto.email)
 
     await supertest(app.getHttpServer())
@@ -241,5 +305,25 @@ describe("Applications", () => {
       .post("/user/resend-confirmation")
       .send({ email: "unknown@email.com" })
       .expect(404)
+  })
+
+  it("should not send confirmation email when noConfirmationEmail query param is specified", async () => {
+    const userCreateDto: UserCreateDto = {
+      password: "Abcdef1!",
+      passwordConfirmation: "Abcdef1!",
+      email: "b3@b.com",
+      emailConfirmation: "b3@b.com",
+      firstName: "First",
+      middleName: "Mid",
+      lastName: "Last",
+      dob: new Date(),
+    }
+    const mockWelcome = jest.spyOn(testEmailService, "welcome")
+    await supertest(app.getHttpServer())
+      .post(`/user?noWelcomeEmail=true`)
+      .set("jurisdictionName", "Alameda")
+      .send(userCreateDto)
+      .expect(201)
+    expect(mockWelcome.mock.calls.length).toBe(0)
   })
 })

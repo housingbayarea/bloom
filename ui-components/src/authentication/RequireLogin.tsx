@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useContext, useEffect } from "react"
-import { useRouter } from "next/router"
 import { setSiteAlertMessage } from "../notifications/SiteAlert"
-import { UserContext } from "./UserContext"
+import { NavigationContext } from "../config/NavigationContext"
+import { AuthContext } from "./AuthContext"
 
 // See https://github.com/Microsoft/TypeScript/issues/14094
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
@@ -26,8 +26,8 @@ const RequireLogin: FunctionComponent<RequireLoginProps> = ({
   signInMessage,
   ...rest
 }) => {
-  const router = useRouter()
-  const { profile, initialStateLoaded } = useContext(UserContext)
+  const { router } = useContext(NavigationContext)
+  const { profile, initialStateLoaded } = useContext(AuthContext)
 
   // Parse just the pathname portion of the signInPath (in case we want to pass URL params)
   const [signInPathname] = signInPath.split("?")

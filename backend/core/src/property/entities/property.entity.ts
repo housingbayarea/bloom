@@ -19,13 +19,10 @@ import {
   IsUUID,
   ValidateNested,
 } from "class-validator"
-import { Listing } from "../../listings/entities/listing.entity"
-import { ApiProperty } from "@nestjs/swagger"
-import { Unit, UnitsSummarized } from "../../units/entities/unit.entity"
-import { transformUnits } from "../../shared/units-transformations"
+import { Unit } from "../../units/entities/unit.entity"
 import { PropertyGroup } from "../../property-groups/entities/property-group.entity"
 import { Address } from "../../shared/entities/address.entity"
-import { ValidationsGroupsEnum } from "../../shared/validations-groups.enum"
+import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
 
 @Entity()
 export class Property {
@@ -50,9 +47,6 @@ export class Property {
   @OneToMany(() => Unit, (unit) => unit.property, { eager: true, cascade: true })
   units: Unit[]
 
-  @OneToMany(() => Listing, (listing) => listing.property)
-  listings: Listing[]
-
   @ManyToMany(() => PropertyGroup)
   propertyGroups: PropertyGroup[]
 
@@ -60,13 +54,13 @@ export class Property {
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  accessibility: string | null
+  accessibility?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  amenities: string | null
+  amenities?: string | null
 
   @OneToOne(() => Address, { eager: true, cascade: true })
   @JoinColumn()
@@ -80,67 +74,65 @@ export class Property {
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  buildingTotalUnits: number | null
+  buildingTotalUnits?: number | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  developer: string | null
+  developer?: string | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  householdSizeMax: number | null
+  householdSizeMax?: number | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  householdSizeMin: number | null
+  householdSizeMin?: number | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  neighborhood: string | null
+  neighborhood?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  petPolicy: string | null
+  petPolicy?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  smokingPolicy: string | null
+  smokingPolicy?: string | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  unitsAvailable: number | null
+  unitsAvailable?: number | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  unitAmenities: string | null
+  unitAmenities?: string | null
+
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  servicesOffered?: string | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  yearBuilt: number | null
-
-  @Expose()
-  @ApiProperty()
-  get unitsSummarized(): UnitsSummarized | undefined {
-    if (Array.isArray(this.units) && this.units.length > 0) {
-      return transformUnits(this.units)
-    }
-  }
+  yearBuilt?: number | null
 }

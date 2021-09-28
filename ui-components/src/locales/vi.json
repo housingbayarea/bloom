@@ -6,7 +6,7 @@
     "haveAnAccount": "Quý vị đã có một tài khoản chưa?",
     "myApplications": "Đơn ghi danh của tôi",
     "myApplicationsSubtitle": "Xem ngày rút thăm và danh sách các bất động sản mà quý vị đã ghi danh"
-  }, 
+  },
   "application": {
     "form": {
       "general": {
@@ -37,6 +37,12 @@
       "letsGetStarted": "Hãy bắt đầu làm đơn ghi danh của quý vị",
       "chooseYourLanguage": "Lựa chọn Ngôn ngữ của Quý vị",
       "signInSaveTime": "Việc đăng nhập có thể giúp quý vị tiết kiệm thời gian bằng cách bắt đầu với các thông tin chi tiết về đơn ghi danh gần đây nhất của quý vị và cho phép quý vị kiểm tra trạng thái của đơn ghi danh này bất kỳ lúc nào."
+    },
+    "autofill": {
+      "saveTime": "Tiết kiệm thời gian bằng cách sử dụng các chi tiết từ đơn lần trước của quý vị",
+      "prefillYourApplication": "Chúng tôi sẽ điền trước đơn của quý vị với những thông tin chi tiết sau, và quý vị có thể cập nhật các thông tin đó trong quá trình làm đơn.",
+      "start": "Bắt đầu với Những Chi tiết Này",
+      "reset": "Thiết lập lại và bắt đầu từ đầu"
     },
     "start": {
       "whatToExpect": {
@@ -113,7 +119,6 @@
         "description": "Chúng tôi sẽ chỉ sử dụng thông tin này để liên lạc với họ về đơn ghi danh của quý vị.",
         "phoneNumberFormLabel": "Số điện thoại của người liên lạc",
         "emailAddressFormLabel": "Địa chỉ email của người liên lạc",
-        "emailAddressFormPlaceHolder": "you@myemail.com",
         "contactMailingAddressLabel": "Địa chỉ thư bưu điện của người liên lạc",
         "contactMailingAddressHelperText": "Chọn một địa chỉ nơi họ có thể nhận các thông tin cập nhật và tài liệu về đơn ghi danh của quý vị"
       }
@@ -366,7 +371,7 @@
   },
   "errors": {
     "alert": {
-      "badRequest": "Ối! Có vẻ như đã có lỗi xảy ra. Vui lòng thử lại. \n\nLiên lạc với sfhousing.info@sfgov.org nếu quý vị vẫn gặp các sự cố.",
+      "badRequest": "Ối! Có vẻ như đã có lỗi xảy ra. Vui lòng thử lại. \n\nLiên hệ với bộ phận nhà ở của bạn nếu bạn vẫn gặp sự cố.",
       "timeoutPleaseTryAgain": "Ối! Có vẻ như đã có lỗi xảy ra. Vui lòng thử lại."
     },
     "notFound": {
@@ -413,7 +418,6 @@
     "officeHours": "Giờ Làm việc"
   },
   "listings": {
-    "additionalFees": "Các Loại Phí Bổ sung",
     "additionalInformation": "Thông tin Bổ sung",
     "allUnits": "Tất cả các Căn nhà",
     "allUnitsReservedFor": "Tất cả các căn nhà được dành cho %{type}",
@@ -498,6 +502,7 @@
     "reservedUnitsDescription": "Để hội đủ điều kiện được nhận các căn nhà này, một trong những điều sau đây phải đúng với quý vị hoặc một người nào đó trong hộ gia đình của quý vị:",
     "reservedUnitsForWhoAre": "Dành riêng cho %{communityType} những người %{reservedType}",
     "sections": {
+      "additionalFees": "Các Loại Phí Bổ sung",
       "eligibilityTitle": "Tình trạng Hội đủ Điều kiện",
       "eligibilitySubtitle": "Thu nhập, số người ở, lựa chọn ưu tiên và các khoản trợ cấp",
       "rentalAssistanceTitle": "Hỗ trợ Tiền thuê nhà",
@@ -667,6 +672,7 @@
     "deposit": "Đặt cọc",
     "edit": "Hiệu đính",
     "email": "Email",
+    "emailAddressPlaceHolder": "you@myemail.com",
     "floor": "sàn",
     "floors": "các sàn",
     "getDirections": "Lấy hướng dẫn chỉ đường",
@@ -720,6 +726,7 @@
     "unitType": "Loại Căn nhà",
     "viewMap": "Xem Bản đồ",
     "viewOnMap": "Xem trên Bản đồ",
+    "website": "Trang mạng",
     "year": "Năm",
     "yes": "Có",
     "you": "Quý vị"
@@ -733,8 +740,6 @@
   },
   "whatToExpect": {
     "label": "Những điều Sẽ xảy ra",
-    "applicantsWillBeContacted": "Các ứng viên sẽ được nhân viên đại diện bất động sản liên lạc theo thứ tự xếp hạng cho đến khi hết chỗ trống.",
-    "allInfoWillBeVerified": "Tất cả thông tin quý vị đã cung cấp sẽ được xác nhận và xác nhận tình trạng điều kiện hội đủ của quý vị. Đơn ghi danh của quý vị sẽ bị xóa khỏi danh sách chờ nếu quý vị có bất kỳ tuyên bố sai sự thật nào. Nếu chúng tôi không thể xác nhận lựa chọn ưu tiên nhà ở mà quý vị đã yêu cầu, quý vị sẽ không nhận được lựa chọn ưu tiên đó nhưng sẽ không bị phạt.",
-    "bePreparedIfChosen": "Nếu đơn ghi danh của quý vị được chọn, hãy chuẩn bị để điền vào mẫu đơn chi tiết hơn và cung cấp các tài liệu hỗ trợ cần thiết."
+    "default": "Các ứng viên sẽ được nhân viên đại diện bất động sản liên lạc theo thứ tự xếp hạng cho đến khi hết chỗ trống. Tất cả thông tin quý vị đã cung cấp sẽ được xác nhận và xác nhận tình trạng điều kiện hội đủ của quý vị. Đơn ghi danh của quý vị sẽ bị xóa khỏi danh sách chờ nếu quý vị có bất kỳ tuyên bố sai sự thật nào. Nếu chúng tôi không thể xác nhận lựa chọn ưu tiên nhà ở mà quý vị đã yêu cầu, quý vị sẽ không nhận được lựa chọn ưu tiên đó nhưng sẽ không bị phạt. Nếu đơn ghi danh của quý vị được chọn, hãy chuẩn bị để điền vào mẫu đơn chi tiết hơn và cung cấp các tài liệu hỗ trợ cần thiết."
   }
 }

@@ -16,7 +16,7 @@ import { useForm } from "react-hook-form"
 import FormSummaryDetails from "../../../src/forms/applications/FormSummaryDetails"
 import { useFormConductor } from "../../../lib/hooks"
 
-export default () => {
+const ApplicationSummary = () => {
   const { conductor, application, listing } = useFormConductor("summary")
   const currentPageSection = 5
 
@@ -41,7 +41,7 @@ export default () => {
           </h2>
         </div>
 
-        <FormSummaryDetails application={application} editMode />
+        <FormSummaryDetails application={application} listing={listing} editMode />
 
         <div className="form-card__group">
           <p className="field-note text-gray-800 text-center">
@@ -52,14 +52,7 @@ export default () => {
         <div className="form-card__pager">
           <div className="form-card__pager-row primary">
             <Form onSubmit={handleSubmit(onSubmit)}>
-              <Button
-                styleType={AppearanceStyleType.primary}
-                onClick={() => {
-                  //
-                }}
-              >
-                {t("t.confirm")}
-              </Button>
+              <Button styleType={AppearanceStyleType.primary}>{t("t.confirm")}</Button>
             </Form>
           </div>
         </div>
@@ -67,3 +60,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationSummary

@@ -16,13 +16,9 @@ const formatRange = (range: MinMax, ordinalize?: boolean) => {
   }
 
   if (min == max) {
-    return <>{min}</>
+    return min
   } else {
-    return (
-      <>
-        {min} - {max}
-      </>
-    )
+    return `${min} - ${max}`
   }
 }
 
@@ -38,7 +34,7 @@ interface UnitTablesProps {
 }
 
 const UnitTables = (props: UnitTablesProps) => {
-  const unitSummaries = props.unitSummaries
+  const unitSummaries = props.unitSummaries || []
 
   const unitsHeaders = {
     number: "t.unit",
@@ -60,7 +56,9 @@ const UnitTables = (props: UnitTablesProps) => {
     <>
       {unitSummaries.map((unitSummary: UnitSummary) => {
         const uniqKey = process.env.NODE_ENV === "test" ? "" : nanoid()
-        const units = props.units.filter((unit: Unit) => unit.unitType == unitSummary.unitType)
+        const units = props.units.filter(
+          (unit: Unit) => unit.unitType?.name == unitSummary.unitType.name
+        )
         const unitsFormatted = [] as Array<Record<string, React.ReactNode>>
         let floorSection
         units.forEach((unit: Unit) => {
@@ -76,24 +74,27 @@ const UnitTables = (props: UnitTablesProps) => {
           })
         })
 
-        if (unitSummary.floorRange) {
-          floorSection = (
-            <>
-              ,&nbsp;{formatRange(unitSummary.floorRange, true)}{" "}
-              {unitSummary.floorRange.max > unitSummary.floorRange.min
-                ? t("t.floors")
-                : t("t.floor")}
-            </>
-          )
+        let areaRangeSection
+        if (unitSummary.areaRange?.min || unitSummary.areaRange?.max) {
+          areaRangeSection = `, ${formatRange(unitSummary.areaRange)} ${t("t.squareFeet")}`
+        }
+
+        if (unitSummary.floorRange && unitSummary.floorRange.min) {
+          floorSection = `, ${formatRange(unitSummary.floorRange, true)} 
+              ${
+                unitSummary.floorRange.max > unitSummary.floorRange.min
+                  ? t("t.floors")
+                  : t("t.floor")
+              }`
         }
 
         return (
           <div key={uniqKey} className="mb-4">
             <button onClick={toggleTable} className={buttonClasses.join(" ")}>
               <h3 className="toggle-header">
-                <strong>{t("listings.unitTypes." + unitSummary.unitType)}</strong>:&nbsp;
-                {unitsLabel(units)},&nbsp;
-                {formatRange(unitSummary.areaRange)} {t("t.squareFeet")}
+                <strong>{t("listings.unitTypes." + unitSummary.unitType.name)}</strong>:&nbsp;
+                {unitsLabel(units)}
+                {areaRangeSection}
                 {floorSection}
               </h3>
             </button>

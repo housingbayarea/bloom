@@ -1,9 +1,11 @@
 import {
   Body,
   CacheInterceptor,
+  CACHE_MANAGER,
   Controller,
   Delete,
   Get,
+  Inject,
   Param,
   Post,
   Put,
@@ -12,16 +14,28 @@ import {
   UseInterceptors,
   UsePipes,
   ValidationPipe,
+  ClassSerializerInterceptor,
+  Headers,
 } from "@nestjs/common"
 import { ListingsService } from "./listings.service"
-import { ApiBearerAuth, ApiOperation, ApiTags } from "@nestjs/swagger"
-import { ListingCreateDto, ListingDto, ListingUpdateDto } from "./dto/listing.dto"
-import { ResourceType } from "../auth/resource_type.decorator"
-import { OptionalAuthGuard } from "../auth/optional-auth.guard"
-import { AuthzGuard } from "../auth/authz.guard"
-import { ApiImplicitQuery } from "@nestjs/swagger/dist/decorators/api-implicit-query.decorator"
+import { ApiBearerAuth, ApiExtraModels, ApiOperation, ApiTags } from "@nestjs/swagger"
+import { Cache } from "cache-manager"
+import {
+  ListingCreateDto,
+  ListingDto,
+  ListingUpdateDto,
+  PaginatedListingDto,
+  ListingsQueryParams,
+  ListingFilterParams,
+  ListingsRetrieveQueryParams,
+} from "./dto/listing.dto"
+import { ResourceType } from "../auth/decorators/resource-type.decorator"
+import { OptionalAuthGuard } from "../auth/guards/optional-auth.guard"
+import { AuthzGuard } from "../auth/guards/authz.guard"
 import { mapTo } from "../shared/mapTo"
 import { defaultValidationPipeOptions } from "../shared/default-validation-pipe-options"
+import { Language } from "../shared/types/language-enum"
+import { ListingLangCacheInterceptor } from "../cache/listing-lang-cache.interceptor"
 
 @Controller("listings")
 @ApiTags("listings")
@@ -30,31 +44,45 @@ import { defaultValidationPipeOptions } from "../shared/default-validation-pipe-
 @UseGuards(OptionalAuthGuard, AuthzGuard)
 @UsePipes(new ValidationPipe(defaultValidationPipeOptions))
 export class ListingsController {
-  constructor(private readonly listingsService: ListingsService) {}
+  cacheKeys: string[]
+  constructor(
+    @Inject(CACHE_MANAGER) private cacheManager: Cache,
+    private readonly listingsService: ListingsService
+  ) {}
 
+  // TODO: Limit requests to defined fields
   @Get()
+  @ApiExtraModels(ListingFilterParams)
   @ApiOperation({ summary: "List listings", operationId: "list" })
-  @ApiImplicitQuery({
-    name: "jsonpath",
-    required: false,
-    type: String,
-  })
-  @UseInterceptors(CacheInterceptor)
-  public async getAll(@Query("jsonpath") jsonpath?: string): Promise<ListingDto[]> {
-    return mapTo(ListingDto, await this.listingsService.list(jsonpath))
+  // ClassSerializerInterceptor has to come after CacheInterceptor
+  @UseInterceptors(CacheInterceptor, ClassSerializerInterceptor)
+  public async getAll(@Query() queryParams: ListingsQueryParams): Promise<PaginatedListingDto> {
+    return mapTo(PaginatedListingDto, await this.listingsService.list(queryParams))
   }
 
   @Post()
   @ApiOperation({ summary: "Create listing", operationId: "create" })
   async create(@Body() listingDto: ListingCreateDto): Promise<ListingDto> {
-    return mapTo(ListingDto, await this.listingsService.create(listingDto))
+    const listing = await this.listingsService.create(listingDto)
+    await this.cacheManager.reset()
+    return mapTo(ListingDto, listing)
   }
 
   @Get(`:listingId`)
   @ApiOperation({ summary: "Get listing by id", operationId: "retrieve" })
-  @UseInterceptors(CacheInterceptor)
-  async retrieve(@Param("listingId") listingId: string): Promise<ListingDto> {
-    return mapTo(ListingDto, await this.listingsService.findOne(listingId))
+  @UseInterceptors(ListingLangCacheInterceptor, ClassSerializerInterceptor)
+  async retrieve(
+    @Headers("language") language: Language,
+    @Param("listingId") listingId: string,
+    @Query() queryParams: ListingsRetrieveQueryParams
+  ): Promise<ListingDto> {
+    if (listingId === undefined || listingId === "undefined") {
+      return mapTo(ListingDto, {})
+    }
+    return mapTo(
+      ListingDto,
+      await this.listingsService.findOne(listingId, language, queryParams.view)
+    )
   }
 
   @Put(`:listingId`)
@@ -63,12 +91,15 @@ export class ListingsController {
     @Param("listingId") listingId: string,
     @Body() listingUpdateDto: ListingUpdateDto
   ): Promise<ListingDto> {
-    return mapTo(ListingDto, await this.listingsService.update(listingUpdateDto))
+    const listing = await this.listingsService.update(listingUpdateDto)
+    await this.cacheManager.reset()
+    return mapTo(ListingDto, listing)
   }
 
   @Delete(`:listingId`)
   @ApiOperation({ summary: "Delete listing by id", operationId: "delete" })
   async delete(@Param("listingId") listingId: string) {
     await this.listingsService.delete(listingId)
+    await this.cacheManager.reset()
   }
 }

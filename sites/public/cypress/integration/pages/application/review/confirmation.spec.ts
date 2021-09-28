@@ -2,12 +2,7 @@ describe("applications/review/confirmation", function () {
   const route = "/applications/review/confirmation"
 
   beforeEach(() => {
-    cy.loadConfig(
-      {
-        confirmationId: "123",
-      },
-      "applicationConfigFilled.json"
-    )
+    cy.loadConfig({}, "applicationConfigFilled.json", { confirmationId: "123" })
     cy.visit(route)
   })
 
@@ -16,7 +11,7 @@ describe("applications/review/confirmation", function () {
   })
 
   it("Should redirect to create account page", function () {
-    cy.get("button").contains("Create Account").click()
+    cy.get("button.button").contains("Create Account").click()
     cy.location("pathname").should("include", "/create-account")
   })
 

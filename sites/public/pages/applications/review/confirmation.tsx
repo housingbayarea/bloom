@@ -9,17 +9,19 @@ import {
   Button,
   FormCard,
   imageUrlFromListing,
+  AuthContext,
   t,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { AppSubmissionContext } from "../../../lib/AppSubmissionContext"
 import React, { useContext } from "react"
 
-export default () => {
+const ApplicationConfirmation = () => {
   const { application, listing } = useContext(AppSubmissionContext)
+  const { initialStateLoaded, profile } = useContext(AuthContext)
   const router = useRouter()
 
-  const imageUrl = imageUrlFromListing(listing)
+  const imageUrl = imageUrlFromListing(listing, parseInt(process.env.listingPhotoSize))
 
   return (
     <FormsLayout>
@@ -72,27 +74,31 @@ export default () => {
           )}
         </div>
 
-        <div className="form-card__group">
-          <h3 className="form-card__paragraph-title">
-            {t("application.review.confirmation.createAccountTitle")}
-          </h3>
+        {initialStateLoaded && !profile && (
+          <div className="form-card__group">
+            <h3 className="form-card__paragraph-title">
+              {t("application.review.confirmation.createAccountTitle")}
+            </h3>
 
-          <p className="field-note mt-1">
-            {t("application.review.confirmation.createAccountParagraph")}
-          </p>
-        </div>
+            <p className="field-note mt-1">
+              {t("application.review.confirmation.createAccountParagraph")}
+            </p>
+          </div>
+        )}
 
         <div className="form-card__pager">
-          <div className="form-card__pager-row primary">
-            <Button
-              styleType={AppearanceStyleType.primary}
-              onClick={() => {
-                void router.push("/create-account").then(() => window.scrollTo(0, 0))
-              }}
-            >
-              {t("account.createAccount")}
-            </Button>
-          </div>
+          {initialStateLoaded && !profile && (
+            <div className="form-card__pager-row primary">
+              <Button
+                styleType={AppearanceStyleType.primary}
+                onClick={() => {
+                  void router.push("/create-account")
+                }}
+              >
+                {t("account.createAccount")}
+              </Button>
+            </div>
+          )}
 
           <div className="form-card__pager-row py-6">
             <a className="lined text-tiny" href="/">
@@ -116,3 +122,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationConfirmation

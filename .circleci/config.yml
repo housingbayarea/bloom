@@ -6,6 +6,7 @@ executors:
   standard-node:
     docker:
       - image: "cimg/node:12.18.4"
+      - image: "circleci/redis:6.2.1-alpine"
       - image: "circleci/postgres:12.3-postgis"
         environment:
           POSTGRES_USER: bloom-ci
@@ -15,19 +16,37 @@ executors:
   cypress-node:
     docker:
       - image: "cypress/base:12.18.2"
+      - image: "circleci/redis:6.2.1-alpine"
       - image: "circleci/postgres:12.3-postgis"
         environment:
           POSTGRES_USER: bloom-ci
           # Never do this in production or with any sensitive / non-test data:
           POSTGRES_HOST_AUTH_METHOD: trust
           POSTGRES_DB: bloom
+    environment:
+      PORT: "3100"
+      EMAIL_API_KEY: "SG.SOME-LONG-SECRET-KEY"
+      EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
+      APP_SECRET: "CI-LONG-SECRET-KEY"
+      # DB URL for migration and seeds:
+      DATABASE_URL: "postgres://bloom-ci@localhost:5432/bloom"
+      # DB URL for the jest tests per ormconfig.test.ts
+      TEST_DATABASE_URL: "postgres://bloom-ci@localhost:5432/bloom"
+      REDIS_TLS_URL: "rediss://localhost:6379/0"
+      REDIS_URL: "redis://localhost:6379/0"
+      REDIS_USE_TLS: "0"
+      CLOUDINARY_SECRET: "fake_secret"
+      CLOUDINARY_KEY: "fake_key"
+  puppeteer-node:
+    docker:
+      - image: "cimg/node:12.18.4-browsers"
 
 jobs:
   setup:
     executor: standard-node
     steps:
       - checkout
-      - run: yarn install
+      - run: yarn install --frozen-lockfile
       - save_cache:
           key: build-cache-{{ .Environment.CIRCLE_SHA1 }}
           paths:
@@ -50,6 +69,12 @@ jobs:
       - restore_cache:
           key: build-cache-{{ .Environment.CIRCLE_SHA1 }}
       - run: yarn test:shared:ui
+  jest-ui-components-a11y:
+    executor: puppeteer-node
+    steps:
+      - restore_cache:
+          key: build-cache-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn test:shared:ui:a11y
   jest-backend:
     executor: standard-node
     steps:
@@ -62,11 +87,19 @@ jobs:
             yarn test:backend:core
             yarn test:e2e:backend:core
           environment:
+            PORT: "3100"
+            EMAIL_API_KEY: "SG.SOME-LONG-SECRET-KEY"
+            EMAIL_FROM_ADDRESS: "Bloom Dev Housing Portal <bloom-no-reply@exygy.dev>"
             APP_SECRET: "CI-LONG-SECRET-KEY"
             # DB URL for migration and seeds:
             DATABASE_URL: "postgres://bloom-ci@localhost:5432/bloom"
             # DB URL for the jest tests per ormconfig.test.ts
             TEST_DATABASE_URL: "postgres://bloom-ci@localhost:5432/bloom"
+            REDIS_TLS_URL: "rediss://localhost:6379/0"
+            REDIS_URL: "redis://localhost:6379/0"
+            REDIS_USE_TLS: "0"
+            CLOUDINARY_SECRET: "fake_secret"
+            CLOUDINARY_KEY: "fake_key"
   build-public:
     executor: standard-node
     steps:
@@ -91,6 +124,9 @@ workflows:
       - jest-ui-components:
           requires:
             - setup
+      - jest-ui-components-a11y:
+          requires:
+            - setup
       - jest-backend:
           requires:
             - setup
@@ -106,6 +142,8 @@ workflows:
           executor: cypress-node
           working_directory: sites/public
           yarn: true
-          build: yarn test:backend:core:dbsetup
-          start: yarn dev:all
-          wait-on: "http://localhost:3000"
+          build: |
+            yarn test:backend:core:dbsetup
+          start: yarn dev:all-cypress
+          wait-on: "http://0.0.0.0:3000"
+          store_artifacts: true

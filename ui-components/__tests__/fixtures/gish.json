@@ -1,7 +1,6 @@
 {
   "id": "sz0UrxnBdAxHMdfgcgha7",
   "acceptingApplicationsAtLeasingAgent": true,
-  "acceptingApplicationsByPoBox": false,
   "acceptingOnlineApplications": false,
   "accessibility": "Accessibility features in common areas like lobby – wheelchair ramps, wheelchair accessible bathrooms and elevators.",
   "amenities": "Community Room, Laundry",
@@ -85,7 +84,8 @@
           "title": "Read More",
           "url": "https://domain.com"
         }
-      ]
+      ],
+      "page": 1
     },
     {
       "ordinal": 2,
@@ -101,11 +101,13 @@
           "title": "View Document Checklist",
           "url": "https://domain.com/d"
         }
-      ]
+      ],
+      "page": 1
     },
     {
       "ordinal": 3,
-      "title": "Classroom teachers who are employees of the San Mateo Foster City School District and San Mateo County Community College District"
+      "title": "Classroom teachers who are employees of the San Mateo Foster City School District and San Mateo County Community College District",
+      "page": 1
     }
   ],
   "buildingTotalUnits": 5,
@@ -125,7 +127,6 @@
       "numBedrooms": null,
       "number": "205",
       "priorityType": null,
-      "reservedType": null,
       "sqFeet": 355,
       "status": "occupied",
       "unitType": "studio",
@@ -149,7 +150,6 @@
       "numBedrooms": null,
       "number": "206",
       "priorityType": null,
-      "reservedType": "senior",
       "sqFeet": 355,
       "status": "occupied",
       "unitType": "studio",
@@ -173,7 +173,6 @@
       "numBedrooms": null,
       "number": "303",
       "priorityType": null,
-      "reservedType": null,
       "sqFeet": 355,
       "status": "occupied",
       "unitType": "studio",
@@ -197,7 +196,6 @@
       "numBedrooms": null,
       "number": "403",
       "priorityType": null,
-      "reservedType": "veteran",
       "sqFeet": 355,
       "status": "occupied",
       "unitType": "studio",
@@ -221,7 +219,6 @@
       "numBedrooms": null,
       "number": "406",
       "priorityType": null,
-      "reservedType": null,
       "sqFeet": 355,
       "status": "occupied",
       "unitType": "studio",

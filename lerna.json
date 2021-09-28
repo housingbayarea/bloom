@@ -1,11 +1,6 @@
 {
-  "packages": [
-    "sites/public",
-    "sites/partners",
-    "backend/core",
-    "ui-components"
-  ],
-  "version": "0.3.10",
+  "packages": ["sites/public", "sites/partners", "backend/core", "ui-components"],
+  "version": "2.0.0-pre-tailwind",
   "npmClient": "yarn",
   "useWorkspaces": true
 }

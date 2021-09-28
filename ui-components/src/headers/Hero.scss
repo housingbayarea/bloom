@@ -15,6 +15,11 @@
   }
 }
 
+.hero__button,
+.with_secondary a {
+  width: 100%;
+}
+
 .hero__title {
   @apply text-4xl;
   @apply mb-5;

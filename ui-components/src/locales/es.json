@@ -1,7 +1,7 @@
 {
   "config": {
     "routePrefix": "es"
-  }, 
+  },
   "account": {
     "accountSettings": "Configuraciones de la cuenta",
     "accountSettingsSubtitle": "Configuraciones de la cuenta, email y contraseña",
@@ -40,6 +40,12 @@
       "letsGetStarted": "Empecemos su solicitud",
       "chooseYourLanguage": "Elija su idioma",
       "signInSaveTime": "Iniciar sesión podría ahorrarle tiempo al empezar con los detalles de su última solicitud, y permitirle verificar el estatus de esta solicitud en cualquier momento."
+    },
+    "autofill": {
+      "saveTime": "Ahorre tiempo cargando los detalles de su última solicitud",
+      "prefillYourApplication": "Simplemente rellenaremos automáticamente su solicitud con los siguientes detalles, y usted puede actualizarlos mientras los vaya completando.",
+      "start": "Empezar con estos detalles",
+      "reset": "Empezar de cero"
     },
     "start": {
       "whatToExpect": {
@@ -116,7 +122,6 @@
         "description": "Solo utilizaremos esta información para ponernos en contacto con él o ella en relación con su solicitud.",
         "phoneNumberFormLabel": "Número telefónico del contacto",
         "emailAddressFormLabel": "Dirección de email del contacto",
-        "emailAddressFormPlaceHolder": "you@myemail.com",
         "contactMailingAddressLabel": "Dirección postal del contacto",
         "contactMailingAddressHelperText": "Elija una dirección en donde su contacto pueda recibir información actualizada y materiales relacionados con su solicitud"
       }
@@ -366,7 +371,7 @@
   },
   "errors": {
     "alert": {
-      "badRequest": "¡Oops! Parece que algo salió mal. Por favor, inténtelo de nuevo. \n\nComuníquese con sfhousing.info@sfgov.org si sigue teniendo problemas.",
+      "badRequest": "¡Oops! Parece que algo salió mal. Por favor, inténtelo de nuevo. \n\nComuníquese con su departamento de vivienda si sigue teniendo problemas.",
       "timeoutPleaseTryAgain": "¡Oops! Parece que algo salió mal. Por favor, inténtelo de nuevo."
     },
     "notFound": {
@@ -413,7 +418,6 @@
     "officeHours": "Horario de oficina"
   },
   "listings": {
-    "additionalFees": "Cargos adicionales",
     "additionalInformation": "Información adicional",
     "allUnits": "Todas las viviendas",
     "allUnitsReservedFor": "Todas las viviendas reservadas para %{type}",
@@ -498,6 +502,7 @@
     "reservedUnitsDescription": "Para poder reunir los requisitos de estas viviendas, una de las siguientes condiciones debe aplicarse a usted o a alguna persona de su hogar:",
     "reservedUnitsForWhoAre": "Reservada para %{communityType} que son %{reservedType}",
     "sections": {
+      "additionalFees": "Cargos adicionales",
       "eligibilityTitle": "Elegibilidad",
       "eligibilitySubtitle": "Ingresos, ocupación, preferencias y subsidios",
       "rentalAssistanceTitle": "Asistencia en el alquiler",
@@ -667,6 +672,7 @@
     "deposit": "Depósito",
     "edit": "Editar",
     "email": "Email",
+    "emailAddressPlaceHolder": "you@myemail.com",
     "floor": "piso",
     "floors": "pisos",
     "getDirections": "Obtener instrucciones para llegar",
@@ -734,8 +740,6 @@
   },
   "whatToExpect": {
     "label": "Lo que puede esperar",
-    "applicantsWillBeContacted": "Los solicitantes serán contactados por el agente de la propiedad en orden de clasificación hasta que se hayan llenado todas las vacantes.",
-    "allInfoWillBeVerified": "Toda la información que usted ha proporcionado será verificada y su elegibilidad será confirmada. Su solicitud será retirada de la lista de espera si usted hizo alguna declaración fraudulenta. Si nos es imposible verificar una preferencia de vivienda que usted haya solicitado, no recibirá la preferencia pero no será penalizado de ninguna otra manera.",
-    "bePreparedIfChosen": "Si su solicitud fuera elegida, esté preparado para llenar una solicitud más detallada y proporcionar los documentos de apoyo requeridos."
+    "default": "Los solicitantes serán contactados por el agente de la propiedad en orden de clasificación hasta que se hayan llenado todas las vacantes. Toda la información que usted ha proporcionado será verificada y su elegibilidad será confirmada. Su solicitud será retirada de la lista de espera si usted hizo alguna declaración fraudulenta. Si nos es imposible verificar una preferencia de vivienda que usted haya solicitado, no recibirá la preferencia pero no será penalizado de ninguna otra manera. Si su solicitud fuera elegida, esté preparado para llenar una solicitud más detallada y proporcionar los documentos de apoyo requeridos."
   }
 }

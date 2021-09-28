@@ -1,21 +1,26 @@
-import { Inject, Injectable, NotFoundException } from "@nestjs/common"
-import { ApplicationFlaggedSetsListQueryParams } from "./application-flagged-sets.controller"
-import { AuthzService } from "../auth/authz.service"
-import {
-  ApplicationFlaggedSet,
-  FlaggedSetStatus,
-  Rule,
-} from "./entities/application-flagged-set.entity"
+import { Inject, Injectable, NotFoundException, Scope } from "@nestjs/common"
+import { PaginatedApplicationFlaggedSetQueryParams } from "./application-flagged-sets.controller"
+import { AuthzService } from "../auth/services/authz.service"
+import { ApplicationFlaggedSet } from "./entities/application-flagged-set.entity"
 import { InjectRepository } from "@nestjs/typeorm"
-import { Brackets, DeepPartial, Repository, SelectQueryBuilder } from "typeorm"
+import {
+  Brackets,
+  DeepPartial,
+  Repository,
+  SelectQueryBuilder,
+  getManager,
+  EntityManager,
+} from "typeorm"
 import { paginate } from "nestjs-typeorm-paginate"
 import { Application } from "../applications/entities/application.entity"
 import { ApplicationFlaggedSetResolveDto } from "./dto/application-flagged-set.dto"
 import { REQUEST } from "@nestjs/core"
 import { Request as ExpressRequest } from "express"
-import { User } from "../user/entities/user.entity"
+import { User } from "../auth/entities/user.entity"
+import { FlaggedSetStatus } from "./types/flagged-set-status-enum"
+import { Rule } from "./types/rule-enum"
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class ApplicationFlaggedSetsService {
   constructor(
     @Inject(REQUEST) private request: ExpressRequest,
@@ -25,8 +30,8 @@ export class ApplicationFlaggedSetsService {
     @InjectRepository(ApplicationFlaggedSet)
     private readonly afsRepository: Repository<ApplicationFlaggedSet>
   ) {}
-  async listPaginated(queryParams: ApplicationFlaggedSetsListQueryParams) {
-    return await paginate<ApplicationFlaggedSet>(
+  async listPaginated(queryParams: PaginatedApplicationFlaggedSetQueryParams) {
+    const results = await paginate<ApplicationFlaggedSet>(
       this.afsRepository,
       { limit: queryParams.limit, page: queryParams.page },
       {
@@ -36,58 +41,107 @@ export class ApplicationFlaggedSetsService {
         },
       }
     )
+    const countTotalFlagged = await this.afsRepository.count({
+      where: {
+        status: FlaggedSetStatus.flagged,
+        ...(queryParams.listingId && { listingId: queryParams.listingId }),
+      },
+    })
+    return {
+      ...results,
+      meta: {
+        ...results.meta,
+        totalFlagged: countTotalFlagged,
+      },
+    }
+  }
+
+  async findOneById(afsId: string) {
+    return await this.afsRepository.findOneOrFail({
+      relations: ["listing", "applications"],
+      where: {
+        id: afsId,
+      },
+    })
   }
 
   async resolve(dto: ApplicationFlaggedSetResolveDto) {
-    const afs = await this.afsRepository.findOne({
-      where: { id: dto.afsId },
-      relations: ["applications"],
+    return await getManager().transaction("SERIALIZABLE", async (transactionalEntityManager) => {
+      const transAfsRepository = transactionalEntityManager.getRepository(ApplicationFlaggedSet)
+      const transApplicationsRepository = transactionalEntityManager.getRepository(Application)
+      const afs = await transAfsRepository.findOne({
+        where: { id: dto.afsId },
+        relations: ["applications"],
+      })
+      if (!afs) {
+        throw new NotFoundException()
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
+      afs.resolvingUser = this.request.user as User
+      afs.resolvedTime = new Date()
+      afs.status = FlaggedSetStatus.resolved
+      const appsToBeResolved = afs.applications.filter((afsApp) =>
+        dto.applications.map((appIdDto) => appIdDto.id).includes(afsApp.id)
+      )
+
+      const appsNotToBeResolved = afs.applications.filter(
+        (afsApp) => !dto.applications.map((appIdDto) => appIdDto.id).includes(afsApp.id)
+      )
+
+      for (const appToBeResolved of appsToBeResolved) {
+        appToBeResolved.markedAsDuplicate = true
+      }
+
+      for (const appNotToBeResolved of appsNotToBeResolved) {
+        appNotToBeResolved.markedAsDuplicate = false
+      }
+
+      await transApplicationsRepository.save([...appsToBeResolved, ...appsNotToBeResolved])
+
+      appsToBeResolved.forEach((app) => (app.markedAsDuplicate = true))
+      await transAfsRepository.save(afs)
+
+      return afs
     })
-    if (!afs) {
-      throw new NotFoundException()
-    }
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
-    afs.resolvingUser = this.request.user as User
-    afs.resolvedTime = new Date()
-    afs.status = FlaggedSetStatus.resolved
-    const appsToBeResolved = afs.applications.filter((afsApp) =>
-      dto.applications.map((appIdDto) => appIdDto.id).includes(afsApp.id)
-    )
-    const appsNotToBeResolved = afs.applications.filter(
-      (afsApp) => !dto.applications.map((appIdDto) => appIdDto.id).includes(afsApp.id)
-    )
-
-    for (const appToBeResolved of appsToBeResolved) {
-      appToBeResolved.markedAsDuplicate = true
-      await this.applicationsRepository.save(appToBeResolved)
-    }
-
-    for (const appNotToBeResolved of appsNotToBeResolved) {
-      appNotToBeResolved.markedAsDuplicate = false
-      await this.applicationsRepository.save(appNotToBeResolved)
-    }
-    appsToBeResolved.forEach((app) => (app.markedAsDuplicate = true))
-    await this.afsRepository.save(afs)
-    return afs
   }
 
-  async onApplicationSave(newApplication: Application) {
+  async onApplicationSave(newApplication: Application, transactionalEntityManager: EntityManager) {
     for (const rule of [Rule.email, Rule.nameAndDOB]) {
-      await this.updateApplicationFlaggedSetsForRule(newApplication, rule)
+      await this.updateApplicationFlaggedSetsForRule(
+        transactionalEntityManager,
+        newApplication,
+        rule
+      )
     }
   }
 
-  async fetchDuplicatesMatchingRule(application: Application, rule: Rule) {
+  async fetchDuplicatesMatchingRule(
+    transactionalEntityManager: EntityManager,
+    application: Application,
+    rule: Rule
+  ) {
     switch (rule) {
       case Rule.nameAndDOB:
-        return await this.fetchDuplicatesMatchingNameAndDOBRule(application)
+        return await this.fetchDuplicatesMatchingNameAndDOBRule(
+          transactionalEntityManager,
+          application
+        )
       case Rule.email:
-        return await this.fetchDuplicatesMatchingEmailRule(application)
+        return await this.fetchDuplicatesMatchingEmailRule(transactionalEntityManager, application)
     }
   }
 
-  async updateApplicationFlaggedSetsForRule(newApplication: Application, rule: Rule) {
-    const applicationsMatchingRule = await this.fetchDuplicatesMatchingRule(newApplication, rule)
+  async updateApplicationFlaggedSetsForRule(
+    transactionalEntityManager: EntityManager,
+    newApplication: Application,
+    rule: Rule
+  ) {
+    const applicationsMatchingRule = await this.fetchDuplicatesMatchingRule(
+      transactionalEntityManager,
+      newApplication,
+      rule
+    )
+    const transAfsRepository = transactionalEntityManager.getRepository(ApplicationFlaggedSet)
     const visitedAfses = []
     for (const matchedApplication of applicationsMatchingRule) {
       // NOTE: Optimize it because of N^2 complexity,
@@ -95,7 +149,7 @@ export class ApplicationFlaggedSetsService {
       // TODO: Add filtering into the query, right now all AFSes are fetched for each
       //  matched application which will become a performance problem soon
       const afsesMatchingRule = (
-        await this.afsRepository.find({
+        await transAfsRepository.find({
           join: {
             alias: "afs",
             leftJoinAndSelect: {
@@ -118,7 +172,7 @@ export class ApplicationFlaggedSetsService {
           applications: [newApplication, matchedApplication],
           listing: newApplication.listing,
         }
-        await this.afsRepository.save(newAfs)
+        await transAfsRepository.save(newAfs)
       } else if (afsesMatchingRule.length === 1) {
         for (const afs of afsesMatchingRule) {
           if (visitedAfses.includes(afs.id)) {
@@ -126,7 +180,7 @@ export class ApplicationFlaggedSetsService {
           }
           visitedAfses.push(afs.id)
           afs.applications.push(newApplication)
-          await this.afsRepository.save(afs)
+          await transAfsRepository.save(afs)
         }
       } else {
         console.error(
@@ -137,8 +191,12 @@ export class ApplicationFlaggedSetsService {
     }
   }
 
-  private async fetchDuplicatesMatchingEmailRule(newApplication: Application) {
-    return await this.applicationsRepository.find({
+  private async fetchDuplicatesMatchingEmailRule(
+    transactionalEntityManager: EntityManager,
+    newApplication: Application
+  ) {
+    const transApplicationsRepository = transactionalEntityManager.getRepository(Application)
+    return await transApplicationsRepository.find({
       where: (qb: SelectQueryBuilder<Application>) => {
         qb.where("Application.id != :id", {
           id: newApplication.id,
@@ -154,7 +212,11 @@ export class ApplicationFlaggedSetsService {
     })
   }
 
-  private async fetchDuplicatesMatchingNameAndDOBRule(newApplication: Application) {
+  private async fetchDuplicatesMatchingNameAndDOBRule(
+    transactionalEntityManager: EntityManager,
+    newApplication: Application
+  ) {
+    const transApplicationsRepository = transactionalEntityManager.getRepository(Application)
     const firstNames = [
       newApplication.applicant.firstName,
       ...newApplication.householdMembers.map((householdMember) => householdMember.firstName),
@@ -180,7 +242,7 @@ export class ApplicationFlaggedSetsService {
       ...newApplication.householdMembers.map((householdMember) => householdMember.birthYear),
     ]
 
-    return await this.applicationsRepository.find({
+    return await transApplicationsRepository.find({
       where: (qb: SelectQueryBuilder<Application>) => {
         qb.where("Application.id != :id", {
           id: newApplication.id,

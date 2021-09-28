@@ -27,9 +27,7 @@
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 import * as routes from "../fixtures/routes.json"
 import * as listingConfig from "../fixtures/listingConfig.json"
-import { setProperty } from "./helpers"
-
-const listingsUrl = "http://localhost:3100/listings"
+import { setProperty, listingsUrl } from "./helpers"
 
 Cypress.Commands.add("getByID", (id, ...args) => {
   return cy.get(`#${CSS.escape(id)}`, ...args)
@@ -43,36 +41,38 @@ Cypress.Commands.add("goToReview", () => {
   return cy.get("button").contains("Save and return to review").click()
 })
 
-Cypress.Commands.add("loadConfig", (initialValues, configFile = "applicationConfigBlank.json") => {
-  cy.fixture(configFile).then((applicationConfig) => {
-    const config = applicationConfig
+Cypress.Commands.add(
+  "loadConfig",
+  (listingOverrides, configFile = "applicationConfigBlank.json", configOverrides) => {
+    cy.fixture(configFile).then((applicationConfig) => {
+      const config = applicationConfig
 
-    if (initialValues) {
-      Object.keys(initialValues).forEach((item) => {
-        setProperty(config, item, initialValues[item])
-      })
-    }
+      if (configOverrides) {
+        Object.keys(configOverrides).forEach((item) => {
+          setProperty(config, item, configOverrides[item])
+        })
+      }
 
-    const values = JSON.stringify(config)
+      const values = JSON.stringify(config)
 
-    sessionStorage.setItem("bloom-app-autosave", values)
-  })
+      sessionStorage.setItem("bloom-app-autosave", values)
+    })
 
-  // it loads the first listing from the backend and merge with sample configuration
-  cy.request("GET", listingsUrl).then((res) => {
-    const listing = res.body && res.body[0]
+    // find listing with 2 preferences (to test all existing steps) and merge with custom configuration (not required)
+    cy.request("GET", listingsUrl).then((res) => {
+      const listing = res.body.items.find((item) => item.name === "Test: Triton")
 
-    if (initialValues && listing) {
-      Object.keys(initialValues).forEach((item) => {
-        setProperty(listing, item, initialValues[item])
-      })
-    }
+      if (listingOverrides && listing) {
+        Object.keys(listingOverrides).forEach((item) => {
+          setProperty(listing, item, listingOverrides[item])
+        })
+      }
 
-    const completeListingData = { ...listing, ...listingConfig }
-    console.log(completeListingData)
-    sessionStorage.setItem("bloom-app-listing", JSON.stringify(completeListingData))
-  })
-})
+      const completeListingData = { ...listing, ...listingConfig }
+      sessionStorage.setItem("bloom-app-listing", JSON.stringify(completeListingData))
+    })
+  }
+)
 
 Cypress.Commands.add("getSubmissionContext", () => {
   const config = sessionStorage.getItem("bloom-app-autosave")

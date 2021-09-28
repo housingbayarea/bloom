@@ -20,6 +20,10 @@
     box-shadow: 0 0 0 2px #fff, 0 0 3px 4px $tailwind-accent-cool;
   }
 
+  &:hover {
+    @apply border-primary-dark;
+  }
+
   &:disabled {
     pointer-events: none;
     @apply bg-white;
@@ -81,15 +85,26 @@
     @apply m-0;
     @apply no-underline;
 
-    &.inline-icon--left {
+    &.has-icon-left {
       .button__icon {
         @apply mr-1;
       }
     }
-    &.inline-icon--right {
+    &.has-icon-right {
       .button__icon {
         @apply ml-1;
       }
+    }
+  }
+
+  &.has-icon-left {
+    .button__icon {
+      @apply mr-3;
+    }
+  }
+  &.has-icon-right {
+    .button__icon {
+      @apply ml-3;
     }
   }
 
@@ -118,7 +133,6 @@
   }
 
   &.is-loading {
-
     .button__content {
       opacity: 0;
     }

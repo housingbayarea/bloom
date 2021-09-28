@@ -12,7 +12,7 @@ The following steps should provide a working local environement for development 
 
 ### Setting up your local environment variables
 
-Operational configuration the service is read from environment variables. Copy `.env.template` to `.env` and edit the settings specific to your development environment. Make sure the Database URL matches your Postgres configuration.
+Operational configuration the service is read from environment variables. Copy `.env.template` to `.env` and edit the settings specific to your development environment. Make sure the Database URL and Test Database URL match your Postgres configuration.
 
 ### Installing Postgres
 
@@ -20,7 +20,7 @@ You can install Postgres using Homebrew with the following command: `brew instal
 
 ### Setting up a Database
 
-There are two databases used in this project: `bloom` and `bloom_test`. First is used every time  you are starting a project with `yarn dev` and second one is only used in end-to-end tests. Corresponding TypeORM configs are defined in `ormconfig.ts` and `ormconfig.test.ts`.
+There are two databases used in this project: `bloom` and `bloom_test`. First is used every time you are starting a project with `yarn dev` and second one is only used in end-to-end tests. Corresponding TypeORM configs are defined in `ormconfig.ts` and `ormconfig.test.ts`.
 If you are just starting to work with the projects it's best to simply run:
 
 ```shell script
@@ -42,18 +42,53 @@ yarn db:create
 ```
 
 Seeding the DB:
+
 ```shell script
 yarn db:seed
 ```
 
 Generating a new migration:
+
 ```shell script
 yarn db:migration:generate
 ```
 
 Applying migrations:
+
 ```shell script
 yarn db:migration:run
+```
+
+### Installing Redis
+
+You can install Redis using Homebrew with the following command: `brew install redis`.
+
+To start Redis:
+`redis-server`.
+
+To have launch Redis as background service and restart at login:
+`brew services start redis`.
+
+Test if Redis is working:
+`redis-cli ping`
+
+### Debugging
+
+You can connect a debugger to the backend by starting the backend server with `yarn debug`.
+
+To connect to it from VS Code, add a configuration to launch.json that looks like
+
+```shell script
+{
+  "name": "Attach to Backend",
+  "port": 9229,
+  "request": "attach",
+  "skipFiles": [
+    "<node_internals>/**"
+  ],
+  "type": "node",
+  "restart": true
+},
 ```
 
 ### Running Tests
@@ -70,5 +105,13 @@ Unit tests:
 yarn test
 ```
 
+### Translations
 
+Backend keeps translations for email related content in the DB in table `translations` .
+There is an endpoint `/translations` exposing CRUD operations on this table (admin only).
+Translations are defined for each county code and language pair e.g. (Alameda, en). To modify a particular
+translation pair:
 
+1. Fetch `GET /translations` and list all the translations
+2. Find an ID of a pair that interest you
+3. Use `PUT /translations/:translationId` to modify it's content

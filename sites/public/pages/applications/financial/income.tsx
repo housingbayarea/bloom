@@ -26,7 +26,7 @@ type IncomePeriod = "perMonth" | "perYear"
 
 function verifyIncome(listing: Listing, income: number, period: IncomePeriod): IncomeError {
   // Look through all the units on this listing to see what the absolute max/min income requirements are.
-  const [annualMin, annualMax, monthlyMin] = listing.property.units.reduce(
+  const [annualMin, annualMax, monthlyMin] = listing.units.reduce(
     ([aMin, aMax, mMin], unit) => [
       Math.min(aMin, parseFloat(unit.annualIncomeMin)),
       Math.max(aMax, parseFloat(unit.annualIncomeMax)),
@@ -49,7 +49,7 @@ function verifyIncome(listing: Listing, income: number, period: IncomePeriod): I
   return null
 }
 
-export default () => {
+const ApplicationIncome = () => {
   const { conductor, application, listing } = useFormConductor("income")
   const [incomeError, setIncomeError] = useState<IncomeError>(null)
   const currentPageSection = 3
@@ -63,6 +63,7 @@ export default () => {
     },
     shouldFocusError: false,
   })
+
   const onSubmit = (data) => {
     const { income, incomePeriod } = data
     // Skip validation of total income if the applicant has income vouchers.
@@ -81,14 +82,6 @@ export default () => {
   }
   const onError = () => {
     window.scrollTo(0, 0)
-  }
-
-  const formatValue = () => {
-    const { income } = getValues()
-    const numericIncome = parseFloat(income)
-    if (!isNaN(numericIncome)) {
-      setValue("income", numericIncome.toFixed(2))
-    }
   }
 
   const incomePeriodValues = [
@@ -115,7 +108,10 @@ export default () => {
       </FormCard>
 
       <FormCard>
-        <FormBackLink url={conductor.determinePreviousUrl()} />
+        <FormBackLink
+          url={conductor.determinePreviousUrl()}
+          onClick={() => conductor.setNavigatedBack(true)}
+        />
 
         <div className="form-card__lead border-b">
           <h2 className="form-card__title is-borderless">
@@ -161,16 +157,17 @@ export default () => {
             <Field
               id="income"
               name="income"
-              type="number"
+              type="currency"
               label={t("application.financial.income.prompt")}
               caps={true}
               placeholder={t("application.financial.income.placeholder")}
               validation={{ required: true, min: 0.01 }}
               error={errors.income}
               register={register}
-              prepend="$"
               errorMessage={t("errors.numberError")}
-              inputProps={{ step: 0.01, onBlur: formatValue }}
+              setValue={setValue}
+              getValues={getValues}
+              prepend={"$"}
             />
 
             <fieldset>
@@ -193,6 +190,7 @@ export default () => {
                 styleType={AppearanceStyleType.primary}
                 onClick={() => {
                   conductor.returnToReview = false
+                  conductor.setNavigatedBack(false)
                 }}
               >
                 {t("t.next")}
@@ -218,3 +216,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationIncome

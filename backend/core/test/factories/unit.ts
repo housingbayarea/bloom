@@ -2,6 +2,7 @@ import { Factory } from "fishery"
 import { nanoid } from "nanoid"
 import { Unit } from "../../src/units/entities/unit.entity"
 import { BaseEntity } from "typeorm"
+import { UnitStatus } from "../../src/units/types/unit-status-enum"
 
 type NonDbUnit = Omit<Unit, keyof BaseEntity>
 
@@ -20,9 +21,17 @@ export default Factory.define<NonDbUnit>(() => ({
   number: "265",
   priorityType: null,
   reservedType: null,
-  sqFeet: 750,
-  status: "available",
-  unitType: "oneBdrm",
+  sqFeet: "750",
+  amiChart: null,
+  property: null,
+  status: UnitStatus.available,
+  unitType: {
+    id: nanoid(),
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    name: "oneBdrm",
+    numBedrooms: 1,
+  },
   createdAt: new Date(),
   updatedAt: new Date(),
   amiChartId: 1,

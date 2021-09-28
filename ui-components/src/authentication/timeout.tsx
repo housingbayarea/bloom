@@ -1,7 +1,6 @@
 import React, { createElement, FunctionComponent, useContext, useEffect, useState } from "react"
-import { useRouter } from "next/router"
-import { UserContext } from "./UserContext"
-import { ConfigContext } from "../config"
+import { AuthContext } from "./AuthContext"
+import { ConfigContext, NavigationContext } from "../config"
 import { Button } from "../actions/Button"
 import { Modal } from "../overlays/Modal"
 import { setSiteAlertMessage } from "../notifications/SiteAlert"
@@ -58,7 +57,7 @@ export const IdleTimeout: FunctionComponent<IdleTimeoutProps> = ({
 }) => {
   const { idleTimeout } = useContext(ConfigContext)
   const [promptTimeout, setPromptTimeout] = useState<number | undefined>()
-  const router = useRouter()
+  const { router } = useContext(NavigationContext)
 
   useIdleTimeout(idleTimeout, () => {
     // Clear any existing prompt timeouts
@@ -73,7 +72,7 @@ export const IdleTimeout: FunctionComponent<IdleTimeoutProps> = ({
           setPromptTimeout(undefined)
           await onTimeout()
           setSiteAlertMessage(alertMessage, alertType)
-          return router.push(redirectPath)
+          void router.push(redirectPath)
         }
         void timeoutAction()
       }, PROMPT_TIMEOUT) as unknown) as number
@@ -106,7 +105,7 @@ export const IdleTimeout: FunctionComponent<IdleTimeoutProps> = ({
 }
 
 export const LoggedInUserIdleTimeout = ({ onTimeout }: { onTimeout?: () => unknown }) => {
-  const { profile, signOut } = useContext(UserContext)
+  const { profile, signOut } = useContext(AuthContext)
 
   const timeoutFxn = async () => {
     onTimeout && (await onTimeout())

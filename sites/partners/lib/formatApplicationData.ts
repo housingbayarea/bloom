@@ -7,10 +7,13 @@ import {
   ApplicationStatus,
   Address,
   HouseholdMember,
-  InputType,
 } from "@bloom-housing/backend-core/types"
 
-import { TimeFieldPeriod } from "@bloom-housing/ui-components"
+import {
+  TimeFieldPeriod,
+  mapPreferencesToApi,
+  mapApiToPreferencesForm,
+} from "@bloom-housing/ui-components"
 import {
   FormTypes,
   YesNoAnswer,
@@ -24,7 +27,7 @@ import moment from "moment"
 
 type GetAddressType = Omit<Address, "id" | "createdAt" | "updatedAt">
 
-function getAddress(condition: boolean, addressData?: GetAddressType): GetAddressType {
+const getAddress = (condition: boolean, addressData?: GetAddressType): GetAddressType => {
   const blankAddress: GetAddressType = {
     street: "",
     street2: "",
@@ -35,6 +38,8 @@ function getAddress(condition: boolean, addressData?: GetAddressType): GetAddres
 
   return condition ? addressData : blankAddress
 }
+
+const mapEmptyStringToNull = (value: string) => (value === "" ? null : value)
 
 interface FormData extends FormTypes {
   householdMembers: HouseholdMember[]
@@ -52,7 +57,7 @@ export const mapFormToApi = (data: FormData, listingId: string, editMode: boolea
     const TIME_24H_FORMAT = "MM/DD/YYYY HH:mm:ss"
 
     // rename default (wrong property names)
-    const { birthDay: submissionDay, birthMonth: submissionMonth, birthYear: submissionYear } =
+    const { day: submissionDay, month: submissionMonth, year: submissionYear } =
       data.dateSubmitted || {}
     const { hours, minutes = 0, seconds = 0, period } = data?.timeSubmitted || {}
 
@@ -78,6 +83,9 @@ export const mapFormToApi = (data: FormData, listingId: string, editMode: boolea
     const workInRegion: string | null = applicantData?.workInRegion || null
     const emailAddress: string | null = applicantData?.emailAddress || null
 
+    applicantData.firstName = mapEmptyStringToNull(applicantData.firstName)
+    applicantData.lastName = mapEmptyStringToNull(applicantData.firstName)
+
     const workAddress = getAddress(
       applicantData?.workInRegion === YesNoAnswer.Yes,
       applicantData?.workAddress
@@ -96,60 +104,7 @@ export const mapFormToApi = (data: FormData, listingId: string, editMode: boolea
     }
   })()
 
-  const preferences = (() => {
-    const CLAIMED_KEY = "claimed"
-    const preferencesFormData = data.application.preferences
-
-    const keys = Object.keys(preferencesFormData)
-
-    return keys.map((key) => {
-      const currentPreference = preferencesFormData[key]
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const currentPreferenceValues = Object.values(currentPreference) as Record<string, any>
-      const claimed = currentPreferenceValues.map((c) => c.claimed).includes(true)
-
-      const options = Object.keys(currentPreference).map((option) => {
-        const currentOption = currentPreference[option]
-
-        // count keys except claimed
-        const extraKeys = Object.keys(currentOption).filter((item) => item !== CLAIMED_KEY)
-
-        const response = {
-          key: option,
-          checked: currentOption[CLAIMED_KEY],
-        }
-
-        // assign extra data and detect data type
-        if (extraKeys.length) {
-          const extraData = extraKeys.map((extraKey) => {
-            const type = (() => {
-              if (typeof currentOption[extraKey] === "boolean") return InputType.boolean
-              // if object includes "city" property, it should be an address
-              if (Object.keys(currentOption[extraKey]).includes("city")) return InputType.address
-
-              return InputType.text
-            })()
-
-            return {
-              key: extraKey,
-              type,
-              value: currentOption[extraKey],
-            }
-          })
-
-          Object.assign(response, { extraData })
-        }
-
-        return response
-      })
-
-      return {
-        key,
-        claimed,
-        options,
-      }
-    })
-  })()
+  const preferences = mapPreferencesToApi(data)
 
   // additional phone
   const {
@@ -280,57 +235,20 @@ export const mapApiToForm = (applicationData: ApplicationUpdate) => {
   const dateSubmitted = (() => {
     if (!submissionDate) return null
 
-    const birthMonth = submissionDate.format("MM")
-    const birthDay = submissionDate.format("DD")
-    const birthYear = submissionDate.format("YYYY")
+    const month = submissionDate.format("MM")
+    const day = submissionDate.format("DD")
+    const year = submissionDate.format("YYYY")
 
     return {
-      birthMonth,
-      birthDay,
-      birthYear,
+      month,
+      day,
+      year,
     }
   })()
 
   const phoneNumber = applicationData.applicant.phoneNumber
 
-  const preferences = (() => {
-    const preferencesFormData = {}
-
-    const preferencesApiData = applicationData.preferences
-
-    preferencesApiData.forEach((item) => {
-      const options = item.options.reduce((acc, curr) => {
-        // extraData which comes from the API is an array, in the form we expect an object
-        const extraData =
-          curr?.extraData?.reduce((extraAcc, extraCurr) => {
-            // value - it can be string or nested address object
-            const value = extraCurr.value
-            Object.assign(extraAcc, {
-              [extraCurr.key]: value,
-            })
-
-            return extraAcc
-          }, {}) || {}
-
-        // each form option has "claimed" property - it's "checked" property in the API
-        const claimed = curr.checked
-
-        Object.assign(acc, {
-          [curr.key]: {
-            claimed,
-            ...extraData,
-          },
-        })
-        return acc
-      }, {})
-
-      Object.assign(preferencesFormData, {
-        [item.key]: options,
-      })
-    })
-
-    return preferencesFormData
-  })()
+  const preferences = mapApiToPreferencesForm(applicationData.preferences)
 
   const application: ApplicationTypes = (() => {
     const {

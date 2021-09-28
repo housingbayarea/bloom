@@ -11,117 +11,37 @@ import {
   UpdateDateColumn,
 } from "typeorm"
 import { Application } from "../../applications/entities/application.entity"
-import { User } from "../../user/entities/user.entity"
-import { WhatToExpect } from "../../shared/dto/whatToExpect.dto"
+import { User } from "../../auth/entities/user.entity"
 import { Preference } from "../../preferences/entities/preference.entity"
 import { Expose, Type } from "class-transformer"
 import {
   IsBoolean,
   IsDate,
-  IsDefined,
   IsEmail,
   IsEnum,
   IsNumber,
   IsOptional,
   IsString,
   IsUUID,
+  MaxLength,
   ValidateNested,
 } from "class-validator"
-import { listingUrlSlug } from "../../shared/url-helper"
 import { ApiProperty } from "@nestjs/swagger"
 import { Property } from "../../property/entities/property.entity"
+import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
+import { ListingStatus } from "../types/listing-status-enum"
+import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
+import { Jurisdiction } from "../../jurisdictions/entities/jurisdiction.entity"
+import { ReservedCommunityType } from "../../reserved-community-type/entities/reserved-community-type.entity"
+import { Asset } from "../../assets/entities/asset.entity"
+import { AssetCreateDto } from "../../assets/dto/asset.dto"
+import { ListingApplicationAddressType } from "../types/listing-application-address-type"
+import { ListingEvent } from "./listing-event.entity"
 import { Address } from "../../shared/entities/address.entity"
-import { ValidationsGroupsEnum } from "../../shared/validations-groups.enum"
-import { CSVFormattingType } from "../../csv/formatting/application-formatting-metadata-factory"
-import { ApplicationFlaggedSet } from "../../application-flagged-sets/entities/application-flagged-set.entity"
-
-export enum ListingStatus {
-  active = "active",
-  pending = "pending",
-}
-
-export class Asset {
-  @Expose()
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  label: string
-
-  @Expose()
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  fileId: string
-}
-
-export enum ListingEventType {
-  openHouse = "openHouse",
-  publicLottery = "publicLottery",
-  lotteryResults = "lotteryResults",
-}
-
-export class ListingEvent {
-  @Expose()
-  @IsDefined({ groups: [ValidationsGroupsEnum.default] })
-  @IsEnum(ListingEventType, { groups: [ValidationsGroupsEnum.default] })
-  @ApiProperty({ enum: ListingEventType, enumName: "ListingEventType" })
-  type: ListingEventType
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsDate({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => Date)
-  startTime?: Date
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsDate({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => Date)
-  endTime?: Date
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  url?: string | null
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  note?: string | null
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  label?: string | null
-}
-
-export enum ApplicationMethodType {
-  Internal = "Internal",
-  FileDownload = "FileDownload",
-  ExternalLink = "ExternalLink",
-  PaperPickup = "PaperPickup",
-  POBox = "POBox",
-  LeasingAgent = "LeasingAgent",
-}
-
-export class ApplicationMethod {
-  @Expose()
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  @IsEnum(ApplicationMethodType, { groups: [ValidationsGroupsEnum.default] })
-  @ApiProperty({ enum: ApplicationMethodType, enumName: "ApplicationMethodType" })
-  type: ApplicationMethodType
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  label: string | null
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsString({ groups: [ValidationsGroupsEnum.default] })
-  externalReference: string | null
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
-  acceptsPostmarkedApplications: boolean | null
-}
+import { ApplicationMethod } from "../../application-methods/entities/application-method.entity"
+import { UnitsSummarized } from "../../units/types/units-summarized"
+import { UnitsSummary } from "../../units-summary/entities/units-summary.entity"
+import { ListingReviewOrder } from "../types/listing-review-order-enum"
 
 @Entity({ name: "listings" })
 class Listing extends BaseEntity {
@@ -143,34 +63,69 @@ class Listing extends BaseEntity {
   @Type(() => Date)
   updatedAt: Date
 
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  additionalApplicationSubmissionNotes?: string | null
+
   @OneToMany(() => Preference, (preference) => preference.listing, { cascade: true })
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => Preference)
   preferences: Preference[]
 
-  @Column("jsonb")
+  @OneToMany(() => ApplicationMethod, (am) => am.listing, { cascade: true, eager: true })
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ApplicationMethod)
   applicationMethods: ApplicationMethod[]
 
+  // booleans to make dealing with different application methods easier to parse
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  digitalApplication?: boolean
+
+  @Column({ type: "boolean", default: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  commonDigitalApplication?: boolean
+
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  paperApplication?: boolean
+
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  referralOpportunity?: boolean
+
+  // end application method booleans
+
   @Column("jsonb")
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
-  @Type(() => Asset)
-  assets: Asset[]
+  @Type(() => AssetCreateDto)
+  assets: AssetCreateDto[]
 
-  @Column("jsonb")
+  @OneToMany(() => ListingEvent, (listingEvent) => listingEvent.listing, {
+    eager: true,
+    cascade: true,
+  })
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ListingEvent)
   events: ListingEvent[]
 
-  @ManyToOne(() => Property, (property) => property.listings, { nullable: false })
+  @ManyToOne(() => Property, { nullable: false, cascade: true })
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => Property)
   property: Property
 
   @OneToMany(() => Application, (application) => application.listing)
@@ -179,118 +134,165 @@ class Listing extends BaseEntity {
   @Type(() => Application)
   applications: Application[]
 
-  @OneToMany(() => ApplicationFlaggedSet, (afs) => afs.listing)
+  @Column({ type: "timestamptz", nullable: true })
   @Expose()
-  @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
-  @Type(() => ApplicationFlaggedSet)
-  applicationFlaggedSets: ApplicationFlaggedSet[]
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsDate({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Date)
+  applicationDueDate?: Date | null
 
   @Column({ type: "timestamptz", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsDate({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Date)
-  applicationDueDate: Date | null
+  applicationDueTime?: Date | null
 
   @Column({ type: "timestamptz", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsDate({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Date)
-  applicationOpenDate: Date | null
+  applicationOpenDate?: Date | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  applicationFee: string | null
+  applicationFee?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  applicationOrganization: string | null
+  applicationOrganization?: string | null
 
-  @Column({ type: "jsonb", nullable: true })
+  @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Address)
-  applicationAddress: Address | null
+  applicationAddress?: Address | null
 
-  @Column({ type: "jsonb", nullable: true })
+  @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Address)
-  applicationPickUpAddress: Address | null
+  applicationPickUpAddress?: Address | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  applicationPickUpAddressOfficeHours: string | null
+  applicationPickUpAddressOfficeHours?: string | null
+
+  @Column({ type: "enum", enum: ListingApplicationAddressType, nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsEnum(ListingApplicationAddressType, { groups: [ValidationsGroupsEnum.default] })
+  @ApiProperty({
+    enum: ListingApplicationAddressType,
+    enumName: "ListingApplicationAddressType",
+  })
+  applicationPickUpAddressType?: ListingApplicationAddressType | null
+
+  @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Address)
+  applicationDropOffAddress?: Address | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  buildingSelectionCriteria: string | null
+  applicationDropOffAddressOfficeHours?: string | null
+
+  @Column({ type: "enum", enum: ListingApplicationAddressType, nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsEnum(ListingApplicationAddressType, { groups: [ValidationsGroupsEnum.default] })
+  @ApiProperty({
+    enum: ListingApplicationAddressType,
+    enumName: "ListingApplicationAddressType",
+  })
+  applicationDropOffAddressType?: ListingApplicationAddressType | null
+
+  @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Address)
+  applicationMailingAddress?: Address | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  costsNotIncluded: string | null
+  buildingSelectionCriteria?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  creditHistory: string | null
+  costsNotIncluded?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  criminalBackground: string | null
+  creditHistory?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  depositMin: string | null
+  criminalBackground?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  depositMax: string | null
+  depositMin?: string | null
+
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  depositMax?: string | null
 
   @Column({ type: "boolean", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
-  disableUnitsAccordion: boolean | null
+  disableUnitsAccordion?: boolean | null
 
-  @Column({ type: "jsonb", nullable: true })
+  @ManyToOne(() => Jurisdiction, { eager: true })
+  @Expose()
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Jurisdiction)
+  jurisdiction: Jurisdiction
+
+  @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Address)
-  leasingAgentAddress: Address | null
+  leasingAgentAddress?: Address | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsEmail({}, { groups: [ValidationsGroupsEnum.default] })
-  leasingAgentEmail: string | null
+  leasingAgentEmail?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  leasingAgentName: string | null
+  leasingAgentName?: string | null
 
   @ManyToMany(() => User, (leasingAgent) => leasingAgent.leasingAgentInListings, {
     nullable: true,
@@ -306,75 +308,79 @@ class Listing extends BaseEntity {
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  leasingAgentOfficeHours: string | null
+  leasingAgentOfficeHours?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  leasingAgentPhone: string | null
+  leasingAgentPhone?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  leasingAgentTitle: string | null
+  leasingAgentTitle?: string | null
 
-  @Column({ type: "text", nullable: true })
+  @Column({ type: "text" })
   @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  name: string | null
+  name: string
 
   @Column({ type: "timestamptz", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsDate({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Date)
-  postmarkedApplicationsReceivedByDate: Date | null
+  postmarkedApplicationsReceivedByDate?: Date | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  programRules: string | null
+  programRules?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  rentalAssistance: string | null
+  rentalAssistance?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  rentalHistory: string | null
+  rentalHistory?: string | null
 
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsString({ groups: [ValidationsGroupsEnum.default] })
-  requiredDocuments: string | null
+  requiredDocuments?: string | null
+
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  specialNotes?: string | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  waitlistCurrentSize: number | null
+  waitlistCurrentSize?: number | null
 
   @Column({ type: "integer", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
-  waitlistMaxSize: number | null
+  waitlistMaxSize?: number | null
 
-  @Column({ type: "jsonb", nullable: true })
+  @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => WhatToExpect)
-  whatToExpect: WhatToExpect | null
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  whatToExpect?: string | null
 
   @Column({
     type: "enum",
@@ -386,23 +392,22 @@ class Listing extends BaseEntity {
   @ApiProperty({ enum: ListingStatus, enumName: "ListingStatus" })
   status: ListingStatus
 
+  @Column({ type: "enum", enum: ListingReviewOrder, nullable: true })
   @Expose()
-  @ApiProperty()
-  get urlSlug(): string | undefined {
-    return listingUrlSlug(this)
-  }
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsEnum(ListingReviewOrder, { groups: [ValidationsGroupsEnum.default] })
+  @ApiProperty({
+    enum: ListingReviewOrder,
+    enumName: "ListingReviewOrder",
+  })
+  reviewOrderType?: ListingReviewOrder | null
 
   @Expose()
   applicationConfig?: Record<string, unknown>
 
-  @Column({
-    type: "boolean",
-    default: false,
-    nullable: false,
-  })
+  @Column({ type: "boolean" })
   @Expose()
-  @ApiProperty({ type: Boolean, default: false })
-  @IsBoolean()
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
   displayWaitlistSize: boolean
 
   @Column({ enum: CSVFormattingType, default: CSVFormattingType.basic })
@@ -410,6 +415,89 @@ class Listing extends BaseEntity {
   @IsEnum(CSVFormattingType, { groups: [ValidationsGroupsEnum.default] })
   @ApiProperty({ enum: CSVFormattingType, enumName: "CSVFormattingType" })
   CSVFormattingType: CSVFormattingType
+
+  @Expose()
+  @ApiProperty()
+  get showWaitlist(): boolean {
+    return (
+      this.waitlistMaxSize !== null &&
+      this.waitlistCurrentSize !== null &&
+      this.waitlistCurrentSize < this.waitlistMaxSize
+    )
+  }
+
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  @MaxLength(4096, { groups: [ValidationsGroupsEnum.default] })
+  reservedCommunityDescription?: string | null
+
+  @ManyToOne(() => ReservedCommunityType, { eager: true, nullable: true })
+  @Expose()
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => ReservedCommunityType)
+  reservedCommunityType?: ReservedCommunityType
+
+  @Column({ type: "integer", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
+  reservedCommunityMinAge?: number | null
+
+  @ManyToOne(() => Asset, { eager: true, nullable: true, cascade: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Asset)
+  image?: Asset | null
+
+  @ManyToOne(() => Asset, { eager: true, nullable: true, cascade: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Asset)
+  result?: Asset | null
+
+  @Column({ type: "text", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsString({ groups: [ValidationsGroupsEnum.default] })
+  @MaxLength(4096, { groups: [ValidationsGroupsEnum.default] })
+  resultLink?: string | null
+
+  @Column({ type: "boolean", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  isWaitlistOpen?: boolean | null
+
+  @Column({ type: "integer", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsNumber({}, { groups: [ValidationsGroupsEnum.default] })
+  waitlistOpenSpots?: number | null
+
+  @Expose()
+  @ApiProperty({ type: UnitsSummarized })
+  unitsSummarized: UnitsSummarized | undefined
+
+  @Column({ type: "boolean", nullable: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  customMapPin?: boolean | null
+
+  @OneToMany(() => UnitsSummary, (summary) => summary.listing, {
+    nullable: true,
+    eager: true,
+    cascade: true,
+  })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default], each: true })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
+  @Type(() => UnitsSummary)
+  unitsSummary: UnitsSummary[]
 }
 
 export { Listing as default, Listing }

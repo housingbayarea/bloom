@@ -10,7 +10,6 @@ import {
   FormCard,
   HouseholdMemberForm,
   ProgressNav,
-  lRoute,
   t,
   HouseholdSizeField,
   Form,
@@ -20,7 +19,7 @@ import { useForm } from "react-hook-form"
 import FormBackLink from "../../../src/forms/applications/FormBackLink"
 import { useFormConductor } from "../../../lib/hooks"
 
-export default () => {
+const ApplicationAddMembers = () => {
   const { conductor, application, listing } = useFormConductor("addMembers")
   const router = useRouter()
   const currentPageSection = 2
@@ -37,17 +36,31 @@ export default () => {
   }
 
   const onAddMember = () => {
-    void router.push(lRoute("/applications/household/member")).then(() => window.scrollTo(0, 0))
+    void router.push("/applications/household/member")
   }
 
   const applicant = application.applicant
 
-  const membersSection = application.householdMembers.map((member) => {
+  const editMember = (orderId: number) => {
+    if (orderId != undefined && orderId >= 0) {
+      void router.push({
+        pathname: "/applications/household/member",
+        query: { memberId: orderId },
+      })
+    } else {
+      void router.push("/applications/contact/name")
+    }
+  }
+
+  const membersSection = application.householdMembers.map((member, index) => {
     return (
       <HouseholdMemberForm
-        member={member}
+        editMember={editMember}
         key={member}
-        type={t("application.household.householdMember")}
+        memberFirstName={member.firstName}
+        memberId={index}
+        memberLastName={member.lastName}
+        subtitle={t("application.household.householdMember")}
       />
     )
   })
@@ -63,30 +76,40 @@ export default () => {
       </FormCard>
 
       <FormCard>
-        <FormBackLink url={conductor.determinePreviousUrl()} />
+        <FormBackLink
+          url={conductor.determinePreviousUrl()}
+          onClick={() => conductor.setNavigatedBack(true)}
+        />
 
         <div className="form-card__lead border-b">
           <h2 className="form-card__title is-borderless mt-4">
             {t("application.household.addMembers.title")}
           </h2>
+          {application.autofilled && (
+            <p className="mt-4 field-note">{t("application.household.addMembers.doubleCheck")}</p>
+          )}
         </div>
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div>
             <HouseholdSizeField
-              listing={listing}
-              householdSize={householdSize}
-              validate={true}
-              register={register}
-              error={errors.householdSize}
-              clearErrors={clearErrors}
               assistanceUrl={t("application.household.assistanceUrl")}
+              clearErrors={clearErrors}
+              error={errors.householdSize}
+              householdSize={householdSize}
+              householdSizeMax={listing?.householdSizeMax}
+              householdSizeMin={listing?.householdSizeMin}
+              register={register}
+              validate={true}
             />
           </div>
           <div className="form-card__group my-0 mx-0 pb-4 pt-4">
             <HouseholdMemberForm
-              member={applicant}
-              type={t("application.household.primaryApplicant")}
+              editMember={editMember}
+              editMode={!application.autofilled}
+              memberFirstName={applicant.firstName}
+              memberLastName={applicant.lastName}
+              subtitle={t("application.household.primaryApplicant")}
             />
             {membersSection}
           </div>
@@ -132,3 +155,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationAddMembers

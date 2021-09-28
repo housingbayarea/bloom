@@ -3,9 +3,9 @@ import { IsDate, IsDefined, IsOptional, IsUUID, ValidateNested } from "class-val
 import { OmitType } from "@nestjs/swagger"
 import { AmiChart } from "../entities/ami-chart.entity"
 import { AmiChartItem } from "../entities/ami-chart-item.entity"
-import { ValidationsGroupsEnum } from "../../shared/validations-groups.enum"
+import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
 
-export class AmiChartDto extends OmitType(AmiChart, ["units", "items"] as const) {
+export class AmiChartDto extends OmitType(AmiChart, ["items"] as const) {
   @Expose()
   @IsDefined({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => AmiChartItem)

@@ -1,33 +1,46 @@
-import * as React from "react"
+import React, { useContext } from "react"
+import { NavigationContext } from "../config/NavigationContext"
 import "./LanguageNav.scss"
 import { t } from "../helpers/translator"
-import { useLanguageChange } from "../helpers/useLanguageChange"
 
 export type LangItem = {
   prefix: string
   label: string
 }
 
-export interface LanguageNavProps {
-  items: LangItem[]
+export interface LanguageNavLang {
+  list: LangItem[]
+  codes: string[]
 }
 
-const LanguageNav = ({ items }: LanguageNavProps) => {
+export interface LanguageNavProps {
+  language: LanguageNavLang
+}
+
+const LanguageNav = ({ language }: LanguageNavProps) => {
   const routePrefix = t("config.routePrefix")
-  const changeLanguage = useLanguageChange(items)
+  const { router } = useContext(NavigationContext)
 
   return (
     <div className="language-bar">
       <div className="language-bar__inner">
         <nav className="language-nav">
           <ul className="language-nav__list">
-            {items?.map((item) => (
-              <li
-                key={item.prefix}
-                onClick={() => changeLanguage(item.prefix)}
-                className={routePrefix === item.prefix ? "is-active" : ""}
-              >
-                {item.label}
+            {language.list?.map((item) => (
+              <li key={item.prefix}>
+                <button
+                  onClick={() => {
+                    void router.push(router.asPath, router.asPath, { locale: item.prefix || "en" })
+                  }}
+                  className={
+                    routePrefix === item.prefix
+                      ? "language-nav__list-button is-active"
+                      : "language-nav__list-button"
+                  }
+                  type="button"
+                >
+                  {item.label}
+                </button>
               </li>
             ))}
           </ul>

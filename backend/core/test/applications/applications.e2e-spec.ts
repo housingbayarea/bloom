@@ -6,19 +6,21 @@ import { applicationSetup } from "../../src/app.module"
 import { AuthModule } from "../../src/auth/auth.module"
 import { ApplicationsModule } from "../../src/applications/applications.module"
 import { ListingsModule } from "../../src/listings/listings.module"
-import { EmailService } from "../../src/shared/email.service"
+import { EmailService } from "../../src/shared/email/email.service"
 import { getUserAccessToken } from "../utils/get-user-access-token"
 import { setAuthorization } from "../utils/set-authorization-helper"
 // Use require because of the CommonJS/AMD style export.
 // See https://www.typescriptlang.org/docs/handbook/modules.html#export--and-import--require
 import dbOptions = require("../../ormconfig.test")
-import { InputType } from "../../src/shared/input-type"
+import { InputType } from "../../src/shared/types/input-type"
 import { Repository } from "typeorm"
 import { Application } from "../../src/applications/entities/application.entity"
-import { UserDto } from "../../src/user/dto/user.dto"
 import { ListingDto } from "../../src/listings/dto/listing.dto"
 import { HouseholdMember } from "../../src/applications/entities/household-member.entity"
+import { ThrottlerModule } from "@nestjs/throttler"
 import { getTestAppBody } from "../lib/get-test-app-body"
+import { Listing } from "../../types"
+import { UserDto } from "../../src/auth/dto/user.dto"
 
 // Cypress brings in Chai types for the global expect, but we want to use jest
 // expect here so we need to re-declare it.
@@ -51,6 +53,11 @@ describe("Applications", () => {
         ListingsModule,
         ApplicationsModule,
         TypeOrmModule.forFeature([Application, HouseholdMember]),
+        ThrottlerModule.forRoot({
+          ttl: 60,
+          limit: 2,
+          ignoreUserAgents: [/^node-superagent.*$/],
+        }),
       ],
     })
       .overrideProvider(EmailService)
@@ -96,13 +103,15 @@ describe("Applications", () => {
         .expect(200)
     ).body
 
-    const res = await supertest(app.getHttpServer()).get("/listings").expect(200)
+    const res = await supertest(app.getHttpServer())
+      .get("/listings?limit=all&view=full")
+      .expect(200)
     // Finding listings corresponding to leasing agents (permission wise)
-    listing1Id = res.body.filter((listing: ListingDto) => {
+    listing1Id = res.body.items.filter((listing: ListingDto) => {
       const leasingAgentsIds = listing.leasingAgents.map((agent) => agent.id)
       return leasingAgentsIds.indexOf(leasingAgent1Profile.id) !== -1
     })[0].id
-    listing2Id = res.body.filter((listing: ListingDto) => {
+    listing2Id = res.body.items.filter((listing: ListingDto) => {
       const leasingAgentsIds = listing.leasingAgents.map((agent) => agent.id)
       return leasingAgentsIds.indexOf(leasingAgent2Profile.id) !== -1
     })[0].id
@@ -111,7 +120,7 @@ describe("Applications", () => {
     await applicationsRepository.createQueryBuilder().delete().execute()
   })
 
-  it(`should allow a user to create and read his own application `, async () => {
+  it(`should allow a user to create and read their own application `, async () => {
     const body = getTestAppBody(listing1Id)
     body.preferences = [
       {
@@ -121,10 +130,12 @@ describe("Applications", () => {
           {
             key: "live",
             checked: true,
+            extraData: [],
           },
           {
             key: "work",
             checked: false,
+            extraData: [],
           },
         ],
       },
@@ -160,6 +171,7 @@ describe("Applications", () => {
           {
             key: "missionCorridor",
             checked: false,
+            extraData: [],
           },
         ],
       },
@@ -295,7 +307,7 @@ describe("Applications", () => {
     expect(res.body.items.length).toBe(2)
   })
 
-  it(`should allow a user to create and retrieve by ID his own application`, async () => {
+  it(`should allow a user to create and retrieve by ID their own application`, async () => {
     const body = getTestAppBody(listing1Id)
     const createRes = await supertest(app.getHttpServer())
       .post(`/applications/submit`)
@@ -406,7 +418,8 @@ describe("Applications", () => {
       .get(`/applications/csv/?includeHeaders=true&listingId=${listing1Id}`)
       .set(...setAuthorization(adminAccessToken))
       .expect(200)
-    expect(typeof res.body === "string")
+    expect(typeof res.text === "string")
+    expect(new RegExp(/Flagged/).test(res.text)).toEqual(true)
   })
 
   it(`should allow an admin to delete user's applications`, async () => {
@@ -542,6 +555,55 @@ describe("Applications", () => {
       .get(`/applications/?order=XYZ`)
       .set(...setAuthorization(adminAccessToken))
       .expect(400)
+  })
+
+  it(`should disallow a user to send too much application submits`, async () => {
+    const body = getTestAppBody(listing1Id)
+    const failAfter = 2
+
+    for (let i = 0; i < failAfter + 1; i++) {
+      const expect = i < failAfter ? 201 : 429
+      await supertest(app.getHttpServer())
+        .post(`/applications/submit`)
+        .set("User-Agent", "faked")
+        .send(body)
+        .set(...setAuthorization(user1AccessToken))
+        .expect(expect)
+    }
+  })
+
+  it(`should disallow a user to create an application post submission due date`, async () => {
+    const body = getTestAppBody(listing1Id)
+    await supertest(app.getHttpServer())
+      .post(`/applications/submit`)
+      .send(body)
+      .set(...setAuthorization(user1AccessToken))
+      .expect(201)
+
+    const getListingRes = await supertest(app.getHttpServer()).get(`/listings/${listing1Id}`)
+    const listing: Listing = getListingRes.body
+
+    const oldApplicationDueDate = listing.applicationDueDate
+    listing.applicationDueDate = new Date()
+    await supertest(app.getHttpServer())
+      .put(`/listings/${listing.id}`)
+      .send(listing)
+      .set(...setAuthorization(adminAccessToken))
+      .expect(200)
+
+    const res = await supertest(app.getHttpServer())
+      .post(`/applications/submit`)
+      .send(body)
+      .set(...setAuthorization(user1AccessToken))
+      .expect(400)
+    expect(res.body.message).toBe("Listing is not open for application submission.")
+
+    listing.applicationDueDate = oldApplicationDueDate
+    await supertest(app.getHttpServer())
+      .put(`/listings/${listing.id}`)
+      .send(listing)
+      .set(...setAuthorization(adminAccessToken))
+      .expect(200)
   })
 
   afterEach(async () => {

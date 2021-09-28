@@ -1,24 +1,22 @@
 import React, { useEffect, useState, Fragment, useContext } from "react"
 import Head from "next/head"
 import {
-  ApiClientContext,
+  AuthContext,
   DashBlock,
   DashBlocks,
   HeaderBadge,
   LinkButton,
-  MetaTags,
   RequireLogin,
   t,
-  UserContext,
   LoadingOverlay,
 } from "@bloom-housing/ui-components"
 import Layout from "../../layouts/application"
 import { PaginatedApplication } from "@bloom-housing/backend-core/types"
 import { AppStatusItemWrapper } from "./AppStatusItemWrapper"
+import { MetaTags } from "../../src/MetaTags"
 
 export default () => {
-  const { applicationsService } = useContext(ApiClientContext)
-  const { profile } = useContext(UserContext)
+  const { applicationsService, profile } = useContext(AuthContext)
   const [applications, setApplications] = useState<PaginatedApplication>()
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)

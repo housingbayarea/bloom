@@ -15,7 +15,6 @@ import {
   FormCard,
   FormOptions,
   ProgressNav,
-  lRoute,
   relationshipKeys,
   t,
 } from "@bloom-housing/ui-components"
@@ -27,7 +26,7 @@ import React, { useContext } from "react"
 import { Select } from "@bloom-housing/ui-components/src/forms/Select"
 import { stateKeys } from "@bloom-housing/ui-components/src/helpers/formOptions"
 
-export default () => {
+const ApplicationMember = () => {
   let memberId, member, saveText, cancelText
   const { conductor, application, listing } = useContext(AppSubmissionContext)
   const router = useRouter()
@@ -53,9 +52,7 @@ export default () => {
   const onSubmit = (data) => {
     application.householdMembers[memberId] = { ...member, ...data } as HouseholdMember
     conductor.sync()
-    void router
-      .push(lRoute("/applications/household/add-members"))
-      .then(() => window.scrollTo(0, 0))
+    void router.push("/applications/household/add-members")
   }
   const onError = () => {
     window.scrollTo(0, 0)
@@ -65,9 +62,7 @@ export default () => {
       application.householdMembers.splice(member.orderId, 1)
       conductor.sync()
     }
-    void router
-      .push(lRoute("/applications/household/add-members"))
-      .then(() => window.scrollTo(0, 0))
+    void router.push("/applications/household/add-members")
   }
 
   const sameAddress = watch("sameAddress")
@@ -178,7 +173,11 @@ export default () => {
                 <DOBField
                   id="applicant.member.dateOfBirth"
                   required={true}
-                  applicant={member}
+                  defaultDOB={{
+                    birthDay: member.birthDay,
+                    birthMonth: member.birthMonth,
+                    birthYear: member.birthYear,
+                  }}
                   register={register}
                   error={errors}
                   watch={watch}
@@ -274,7 +273,9 @@ export default () => {
               <div className="form-card__group border-b">
                 <fieldset>
                   <legend className="field-label--caps">
-                    {t("application.household.member.workInRegion")}
+                    {t("application.household.member.workInRegion", {
+                      county: listing?.countyCode,
+                    })}
                   </legend>
                   <FieldGroup
                     name="workInRegion"
@@ -384,13 +385,7 @@ export default () => {
 
               <div className="form-card__pager">
                 <div className="form-card__pager-row primary">
-                  <Button
-                    id="save-member"
-                    styleType={AppearanceStyleType.primary}
-                    onClick={() => {
-                      //
-                    }}
-                  >
+                  <Button id="save-member" styleType={AppearanceStyleType.primary}>
                     {saveText}
                   </Button>
                 </div>
@@ -407,3 +402,5 @@ export default () => {
     </FormsLayout>
   )
 }
+
+export default ApplicationMember
