@@ -22,6 +22,7 @@ import Layout from "../layouts/application"
 import { MetaTags } from "../src/MetaTags"
 import moment from "moment"
 import { openInFuture } from "../lib/helpers"
+import { fetchBaseListingData } from "../lib/hooks"
 
 export interface ListingsProps {
   openListings: Listing[]
@@ -165,35 +166,13 @@ export default function ListingsPage(props: ListingsProps) {
 }
 
 export async function getStaticProps() {
-  let openListings = []
-  let closedListings = []
+  const listings = await fetchBaseListingData()
+  const openListings = listings.filter(
+    (listing: Listing) => listing.status === ListingStatus.active
+  )
+  const closedListings = listings.filter(
+    (listing: Listing) => listing.status === ListingStatus.closed
+  )
 
-  try {
-    const response = await axios.get(process.env.listingServiceUrl, {
-      params: {
-        view: "base",
-        limit: "all",
-        filter: [
-          {
-            $comparison: "<>",
-            status: "pending",
-          },
-        ],
-      },
-      paramsSerializer: (params) => {
-        return qs.stringify(params)
-      },
-    })
-
-    openListings = response?.data?.items
-      ? response.data.items.filter((listing: Listing) => listing.status === ListingStatus.active)
-      : []
-    closedListings = response?.data?.items
-      ? response.data.items.filter((listing: Listing) => listing.status === ListingStatus.closed)
-      : []
-  } catch (error) {
-    console.error(error)
-  }
-
-  return { props: { openListings, closedListings } }
+  return { props: { openListings, closedListings }, revalidate: process.env.cacheRevalidate }
 }
