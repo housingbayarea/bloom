@@ -168,7 +168,6 @@ export async function getStaticProps() {
   if (process.env.npm_lifecycle_script === "next build") {
     return {
       props: {},
-      revalidate: process.env.cacheRevalidate,
     }
   }
 
