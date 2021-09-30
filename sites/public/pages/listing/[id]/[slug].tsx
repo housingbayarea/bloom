@@ -85,6 +85,5 @@ export async function getStaticProps(context: { params: Record<string, string>; 
     props: {
       listing: response.data,
     },
-    revalidate: process.env.cacheRevalidate,
   }
 }

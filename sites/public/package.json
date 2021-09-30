@@ -21,6 +21,7 @@
     "@bloom-housing/ui-components": "2.0.0-pre-tailwind",
     "@mdx-js/loader": "1.6.18",
     "@next/mdx": "^10.1.0",
+    "@sentry/nextjs": "^6.13.2",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "moment": "^2.29.1",

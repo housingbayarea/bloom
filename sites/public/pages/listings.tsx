@@ -195,5 +195,5 @@ export async function getStaticProps() {
     ? response.data.items.filter((listing: Listing) => listing.status === ListingStatus.closed)
     : []
 
-  return { props: { openListings, closedListings }, revalidate: process.env.cacheRevalidate }
+  return { props: { openListings, closedListings } }
 }
