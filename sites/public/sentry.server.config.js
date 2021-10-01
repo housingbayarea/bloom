@@ -15,6 +15,8 @@ const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN
 
 Sentry.init({
   dsn: SENTRY_DSN,
+  // eslint-disable-next-line no-undef
+  org: process.env.SENTRY_ORG,
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 0.2,
   // eslint-disable-next-line no-undef
