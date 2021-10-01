@@ -383,6 +383,11 @@
           "label": "Displaced Household"
         }
       },
+      "neighborhoodResidence": {
+        "neighborhoodResidence": {
+          "label": "Neighborhood Residents"
+        }
+      },
       "liveWork": {
         "title": "Live or Work in %{county} County?",
         "live": {
