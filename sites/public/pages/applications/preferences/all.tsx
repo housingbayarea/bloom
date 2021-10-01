@@ -70,11 +70,14 @@ const ApplicationPreferencesAll = () => {
   const preferenceCheckboxIds = useMemo(() => {
     return preferencesByPage?.reduce((acc, item) => {
       const preferenceName = item.formMetadata?.key
-      const optionPaths = item.formMetadata?.options?.map((option) => {
-        return getPreferenceOptionName(option.key, preferenceName)
-      })
-      if (!item.formMetadata?.hideGenericDecline)
+      const optionPaths = item.formMetadata?.options
+        ? item.formMetadata.options.map((option) => {
+            return getPreferenceOptionName(option.key, preferenceName)
+          })
+        : []
+      if (item.formMetadata && !item.formMetadata?.hideGenericDecline) {
         optionPaths.push(getExclusivePreferenceOptionName(item?.formMetadata?.key))
+      }
 
       Object.assign(acc, {
         [preferenceName]: optionPaths,
