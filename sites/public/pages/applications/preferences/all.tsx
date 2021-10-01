@@ -73,7 +73,7 @@ const ApplicationPreferencesAll = () => {
       const optionPaths = item.formMetadata?.options?.map((option) => {
         return getPreferenceOptionName(option.key, preferenceName)
       })
-      if (!item.formMetadata.hideGenericDecline)
+      if (!item.formMetadata?.hideGenericDecline)
         optionPaths.push(getExclusivePreferenceOptionName(item?.formMetadata?.key))
 
       Object.assign(acc, {
