@@ -380,12 +380,14 @@
       "youHaveClaimed": "You have claimed:",
       "displacedHousehold": {
         "displacedHousehold": {
-          "label": "Displaced Household"
+          "label": "Displaced Household Preference",
+          "description": ""
         }
       },
       "neighborhoodResidence": {
         "neighborhoodResidence": {
-          "label": "Neighborhood Residents"
+          "label": "Neighborhood Residents Preference",
+          "description": ""
         }
       },
       "liveWork": {
