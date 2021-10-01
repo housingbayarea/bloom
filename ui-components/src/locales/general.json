@@ -375,8 +375,14 @@
       "preamble": "If you qualify for this preference, you'll get a higher ranking.",
       "selectBelow": "If you have one of these housing preferences, select it below:",
       "dontWant": "I don't want these preferences",
+      "dontWantSingular": "I don't want this preference",
       "stillHaveOpportunity": "You'll still have the opportunity to claim other preferences.",
       "youHaveClaimed": "You have claimed:",
+      "displacedHousehold": {
+        "displacedHousehold": {
+          "label": "Displaced Household"
+        }
+      },
       "liveWork": {
         "title": "Live or Work in %{county} County?",
         "live": {

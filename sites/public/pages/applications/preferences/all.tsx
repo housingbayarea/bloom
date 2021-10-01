@@ -320,7 +320,10 @@ const ApplicationPreferencesAll = () => {
                           true,
                           [],
                           preference,
-                          t("application.preferences.dontWant")
+                          preference.formMetadata.options &&
+                            preference.formMetadata.options.length === 1
+                            ? t("application.preferences.dontWantSingular")
+                            : t("application.preferences.dontWant")
                         )}
                     </fieldset>
                   </div>
