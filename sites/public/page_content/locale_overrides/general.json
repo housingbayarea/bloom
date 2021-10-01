@@ -29,6 +29,10 @@
       },
       "PBV": {
         "title": "Oakland Housing Authority",
+        "residencyNoColiseum": {
+          "label": "Residency",
+          "description": "You have lived and/or worked in the City of Oakland when you submitted your initial application and/or at the time of your application interview for a Project-Based Voucher and can verify your previous residency/employment at the applicant interview."
+        },
         "residency": {
           "label": "Residency",
           "description": "You have lived and/or worked in the City of Oakland when you submitted your initial application and/or at the time of your application interview for a Project-Based Voucher at Coliseum Place and can verify your previous residency/employment at the applicant interview."
