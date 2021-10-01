@@ -281,7 +281,7 @@ const ApplicationPreferencesAll = () => {
 
         <div className="form-card__group px-0 pb-0">
           <p className="field-note">
-            {preferencesByPage[0]?.formMetadata.customSelectText ??
+            {preferencesByPage[0]?.formMetadata?.customSelectText ??
               t("application.preferences.selectBelow")}
           </p>
         </div>
