@@ -27,6 +27,17 @@
           "description": "At least one member of my household works or has been offered work in the %{county} County"
         }
       },
+      "liveWorkCity": {
+        "title": "Live or Work in the City of %{county}",
+        "live": {
+          "label": "Live in the City of %{county} Preference",
+          "description": "At least one member of my household lives in the City of %{county}"
+        },
+        "work": {
+          "label": "Work in the City of %{county} Preference",
+          "description": "At least one member of my household works in the City of %{county}"
+        }
+      },
       "PBV": {
         "title": "Oakland Housing Authority",
         "residencyNoColiseum": {
