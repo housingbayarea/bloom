@@ -397,7 +397,7 @@ export const ListingView = (props: ListingProps) => {
             )}
             {lotterySection}
             <WhatToExpect listing={listing} />
-            {!openInFuture && <LeasingAgent listing={listing} />}
+            {!appOpenInFuture && <LeasingAgent listing={listing} />}
           </aside>
         </ListingDetailItem>
 
