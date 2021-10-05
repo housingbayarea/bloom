@@ -62,8 +62,7 @@ const ApplicationTerms = () => {
         setSubmitting(false)
         setApiError(true)
         window.scrollTo(0, 0)
-        console.error(`Error creating application: ${err}`)
-        throw err
+        throw new Error(JSON.stringify(err.response.data))
       })
   }
 

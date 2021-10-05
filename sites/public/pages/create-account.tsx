@@ -55,6 +55,7 @@ export default () => {
         setRequestError(`${t("authentication.createAccount.errors.generic")}`)
       }
       window.scrollTo(0, 0)
+      throw new Error(JSON.stringify(err.response.data))
     }
   }
 

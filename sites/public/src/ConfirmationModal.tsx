@@ -55,8 +55,9 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
           })
           window.scrollTo(0, 0)
         })
-        .catch(() => {
+        .catch((err) => {
           setOpenModal(true)
+          throw new Error(JSON.stringify(err.response.data))
         })
     }
     // This ensures useEffect is called only once
