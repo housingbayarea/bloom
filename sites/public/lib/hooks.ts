@@ -77,6 +77,11 @@ export const useGetApplicationStatusProps = (listing: Listing): ApplicationStatu
   return props
 }
 
+/**
+ * This is fired server side by getStaticProps
+ * By setting listingData here, we can continue to serve listings if the fetch fails.
+ * This more of a temporary solution.
+ */
 let listingData = []
 
 export async function fetchBaseListingData() {

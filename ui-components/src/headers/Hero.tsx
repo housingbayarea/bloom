@@ -1,6 +1,6 @@
 import * as React from "react"
 import { LinkButton } from "../actions/LinkButton"
-import { Listing } from "@bloom-housing/backend-core/types"
+import { t } from "../helpers/translator"
 import "./Hero.scss"
 
 export interface HeroProps {
@@ -10,7 +10,7 @@ export interface HeroProps {
   buttonLink?: string
   secondaryButtonTitle?: string
   secondaryButtonLink?: string
-  listings?: Listing[]
+  allApplicationsClosed?: boolean
   children?: React.ReactNode
   centered?: boolean
 }
@@ -24,7 +24,9 @@ const HeroButton = (props: { title: string; href: string; className?: string }) 
 const Hero = (props: HeroProps) => {
   let subHeader, styles
   let classNames = ""
-  if (!props.listings && props.children) {
+  if (props.allApplicationsClosed) {
+    subHeader = <h2 className="hero__subtitle">{t("welcome.allApplicationClosed")}</h2>
+  } else if (props.children) {
     subHeader = <h2 className="hero__subtitle">{props.children}</h2>
   }
   if (props.backgroundImage) {
