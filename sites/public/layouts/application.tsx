@@ -79,9 +79,17 @@ const Layout = (props) => {
           logoSrc="/images/logo_glyph.svg"
           homeURL="/"
           notice={
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link" target="_blank" className={"cursor-pointer"}>
+            <>
               {t("nav.getFeedback")}
-            </a>
+              <a
+                href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link"
+                target="_blank"
+                className={"cursor-pointer"}
+              >
+                {t("nav.yourFeedback")}
+              </a>
+              {t("nav.bonusFeedback")}
+            </>
           }
           title={t("nav.siteTitle")}
           languages={languages.map((lang) => {
