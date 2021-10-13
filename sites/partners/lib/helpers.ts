@@ -11,8 +11,10 @@ import {
   AssetsService,
   ListingEventType,
   ListingEvent,
+  IncomePeriod,
 } from "@bloom-housing/backend-core/types"
 import { TempUnit, FormListing } from "../src/listings/PaperListingForm"
+import { FieldError } from "react-hook-form"
 
 type DateTimePST = {
   hour: string
@@ -121,10 +123,14 @@ export const getLotteryEvent = (listing: FormListing): ListingEvent | undefined 
     : null
 }
 
-// TODO memoize this function
-export function arrayToFormOptions<T>(arr: T[], label: string, value: string): FormOption[] {
+export function arrayToFormOptions<T>(
+  arr: T[],
+  label: string,
+  value: string,
+  translateLabel?: string
+): FormOption[] {
   return arr.map((val: T) => ({
-    label: val[label],
+    label: translateLabel ? t(`${translateLabel}.${val[label]}`) : val[label],
     value: val[value],
   }))
 }
@@ -136,6 +142,9 @@ export const createTime = (
   date: Date,
   formTime: { hours: string; minutes: string; period: TimeFieldPeriod }
 ) => {
+  // date should be cloned, operations in the reference directly can occur unexpected changes
+  const dateClone = new Date(date.getTime())
+  if (!dateClone || (!formTime.hours && !formTime.minutes)) return null
   let formattedHours = parseInt(formTime.hours)
   if (formTime.period === "am" && formattedHours === 12) {
     formattedHours = 0
@@ -143,14 +152,15 @@ export const createTime = (
   if (formTime.period === "pm" && formattedHours !== 12) {
     formattedHours = formattedHours + 12
   }
-  date.setHours(formattedHours, parseInt(formTime.minutes), 0)
-  return date
+  dateClone.setHours(formattedHours, parseInt(formTime.minutes), 0)
+  return dateClone
 }
 
 /**
  * Create Date object depending on DateField component
  */
 export const createDate = (formDate: { year: string; month: string; day: string }) => {
+  if (!formDate) return null
   return new Date(`${formDate.month}-${formDate.day}-${formDate.year}`)
 }
 
@@ -211,4 +221,49 @@ export const cloudinaryFileUploader = async ({
       url: cloudinaryUrlFromId(response.data.public_id),
     })
   })
+}
+
+export function formatIncome(value: number, currentType: IncomePeriod, returnType: IncomePeriod) {
+  const usd = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })
+
+  if (returnType === "perMonth") {
+    const monthIncomeNumber = currentType === "perYear" ? value / 12 : value
+    return usd.format(monthIncomeNumber)
+  } else {
+    const yearIncomeNumber = currentType === "perMonth" ? value * 12 : value
+    return usd.format(yearIncomeNumber)
+  }
+}
+
+export const removeEmptyFields = (obj, keysToIgnore?: string[]) => {
+  Object.keys(obj).forEach(function (key) {
+    if (!keysToIgnore.includes(key)) {
+      if (obj[key] && typeof obj[key] === "object") {
+        removeEmptyFields(obj[key], keysToIgnore)
+      }
+      if (obj[key] === null || obj[key] === undefined || obj[key] === "") {
+        delete obj[key]
+      }
+      if (
+        typeof obj[key] === "object" &&
+        !Array.isArray(obj[key]) &&
+        Object.keys(obj[key]).length === 0
+      ) {
+        delete obj[key]
+      }
+    }
+  })
+}
+
+export const fieldHasError = (errorObj: FieldError) => {
+  return errorObj !== undefined
+}
+
+export const fieldMessage = (errorObj: FieldError) => {
+  return errorObj?.message
 }

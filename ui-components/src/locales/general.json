@@ -1,5 +1,4 @@
 {
-  "": "",
   "account": {
     "accountSettings": "Account Settings",
     "errorFetchingApplications": "Error fetching applications",
@@ -301,10 +300,10 @@
         "optionsLabel": "Check all that apply:",
         "options": {
           "studio": "Studio",
-          "oneBedroom": "1 Bedroom",
-          "twoBedroom": "2 Bedroom",
-          "threeBedroom": "3 Bedroom",
-          "moreThanThreeBedroom": "3+ Bedroom"
+          "oneBdrm": "1 Bedroom",
+          "twoBdrm": "2 Bedroom",
+          "threeBdrm": "3 Bedroom",
+          "fourBdrm": "3+ Bedroom"
         }
       },
       "member": {
@@ -375,8 +374,23 @@
       "preamble": "If you qualify for this preference, you'll get a higher ranking.",
       "selectBelow": "If you have one of these housing preferences, select it below:",
       "dontWant": "I don't want these preferences",
+      "dontWantSingular": "I don't want this preference",
       "stillHaveOpportunity": "You'll still have the opportunity to claim other preferences.",
       "youHaveClaimed": "You have claimed:",
+      "displacedHousehold": {
+        "title": "Displaced Household",
+        "displacedHousehold": {
+          "label": "Displaced Household Preference",
+          "description": ""
+        }
+      },
+      "neighborhoodResidence": {
+        "title": "Neighborhood Residents",
+        "neighborhoodResidence": {
+          "label": "Neighborhood Residents Preference",
+          "description": ""
+        }
+      },
       "liveWork": {
         "title": "Live or Work in %{county} County?",
         "live": {
@@ -390,9 +404,35 @@
           "link": "http://domain.com"
         }
       },
+      "liveWorkCity": {
+        "title": "Live or Work in the City of %{county}",
+        "live": {
+          "label": "Live in the City of %{county} Preference",
+          "description": "At least one member of my household lives in the City of %{county}"
+        },
+        "work": {
+          "label": "Work in the City of %{county} Preference",
+          "description": "At least one member of my household works in the City of %{county}"
+        }
+      },
+      "liveWorkOakland": {
+        "title": "Live or Work in the City of Oakland",
+        "live": {
+          "label": "Live in the City of Oakland Preference",
+          "description": "At least one member of my household lives in the City of Oakland"
+        },
+        "work": {
+          "label": "Work in the City of Oakland Preference",
+          "description": "At least one member of my household works in the City of Oakland"
+        }
+      },
       "PBV": {
         "title": "%{county} copy goes here…",
         "residency": {
+          "label": "Residency",
+          "description": "%{county} copy goes here…"
+        },
+        "residencyNoColiseum": {
           "label": "Residency",
           "description": "%{county} copy goes here…"
         },
@@ -571,6 +611,22 @@
     "viewApplication": "View Application",
     "yourLotteryNumber": "Your confirmation number is"
   },
+  "users": {
+    "confirmed": "Confirmed",
+    "unconfirmed": "Unconfirmed",
+    "totalUsers": "total users",
+    "administrator": "Administrator",
+    "partner": "Partner",
+    "addUser": "Add User",
+    "userDetails": "User Details",
+    "allListings": "All listings",
+    "inviteSent": "Invite sent",
+    "addPassword": "Add a Password",
+    "needUniquePassword": "You'll need to add a unique password in order to confirm your account.",
+    "makeNote": "When creating your password make sure you make note of it so you remember it in the future.",
+    "confirmAccount": "Confirm Acount",
+    "accountConfirmed": "Account confirmed"
+  },
   "flags": {
     "flaggedSet": "Flagged Set",
     "ruleName": "Rule Name",
@@ -637,7 +693,8 @@
         "passwordMismatch": "The passwords do not match",
         "passwordTooWeak": "Password is too weak. Must be at least 8 characters and include at least 1 letter and at least one number.",
         "tokenExpired": "Your link has expired.",
-        "tokenMissing": "Wrong token provided."
+        "tokenMissing": "Wrong token provided.",
+        "generic": "Something went wrong while creating your account. Please try again.\n\nContact your housing department if you're still experiencing issues."
       }
     },
     "signOut": {
@@ -649,12 +706,16 @@
   },
   "errors": {
     "alert": {
-      "badRequest": "Oops! Looks like something went wrong. Please try again. \n\nContact your housing department if you're still experiencing issues.",
+      "badRequest": "Looks like something went wrong. Please try again. \n\nContact your housing department if you're still experiencing issues.",
       "timeoutPleaseTryAgain": "Oops! Looks like something went wrong. Please try again."
     },
     "notFound": {
       "title": "Page Not Found",
       "message": "Uh oh, we can’t seem to find the page you’re looking for. Try going back to the previous page or click below to browse listings."
+    },
+    "unauthorized": {
+      "title": "Unauthorized",
+      "message": "Uh oh, you are not allowed to access this page."
     },
     "agreeError": "You must agree to the terms in order to continue",
     "firstNameError": "Please enter a First Name",
@@ -680,7 +741,8 @@
     "householdTooSmall": "Your household size is too small.",
     "dateError": "Please enter a valid date",
     "rateLimitExceeded": "Rate limit exceeded, try again later.",
-    "requiredFieldError": "This field is required."
+    "requiredFieldError": "This field is required",
+    "requiredFieldsError": "These fields are required"
   },
   "footer": {
     "contact": "Contact",
@@ -713,7 +775,9 @@
   },
   "listings": {
     "error": "There was an issue submitting the form.",
+    "fieldError": "Please resolve any errors before saving or publishing your listing.",
     "closeThisListing": "Do you really want to close this listing?",
+    "publishThisListing": "Publishing will push the listing live on the public site.",
     "active": "Accepting Applications",
     "pending": "Coming Soon",
     "closed": "Closed",
@@ -729,7 +793,9 @@
       "previewLotteryResults": "Preview Lottery Results"
     },
     "activePreferences": "Active Preferences",
+    "addBuildingSelectionCriteria": "Add Building Selection Criteria",
     "addListing": "Add Listing",
+    "addPaperApplication": "Add Paper Application",
     "addPhoto": "Add Photo",
     "addPreference": "Add Preference",
     "addPreferences": "Add Preferences",
@@ -737,6 +803,7 @@
     "additionalInformation": "Additional Information",
     "allUnits": "All Units",
     "allUnitsReservedFor": "All units reserved for %{type}",
+    "amiOverrideTitle": "Override for household size of %{householdSize}",
     "annualIncome": "%{income} per year",
     "annualIncomeRange": "%{from} to %{to} per year",
     "applicationTitle": "Application Data",
@@ -776,11 +843,13 @@
     "bath": "bath",
     "browseListings": "Browse Listings",
     "buildingImageAltText": "A picture of the building",
+    "buildingSelectionCriteria": "Building Criteria Selection",
     "closedListings": "Closed Listings",
     "comingSoon": "Coming Soon",
     "confirmedPreferenceList": "Confirmed %{preference} List",
     "creditHistory": "Credit History",
     "criminalBackground": "Criminal Background",
+    "customOnlineApplicationUrl": "Custom Online Application URL",
     "deleteListingDescription": "Deleting this listing means you will lose all the information you've entered.",
     "depositMax": "Deposit Max",
     "depositMin": "Deposit Min",
@@ -806,6 +875,9 @@
     "householdSize": "Household Size",
     "importantProgramRules": "Important Program Rules",
     "includesPriorityUnits": "Includes Priority Units for %{priorities}",
+    "isDigitalApplication": "Is there a digital application?",
+    "isPaperApplication": "Is there a paper application?",
+    "isReferralOpportunity": "Is there a referral opportunity?",
     "latitude": "Latitude",
     "leasingAgentAddress": "Leasing Agent Address",
     "listingPreviewOnly": "This is a listing preview only.",
@@ -817,7 +889,7 @@
     "listingSubmitted": "Listing Submitted",
     "listingUpdated": "Listing Updated",
     "longitude": "Longitude",
-    "lottery": "Lottery",
+    "lotteryTitle": "Lottery",
     "lotteryDateNotes": "Lottery Date Notes",
     "lotteryDateQuestion": "When will the lottery be run?",
     "lotteryEndTime": "Lottery End Time",
@@ -832,6 +904,7 @@
     "mapPinPosition": "Map Pin Position",
     "mapPreview": "Map Preview",
     "mapPreviewNoAddress": "Enter an address to preview the map",
+    "maxAnnualIncome": "Maximum Annual Income",
     "maxIncomeMonth": "Maximum Income / Month",
     "maxIncomeYear": "Maximum Income / Year",
     "monthlyIncome": "%{income} per month",
@@ -861,9 +934,12 @@
       "header": "Public Lottery",
       "seeVideo": "See Video"
     },
+    "referralContactPhone": "Referral Contact Phone",
+    "referralSummary": "Referral Summary",
     "remainingUnitsAfterPreferenceConsideration": "After all preference holders have been considered, any remaining units will be available to other qualified applicants.",
     "rentalHistory": "Rental History",
     "requiredDocuments": "Required Documents",
+    "requiredToPublish": "Required to publish",
     "reservedCommunityBuilding": "%{type} Building",
     "reservedCommunityDescription": "Reserved Community Description",
     "reservedCommunitySeniorTitle": "Senior Building",
@@ -898,6 +974,9 @@
       "additionalInformationTitle": "Additional Information",
       "applicationAddressSubtitle": "In the event of paper applications, where do you want applications dropped off or mailed?",
       "applicationAddressTitle": "Application Address",
+      "applicationTypesTitle": "Application Types",
+      "applicationTypesSubtitle": "Configure the online application and upload paper application forms.",
+      "buildingAddress": "Building Address",
       "buildingDetailsSubtitle": "Tell us where the building is located.",
       "buildingDetailsTitle": "Building Details",
       "buildingFeaturesSubtitle": "Provide details about any amenities and unit details.",
@@ -934,6 +1013,7 @@
     "seeMaximumIncomeInformation": "See Maximum Income Information",
     "seePreferenceInformation": "See Preference Information",
     "seeUnitInformation": "See Unit Information",
+    "selectionCriteria": "Selection Criteria",
     "selectPreferences": "Select Preferences",
     "showClosedListings": "Show Closed Listings",
     "singleRoomOccupancy": "Single Room Occupancy",
@@ -957,6 +1037,8 @@
       "show": "Show Closed Listings",
       "title": "Closed Listings"
     },
+    "usingCommonDigitalApplication": "Are you using the common digital application?",
+    "usingCommonPaperApplication": "Are you using the common paper application?",
     "waitlist": {
       "closed": "Waitlist Closed",
       "currentSizeQuestion": "How many people are on the current list?",
@@ -1025,7 +1107,21 @@
       "individualUnits": "Individual Units",
       "delete": "Delete this Unit",
       "deleteConf": "Do you really want to delete this unit?",
-      "eligibility": "Eligibility"
+      "eligibility": "Eligibility",
+      "statusOptions": {
+        "unknown": "Unknown",
+        "available": "Available",
+        "occupied": "Occupied",
+        "unavailable": "Unavailable"
+      },
+      "typeOptions": {
+        "studio": "Studio",
+        "oneBdrm": "One Bedroom",
+        "twoBdrm": "Two Bedroom",
+        "threeBdrm": "Three Bedroom",
+        "fourBdrm": "Four Bedroom",
+        "SRO": "Single Room Occupancy"
+      }
     },
     "events": {
       "deleteThisEvent": "Delete this event",
@@ -1044,7 +1140,7 @@
     "accountSettings": "Account Settings",
     "browseProperties": "Browse Properties",
     "getAssistance": "Get Assistance",
-    "getFeedback": "This is a preview of our new website. We're just getting started. We'd love to get <a target='_blank' class='a-white lined' href='%{feedbackUrl}'>your feedback.</a>",
+    "getFeedback": "We'd love to get your feedback!",
     "listings": "Listings",
     "properties": "Properties",
     "applications": "Applications",
@@ -1057,7 +1153,8 @@
     "siteTitle": "Housing Portal",
     "siteTitlePartners": "Partners Portal",
     "skip": "Skip to main content",
-    "flags": "Flags"
+    "flags": "Flags",
+    "users": "Users"
   },
   "pageTitle": {
     "additionalResources": "More Housing Opportunities",
@@ -1077,6 +1174,10 @@
   },
   "region": {
     "name": "Local Region"
+  },
+  "progressNav": {
+    "srHeading": "Progress",
+    "current": "Current step: "
   },
   "states": {
     "AL": "Alabama",
@@ -1140,12 +1241,14 @@
     "areYouStillWorking": "Are you still working?",
     "accessibility": "Accessibility",
     "am": "AM",
+    "available": "available",
     "availability": "Availability",
     "automatic": "Automatic",
     "back": "Back",
     "built": "Built",
     "call": "Call",
     "cancel": "Cancel",
+    "close": "Close",
     "confirm": "Confirm",
     "chooseFromFolder": "Choose from folder",
     "custom": "Custom",
@@ -1169,15 +1272,21 @@
     "floor": "floor",
     "floors": "floors",
     "getDirections": "Get Directions",
+    "homePage": "Home page",
     "hour": "Hour",
     "household": "Household",
     "income": "Income",
+    "incomeRange": "Income Range",
+    "invite": "Invite",
     "jumpTo": "Jump to",
+    "jurisdiction": "Jurisdiction",
     "label": "Label",
+    "language": "Language",
     "lastUpdated": "Last Updated",
     "letter": "Letter",
     "less": "Less",
     "link": "Link",
+    "listing": "Listings",
     "loginIsRequired": "Login is required to view this page.",
     "menu": "Menu",
     "minimumIncome": "Minimum Income",
@@ -1219,6 +1328,7 @@
     "otherRelationShip": "Other Relationship",
     "rent": "Rent",
     "review": "Review",
+    "role": "Role",
     "secondPhone": "Second Phone",
     "seconds": "seconds",
     "seeDetails": "See Details",
@@ -1265,7 +1375,11 @@
     "seeRentalListings": "See Rentals",
     "title": "Apply for affordable housing in",
     "seeMoreOpportunities": "See more rental and ownership housing opportunities",
-    "viewAdditionalHousing": "View Additional Housing Opportunities and Resources"
+    "seeMoreOpportunitiesTruncated": "See more housing opportunities and resources",
+    "signUp": "Get emailed whenever a new listing is posted",
+    "signUpToday": "Sign up today",
+    "viewAdditionalHousing": "View additional housing opportunities and resources",
+    "viewAdditionalHousingTruncated": "View opportunities and resources"
   },
   "whatToExpect": {
     "label": "What to Expect",

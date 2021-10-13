@@ -6,17 +6,18 @@ import {
   getHopwaPreference,
   getLiveWorkPreference,
   getPbvPreference,
+  PriorityTypes,
 } from "./shared"
 import { AmiChart } from "../../ami-charts/entities/ami-chart.entity"
-import { CountyCode } from "../../shared/types/county-code"
 import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
 import { ListingStatus } from "../../listings/types/listing-status-enum"
 import { Listing } from "../../listings/entities/listing.entity"
 import { BaseEntity, DeepPartial } from "typeorm"
-import { UnitCreateDto } from "../../units/dto/unit.dto"
 import { ListingDefaultSeed } from "./listing-default-seed"
 import { UnitStatus } from "../../units/types/unit-status-enum"
 import { ListingReviewOrder } from "../../listings/types/listing-review-order-enum"
+import { CountyCode } from "../../shared/types/county-code"
+import { UnitCreateDto } from "../../units/dto/unit-create.dto"
 
 const coliseumProperty: PropertySeedType = {
   accessibility:
@@ -883,10 +884,11 @@ const coliseumListing: ListingSeedType = {
     latitude: 37.7549632,
     longitude: -122.1968792,
   },
+  countyCode: CountyCode.alameda,
   applicationDropOffAddress: null,
   applicationDropOffAddressOfficeHours: null,
   applicationMailingAddress: null,
-  applicationDueDate: getDate(10),
+  applicationDueDate: getDate(1),
   applicationDueTime: null,
   applicationFee: "12",
   applicationOpenDate: getDate(-10),
@@ -900,11 +902,14 @@ const coliseumListing: ListingSeedType = {
     latitude: 37.7549632,
     longitude: -122.1968792,
   },
+  image: {
+    label: "test_label",
+    fileId: "fileid",
+  },
   applicationPickUpAddressOfficeHours: null,
   buildingSelectionCriteria: null,
   costsNotIncluded:
     "Electricity, phone, TV, internet, and cable not included. For the PBV units, deposit is one month of the tenant-paid portion of rent (30% of income).",
-  countyCode: CountyCode.alameda,
   creditHistory:
     "Management staff will request credit histories on each adult member of each applicant household. It is the applicant’s responsibility that at least one household member can demonstrate utilities can be put in their name. For this to be demonstrated, at least one household member must have a credit report that shows no utility accounts in default. Applicants who cannot have utilities put in their name will be considered ineligible. Any currently open bankruptcy proceeding of any of the household members will be considered a disqualifying condition. Applicants will not be considered to have a poor credit history when they were delinquent in rent because they were withholding rent due to substandard housing conditions in a manner consistent with local ordinance; or had a poor rent paying history clearly related to an excessive rent relative to their income, and responsible efforts were made to resolve the non-payment problem. If there is a finding of any kind which would negatively impact an application, the applicant will be notified in writing. The applicant then shall have 14 calendar days in which such a finding may be appealed to staff for consideration.",
   criminalBackground: null,
@@ -931,7 +936,7 @@ const coliseumListing: ListingSeedType = {
   name: "Test: Coliseum",
   postmarkedApplicationsReceivedByDate: null,
   programRules: null,
-  rentalAssistance: null,
+  rentalAssistance: "",
   rentalHistory: "Two years' landlord history or homeless verification",
   requiredDocuments:
     "Application Document Checklist: https://org-housingbayarea-public-assets.s3-us-west-1.amazonaws.com/Tax+Credit+Application+Interview+Checklist.pdf",
@@ -949,26 +954,34 @@ const coliseumListing: ListingSeedType = {
 export class ListingColiseumSeed extends ListingDefaultSeed {
   async seed() {
     const priorityTypeMobilityAndHearingWithVisual = await this.unitAccessibilityPriorityTypeRepository.findOneOrFail(
-      { name: "Mobility and Hearing & Visual" }
+      {
+        name: PriorityTypes.mobilityHearingVisual,
+      }
     )
     const priorityTypeMobilityAndMobilityWithHearingAndVisual = await this.unitAccessibilityPriorityTypeRepository.findOneOrFail(
       {
-        name: "Mobility and Mobility with Hearing & Visual",
+        name: PriorityTypes.mobilityHearingVisual,
       }
     )
     const priorityTypeMobilityAndHearing = await this.unitAccessibilityPriorityTypeRepository.findOneOrFail(
       {
-        name: "Mobility and hearing",
+        name: PriorityTypes.mobilityHearing,
       }
     )
     const priorityMobility = await this.unitAccessibilityPriorityTypeRepository.findOneOrFail({
-      name: "Mobility",
+      name: PriorityTypes.mobility,
     })
     const unitTypeOneBdrm = await this.unitTypeRepository.findOneOrFail({ name: "oneBdrm" })
     const unitTypeTwoBdrm = await this.unitTypeRepository.findOneOrFail({ name: "twoBdrm" })
     const unitTypeThreeBdrm = await this.unitTypeRepository.findOneOrFail({ name: "threeBdrm" })
 
-    const amiChart = await this.amiChartRepository.save(getDefaultAmiChart())
+    const alamedaJurisdiction = await this.jurisdictionRepository.findOneOrFail({
+      name: CountyCode.alameda,
+    })
+    const amiChart = await this.amiChartRepository.save({
+      ...getDefaultAmiChart(),
+      jurisdiction: alamedaJurisdiction,
+    })
 
     const property = await this.propertyRepository.save({
       ...coliseumProperty,

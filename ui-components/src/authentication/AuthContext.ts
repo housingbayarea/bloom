@@ -24,6 +24,7 @@ import {
   useMemo,
   useReducer,
 } from "react"
+import qs from "qs"
 import axiosStatic from "axios"
 import { ConfigContext } from "../config/ConfigContext"
 import { createAction, createReducer } from "typesafe-actions"
@@ -42,6 +43,7 @@ type ContextProps = {
   unitPriorityService: UnitAccessibilityPriorityTypesService
   unitTypesService: UnitTypesService
   login: (email: string, password: string) => Promise<User | undefined>
+  loginWithToken: (token: string) => Promise<User | undefined>
   resetPassword: (
     token: string,
     password: string,
@@ -129,7 +131,7 @@ const reducer = createReducer(
         baseURL: apiUrl,
         headers: {
           language: state.language,
-          countyCode: process.env.countyCode,
+          jurisdictionName: process.env.jurisdictionName,
           ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
         },
       })
@@ -170,9 +172,12 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       baseURL: apiUrl,
       headers: {
         language: router.locale,
-        countyCode: process.env.countyCode,
+        jurisdictionName: process.env.jurisdictionName,
         appUrl: window.location.origin,
         ...(state.accessToken && { Authorization: `Bearer ${state.accessToken}` }),
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params)
       },
     })
   }, [router, apiUrl, state.accessToken, router.locale])
@@ -243,6 +248,16 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
       } finally {
         dispatch(stopLoading())
       }
+    },
+    loginWithToken: async (token: string) => {
+      dispatch(saveToken({ accessToken: token, apiUrl, dispatch }))
+      const profile = await userService?.userControllerProfile()
+      if (profile) {
+        dispatch(saveProfile(profile))
+        return profile
+      }
+
+      return undefined
     },
     signOut: () => dispatch(signOut()),
     resetPassword: async (token, password, passwordConfirmation) => {

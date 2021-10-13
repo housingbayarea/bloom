@@ -14,12 +14,14 @@ export interface FieldProps {
   id?: string
   name: string
   note?: string
+  subNote?: string
   label?: string
   defaultValue?: string | number
   onDrop?: (e: any) => boolean
   onPaste?: (e: any) => boolean
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   placeholder?: string
-  register: UseFormMethods["register"]
+  register?: UseFormMethods["register"]
   validation?: Record<string, any>
   disabled?: boolean
   prepend?: string
@@ -39,7 +41,12 @@ const Field = (props: FieldProps) => {
     classes.push(props.className)
   }
 
-  const controlClasses = ["control"]
+  const controlClasses = []
+
+  if (props.type !== "checkbox") {
+    controlClasses.push("control")
+  }
+
   if (props.controlClassName) {
     controlClasses.push(props.controlClassName)
   }
@@ -87,7 +94,7 @@ const Field = (props: FieldProps) => {
       <div className={controlClasses.join(" ")}>
         {props.prepend && <span className="prepend">{props.prepend}</span>}
         <input
-          aria-describedby={props.describedBy ? props.describedBy : `${idOrName}-error`}
+          aria-describedby={props.describedBy ? props.describedBy : `${idOrName}`}
           aria-invalid={!!props.error || false}
           className="input"
           type={type}
@@ -95,14 +102,16 @@ const Field = (props: FieldProps) => {
           name={props.name}
           defaultValue={props.defaultValue}
           placeholder={props.placeholder}
-          ref={props.register(props.validation)}
+          ref={props.register && props.register(props.validation)}
           disabled={props.disabled}
           onPaste={props.onPaste}
           onDrop={props.onDrop}
+          onChange={props.onChange}
           {...inputProps}
         />
         {isRadioOrCheckbox && label}
       </div>
+      {props.subNote && <p className="field-sub-note">{props.subNote}</p>}
       {props.errorMessage && (
         <ErrorMessage id={`${idOrName}-error`} error={props.error}>
           {props.errorMessage}

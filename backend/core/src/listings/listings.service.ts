@@ -1,28 +1,30 @@
 import { Injectable, NotFoundException } from "@nestjs/common"
 import jp from "jsonpath"
 import { Listing } from "./entities/listing.entity"
-import {
-  ListingCreateDto,
-  ListingUpdateDto,
-  ListingFilterParams,
-  filterTypeToFieldMap,
-  ListingsQueryParams,
-} from "./dto/listing.dto"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Pagination } from "nestjs-typeorm-paginate"
-import { Repository } from "typeorm"
+import { In, OrderByCondition, Repository } from "typeorm"
 import { plainToClass } from "class-transformer"
 import { PropertyCreateDto, PropertyUpdateDto } from "../property/dto/property.dto"
 import { addFilters } from "../shared/filter"
 import { getView } from "./views/view"
-import { transformUnits } from "../shared/units-transformations"
+import { summarizeUnits } from "../shared/units-transformations"
 import { Language } from "../../types"
 import { TranslationsService } from "../translations/translations.service"
+import { AmiChart } from "../ami-charts/entities/ami-chart.entity"
+import { HttpException, HttpStatus } from "@nestjs/common"
+import { OrderByFieldsEnum } from "./types/listing-orderby-enum"
+import { ListingCreateDto } from "./dto/listing-create.dto"
+import { ListingUpdateDto } from "./dto/listing-update.dto"
+import { ListingFilterParams } from "./dto/listing-filter-params"
+import { ListingsQueryParams } from "./dto/listings-query-params"
+import { filterTypeToFieldMap } from "./dto/filter-type-to-field-map"
 
 @Injectable()
 export class ListingsService {
   constructor(
     @InjectRepository(Listing) private readonly listingRepository: Repository<Listing>,
+    @InjectRepository(AmiChart) private readonly amiChartsRepository: Repository<AmiChart>,
     private readonly translationService: TranslationsService
   ) {}
 
@@ -31,19 +33,41 @@ export class ListingsService {
   }
 
   public async list(params: ListingsQueryParams): Promise<Pagination<Listing>> {
+    const getOrderByCondition = (params: ListingsQueryParams): OrderByCondition => {
+      switch (params.orderBy) {
+        case OrderByFieldsEnum.mostRecentlyUpdated:
+          return { "listings.updated_at": "DESC" }
+        case OrderByFieldsEnum.applicationDates:
+        case undefined:
+          // Default to ordering by applicationDates (i.e. applicationDueDate
+          // and applicationOpenDate) if no orderBy param is specified.
+          return {
+            "listings.applicationDueDate": "ASC",
+            "listings.applicationOpenDate": "DESC",
+          }
+        default:
+          throw new HttpException(
+            `OrderBy parameter not recognized or not yet implemented.`,
+            HttpStatus.NOT_IMPLEMENTED
+          )
+      }
+    }
+
     // Inner query to get the sorted listing ids of the listings to display
     // TODO(avaleske): Only join the tables we need for the filters that are applied
     const innerFilteredQuery = this.listingRepository
       .createQueryBuilder("listings")
       .select("listings.id", "listings_id")
       .leftJoin("listings.property", "property")
+      .leftJoin("listings.leasingAgents", "leasingAgents")
+      .leftJoin("property.buildingAddress", "buildingAddress")
       .leftJoin("property.units", "units")
       .leftJoin("units.unitType", "unitTypeRef")
       .groupBy("listings.id")
-      .orderBy({ "listings.id": "DESC" })
+      .orderBy(getOrderByCondition(params))
 
     if (params.filter) {
-      addFilters<ListingFilterParams, typeof filterTypeToFieldMap>(
+      addFilters<Array<ListingFilterParams>, typeof filterTypeToFieldMap>(
         params.filter,
         filterTypeToFieldMap,
         innerFilteredQuery
@@ -65,16 +89,15 @@ export class ListingsService {
 
     let listings = await view
       .getViewQb()
-      .orderBy({
-        "listings.applicationDueDate": "ASC",
-        "listings.applicationOpenDate": "DESC",
-        "units.max_occupancy": "ASC",
-      })
       .andWhere("listings.id IN (" + innerFilteredQuery.getQuery() + ")")
       // Set the inner WHERE params on the outer query, as noted in the TypeORM docs.
       // (WHERE params are the values passed to andWhere() that TypeORM escapes
       // and substitues for the `:paramName` placeholders in the WHERE clause.)
       .setParameters(innerFilteredQuery.getParameters())
+      .orderBy(getOrderByCondition(params))
+      // Order by units.maxOccupancy is applied last so that it affects the order
+      // of units _within_ a listing, rather than the overall listing order)
+      .addOrderBy("units.max_occupancy", "ASC", "NULLS LAST")
       .getMany()
 
     // get summarized units from view
@@ -120,7 +143,8 @@ export class ListingsService {
       ...listingDto,
       property: plainToClass(PropertyCreateDto, listingDto),
     })
-    return await listing.save()
+    const saveResult = await listing.save()
+    return saveResult
   }
 
   async update(listingDto: ListingUpdateDto) {
@@ -132,7 +156,7 @@ export class ListingsService {
       throw new NotFoundException()
     }
     listingDto.units.forEach((unit) => {
-      if (unit.id.length === 0 || unit.id === "undefined") {
+      if (!unit.id) {
         delete unit.id
       }
     })
@@ -173,11 +197,21 @@ export class ListingsService {
       throw new NotFoundException()
     }
 
-    result.unitsSummarized = transformUnits(result.property.units)
     if (lang !== Language.en) {
       await this.translationService.translateListing(result, lang)
     }
 
+    await this.addUnitsSummarized(result)
     return result
+  }
+
+  private async addUnitsSummarized(listing: Listing) {
+    if (Array.isArray(listing.property.units) && listing.property.units.length > 0) {
+      const amiCharts = await this.amiChartsRepository.find({
+        where: { id: In(listing.property.units.map((unit) => unit.amiChartId)) },
+      })
+      listing.unitsSummarized = summarizeUnits(listing.property.units, amiCharts)
+    }
+    return listing
   }
 }

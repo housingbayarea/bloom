@@ -1,7 +1,12 @@
 import React from "react"
 import { ErrorMessage } from "../notifications/ErrorMessage"
-import { FormOptions, SelectOption } from "../helpers/formOptions"
+import { FormOptions } from "../helpers/formOptions"
 import { UseFormMethods } from "react-hook-form"
+
+export interface SelectOption {
+  value: string
+  label: string
+}
 
 interface SelectProps {
   error?: boolean
@@ -12,14 +17,16 @@ interface SelectProps {
   id?: string
   name: string
   label?: string
+  subNote?: string
   defaultValue?: string
   placeholder?: string
-  register: UseFormMethods["register"]
+  register?: UseFormMethods["register"]
   validation?: Record<string, unknown>
   disabled?: boolean
   options: (string | SelectOption)[]
   keyPrefix?: string
   describedBy?: string
+  inputProps?: Record<string, unknown>
 }
 
 export const Select = ({
@@ -30,7 +37,6 @@ export const Select = ({
   id,
   name,
   label,
-  defaultValue = "",
   placeholder,
   register,
   validation,
@@ -38,9 +44,12 @@ export const Select = ({
   options,
   keyPrefix,
   describedBy,
+  inputProps,
+  defaultValue,
+  subNote,
 }: SelectProps) => {
   return (
-    <div className={"field " + (error ? "error" : "")}>
+    <div className={`field ${error ? "error" : ""}`}>
       <label className={labelClassName} htmlFor={id}>
         {label}
       </label>
@@ -51,9 +60,10 @@ export const Select = ({
           name={name}
           aria-describedby={describedBy ? describedBy : `${id}-error`}
           aria-invalid={!!error || false}
-          defaultValue={defaultValue}
-          ref={register(validation)}
+          ref={register && register(validation)}
           disabled={disabled}
+          defaultValue={defaultValue ?? ""}
+          {...inputProps}
         >
           {placeholder && (
             <option value="" disabled>
@@ -63,6 +73,7 @@ export const Select = ({
           <FormOptions options={options} keyPrefix={keyPrefix} />
         </select>
       </div>
+      {subNote && <p className="field-sub-note">{subNote}</p>}
       {error && errorMessage && (
         <ErrorMessage id={`${id}-error`} error={error}>
           {errorMessage}

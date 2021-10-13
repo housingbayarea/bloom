@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import { useFormContext } from "react-hook-form"
 import {
   t,
@@ -30,8 +30,8 @@ const LotteryResults = (props: LotteryResultsProps) => {
   const { watch } = formMethods
 
   const { submitCallback, drawerState, showDrawer } = props
-  const [progressValue, setProgressValue] = React.useState(0)
-  const [cloudinaryData, setCloudinaryData] = React.useState({
+  const [progressValue, setProgressValue] = useState(0)
+  const [cloudinaryData, setCloudinaryData] = useState({
     id: "",
     url: "",
   })
@@ -72,7 +72,7 @@ const LotteryResults = (props: LotteryResultsProps) => {
   }
 
   /*
-    Show a preview of the uploaded file within the photo drawer
+    Show a preview of the uploaded file within the upload drawer
   */
   const previewTableRows = []
   if (cloudinaryData.url !== "") {
@@ -147,7 +147,7 @@ const LotteryResults = (props: LotteryResultsProps) => {
           accept="application/pdf"
           progress={progressValue}
         />
-        {cloudinaryData.url != "" && (
+        {cloudinaryData.url !== "" && (
           <MinimalTable headers={resultsTableHeaders} data={previewTableRows}></MinimalTable>
         )}
       </section>

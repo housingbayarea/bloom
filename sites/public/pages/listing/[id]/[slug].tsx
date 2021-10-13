@@ -1,4 +1,5 @@
 import React from "react"
+import qs from "qs"
 import Head from "next/head"
 import axios from "axios"
 import { Listing } from "@bloom-housing/backend-core/types"
@@ -38,30 +39,40 @@ export default function ListingPage(props: ListingProps) {
 }
 
 export async function getStaticPaths(context: { locales: Array<string> }) {
-  let response
-
   try {
-    response = await axios.get(
-      process.env.listingServiceUrl +
-        "?view=base&limit=all&filter[$comparison]=<>&filter[status]=pending"
-    )
-  } catch (e) {
+    const response = await axios.get(process.env.listingServiceUrl, {
+      params: {
+        view: "base",
+        limit: "all",
+        filter: [
+          {
+            $comparison: "<>",
+            status: "pending",
+          },
+        ],
+      },
+      paramsSerializer: (params) => {
+        return qs.stringify(params)
+      },
+    })
+
+    return {
+      paths: response?.data?.items
+        ? context.locales.flatMap((locale: string) =>
+            response.data.items.map((listing) => ({
+              params: { id: listing.id, slug: listing.urlSlug },
+              locale: locale,
+            }))
+          )
+        : [],
+      fallback: true,
+    }
+  } catch (error) {
+    console.error("listings getStaticPaths error = ", error)
     return {
       paths: [],
-      fallback: false,
+      fallback: true,
     }
-  }
-
-  return {
-    paths: response?.data?.items
-      ? context.locales.flatMap((locale: string) =>
-          response.data.items.map((listing) => ({
-            params: { id: listing.id, slug: listing.urlSlug },
-            locale: locale,
-          }))
-        )
-      : [],
-    fallback: true,
   }
 }
 

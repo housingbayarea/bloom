@@ -2,7 +2,6 @@
 2.2 - Add Members
 Add household members
 */
-import React from "react"
 import { useRouter } from "next/router"
 import {
   AppearanceStyleType,
@@ -24,6 +23,8 @@ const ApplicationAddMembers = () => {
   const router = useRouter()
   const currentPageSection = 2
   const householdSize = application.householdMembers.length + 1
+  // TODO: toggle this verification off at the jurisdiction level with a feature flag
+  const shouldValidateHouseholdSize = false
 
   /* Form Handler */
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -41,12 +42,26 @@ const ApplicationAddMembers = () => {
 
   const applicant = application.applicant
 
-  const membersSection = application.householdMembers.map((member) => {
+  const editMember = (orderId: number) => {
+    if (orderId != undefined && orderId >= 0) {
+      void router.push({
+        pathname: "/applications/household/member",
+        query: { memberId: orderId },
+      })
+    } else {
+      void router.push("/applications/contact/name")
+    }
+  }
+
+  const membersSection = application.householdMembers.map((member, index) => {
     return (
       <HouseholdMemberForm
-        member={member}
+        editMember={editMember}
         key={member}
-        type={t("application.household.householdMember")}
+        memberFirstName={member.firstName}
+        memberId={index}
+        memberLastName={member.lastName}
+        subtitle={t("application.household.householdMember")}
       />
     )
   })
@@ -78,21 +93,26 @@ const ApplicationAddMembers = () => {
 
         <Form onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <HouseholdSizeField
-              listing={listing}
-              householdSize={householdSize}
-              validate={true}
-              register={register}
-              error={errors.householdSize}
-              clearErrors={clearErrors}
-              assistanceUrl={t("application.household.assistanceUrl")}
-            />
+            {shouldValidateHouseholdSize && (
+              <HouseholdSizeField
+                assistanceUrl={t("application.household.assistanceUrl")}
+                clearErrors={clearErrors}
+                error={errors.householdSize}
+                householdSize={householdSize}
+                householdSizeMax={listing?.householdSizeMax}
+                householdSizeMin={listing?.householdSizeMin}
+                register={register}
+                validate={true}
+              />
+            )}
           </div>
           <div className="form-card__group my-0 mx-0 pb-4 pt-4">
             <HouseholdMemberForm
-              member={applicant}
-              type={t("application.household.primaryApplicant")}
+              editMember={editMember}
               editMode={!application.autofilled}
+              memberFirstName={applicant.firstName}
+              memberLastName={applicant.lastName}
+              subtitle={t("application.household.primaryApplicant")}
             />
             {membersSection}
           </div>

@@ -26,12 +26,11 @@ import {
   MaxLength,
   ValidateNested,
 } from "class-validator"
-import { ApiProperty } from "@nestjs/swagger"
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 import { Property } from "../../property/entities/property.entity"
 import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
 import { ListingStatus } from "../types/listing-status-enum"
 import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
-import { CountyCode } from "../../shared/types/county-code"
 import { Jurisdiction } from "../../jurisdictions/entities/jurisdiction.entity"
 import { ReservedCommunityType } from "../../reserved-community-type/entities/reserved-community-type.entity"
 import { Asset } from "../../assets/entities/asset.entity"
@@ -43,6 +42,8 @@ import { ApplicationMethod } from "../../application-methods/entities/applicatio
 import { UnitsSummarized } from "../../units/types/units-summarized"
 import { UnitsSummary } from "../../units-summary/entities/units-summary.entity"
 import { ListingReviewOrder } from "../types/listing-review-order-enum"
+import { ApplicationMethodDto } from "../../application-methods/dto/application-method.dto"
+import { ApplicationMethodType } from "../../application-methods/types/application-method-type-enum"
 
 @Entity({ name: "listings" })
 class Listing extends BaseEntity {
@@ -76,11 +77,44 @@ class Listing extends BaseEntity {
   @Type(() => Preference)
   preferences: Preference[]
 
-  @OneToMany(() => ApplicationMethod, (am) => am.listing, { eager: true })
+  @OneToMany(() => ApplicationMethod, (am) => am.listing, { cascade: true, eager: true })
   @Expose()
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ApplicationMethod)
   applicationMethods: ApplicationMethod[]
+
+  @Expose()
+  @ApiPropertyOptional()
+  get referralApplication(): ApplicationMethodDto | undefined {
+    return this.applicationMethods.find((method) => method.type === ApplicationMethodType.Referral)
+  }
+
+  // booleans to make dealing with different application methods easier to parse
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  digitalApplication?: boolean
+
+  @Column({ type: "boolean", default: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  commonDigitalApplication?: boolean
+
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  paperApplication?: boolean
+
+  @Column({ type: "boolean", default: false })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
+  referralOpportunity?: boolean
+
+  // end application method booleans
 
   @Column("jsonb")
   @Expose()
@@ -207,6 +241,13 @@ class Listing extends BaseEntity {
   @IsString({ groups: [ValidationsGroupsEnum.default] })
   buildingSelectionCriteria?: string | null
 
+  @ManyToOne(() => Asset, { eager: true, nullable: true, cascade: true })
+  @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
+  @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
+  @Type(() => Asset)
+  buildingSelectionCriteriaFile?: Asset | null
+
   @Column({ type: "text", nullable: true })
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
@@ -243,12 +284,11 @@ class Listing extends BaseEntity {
   @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
   disableUnitsAccordion?: boolean | null
 
-  @ManyToOne(() => Jurisdiction, { eager: true, nullable: true })
+  @ManyToOne(() => Jurisdiction, { eager: true })
   @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => Jurisdiction)
-  jurisdiction?: Jurisdiction | null
+  jurisdiction: Jurisdiction
 
   @ManyToOne(() => Address, { eager: true, nullable: true, cascade: true })
   @Expose()
@@ -391,12 +431,6 @@ class Listing extends BaseEntity {
   @ApiProperty({ enum: CSVFormattingType, enumName: "CSVFormattingType" })
   CSVFormattingType: CSVFormattingType
 
-  @Column({ enum: CountyCode, default: CountyCode.alameda })
-  @Expose()
-  @IsEnum(CountyCode, { groups: [ValidationsGroupsEnum.default] })
-  @ApiProperty({ enum: CountyCode, enumName: "CountyCode" })
-  countyCode: CountyCode
-
   @Expose()
   @ApiProperty()
   get showWaitlist(): boolean {
@@ -470,11 +504,12 @@ class Listing extends BaseEntity {
   customMapPin?: boolean | null
 
   @OneToMany(() => UnitsSummary, (summary) => summary.listing, {
-    nullable: false,
+    nullable: true,
     eager: true,
     cascade: true,
   })
   @Expose()
+  @IsOptional({ groups: [ValidationsGroupsEnum.default], each: true })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => UnitsSummary)
   unitsSummary: UnitsSummary[]

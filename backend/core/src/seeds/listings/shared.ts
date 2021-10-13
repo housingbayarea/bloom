@@ -6,17 +6,17 @@ import {
   PropertySeedType,
   UnitSeedType,
 } from "./listings"
-import { CountyCode } from "../../shared/types/county-code"
 import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
 import { ListingStatus } from "../../listings/types/listing-status-enum"
 import { InputType } from "../../shared/types/input-type"
-import { UserCreateDto } from "../../auth/dto/user.dto"
 import { AmiChart } from "../../ami-charts/entities/ami-chart.entity"
 import { ListingEventType } from "../../listings/types/listing-event-type-enum"
 import { AmiChartCreateDto } from "../../ami-charts/dto/ami-chart.dto"
 import { ListingEventCreateDto } from "../../listings/dto/listing-event.dto"
 import { UnitStatus } from "../../units/types/unit-status-enum"
 import { ListingReviewOrder } from "../../listings/types/listing-review-order-enum"
+import { CountyCode } from "../../shared/types/county-code"
+import { UserCreateDto } from "../../auth/dto/user-create.dto"
 
 export const getDate = (days: number) => {
   const someDate = new Date()
@@ -28,7 +28,17 @@ export function getDefaultAmiChart() {
   return JSON.parse(JSON.stringify(defaultAmiChart))
 }
 
-export const defaultAmiChart: AmiChartCreateDto = {
+export enum PriorityTypes {
+  mobility = "Mobility",
+  hearing = "Hearing",
+  visual = "Visual",
+  hearingVisual = "Hearing and Visual",
+  mobilityHearing = "Mobility and Hearing",
+  mobilityVisual = "Mobility and Visual",
+  mobilityHearingVisual = "Mobility, Hearing and Visual",
+}
+
+export const defaultAmiChart: Omit<AmiChartCreateDto, "jurisdiction"> = {
   name: "AlamedaCountyTCAC2021",
   items: [
     {
@@ -422,7 +432,7 @@ export const defaultUnits: Array<UnitSeedType> = [
   },
 ]
 
-export const defaultLeasingAgents: UserCreateDto[] = [
+export const defaultLeasingAgents: Omit<UserCreateDto, "jurisdictions">[] = [
   {
     firstName: "First",
     lastName: "Last",
@@ -460,6 +470,7 @@ export const defaultListing: ListingSeedType = {
     latitude: 37.789673,
     longitude: -122.40151,
   },
+  countyCode: CountyCode.alameda,
   applicationDropOffAddress: null,
   applicationDropOffAddressOfficeHours: null,
   applicationMailingAddress: null,
@@ -480,7 +491,6 @@ export const defaultListing: ListingSeedType = {
   applicationPickUpAddressOfficeHours: "Custom pick up address office hours text",
   buildingSelectionCriteria: "example.com",
   costsNotIncluded: "Custom costs not included text",
-  countyCode: CountyCode.alameda,
   creditHistory: "Custom credit history text",
   criminalBackground: "Custom criminal background text",
   CSVFormattingType: CSVFormattingType.basic,
@@ -488,6 +498,10 @@ export const defaultListing: ListingSeedType = {
   depositMin: "500",
   disableUnitsAccordion: true,
   displayWaitlistSize: false,
+  image: {
+    label: "test_label",
+    fileId: "fileid",
+  },
   leasingAgentAddress: {
     city: "San Francisco",
     state: "CA",

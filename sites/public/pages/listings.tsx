@@ -1,9 +1,10 @@
 import Head from "next/head"
-import axios from "axios"
-import { ListingsGroup, ListingsList, PageHeader, t } from "@bloom-housing/ui-components"
+import { ListingsGroup, PageHeader, t } from "@bloom-housing/ui-components"
 import { Listing, ListingStatus } from "@bloom-housing/backend-core/types"
 import Layout from "../layouts/application"
 import { MetaTags } from "../src/MetaTags"
+import { getListings } from "../lib/helpers"
+import { fetchBaseListingData } from "../lib/hooks"
 
 export interface ListingsProps {
   openListings: Listing[]
@@ -11,8 +12,8 @@ export interface ListingsProps {
 }
 
 const openListings = (listings) => {
-  return listings.length > 0 ? (
-    <ListingsList listings={listings} />
+  return listings?.length > 0 ? (
+    <>{getListings(listings)}</>
   ) : (
     <div className="notice-block">
       <h3 className="m-auto text-gray-800">{t("listings.noOpenListings")}</h3>
@@ -22,13 +23,15 @@ const openListings = (listings) => {
 
 const closedListings = (listings) => {
   return (
-    listings.length > 0 && (
+    listings?.length > 0 && (
       <ListingsGroup
-        listings={listings}
+        listingsCount={listings.length}
         header={t("listings.closedListings")}
         hideButtonText={t("listings.hideClosedListings")}
         showButtonText={t("listings.showClosedListings")}
-      />
+      >
+        {getListings(listings)}
+      </ListingsGroup>
     )
   )
 }
@@ -43,6 +46,7 @@ export default function ListingsPage(props: ListingsProps) {
       <Head>
         <title>{pageTitle}</title>
       </Head>
+
       <MetaTags title={t("nav.siteTitle")} image={metaImage} description={metaDescription} />
       <PageHeader title={t("pageTitle.rent")} />
       <div>
@@ -54,24 +58,13 @@ export default function ListingsPage(props: ListingsProps) {
 }
 
 export async function getStaticProps() {
-  let openListings = []
-  let closedListings = []
-
-  try {
-    const response = await axios.get(
-      process.env.listingServiceUrl +
-        "?view=base&limit=all&filter[$comparison]=<>&filter[status]=pending"
-    )
-
-    openListings = response?.data?.items
-      ? response.data.items.filter((listing: Listing) => listing.status === ListingStatus.active)
-      : []
-    closedListings = response?.data?.items
-      ? response.data.items.filter((listing: Listing) => listing.status === ListingStatus.closed)
-      : []
-  } catch (error) {
-    console.error(error)
-  }
+  const listings = await fetchBaseListingData()
+  const openListings = listings.filter(
+    (listing: Listing) => listing.status === ListingStatus.active
+  )
+  const closedListings = listings.filter(
+    (listing: Listing) => listing.status === ListingStatus.closed
+  )
 
   return { props: { openListings, closedListings }, revalidate: process.env.cacheRevalidate }
 }

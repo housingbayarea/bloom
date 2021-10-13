@@ -26,7 +26,7 @@ const CommunityType = ({ listing }: CommunityTypeProps) => {
     })
     setOptions(["", ...arrayToFormOptions<ReservedCommunityType>(optionsTranslated, "name", "id")])
     reset()
-  }, [reservedCommunityTypes])
+  }, [reservedCommunityTypes, reset])
 
   return (
     <GridSection
@@ -58,6 +58,7 @@ const CommunityType = ({ listing }: CommunityTypeProps) => {
             id={"reservedCommunityDescription"}
             fullWidth={true}
             register={register}
+            maxLength={150}
           />
         </GridCell>
       </GridSection>

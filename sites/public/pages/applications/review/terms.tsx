@@ -62,7 +62,7 @@ const ApplicationTerms = () => {
         setSubmitting(false)
         setApiError(true)
         window.scrollTo(0, 0)
-        console.error(`Error creating application: ${err}`)
+        throw new Error(JSON.stringify(err.response.data))
       })
   }
 
@@ -90,7 +90,7 @@ const ApplicationTerms = () => {
 
         {apiError && (
           <AlertBox type="alert" inverted onClose={() => setApiError(false)}>
-            {t("errors.rateLimitExceeded")}
+            {t("errors.alert.badRequest")}
           </AlertBox>
         )}
 

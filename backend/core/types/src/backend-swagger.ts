@@ -93,12 +93,18 @@ export class AmiChartsService {
   /**
    * List amiCharts
    */
-  list(options: IRequestOptions = {}): Promise<AmiChart[]> {
+  list(
+    params: {
+      /**  */
+      jurisdictionName?: string
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<AmiChart[]> {
     return new Promise((resolve, reject) => {
       let url = basePath + "/amiCharts"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
+      configs.params = { jurisdictionName: params["jurisdictionName"] }
       let data = null
 
       configs.data = data
@@ -852,6 +858,76 @@ export class UserService {
       axios(configs, resolve, reject)
     })
   }
+  /**
+   * List users
+   */
+  list(
+    params: {
+      /**  */
+      page?: number
+      /**  */
+      limit?: number | "all"
+      /**  */
+      filter?: UserFilterParams[]
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<PaginatedUserList> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/user/list"
+
+      const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
+      configs.params = { page: params["page"], limit: params["limit"], filter: params["filter"] }
+      let data = null
+
+      configs.data = data
+      axios(configs, resolve, reject)
+    })
+  }
+  /**
+   * Invite user
+   */
+  invite(
+    params: {
+      /** requestBody */
+      body?: UserInvite
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<UserBasic> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/user/invite"
+
+      const configs: IRequestConfig = getConfigs("post", "application/json", url, options)
+
+      let data = params.body
+
+      configs.data = data
+      axios(configs, resolve, reject)
+    })
+  }
+}
+
+export class UserProfileService {
+  /**
+   * Update profile user
+   */
+  update(
+    params: {
+      /** requestBody */
+      body?: UserProfileUpdate
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<User> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/userProfile/{id}"
+
+      const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
+
+      let data = params.body
+
+      configs.data = data
+      axios(configs, resolve, reject)
+    })
+  }
 }
 
 export class JurisdictionsService {
@@ -956,6 +1032,28 @@ export class JurisdictionsService {
       axios(configs, resolve, reject)
     })
   }
+  /**
+   * Get jurisdiction by name
+   */
+  retrieveByName(
+    params: {
+      /**  */
+      jurisdictionName: string
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<Jurisdiction> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/jurisdictions/byName/{jurisdictionName}"
+      url = url.replace("{jurisdictionName}", params["jurisdictionName"] + "")
+
+      const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
+
+      let data = null
+
+      configs.data = data
+      axios(configs, resolve, reject)
+    })
+  }
 }
 
 export class ListingsService {
@@ -971,6 +1069,10 @@ export class ListingsService {
       /**  */
       filter?: ListingFilterParams[]
       /**  */
+      view?: string
+      /**  */
+      orderBy?: OrderByFieldsEnum
+      /**  */
       jsonpath?: string
     } = {} as any,
     options: IRequestOptions = {}
@@ -983,6 +1085,8 @@ export class ListingsService {
         page: params["page"],
         limit: params["limit"],
         filter: params["filter"],
+        view: params["view"],
+        orderBy: params["orderBy"],
         jsonpath: params["jsonpath"],
       }
       let data = null
@@ -1019,6 +1123,8 @@ export class ListingsService {
     params: {
       /**  */
       listingId: string
+      /**  */
+      view?: string
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<Listing> {
@@ -1027,7 +1133,7 @@ export class ListingsService {
       url = url.replace("{listingId}", params["listingId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
+      configs.params = { view: params["view"] }
       let data = null
 
       configs.data = data
@@ -1502,12 +1608,18 @@ export class ReservedCommunityTypesService {
   /**
    * List reservedCommunityTypes
    */
-  list(options: IRequestOptions = {}): Promise<ReservedCommunityType[]> {
+  list(
+    params: {
+      /**  */
+      jurisdictionName?: string
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<ReservedCommunityType[]> {
     return new Promise((resolve, reject) => {
       let url = basePath + "/reservedCommunityTypes"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
+      configs.params = { jurisdictionName: params["jurisdictionName"] }
       let data = null
 
       configs.data = data
@@ -2139,9 +2251,29 @@ export interface AmiChartItem {
   income: number
 }
 
+export interface Jurisdiction {
+  /**  */
+  id: string
+
+  /**  */
+  createdAt: Date
+
+  /**  */
+  updatedAt: Date
+
+  /**  */
+  name: string
+
+  /**  */
+  notificationsSignUpURL?: string
+}
+
 export interface AmiChart {
   /**  */
   items: AmiChartItem[]
+
+  /**  */
+  jurisdiction: Jurisdiction
 
   /**  */
   id: string
@@ -2156,9 +2288,17 @@ export interface AmiChart {
   name: string
 }
 
+export interface Id {
+  /**  */
+  id: string
+}
+
 export interface AmiChartCreate {
   /**  */
   items: AmiChartItem[]
+
+  /**  */
+  jurisdiction: Id
 
   /**  */
   name: string
@@ -2178,12 +2318,10 @@ export interface AmiChartUpdate {
   items: AmiChartItem[]
 
   /**  */
-  name: string
-}
+  jurisdiction: Id
 
-export interface Id {
   /**  */
-  id: string
+  name: string
 }
 
 export interface Address {
@@ -2200,22 +2338,22 @@ export interface Address {
   placeName?: string
 
   /**  */
-  city?: string
+  city: string
 
   /**  */
   county?: string
 
   /**  */
-  state?: string
+  state: string
 
   /**  */
-  street?: string
+  street: string
 
   /**  */
   street2?: string
 
   /**  */
-  zipCode?: string
+  zipCode: string
 
   /**  */
   latitude?: number
@@ -2420,6 +2558,23 @@ export interface HouseholdMember {
   workInRegion?: string
 }
 
+export interface UnitType {
+  /**  */
+  id: string
+
+  /**  */
+  createdAt: Date
+
+  /**  */
+  updatedAt: Date
+
+  /**  */
+  name: string
+
+  /**  */
+  numBedrooms: number
+}
+
 export interface ApplicationPreferenceOption {
   /**  */
   key: string
@@ -2483,6 +2638,9 @@ export interface Application {
   householdMembers: HouseholdMember[]
 
   /**  */
+  preferredUnit: UnitType[]
+
+  /**  */
   id: string
 
   /**  */
@@ -2525,9 +2683,6 @@ export interface Application {
   income?: string
 
   /**  */
-  preferredUnit: string[]
-
-  /**  */
   preferences: ApplicationPreference[]
 
   /**  */
@@ -2538,6 +2693,9 @@ export interface Application {
 
   /**  */
   markedAsDuplicate: boolean
+
+  /**  */
+  confirmationCode: string
 }
 
 export interface ApplicationFlaggedSet {
@@ -2650,6 +2808,9 @@ export interface ApplicationMethod {
   paperApplications?: PaperApplication[]
 
   /**  */
+  listing: Id
+
+  /**  */
   id: string
 
   /**  */
@@ -2671,12 +2832,28 @@ export interface ApplicationMethod {
   phoneNumber?: string
 }
 
+export interface AssetCreate {
+  /**  */
+  fileId: string
+
+  /**  */
+  label: string
+}
+
+export interface PaperApplicationCreate {
+  /**  */
+  language: Language
+
+  /**  */
+  file?: CombinedFileTypes
+}
+
 export interface ApplicationMethodCreate {
   /**  */
   type: ApplicationMethodType
 
   /**  */
-  paperApplications?: Id[]
+  paperApplications?: PaperApplicationCreate[]
 
   /**  */
   label?: string
@@ -2689,6 +2866,43 @@ export interface ApplicationMethodCreate {
 
   /**  */
   phoneNumber?: string
+
+  /**  */
+  listing: Id
+}
+
+export interface AssetUpdate {
+  /**  */
+  id?: string
+
+  /**  */
+  createdAt?: Date
+
+  /**  */
+  updatedAt?: Date
+
+  /**  */
+  fileId: string
+
+  /**  */
+  label: string
+}
+
+export interface PaperApplicationUpdate {
+  /**  */
+  language: Language
+
+  /**  */
+  id?: string
+
+  /**  */
+  createdAt?: Date
+
+  /**  */
+  updatedAt?: Date
+
+  /**  */
+  file?: CombinedFileTypes
 }
 
 export interface ApplicationMethodUpdate {
@@ -2705,7 +2919,7 @@ export interface ApplicationMethodUpdate {
   updatedAt?: Date
 
   /**  */
-  paperApplications?: Id[]
+  paperApplications?: PaperApplicationUpdate[]
 
   /**  */
   label?: string
@@ -2718,6 +2932,9 @@ export interface ApplicationMethodUpdate {
 
   /**  */
   phoneNumber?: string
+
+  /**  */
+  listing: Id
 }
 
 export interface BooleanInput {
@@ -2747,22 +2964,22 @@ export interface AddressCreate {
   placeName?: string
 
   /**  */
-  city?: string
+  city: string
 
   /**  */
   county?: string
 
   /**  */
-  state?: string
+  state: string
 
   /**  */
-  street?: string
+  street: string
 
   /**  */
   street2?: string
 
   /**  */
-  zipCode?: string
+  zipCode: string
 
   /**  */
   latitude?: number
@@ -3004,6 +3221,9 @@ export interface ApplicationCreate {
   householdMembers: HouseholdMemberCreate[]
 
   /**  */
+  preferredUnit: Id[]
+
+  /**  */
   appUrl?: string
 
   /**  */
@@ -3034,9 +3254,6 @@ export interface ApplicationCreate {
   income?: string
 
   /**  */
-  preferredUnit: string[]
-
-  /**  */
   preferences: ApplicationPreference[]
 
   /**  */
@@ -3060,22 +3277,22 @@ export interface AddressUpdate {
   placeName?: string
 
   /**  */
-  city?: string
+  city: string
 
   /**  */
   county?: string
 
   /**  */
-  state?: string
+  state: string
 
   /**  */
-  street?: string
+  street: string
 
   /**  */
   street2?: string
 
   /**  */
-  zipCode?: string
+  zipCode: string
 
   /**  */
   latitude?: number
@@ -3330,6 +3547,9 @@ export interface ApplicationUpdate {
   householdMembers: HouseholdMemberUpdate[]
 
   /**  */
+  preferredUnit: Id[]
+
+  /**  */
   appUrl?: string
 
   /**  */
@@ -3360,9 +3580,6 @@ export interface ApplicationUpdate {
   income?: string
 
   /**  */
-  preferredUnit: string[]
-
-  /**  */
   preferences: ApplicationPreference[]
 
   /**  */
@@ -3370,14 +3587,6 @@ export interface ApplicationUpdate {
 
   /**  */
   submissionDate?: Date
-}
-
-export interface AssetCreate {
-  /**  */
-  fileId: string
-
-  /**  */
-  label: string
 }
 
 export interface CreatePresignedUploadMetadata {
@@ -3411,20 +3620,113 @@ export interface LoginResponse {
   accessToken: string
 }
 
+export interface IdName {
+  /**  */
+  id: string
+
+  /**  */
+  name: string
+}
+
 export interface UserRoles {
   /**  */
-  user: User
+  user: Id
 
   /**  */
-  isAdmin: boolean
+  isAdmin?: boolean
 
   /**  */
-  isPartner: boolean
+  isPartner?: boolean
 }
 
 export interface User {
   /**  */
   language?: Language
+
+  /**  */
+  leasingAgentInListings?: IdName[]
+
+  /**  */
+  roles?: CombinedRolesTypes
+
+  /**  */
+  jurisdictions: Jurisdiction[]
+
+  /**  */
+  id: string
+
+  /**  */
+  confirmedAt?: Date
+
+  /**  */
+  email: string
+
+  /**  */
+  firstName: string
+
+  /**  */
+  middleName?: string
+
+  /**  */
+  lastName: string
+
+  /**  */
+  dob?: Date
+
+  /**  */
+  createdAt: Date
+
+  /**  */
+  updatedAt: Date
+}
+
+export interface UserCreate {
+  /**  */
+  language?: Language
+
+  /**  */
+  password: string
+
+  /**  */
+  passwordConfirmation: string
+
+  /**  */
+  emailConfirmation: string
+
+  /**  */
+  appUrl?: string
+
+  /**  */
+  jurisdictions?: Id[]
+
+  /**  */
+  confirmedAt?: Date
+
+  /**  */
+  email: string
+
+  /**  */
+  firstName: string
+
+  /**  */
+  middleName?: string
+
+  /**  */
+  lastName: string
+
+  /**  */
+  dob?: Date
+}
+
+export interface UserBasic {
+  /**  */
+  language?: Language
+
+  /**  */
+  roles: UserRoles
+
+  /**  */
+  jurisdictions: Jurisdiction[]
 
   /**  */
   leasingAgentInListings?: Id[]
@@ -3448,77 +3750,7 @@ export interface User {
   lastName: string
 
   /**  */
-  dob: Date
-
-  /**  */
-  createdAt: Date
-
-  /**  */
-  updatedAt: Date
-
-  /**  */
-  roles?: CombinedUserRolesTypes
-}
-
-export interface UserCreate {
-  /**  */
-  language?: Language
-
-  /**  */
-  password: string
-
-  /**  */
-  passwordConfirmation: string
-
-  /**  */
-  emailConfirmation: string
-
-  /**  */
-  appUrl?: string
-
-  /**  */
-  confirmedAt?: Date
-
-  /**  */
-  email: string
-
-  /**  */
-  firstName: string
-
-  /**  */
-  middleName?: string
-
-  /**  */
-  lastName: string
-
-  /**  */
-  dob: Date
-}
-
-export interface UserBasic {
-  /**  */
-  language?: Language
-
-  /**  */
-  id: string
-
-  /**  */
-  confirmedAt?: Date
-
-  /**  */
-  email: string
-
-  /**  */
-  firstName: string
-
-  /**  */
-  middleName?: string
-
-  /**  */
-  lastName: string
-
-  /**  */
-  dob: Date
+  dob?: Date
 
   /**  */
   createdAt: Date
@@ -3543,6 +3775,9 @@ export interface Status {
 export interface Confirm {
   /**  */
   token: string
+
+  /**  */
+  password?: string
 }
 
 export interface ForgotPassword {
@@ -3577,6 +3812,9 @@ export interface UserUpdate {
   id?: string
 
   /**  */
+  email?: string
+
+  /**  */
   createdAt?: Date
 
   /**  */
@@ -3587,6 +3825,62 @@ export interface UserUpdate {
 
   /**  */
   currentPassword?: string
+
+  /**  */
+  jurisdictions: Id[]
+
+  /**  */
+  confirmedAt?: Date
+
+  /**  */
+  firstName: string
+
+  /**  */
+  middleName?: string
+
+  /**  */
+  lastName: string
+
+  /**  */
+  dob?: Date
+}
+
+export interface UserFilterParams {
+  /**  */
+  $comparison: EnumUserFilterParamsComparison
+
+  /**  */
+  isPartner?: boolean
+}
+
+export interface PaginatedUserList {
+  /**  */
+  items: User[]
+
+  /**  */
+  meta: PaginationMeta
+}
+
+export interface UserRolesCreate {
+  /**  */
+  isAdmin?: boolean
+
+  /**  */
+  isPartner?: boolean
+}
+
+export interface UserInvite {
+  /**  */
+  language?: Language
+
+  /**  */
+  roles: CombinedRolesTypes
+
+  /**  */
+  jurisdictions: Id[]
+
+  /**  */
+  leasingAgentInListings?: Id[]
 
   /**  */
   confirmedAt?: Date
@@ -3604,26 +3898,50 @@ export interface UserUpdate {
   lastName: string
 
   /**  */
-  dob: Date
+  dob?: Date
 }
 
-export interface Jurisdiction {
+export interface UserProfileUpdate {
+  /**  */
+  language?: Language
+
+  /**  */
+  password?: string
+
+  /**  */
+  currentPassword?: string
+
+  /**  */
+  jurisdictions: Id[]
+
   /**  */
   id: string
+
+  /**  */
+  firstName: string
+
+  /**  */
+  middleName?: string
+
+  /**  */
+  lastName: string
+
+  /**  */
+  dob?: Date
 
   /**  */
   createdAt: Date
 
   /**  */
   updatedAt: Date
-
-  /**  */
-  name: string
 }
 
 export interface JurisdictionCreate {
   /**  */
   name: string
+
+  /**  */
+  notificationsSignUpURL?: string
 }
 
 export interface JurisdictionUpdate {
@@ -3638,6 +3956,9 @@ export interface JurisdictionUpdate {
 
   /**  */
   name: string
+
+  /**  */
+  notificationsSignUpURL?: string
 }
 
 export interface ListingFilterParams {
@@ -3655,6 +3976,107 @@ export interface ListingFilterParams {
 
   /**  */
   bedrooms?: number
+
+  /**  */
+  zipcode?: string
+
+  /**  */
+  leasingAgents?: string
+}
+
+export interface UnitAccessibilityPriorityType {
+  /**  */
+  name: string
+
+  /**  */
+  id: string
+
+  /**  */
+  createdAt: Date
+
+  /**  */
+  updatedAt: Date
+}
+
+export interface MinMaxCurrency {
+  /**  */
+  min: string
+
+  /**  */
+  max: string
+}
+
+export interface MinMax {
+  /**  */
+  min: number
+
+  /**  */
+  max: number
+}
+
+export interface UnitSummary {
+  /**  */
+  unitType: UnitType
+
+  /**  */
+  minIncomeRange: MinMaxCurrency
+
+  /**  */
+  occupancyRange: MinMax
+
+  /**  */
+  rentAsPercentIncomeRange: MinMax
+
+  /**  */
+  rentRange: MinMaxCurrency
+
+  /**  */
+  totalAvailable: number
+
+  /**  */
+  areaRange: MinMax
+
+  /**  */
+  floorRange?: MinMax
+}
+
+export interface UnitSummaryByAMI {
+  /**  */
+  percent: string
+
+  /**  */
+  byUnitType: UnitSummary[]
+}
+
+export interface HMI {
+  /**  */
+  columns: object
+
+  /**  */
+  rows: object[]
+}
+
+export interface UnitsSummarized {
+  /**  */
+  unitTypes: UnitType[]
+
+  /**  */
+  priorityTypes: UnitAccessibilityPriorityType[]
+
+  /**  */
+  amiPercentages: string[]
+
+  /**  */
+  byUnitTypeAndRent: UnitSummary[]
+
+  /**  */
+  byUnitType: UnitSummary[]
+
+  /**  */
+  byAMI: UnitSummaryByAMI[]
+
+  /**  */
+  hmi: HMI
 }
 
 export interface PreferenceLink {
@@ -3787,6 +4209,9 @@ export interface ListingEvent {
 
 export interface ReservedCommunityType {
   /**  */
+  jurisdiction: Jurisdiction
+
+  /**  */
   id: string
 
   /**  */
@@ -3800,76 +4225,6 @@ export interface ReservedCommunityType {
 
   /**  */
   description?: string
-}
-
-export interface UnitsSummary {
-  /**  */
-  id: string
-
-  /**  */
-  unitType: UnitType
-
-  /**  */
-  listing: Listing
-
-  /**  */
-  monthlyRent?: string
-
-  /**  */
-  monthlyRentAsPercentOfIncome?: string
-
-  /**  */
-  amiPercentage?: string
-
-  /**  */
-  minimumIncomeMin?: string
-
-  /**  */
-  minimumIncomeMax?: string
-
-  /**  */
-  maxOccupancy?: number
-
-  /**  */
-  minOccupancy?: number
-
-  /**  */
-  floorMin?: number
-
-  /**  */
-  floorMax?: number
-
-  /**  */
-  sqFeetMin?: string
-
-  /**  */
-  sqFeetMax?: string
-
-  /**  */
-  priorityType?: UnitAccessibilityPriorityType
-
-  /**  */
-  totalCount?: number
-
-  /**  */
-  totalAvailable?: number
-}
-
-export interface UnitType {
-  /**  */
-  id: string
-
-  /**  */
-  createdAt: Date
-
-  /**  */
-  updatedAt: Date
-
-  /**  */
-  name: string
-
-  /**  */
-  numBedrooms: number
 }
 
 export interface UnitRentType {
@@ -3900,12 +4255,26 @@ export interface UnitAccessibilityPriorityType {
   name: string
 }
 
+export interface UnitAmiChartOverride {
+  /**  */
+  id: string
+
+  /**  */
+  createdAt: Date
+
+  /**  */
+  updatedAt: Date
+
+  /**  */
+  items: AmiChartItem[]
+}
+
 export interface Unit {
   /**  */
   status: UnitStatus
 
   /**  */
-  amiChart?: CombinedAmiChartTypes
+  amiChart?: Id
 
   /**  */
   unitType?: UnitType
@@ -3915,6 +4284,9 @@ export interface Unit {
 
   /**  */
   priorityType?: UnitAccessibilityPriorityType
+
+  /**  */
+  amiChartOverride?: UnitAmiChartOverride
 
   /**  */
   id: string
@@ -3968,102 +4340,66 @@ export interface Unit {
   bmrProgramChart?: boolean
 }
 
-export interface UnitAccessibilityPriorityType {
+export interface UnitsSummary {
   /**  */
-  name: string
+  listing: Id
+
+  /**  */
+  unitType: Id
 
   /**  */
   id: string
 
   /**  */
-  createdAt: Date
+  monthlyRentMin?: number
 
   /**  */
-  updatedAt: Date
-}
-
-export interface MinMaxCurrency {
-  /**  */
-  min: string
+  monthlyRentMax?: number
 
   /**  */
-  max: string
-}
-
-export interface MinMax {
-  /**  */
-  min: number
+  monthlyRentAsPercentOfIncome?: string
 
   /**  */
-  max: number
-}
-
-export interface UnitSummary {
-  /**  */
-  unitType: UnitType
+  amiPercentage?: number
 
   /**  */
-  minIncomeRange: MinMaxCurrency
+  minimumIncomeMin?: string
 
   /**  */
-  occupancyRange: MinMax
+  minimumIncomeMax?: string
 
   /**  */
-  rentAsPercentIncomeRange: MinMax
+  maxOccupancy?: number
 
   /**  */
-  rentRange: MinMaxCurrency
+  minOccupancy?: number
 
   /**  */
-  totalAvailable: number
+  floorMin?: number
 
   /**  */
-  areaRange: MinMax
+  floorMax?: number
 
   /**  */
-  floorRange?: MinMax
-}
-
-export interface UnitSummaryByAMI {
-  /**  */
-  percent: string
+  sqFeetMin?: string
 
   /**  */
-  byUnitType: UnitSummary[]
-}
-
-export interface HMI {
-  /**  */
-  columns: object
+  sqFeetMax?: string
 
   /**  */
-  rows: object[]
-}
-
-export interface UnitsSummarized {
-  /**  */
-  unitTypes: UnitType[]
+  priorityType?: CombinedPriorityTypeTypes
 
   /**  */
-  priorityTypes: UnitAccessibilityPriorityType[]
+  totalCount?: number
 
   /**  */
-  amiPercentages: string[]
-
-  /**  */
-  byUnitTypeAndRent: UnitSummary[]
-
-  /**  */
-  byUnitType: UnitSummary[]
-
-  /**  */
-  byAMI: UnitSummaryByAMI[]
-
-  /**  */
-  hmi: HMI
+  totalAvailable?: number
 }
 
 export interface Listing {
+  /**  */
+  referralApplication?: ApplicationMethod
+
   /**  */
   applicationPickUpAddressType?: ListingApplicationAddressType
 
@@ -4074,19 +4410,16 @@ export interface Listing {
   status: ListingStatus
 
   /**  */
-  urlSlug: string
+  reviewOrderType?: ListingReviewOrder
 
   /**  */
   CSVFormattingType: CSVFormattingType
 
   /**  */
-  countyCode: CountyCode
-
-  /**  */
   showWaitlist: boolean
 
   /**  */
-  reviewOrderType?: EnumListingReviewOrderType
+  unitsSummarized: UnitsSummarized
 
   /**  */
   applicationMethods: ApplicationMethod[]
@@ -4107,6 +4440,9 @@ export interface Listing {
   applicationMailingAddress: CombinedApplicationMailingAddressTypes
 
   /**  */
+  buildingSelectionCriteriaFile?: CombinedBuildingSelectionCriteriaFileTypes
+
+  /**  */
   events: ListingEvent[]
 
   /**  */
@@ -4119,7 +4455,7 @@ export interface Listing {
   leasingAgents?: UserBasic[]
 
   /**  */
-  jurisdiction?: Jurisdiction
+  jurisdiction: IdName
 
   /**  */
   reservedCommunityType?: ReservedCommunityType
@@ -4141,9 +4477,6 @@ export interface Listing {
 
   /**  */
   buildingTotalUnits?: number
-
-  /**  */
-  customMapPin?: boolean
 
   /**  */
   developer?: string
@@ -4176,7 +4509,13 @@ export interface Listing {
   yearBuilt?: number
 
   /**  */
-  unitsSummarized: UnitsSummarized
+  urlSlug: string
+
+  /**  */
+  unitsSummary?: UnitsSummary[]
+
+  /**  */
+  countyCode?: string
 
   /**  */
   id: string
@@ -4189,6 +4528,18 @@ export interface Listing {
 
   /**  */
   additionalApplicationSubmissionNotes?: string
+
+  /**  */
+  digitalApplication?: boolean
+
+  /**  */
+  commonDigitalApplication?: boolean
+
+  /**  */
+  paperApplication?: boolean
+
+  /**  */
+  referralOpportunity?: boolean
 
   /**  */
   assets: AssetCreate[]
@@ -4301,8 +4652,8 @@ export interface Listing {
   /**  */
   waitlistOpenSpots?: number
 
-  /** */
-  unitsSummary: UnitsSummary[]
+  /**  */
+  customMapPin?: boolean
 }
 
 export interface PaginatedListing {
@@ -4359,12 +4710,29 @@ export interface ListingEventCreate {
   label?: string
 }
 
+export interface UnitAmiChartOverrideCreate {
+  /**  */
+  items: AmiChartItem[]
+}
+
 export interface UnitCreate {
   /**  */
   status: UnitStatus
 
   /**  */
-  amiChart?: CombinedAmiChartTypes
+  amiChart?: Id
+
+  /**  */
+  unitType?: Id
+
+  /**  */
+  unitRentType?: Id
+
+  /**  */
+  priorityType?: Id
+
+  /**  */
+  amiChartOverride?: UnitAmiChartOverrideCreate
 
   /**  */
   amiPercentage?: string
@@ -4407,15 +4775,59 @@ export interface UnitCreate {
 
   /**  */
   bmrProgramChart?: boolean
+}
+
+export interface UnitsSummaryCreate {
+  /**  */
+  monthlyRentMin?: number
 
   /**  */
-  unitType?: UnitType
+  monthlyRentMax?: number
 
   /**  */
-  unitRentType?: UnitRentType
+  monthlyRentAsPercentOfIncome?: string
 
   /**  */
-  priorityType?: UnitAccessibilityPriorityType
+  amiPercentage?: number
+
+  /**  */
+  minimumIncomeMin?: string
+
+  /**  */
+  minimumIncomeMax?: string
+
+  /**  */
+  maxOccupancy?: number
+
+  /**  */
+  minOccupancy?: number
+
+  /**  */
+  floorMin?: number
+
+  /**  */
+  floorMax?: number
+
+  /**  */
+  sqFeetMin?: string
+
+  /**  */
+  sqFeetMax?: string
+
+  /**  */
+  priorityType?: CombinedPriorityTypeTypes
+
+  /**  */
+  totalCount?: number
+
+  /**  */
+  totalAvailable?: number
+
+  /**  */
+  listing: Id
+
+  /**  */
+  unitType: Id
 }
 
 export interface ListingCreate {
@@ -4429,16 +4841,13 @@ export interface ListingCreate {
   status: ListingStatus
 
   /**  */
+  reviewOrderType?: ListingReviewOrder
+
+  /**  */
   CSVFormattingType: CSVFormattingType
 
   /**  */
-  countyCode: CountyCode
-
-  /**  */
-  reviewOrderType?: EnumListingReviewOrderType
-
-  /**  */
-  applicationMethods: Id[]
+  applicationMethods: ApplicationMethodCreate[]
 
   /**  */
   preferences: PreferenceCreate[]
@@ -4454,6 +4863,9 @@ export interface ListingCreate {
 
   /**  */
   applicationMailingAddress: CombinedApplicationMailingAddressTypes
+
+  /**  */
+  buildingSelectionCriteriaFile?: CombinedBuildingSelectionCriteriaFileTypes
 
   /**  */
   events: ListingEventCreate[]
@@ -4477,13 +4889,10 @@ export interface ListingCreate {
   amenities?: string
 
   /**  */
-  buildingAddress: AddressCreate
+  buildingAddress?: CombinedBuildingAddressTypes
 
   /**  */
   buildingTotalUnits?: number
-
-  /**  */
-  customMapPin?: boolean
 
   /**  */
   developer?: string
@@ -4516,7 +4925,7 @@ export interface ListingCreate {
   yearBuilt?: number
 
   /**  */
-  jurisdiction?: CombinedJurisdictionTypes
+  jurisdiction: Id
 
   /**  */
   reservedCommunityType?: Id
@@ -4525,7 +4934,22 @@ export interface ListingCreate {
   result?: CombinedResultTypes
 
   /**  */
+  unitsSummary?: UnitsSummaryCreate[]
+
+  /**  */
   additionalApplicationSubmissionNotes?: string
+
+  /**  */
+  digitalApplication?: boolean
+
+  /**  */
+  commonDigitalApplication?: boolean
+
+  /**  */
+  paperApplication?: boolean
+
+  /**  */
+  referralOpportunity?: boolean
 
   /**  */
   assets: AssetCreate[]
@@ -4637,6 +5061,12 @@ export interface ListingCreate {
 
   /**  */
   waitlistOpenSpots?: number
+
+  /**  */
+  customMapPin?: boolean
+
+  /**  */
+  countyCode?: string
 }
 
 export interface PreferenceUpdate {
@@ -4663,23 +5093,6 @@ export interface PreferenceUpdate {
 
   /**  */
   id: string
-}
-
-export interface AssetUpdate {
-  /**  */
-  id?: string
-
-  /**  */
-  createdAt?: Date
-
-  /**  */
-  updatedAt?: Date
-
-  /**  */
-  fileId: string
-
-  /**  */
-  label: string
 }
 
 export interface ListingEventUpdate {
@@ -4714,12 +5127,47 @@ export interface ListingEventUpdate {
   label?: string
 }
 
+export interface UnitAmiChartOverrideUpdate {
+  /**  */
+  id?: string
+
+  /**  */
+  createdAt?: Date
+
+  /**  */
+  updatedAt?: Date
+
+  /**  */
+  items: AmiChartItem[]
+}
+
 export interface UnitUpdate {
   /**  */
   status: UnitStatus
 
   /**  */
-  amiChart?: CombinedAmiChartTypes
+  id?: string
+
+  /**  */
+  createdAt?: Date
+
+  /**  */
+  updatedAt?: Date
+
+  /**  */
+  amiChart?: Id
+
+  /**  */
+  unitType?: Id
+
+  /**  */
+  unitRentType?: Id
+
+  /**  */
+  priorityType?: Id
+
+  /**  */
+  amiChartOverride?: UnitAmiChartOverrideUpdate
 
   /**  */
   amiPercentage?: string
@@ -4762,18 +5210,62 @@ export interface UnitUpdate {
 
   /**  */
   bmrProgramChart?: boolean
+}
 
-  /**  */
-  unitType?: UnitType
-
-  /**  */
-  unitRentType?: UnitRentType
-
-  /**  */
-  priorityType?: UnitAccessibilityPriorityType
-
+export interface UnitsSummaryUpdate {
   /**  */
   id: string
+
+  /**  */
+  monthlyRentMin?: number
+
+  /**  */
+  monthlyRentMax?: number
+
+  /**  */
+  monthlyRentAsPercentOfIncome?: string
+
+  /**  */
+  amiPercentage?: number
+
+  /**  */
+  minimumIncomeMin?: string
+
+  /**  */
+  minimumIncomeMax?: string
+
+  /**  */
+  maxOccupancy?: number
+
+  /**  */
+  minOccupancy?: number
+
+  /**  */
+  floorMin?: number
+
+  /**  */
+  floorMax?: number
+
+  /**  */
+  sqFeetMin?: string
+
+  /**  */
+  sqFeetMax?: string
+
+  /**  */
+  priorityType?: CombinedPriorityTypeTypes
+
+  /**  */
+  totalCount?: number
+
+  /**  */
+  totalAvailable?: number
+
+  /**  */
+  listing: Id
+
+  /**  */
+  unitType: Id
 }
 
 export interface ListingUpdate {
@@ -4787,10 +5279,10 @@ export interface ListingUpdate {
   status: ListingStatus
 
   /**  */
-  CSVFormattingType: CSVFormattingType
+  reviewOrderType?: ListingReviewOrder
 
   /**  */
-  countyCode: CountyCode
+  CSVFormattingType: CSVFormattingType
 
   /**  */
   id?: string
@@ -4802,10 +5294,7 @@ export interface ListingUpdate {
   updatedAt?: Date
 
   /**  */
-  reviewOrderType?: EnumListingReviewOrderType
-
-  /**  */
-  applicationMethods: Id[]
+  applicationMethods: ApplicationMethodUpdate[]
 
   /**  */
   preferences: PreferenceUpdate[]
@@ -4821,6 +5310,9 @@ export interface ListingUpdate {
 
   /**  */
   applicationMailingAddress: CombinedApplicationMailingAddressTypes
+
+  /**  */
+  buildingSelectionCriteriaFile?: CombinedBuildingSelectionCriteriaFileTypes
 
   /**  */
   events: ListingEventUpdate[]
@@ -4844,13 +5336,10 @@ export interface ListingUpdate {
   amenities?: string
 
   /**  */
-  buildingAddress: AddressUpdate
+  buildingAddress?: CombinedBuildingAddressTypes
 
   /**  */
   buildingTotalUnits?: number
-
-  /**  */
-  customMapPin?: boolean
 
   /**  */
   developer?: string
@@ -4883,7 +5372,7 @@ export interface ListingUpdate {
   yearBuilt?: number
 
   /**  */
-  jurisdiction?: Id
+  jurisdiction: Id
 
   /**  */
   reservedCommunityType?: Id
@@ -4892,7 +5381,22 @@ export interface ListingUpdate {
   result?: AssetUpdate
 
   /**  */
+  unitsSummary?: UnitsSummaryUpdate[]
+
+  /**  */
   additionalApplicationSubmissionNotes?: string
+
+  /**  */
+  digitalApplication?: boolean
+
+  /**  */
+  commonDigitalApplication?: boolean
+
+  /**  */
+  paperApplication?: boolean
+
+  /**  */
+  referralOpportunity?: boolean
 
   /**  */
   assets: AssetCreate[]
@@ -5004,37 +5508,15 @@ export interface ListingUpdate {
 
   /**  */
   waitlistOpenSpots?: number
-}
-
-export interface PaperApplicationCreate {
-  /**  */
-  language: Language
 
   /**  */
-  file?: CombinedFileTypes
-}
-
-export interface PaperApplicationUpdate {
-  /**  */
-  language: Language
+  customMapPin?: boolean
 
   /**  */
-  id?: string
-
-  /**  */
-  createdAt?: Date
-
-  /**  */
-  updatedAt?: Date
-
-  /**  */
-  file?: CombinedFileTypes
+  countyCode?: string
 }
 
 export interface Property {
-  /**  */
-  unitsSummarized: UnitsSummarized
-
   /**  */
   units: Unit[]
 
@@ -5231,6 +5713,9 @@ export interface PropertyGroupUpdate {
 
 export interface ReservedCommunityTypeCreate {
   /**  */
+  jurisdiction: Id
+
+  /**  */
   name: string
 
   /**  */
@@ -5238,6 +5723,9 @@ export interface ReservedCommunityTypeCreate {
 }
 
 export interface ReservedCommunityTypeUpdate {
+  /**  */
+  jurisdiction: Id
+
   /**  */
   name: string
 
@@ -5250,10 +5738,10 @@ export interface ReservedCommunityTypeUpdate {
 
 export interface Translation {
   /**  */
-  countyCode: CountyCode
+  language: Language
 
   /**  */
-  language: Language
+  jurisdiction: Id
 
   /**  */
   id: string
@@ -5270,19 +5758,16 @@ export interface Translation {
 
 export interface TranslationCreate {
   /**  */
-  countyCode: CountyCode
-
-  /**  */
   language: Language
 
   /**  */
   translations: object
+
+  /**  */
+  jurisdiction: Id
 }
 
 export interface TranslationUpdate {
-  /**  */
-  countyCode: CountyCode
-
   /**  */
   language: Language
 
@@ -5297,6 +5782,9 @@ export interface TranslationUpdate {
 
   /**  */
   translations: object
+
+  /**  */
+  jurisdiction: Id
 }
 
 export interface UnitTypeCreate {
@@ -5378,8 +5866,9 @@ export enum ApplicationMethodType {
   "PaperPickup" = "PaperPickup",
   "POBox" = "POBox",
   "LeasingAgent" = "LeasingAgent",
+  "Referral" = "Referral",
 }
-export type CombinedFileTypes = Id
+export type CombinedFileTypes = AssetUpdate
 export enum InputType {
   "boolean" = "boolean",
   "text" = "text",
@@ -5396,6 +5885,14 @@ export enum EnumApplicationsApiExtraModelOrder {
   "ASC" = "ASC",
   "DESC" = "DESC",
 }
+export type CombinedRolesTypes = UserRolesCreate
+export enum EnumUserFilterParamsComparison {
+  "=" = "=",
+  "<>" = "<>",
+  "IN" = "IN",
+  ">=" = ">=",
+  "NA" = "NA",
+}
 export enum EnumListingFilterParamsComparison {
   "=" = "=",
   "<>" = "<>",
@@ -5408,6 +5905,11 @@ export enum EnumListingFilterParamsStatus {
   "pending" = "pending",
   "closed" = "closed",
 }
+export enum OrderByFieldsEnum {
+  "mostRecentlyUpdated" = "mostRecentlyUpdated",
+  "applicationDates" = "applicationDates",
+}
+
 export enum ListingApplicationAddressType {
   "leasingAgent" = "leasingAgent",
   "mailingAddress" = "mailingAddress",
@@ -5419,18 +5921,16 @@ export enum ListingStatus {
   "closed" = "closed",
 }
 
+export enum ListingReviewOrder {
+  "lottery" = "lottery",
+  "firstComeFirstServe" = "firstComeFirstServe",
+}
+
 export enum CSVFormattingType {
   "basic" = "basic",
   "withDisplaceeNameAndAddress" = "withDisplaceeNameAndAddress",
   "ohaFormat" = "ohaFormat",
   "bhaFormat" = "bhaFormat",
-}
-
-export enum CountyCode {
-  "Alameda" = "Alameda",
-  "San Mateo" = "San Mateo",
-  "San Jose" = "San Jose",
-  "Detroit" = "Detroit",
 }
 
 export enum ListingEventType {
@@ -5445,17 +5945,13 @@ export enum UnitStatus {
   "occupied" = "occupied",
   "unavailable" = "unavailable",
 }
-export type CombinedAmiChartTypes = AmiChart
-export enum EnumListingReviewOrderType {
-  "lottery" = "lottery",
-  "firstComeFirstServe" = "firstComeFirstServe",
-}
+export type CombinedPriorityTypeTypes = UnitAccessibilityPriorityType
 export type CombinedApplicationAddressTypes = AddressUpdate
 export type CombinedApplicationPickUpAddressTypes = AddressUpdate
 export type CombinedApplicationDropOffAddressTypes = AddressUpdate
 export type CombinedApplicationMailingAddressTypes = AddressUpdate
+export type CombinedBuildingSelectionCriteriaFileTypes = AssetUpdate
 export type CombinedImageTypes = AssetCreate
 export type CombinedLeasingAgentAddressTypes = AddressUpdate
 export type CombinedResultTypes = AssetCreate
-export type CombinedUserRolesTypes = UserRoles
-export type CombinedJurisdictionTypes = Id
+export type CombinedBuildingAddressTypes = AddressUpdate

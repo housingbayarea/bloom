@@ -1,6 +1,6 @@
-import { t, formatIncome, formatYesNoLabel } from "@bloom-housing/ui-components"
+import { t, formatYesNoLabel } from "@bloom-housing/ui-components"
 import { IncomePeriod, ApplicationSubmissionType } from "@bloom-housing/backend-core/types"
-import { convertDataToPst } from "../../lib/helpers"
+import { convertDataToPst, formatIncome } from "../../lib/helpers"
 import moment from "moment"
 
 function compareDates(a, b, node, nextNode, isInverted) {
@@ -66,7 +66,6 @@ export function getColDefs(maxHouseholdSize: number, countyCode: string) {
       width: 150,
       minWidth: 120,
       pinned: "left",
-      type: "leftAligned",
       cellRenderer: "formatLinkCell",
     },
     {
@@ -78,7 +77,6 @@ export function getColDefs(maxHouseholdSize: number, countyCode: string) {
       width: 150,
       minWidth: 120,
       pinned: "left",
-      type: "leftAligned",
       valueFormatter: ({ value }) => t(`application.details.submissionType.${value}`),
       comparator: compareStrings,
     },

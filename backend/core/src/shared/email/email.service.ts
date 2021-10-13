@@ -10,9 +10,9 @@ import fs from "fs"
 import { ConfigService } from "@nestjs/config"
 import { Application } from "../../applications/entities/application.entity"
 import { TranslationsService } from "../../translations/translations.service"
-import { CountyCode } from "../types/county-code"
 import { Language } from "../types/language-enum"
-import { CountyCodeResolverService } from "../services/county-code-resolver.service"
+import { JurisdictionResolverService } from "../../jurisdictions/services/jurisdiction-resolver.service"
+import { Jurisdiction } from "../../jurisdictions/entities/jurisdiction.entity"
 
 @Injectable({ scope: Scope.REQUEST })
 export class EmailService {
@@ -22,7 +22,7 @@ export class EmailService {
     private readonly sendGrid: SendGridService,
     private readonly configService: ConfigService,
     private readonly translationService: TranslationsService,
-    private readonly countyCodeResolverService: CountyCodeResolverService
+    private readonly jurisdictionResolverService: JurisdictionResolverService
   ) {
     this.polyglot = new Polyglot({
       phrases: {},
@@ -38,11 +38,10 @@ export class EmailService {
     Handlebars.registerPartial(parts)
   }
 
-  public async welcome(user: User, appUrl: string) {
+  public async welcome(user: User, appUrl: string, confirmationUrl: string) {
     const language = user.language || Language.en
-    // NOTE What to do when user has no countyCode e.g. an admin?
-    void (await this.loadTranslations(this.countyCodeResolverService.getCountyCode(), language))
-    const confirmationUrl = `${appUrl}?token=${user.confirmationToken}`
+    const jurisdiction = await this.jurisdictionResolverService.getJurisdiction()
+    void (await this.loadTranslations(jurisdiction, language))
     if (this.configService.get<string>("NODE_ENV") === "production") {
       Logger.log(
         `Preparing to send a welcome email to ${user.email} from ${this.configService.get<string>(
@@ -62,7 +61,8 @@ export class EmailService {
   }
 
   public async confirmation(listing: Listing, application: Application, appUrl: string) {
-    void (await this.loadTranslations(listing.countyCode, application.language || Language.en))
+    const jurisdiction = await this.jurisdictionResolverService.getJurisdiction()
+    void (await this.loadTranslations(jurisdiction, application.language || Language.en))
     let whatToExpectText
     const listingUrl = `${appUrl}/listing/${listing.id}`
     const compiledTemplate = this.template("confirmation")
@@ -107,10 +107,8 @@ export class EmailService {
   }
 
   public async forgotPassword(user: User, appUrl: string) {
-    void (await this.loadTranslations(
-      this.countyCodeResolverService.getCountyCode(),
-      user.language
-    ))
+    const jurisdiction = await this.jurisdictionResolverService.getJurisdiction()
+    void (await this.loadTranslations(jurisdiction, user.language))
     const compiledTemplate = this.template("forgot-password")
     const resetUrl = `${appUrl}/reset-password?token=${user.resetToken}`
 
@@ -133,10 +131,10 @@ export class EmailService {
     )
   }
 
-  private async loadTranslations(countyCode: CountyCode, language: Language) {
-    const translation = await this.translationService.getTranslationByLanguageAndCountyCodeOrDefaultEn(
+  private async loadTranslations(jurisdiction: Jurisdiction | null, language: Language) {
+    const translation = await this.translationService.getTranslationByLanguageAndJurisdictionOrDefaultEn(
       language,
-      countyCode
+      jurisdiction ? jurisdiction.id : null
     )
     this.polyglot.replace(translation.translations)
   }
@@ -168,7 +166,7 @@ export class EmailService {
     return partials
   }
 
-  private async send(to: string, subject: string, body: string, retry?: number) {
+  private async send(to: string, subject: string, body: string, retry = 3) {
     await this.sendGrid.send(
       {
         to: to,
@@ -180,15 +178,26 @@ export class EmailService {
       (error) => {
         if (error instanceof ResponseError) {
           const { response } = error
-          const { body } = response
-          console.error(`Error sending email to: ${to}! Error body: ${body}`)
-          if (!retry) {
-            retry = 3
+          const { body: errBody } = response
+          console.error(`Error sending email to: ${to}! Error body: ${errBody}`)
+          if (retry > 0) {
+            void this.send(to, subject, body, retry - 1)
           }
-          // Retries, if sending failed
-          void this.send(to, subject, body, retry - 1)
         }
       }
+    )
+  }
+
+  async invite(user: User, appUrl: string, confirmationUrl: string) {
+    void (await this.loadTranslations(null, user.language || Language.en))
+    await this.send(
+      user.email,
+      this.polyglot.t("invite.hello"),
+      this.template("invite")({
+        user: user,
+        confirmationUrl: confirmationUrl,
+        appOptions: { appUrl },
+      })
     )
   }
 }

@@ -2,17 +2,17 @@ import { AmiChartCreateDto } from "../../ami-charts/dto/ami-chart.dto"
 import { ListingSeedType, PropertySeedType, UnitSeedType } from "./listings"
 import { getDefaultAmiChart, getDate, getDefaultAssets, getLiveWorkPreference } from "./shared"
 import { ListingStatus } from "../../listings/types/listing-status-enum"
-import { CountyCode } from "../../shared/types/county-code"
 import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
 import { AmiChart } from "../../ami-charts/entities/ami-chart.entity"
 import { ListingDefaultSeed } from "./listing-default-seed"
-import { UnitCreateDto } from "../../units/dto/unit.dto"
 import { BaseEntity, DeepPartial } from "typeorm"
 import { Listing } from "../../listings/entities/listing.entity"
 import { UnitStatus } from "../../units/types/unit-status-enum"
 import { ListingReviewOrder } from "../../listings/types/listing-review-order-enum"
+import { CountyCode } from "../../shared/types/county-code"
+import { UnitCreateDto } from "../../units/dto/unit-create.dto"
 
-export const tritonAmiChart: AmiChartCreateDto = {
+export const tritonAmiChart: Omit<AmiChartCreateDto, "jurisdiction"> = {
   name: "San Jose TCAC 2019",
   items: [
     {
@@ -693,10 +693,11 @@ const tritonListing: ListingSeedType = {
     latitude: 37.5658152,
     longitude: -122.2704286,
   },
+  countyCode: CountyCode.alameda,
   applicationDropOffAddress: null,
   applicationDropOffAddressOfficeHours: null,
   applicationMailingAddress: null,
-  applicationDueDate: getDate(10),
+  applicationDueDate: getDate(5),
   applicationFee: "38.0",
   applicationOpenDate: getDate(-10),
   applicationDueTime: null,
@@ -709,12 +710,15 @@ const tritonListing: ListingSeedType = {
     latitude: 37.5658152,
     longitude: -122.2704286,
   },
+  image: {
+    label: "test_label",
+    fileId: "fileid",
+  },
   applicationPickUpAddressOfficeHours: null,
   buildingSelectionCriteria:
     "https://regional-dahlia-staging.s3-us-west-1.amazonaws.com/listings/triton/The_Triton_BMR_rental_information.pdf",
   costsNotIncluded:
     "Residents responsible for PG&E, Internet, Utilities - water, sewer, trash, admin fee. Pet Deposit is $500 with a $60 monthly pet rent. Residents required to maintain a renter's insurance policy as outlined in the lease agreement. Rent is due by the 3rd of each month. Late fee is $50.00. Resident to pay $25 for each returned check or rejected electronic payment. For additional returned checks, resident will pay a charge of $50.00.",
-  countyCode: CountyCode.alameda,
   creditHistory:
     "No collections, no bankruptcy, income is twice monthly rent A credit report will be completed on all applicants to verify credit ratings.\n\nIncome plus verified credit history will be entered into a credit scoring model to determine rental eligibility and security deposit levels. All decisions for residency are based on a system which considers credit history, rent history, income qualifications, and employment history. An approved decision based on the system does not automatically constittute an approval of residency. Applicant(s) and occupant(s) aged 18 years or older MUST also pass the criminal background check based on the criteria contained herein to be approved for residency. \n\nCredit recommendations other than an accept decision, will require a rental verification. Applications for residency will automatically be denied for the following reasons:\n\n- a. An outstanding debt to a previous landlord or an outstanding NSF check must be paid in full\n- b. An unsatisfied breach of a prior lease or a prior eviction of any applicant or occupant\n- c. More than four (4) late pays and two (2) NSF's in the last twenty-four (24) months",
   criminalBackground: null,
@@ -739,7 +743,7 @@ const tritonListing: ListingSeedType = {
   name: "Test: Triton",
   postmarkedApplicationsReceivedByDate: null,
   programRules: null,
-  rentalAssistance: null,
+  rentalAssistance: "",
   rentalHistory: "No evictions",
   requiredDocuments:
     "Due at interview - Paystubs, 3 months’ bank statements, recent tax returns or non-tax affidavit, recent retirement statement, application to lease, application qualifying criteria, social security card, state or nation ID. For self-employed, copy of IRS Tax Return including schedule C and current or most recent clients. Unemployment if applicable. Child support/Alimony; current notice from DA office, a court order or a letter from the provider with copies of last two checks. Any other income etc",
@@ -758,7 +762,13 @@ export class ListingTritonSeed extends ListingDefaultSeed {
     const unitTypeOneBdrm = await this.unitTypeRepository.findOneOrFail({ name: "oneBdrm" })
     const unitTypeTwoBdrm = await this.unitTypeRepository.findOneOrFail({ name: "twoBdrm" })
 
-    const amiChart = await this.amiChartRepository.save(tritonAmiChart)
+    const alamedaJurisdiction = await this.jurisdictionRepository.findOneOrFail({
+      name: CountyCode.alameda,
+    })
+    const amiChart = await this.amiChartRepository.save({
+      ...tritonAmiChart,
+      jurisdiction: alamedaJurisdiction,
+    })
 
     const property = await this.propertyRepository.save({
       ...tritonProperty,

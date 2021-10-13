@@ -1,10 +1,16 @@
-import { AmiChart, CountyCode, Listing, ListingStatus, UnitStatus } from "./backend-swagger"
+import { AmiChart, Listing, ListingStatus, UnitStatus } from "./backend-swagger"
 
 const amiChart: AmiChart = {
   id: "somerandomid",
   createdAt: new Date(),
   updatedAt: new Date(),
   name: "San Jose TCAC 2019",
+  jurisdiction: {
+    id: "jurisdictiion_id",
+    createdAt: new Date(),
+    updatedAt: new Date(),
+    name: "Alameda",
+  },
   items: [
     {
       percentOfAmi: 120,
@@ -577,7 +583,10 @@ export const ArcherListing: Listing = {
   applicationPickUpAddressOfficeHours: "",
   depositMax: "",
   disableUnitsAccordion: false,
-  countyCode: CountyCode.Alameda,
+  jurisdiction: {
+    id: "id",
+    name: "Alameda",
+  },
   events: [],
   urlSlug: "listing-slug-abcdef",
   status: ListingStatus.active,
