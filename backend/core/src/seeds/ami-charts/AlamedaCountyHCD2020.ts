@@ -40,4 +40,7 @@ export const AlamedaCountyHCD2020: Omit<AmiChartCreateDto, keyof BaseEntity> = {
       income: 129500,
     },
   ],
+  jurisdiction: {
+    id: "1",
+  },
 }
