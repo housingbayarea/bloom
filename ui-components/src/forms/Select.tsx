@@ -1,7 +1,12 @@
 import React from "react"
 import { ErrorMessage } from "../notifications/ErrorMessage"
-import { FormOptions, SelectOption } from "../helpers/formOptions"
+import { FormOptions } from "../helpers/formOptions"
 import { UseFormMethods } from "react-hook-form"
+
+export interface SelectOption {
+  value: string
+  label: string
+}
 
 interface SelectProps {
   error?: boolean
@@ -12,6 +17,7 @@ interface SelectProps {
   id?: string
   name: string
   label?: string
+  subNote?: string
   defaultValue?: string
   placeholder?: string
   register?: UseFormMethods["register"]
@@ -21,7 +27,6 @@ interface SelectProps {
   keyPrefix?: string
   describedBy?: string
   inputProps?: Record<string, unknown>
-  noDefault?: boolean
 }
 
 export const Select = ({
@@ -40,14 +45,11 @@ export const Select = ({
   keyPrefix,
   describedBy,
   inputProps,
-  noDefault = false,
+  defaultValue,
+  subNote,
 }: SelectProps) => {
-  if (noDefault === false) {
-    inputProps = inputProps ? { ...inputProps } : {}
-    inputProps.defaultValue = ""
-  }
   return (
-    <div className={"field " + (error ? "error" : "")}>
+    <div className={`field ${error ? "error" : ""}`}>
       <label className={labelClassName} htmlFor={id}>
         {label}
       </label>
@@ -60,6 +62,7 @@ export const Select = ({
           aria-invalid={!!error || false}
           ref={register && register(validation)}
           disabled={disabled}
+          defaultValue={defaultValue ?? ""}
           {...inputProps}
         >
           {placeholder && (
@@ -70,6 +73,7 @@ export const Select = ({
           <FormOptions options={options} keyPrefix={keyPrefix} />
         </select>
       </div>
+      {subNote && <p className="field-sub-note">{subNote}</p>}
       {error && errorMessage && (
         <ErrorMessage id={`${id}-error`} error={error}>
           {errorMessage}

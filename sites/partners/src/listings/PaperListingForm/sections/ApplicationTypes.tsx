@@ -16,10 +16,9 @@ import {
   Textarea,
   PhoneField,
   PhoneMask,
-  ListingDetailItem,
 } from "@bloom-housing/ui-components"
 import { YesNoAnswer } from "../../../applications/PaperApplicationForm/FormTypes"
-import { cloudinaryFileUploader } from "../../../../lib/helpers"
+import { cloudinaryFileUploader, fieldMessage, fieldHasError } from "../../../../lib/helpers"
 import {
   ApplicationMethodCreate,
   ApplicationMethodType,
@@ -35,7 +34,7 @@ interface Methods {
 
 const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { register, setValue, watch } = useFormContext()
+  const { register, setValue, watch, errors } = useFormContext()
   // watch fields
   const digitalApplicationChoice = watch("digitalApplicationChoice")
   const commonDigitalApplicationChoice = watch("commonDigitalApplicationChoice")
@@ -83,7 +82,7 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
   }
 
   const savePaperApplication = () => {
-    const paperApplications = methods.paper ? methods.paper.paperApplications : []
+    const paperApplications = methods.paper?.paperApplications ?? []
     paperApplications.push({
       file: {
         fileId: cloudinaryData.id,
@@ -138,8 +137,6 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
    * set initial methods
    */
   useEffect(() => {
-    // if any of these are already not null then don't set from initial listing
-    if (methods.digital || methods.paper || methods.referral) return
     // set methods here
     const temp: Methods = {
       digital: null,
@@ -148,6 +145,7 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
     }
     listing?.applicationMethods?.forEach((method) => {
       switch (method.type) {
+        case ApplicationMethodType.Internal:
         case ApplicationMethodType.ExternalLink:
           temp["digital"] = method
           break
@@ -162,16 +160,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
       }
     })
     setMethods(temp)
-    // register applicationMethods so we can set a value for it
-    register("applicationMethods")
-  }, [
-    listing?.applicationMethods,
-    methods.digital,
-    methods.paper,
-    methods.referral,
-    register,
-    setValue,
-  ])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   /**
    * set application methods value when any of the methods change
@@ -179,28 +169,14 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
   useEffect(() => {
     const applicationMethods = []
     for (const key in methods) {
-      const method = methods[key]
-      if (!method) continue
-      switch (key) {
-        case "digital":
-          method.type =
-            commonDigitalApplicationChoice === YesNoAnswer.Yes
-              ? ApplicationMethodType.Internal
-              : ApplicationMethodType.ExternalLink
-          break
-        case "paper":
-          method.type = ApplicationMethodType.FileDownload
-          break
-        case "referral":
-          method.type = ApplicationMethodType.Referral
-          break
-        default:
-          break
+      if (methods[key]) {
+        applicationMethods.push(methods[key])
       }
-      applicationMethods.push(method)
     }
     setValue("applicationMethods", applicationMethods)
-  }, [commonDigitalApplicationChoice, methods, setValue])
+  }, [methods, setValue])
+  // register applicationMethods so we can set a value for it
+  register("applicationMethods")
   return (
     <>
       <GridSection
@@ -211,22 +187,52 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
       >
         <GridSection columns={2}>
           <GridCell>
-            <p className="field-label m-4 ml-0">{t("listings.isDigitalApplication")}</p>
+            <p
+              className={`field-label m-4 ml-0 ${
+                fieldHasError(errors?.digitalApplication) &&
+                digitalApplicationChoice === null &&
+                "text-alert"
+              }`}
+            >
+              {t("listings.isDigitalApplication")}
+            </p>
 
             <FieldGroup
               name="digitalApplicationChoice"
               type="radio"
               register={register}
+              error={fieldHasError(errors?.digitalApplication) && digitalApplicationChoice === null}
+              errorMessage={fieldMessage(errors?.digitalApplication)}
+              groupSubNote={t("listings.requiredToPublish")}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
                   id: "digitalApplicationChoiceYes",
                   defaultChecked: listing?.digitalApplication === true,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        digital: {
+                          ...methods.digital,
+                          type: ApplicationMethodType.Internal,
+                        },
+                      })
+                    },
+                  },
                 },
                 {
                   ...yesNoRadioOptions[1],
                   id: "digitalApplicationChoiceNo",
                   defaultChecked: listing?.digitalApplication === false,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        digital: null,
+                      })
+                    },
+                  },
                 },
               ]}
             />
@@ -244,11 +250,33 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
                     ...yesNoRadioOptions[0],
                     id: "commonDigitalApplicationChoiceYes",
                     defaultChecked: listing?.commonDigitalApplication === true,
+                    inputProps: {
+                      onChange: () => {
+                        setMethods({
+                          ...methods,
+                          digital: {
+                            ...methods.digital,
+                            type: ApplicationMethodType.Internal,
+                          },
+                        })
+                      },
+                    },
                   },
                   {
                     ...yesNoRadioOptions[1],
                     id: "commonDigitalApplicationChoiceNo",
                     defaultChecked: listing?.commonDigitalApplication === false,
+                    inputProps: {
+                      onChange: () => {
+                        setMethods({
+                          ...methods,
+                          digital: {
+                            ...methods.digital,
+                            type: ApplicationMethodType.ExternalLink,
+                          },
+                        })
+                      },
+                    },
                   },
                 ]}
               />
@@ -258,7 +286,7 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
         {((commonDigitalApplicationChoice && commonDigitalApplicationChoice === YesNoAnswer.No) ||
           (digitalApplicationChoice === YesNoAnswer.Yes &&
             !commonDigitalApplicationChoice &&
-            listing.commonDigitalApplication === false)) && (
+            listing?.commonDigitalApplication === false)) && (
           <GridSection columns={1}>
             <GridCell>
               <Field
@@ -267,7 +295,9 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
                 id="customOnlineApplicationUrl"
                 placeholder="https://"
                 inputProps={{
-                  value: methods.digital ? methods.digital.externalReference : "",
+                  value: methods.digital?.externalReference
+                    ? methods.digital.externalReference
+                    : "",
                   onChange: (e) => {
                     setMethods({
                       ...methods,
@@ -285,22 +315,52 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
 
         <GridSection columns={2}>
           <GridCell>
-            <p className="field-label m-4 ml-0">{t("listings.isPaperApplication")}</p>
+            <p
+              className={`field-label m-4 ml-0 ${
+                fieldHasError(errors?.paperApplication) &&
+                paperApplicationChoice === null &&
+                "text-alert"
+              }`}
+            >
+              {t("listings.isPaperApplication")}
+            </p>
 
             <FieldGroup
               name="paperApplicationChoice"
               type="radio"
+              groupSubNote={t("listings.requiredToPublish")}
+              error={fieldHasError(errors?.paperApplication) && paperApplicationChoice === null}
+              errorMessage={fieldMessage(errors?.paperApplication)}
               register={register}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
                   id: "paperApplicationYes",
                   defaultChecked: listing?.paperApplication === true,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        paper: {
+                          ...methods.paper,
+                          type: ApplicationMethodType.FileDownload,
+                        },
+                      })
+                    },
+                  },
                 },
                 {
                   ...yesNoRadioOptions[1],
                   id: "paperApplicationNo",
                   defaultChecked: listing?.paperApplication === false,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        paper: null,
+                      })
+                    },
+                  },
                 },
               ]}
             />
@@ -309,7 +369,7 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
         {paperApplicationChoice === YesNoAnswer.Yes && (
           <GridSection columns={1} tinted inset>
             <GridCell>
-              {methods.paper?.paperApplications.length > 0 && (
+              {methods.paper?.paperApplications?.length > 0 && (
                 <MinimalTable
                   className="mb-8"
                   headers={paperApplicationsTableHeaders}
@@ -359,22 +419,54 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
 
         <GridSection columns={1}>
           <GridCell>
-            <p className="field-label m-4 ml-0">{t("listings.isReferralOpportunity")}</p>
+            <p
+              className={`field-label m-4 ml-0 ${
+                fieldHasError(errors?.referralOpportunity) &&
+                referralOpportunityChoice === null &&
+                "text-alert"
+              }`}
+            >
+              {t("listings.isReferralOpportunity")}
+            </p>
 
             <FieldGroup
               name="referralOpportunityChoice"
               type="radio"
               register={register}
+              groupSubNote={t("listings.requiredToPublish")}
+              error={
+                fieldHasError(errors?.referralOpportunity) && referralOpportunityChoice === null
+              }
+              errorMessage={fieldMessage(errors?.referralOpportunity)}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
                   id: "referralOpportunityYes",
                   defaultChecked: listing?.referralOpportunity === true,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        referral: {
+                          ...methods.referral,
+                          type: ApplicationMethodType.Referral,
+                        },
+                      })
+                    },
+                  },
                 },
                 {
                   ...yesNoRadioOptions[1],
                   id: "referralOpportunityNo",
                   defaultChecked: listing?.referralOpportunity === false,
+                  inputProps: {
+                    onChange: () => {
+                      setMethods({
+                        ...methods,
+                        referral: null,
+                      })
+                    },
+                  },
                 },
               ]}
             />
@@ -474,9 +566,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
                   label: t(`languages.${item}`),
                   value: item,
                 }))}
-                noDefault={true}
+                defaultValue={selectedLanguage}
                 inputProps={{
-                  value: selectedLanguage,
                   onChange: (e) => {
                     setSelectedLanguage(e.target.value)
                   },
