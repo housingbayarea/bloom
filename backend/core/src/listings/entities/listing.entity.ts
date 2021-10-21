@@ -3,6 +3,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  Index,
   JoinTable,
   ManyToMany,
   ManyToOne,
@@ -30,7 +31,6 @@ import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger"
 import { Property } from "../../property/entities/property.entity"
 import { ValidationsGroupsEnum } from "../../shared/types/validations-groups-enum"
 import { ListingStatus } from "../types/listing-status-enum"
-import { CSVFormattingType } from "../../csv/types/csv-formatting-type-enum"
 import { Jurisdiction } from "../../jurisdictions/entities/jurisdiction.entity"
 import { ReservedCommunityType } from "../../reserved-community-type/entities/reserved-community-type.entity"
 import { Asset } from "../../assets/entities/asset.entity"
@@ -46,6 +46,7 @@ import { ApplicationMethodDto } from "../../application-methods/dto/application-
 import { ApplicationMethodType } from "../../application-methods/types/application-method-type-enum"
 
 @Entity({ name: "listings" })
+@Index(["jurisdiction"])
 class Listing extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   @Expose()
@@ -424,12 +425,6 @@ class Listing extends BaseEntity {
   @Expose()
   @IsBoolean({ groups: [ValidationsGroupsEnum.default] })
   displayWaitlistSize: boolean
-
-  @Column({ enum: CSVFormattingType, default: CSVFormattingType.basic })
-  @Expose()
-  @IsEnum(CSVFormattingType, { groups: [ValidationsGroupsEnum.default] })
-  @ApiProperty({ enum: CSVFormattingType, enumName: "CSVFormattingType" })
-  CSVFormattingType: CSVFormattingType
 
   @Expose()
   @ApiProperty()
