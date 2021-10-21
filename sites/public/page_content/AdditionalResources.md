@@ -1,6 +1,3 @@
-import { InfoCardGrid, InfoCard } from "@bloom-housing/ui-components"
-import RenderIf from "../components/RenderIf.tsx"
-
 <RenderIf language="default">
 
   <InfoCardGrid title="Immediate Housing Assistance">
@@ -33,7 +30,7 @@ import RenderIf from "../components/RenderIf.tsx"
   For services, shelter and housing information call 211 or the hotline at 1-800-799-7233 or 1-800-787-3224 (TTY)
   </InfoCard>
   </InfoCardGrid>
-  
+
   <br />
 
   <InfoCardGrid title="Alameda County Housing & Community Development (HCD) Housing Programs">
@@ -43,28 +40,34 @@ import RenderIf from "../components/RenderIf.tsx"
     
   </InfoCard>
 
-  <InfoCard title="AC Boost - Alameda County's Down Payment Loan Assistance Program" externalHref="https://www.acboost.org/">  
+  <InfoCard title="AC Boost - Alameda County's Down Payment Loan Assistance Program" externalHref="https://www.acboost.org/">
 
   Provides down payment assistance loans to eligible, middle-income, first-time homebuyers.
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - Alameda County's Anti-Displacement Program" externalHref="https://www.centrolegal.org/achousingsecure/">  
+  <InfoCard title="AC Housing Secure - Alameda County's Anti-Displacement Program" externalHref="https://www.centrolegal.org/achousingsecure/">
 
   Provides free legal services and emergency financial assistance to tenants and homeowners.
+
   </InfoCard>
 
   <InfoCard title="Renew AC - Alameda County's Housing Preservation Loan Program" externalHref="https://www.renewac.org/">
 
   Provides affordable, low-interest deferred payment loans to assist residents with making home improvements that are necessary to stay, grow, and thrive in their homes.
+
   </InfoCard>
 
   <InfoCard title="AC Housing Secure - Emergency Rental Assistance Program" externalHref="https://www.ac-housingsecure.org/?fbclid=IwAR0186ykll8tKe-brqbLkMHiguYJQc0buUF1o6SjhXg_EKebR9fYSJs5hus">
-    If you’re an Alameda County renter who has fallen behind on rent or utilities payments due to the COVID-19 pandemic, you may qualify for assistance. Income-eligible households pay up to 15 months of rent and utilities, both for past due and future payments.
+
+  If you’re an Alameda County renter who has fallen behind on rent or utilities payments due to the COVID-19 pandemic, you may qualify for assistance. Income-eligible households pay up to 15 months of rent and utilities, both for past due and future payments.
+
   </InfoCard>
 
   <InfoCard title="AC Housing Secure - Alameda County Homeowner Services" externalHref="https://www.ac-housingsecure.org/otherresources">
+
   Resources for homeowners at risk of foreclosure.
+
   </InfoCard>
   </InfoCardGrid>
 
@@ -124,20 +127,22 @@ import RenderIf from "../components/RenderIf.tsx"
     
   </InfoCard>
 
-  <InfoCard title="AC Boost - Programa de asistencia de préstamos para pagos iniciales del Condado de Alameda" externalHref="https://www.acboost.org/">  
+  <InfoCard title="AC Boost - Programa de asistencia de préstamos para pagos iniciales del Condado de Alameda" externalHref="https://www.acboost.org/">
 
   Proporciona préstamos de asistencia para pagos iniciales a compradores de casas de ingresos medianos que compren su primera casa y reúnan los requisitos.
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - Programa antidesplazamiento del Condado de Alameda" externalHref="https://www.centrolegal.org/achousingsecure/">  
+  <InfoCard title="AC Housing Secure - Programa antidesplazamiento del Condado de Alameda" externalHref="https://www.centrolegal.org/achousingsecure/">
 
   Proporciona servicios legales gratuitos y asistencia financiera de emergencia a inquilinos y propietarios de viviendas.
+
   </InfoCard>
 
   <InfoCard title="Renew AC - Programa de préstamos para la preservación de la vivienda del Condado de Alameda" externalHref="https://www.renewac.org/">
 
   Proporciona préstamos accesibles de intereses bajos y pagos diferidos para ayudar a los residentes a realizar mejoras en sus hogares que sean necesarias para permanecer, crecer y progresar en sus hogares.
+
   </InfoCard>
   </InfoCardGrid>
 
@@ -197,20 +202,22 @@ import RenderIf from "../components/RenderIf.tsx"
     
   </InfoCard>
 
-  <InfoCard title="AC Boost - 阿拉米達縣首期貸款援助計劃" externalHref="https://www.acboost.org/">  
+  <InfoCard title="AC Boost - 阿拉米達縣首期貸款援助計劃" externalHref="https://www.acboost.org/">
 
   為符合資格、首次置業的中等收入人士提供首期貸款援助。
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - 阿拉米達縣反被迫遷離計劃" externalHref="https://www.centrolegal.org/achousingsecure/">  
+  <InfoCard title="AC Housing Secure - 阿拉米達縣反被迫遷離計劃" externalHref="https://www.centrolegal.org/achousingsecure/">
 
   為租戶和業主提供免費法律服務和緊急財務援助。
+
   </InfoCard>
 
   <InfoCard title="Renew AC - 阿拉米達縣房屋維護貸款計劃" externalHref="https://www.renewac.org/">
 
   提供人們負擔得起，並可延期還款的低息貸款，幫助居民為家居進行必要的修繕，讓他們繼續留在家中生活、成長和發展。
+
   </InfoCard>
   </InfoCardGrid>
 
@@ -270,20 +277,22 @@ import RenderIf from "../components/RenderIf.tsx"
     
   </InfoCard>
 
-  <InfoCard title="AC Boost - Chương trình Hỗ trợ Vay Tiền Trả trước của Quận Alameda" externalHref="https://www.acboost.org/">  
+  <InfoCard title="AC Boost - Chương trình Hỗ trợ Vay Tiền Trả trước của Quận Alameda" externalHref="https://www.acboost.org/">
 
   Cung cấp hỗ trợ cho vay tiền trả trước để mua nhà cho những người lần đầu tiên mua nhà hội đủ điều kiện, có thu nhập trung bình.
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - Chương trình Ngăn Chuyển chỗ ở Bắt buộc của Quận Alameda" externalHref="https://www.centrolegal.org/achousingsecure/">  
+  <InfoCard title="AC Housing Secure - Chương trình Ngăn Chuyển chỗ ở Bắt buộc của Quận Alameda" externalHref="https://www.centrolegal.org/achousingsecure/">
 
   Cung cấp dịch vụ pháp lý miễn phí và hỗ trợ tài chính khẩn cấp cho người thuê nhà và chủ nhà.
+
   </InfoCard>
 
   <InfoCard title="Renew AC - Chương trình Cho vay để Giữ Nhà ở của Quận Alameda" externalHref="https://www.renewac.org/">
 
   Cung cấp các khoản vay trả chậm lãi suất thấp để hỗ trợ các cư dân nâng cấp nhà cần thiết để ở, phát triển, và thịnh vượng trong nhà mình.
+
   </InfoCard>
   </InfoCardGrid>
 
@@ -307,3 +316,166 @@ import RenderIf from "../components/RenderIf.tsx"
   </InfoCardGrid>
 
 </RenderIf>
+
+<br />
+
+<InfoCardGrid title="City and Region-Related Services">
+
+  ### Oakland
+
+</InfoCardGrid>
+
+<section className="info-cards"><div className="info-cards__grid">
+<InfoCard title="Bay Area Community Services - Downtown Oakland" externalHref="http://www.bayareacs.org/">
+
+Unsheltered adults
+
+Call BACS Coordinated Entry line at 510-658-9480
+
+Walk in at 629 Oakland Ave.  
+Office hours: 1-4pm, Mon, Tues, Wed
+
+</InfoCard>
+
+<InfoCard title="Building Opportunities for Self-Sufficiency - West Oakland" externalHref="http://www.self-sufficiency.org/">
+
+Unsheltered adults
+
+Call BOSS Coordinated Entry line at 510-844-8221
+
+Walk in at 2811 Adeline St.  
+Offce hours: 10am-2pm, Mon, Tues, Thur, Fri
+
+</InfoCard>
+
+<InfoCard title="Family Front Door">
+
+Unsheltered families (with a child under 18) 
+
+Call 510-808-7410 ext. 282 
+
+If you are already receiving services and need to update your information, text your full name and your updated/new information to 510-435-2772.
+
+</InfoCard>
+
+<InfoCard title="Keep Oakland Housed Program" externalHref="https://www.keepoaklandhoused.org">
+
+Any families or individuals who are still sheltered but face a crisis such as a 3 day pay or quit notice, an eviction notice.
+
+Call 510-613-0330 ext. 2
+
+</InfoCard>
+
+</div></section>
+
+### North County (Berkeley, Albany, Emeryville) 
+
+<section className="info-cards"><div className="info-cards__grid">
+
+<InfoCard title="Bay Area Community Services" externalHref="http://www.bayareacs.org/">
+
+Unsheltered adults
+
+Call 510-495-0131  
+Email housinghub@bayareacs.org
+
+Walk in at 2809 Telegraph Ave.  
+Office hours: 9am-12pm, Mon, Wed, Fri
+
+</InfoCard>
+
+<InfoCard title="Family Front Door">
+
+Unsheltered families (with a child under 18) 
+
+Call 510-808-7410 ext. 282 
+
+If you are already receiving services and need to update your information, text your full name and your updated/new information to 510-435-2772.
+
+Emeryville
+
+</InfoCard>
+
+<InfoCard title="Women’s Daytime Drop-in Center" externalHref="https://www.womensdropin.org/">
+
+Unsheltered families
+
+Call 510-548-2884  
+Email help@womensdropin.org
+
+Walk in at 2218 Acton St.  
+Office hours: 8am-4pm, Mon-Fri 
+
+</InfoCard>
+
+</div></section>
+
+### Mid-County
+
+<section className="info-cards"><div className="info-cards__grid">
+
+<InfoCard title="Building Futures - West (San Leandro and Alameda)" externalHref="https://bfwc.org">
+
+Unsheltered adults/families
+
+Call 510-357-0205 
+
+</InfoCard>
+
+<InfoCard title="Bay Area Community Services - East (Hayward and Unincorporated)" externalHref="http://www.bayareacs.org/">
+
+Unsheltered adults/families
+
+Call 510-247-8235  
+Email HaywardHRC@bayareacs.org
+
+Walk in at 590 B Street, Hayward  
+Office hours: 1-4pm, Tue and Thur
+
+</InfoCard>
+
+</div></section>
+
+### East County/Tri-Valley (Livermore, Dublin, Pleasanton)
+
+<section className="info-cards"><div className="info-cards__grid">
+
+<InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+Unsheltered adults/families
+
+Call 510-371-0447
+
+Walk in at 3311 Pacific Ave.  
+Drop-in hours: 8am-12pm, Wed and Thur
+
+Livermore
+
+</InfoCard>
+
+</div></section>
+
+### South County/Tri-City (Fremont, Newark, Union City)
+
+<section className="info-cards"><div className="info-cards__grid">
+
+<InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+Unsheltered adults
+
+Call 510-330-5822 
+
+Walk in at 4075 Papazian Way, Fremont  
+Drop-in hours: 9am-1pm, Mon and Tues 
+
+</InfoCard>
+
+<InfoCard title="Fremont Family Resource Center" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
+
+Unsheltered families
+
+Call 510-574-2000
+
+</InfoCard>
+
+</div></section>
