@@ -3,7 +3,7 @@
   <InfoCardGrid title="Immediate Housing Assistance">
   <InfoCard title="211 Alameda County Resource Finder" externalHref="https://achousingchoices.org/">
 
-  If you are in need of immediate emergency shelter and housing assistance, please contact Eden Information & Referral at 510-537-2552 or the Bay Area Helpline at 1-800-273-6222, or visit https://achousingchoices.org/.
+  If you are in need of immediate emergency shelter and housing assistance, please contact Eden Information & Referral at [510-537-2552](tel:+1-510-537-2552) or the Bay Area Helpline at [1-800-273-6222](tel:+1-800-273-6222), or visit https://achousingchoices.org/.
 
   Alameda County
 
@@ -11,7 +11,7 @@
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
 
-  BACS Housing Resource Center, contact number: 510-613-0330.
+  BACS Housing Resource Center, contact number: [510-613-0330](tel:+1-510-613-0330).
 
   Albany, Berkeley, Emeryville, and Oakland
 
@@ -27,7 +27,7 @@
 
   If you are fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911
 
-  For services, shelter and housing information call 211 or the hotline at 1-800-799-7233 or 1-800-787-3224 (TTY)
+  For services, shelter and housing information call 211 or the hotline at [1-800-799-7233](tel:+1-800-799-7233) or 1-800-787-3224 (TTY)
   </InfoCard>
   </InfoCardGrid>
 
@@ -52,12 +52,6 @@
 
   </InfoCard>
 
-  <InfoCard title="Renew AC - Alameda County's Housing Preservation Loan Program" externalHref="https://www.renewac.org/">
-
-  Provides affordable, low-interest deferred payment loans to assist residents with making home improvements that are necessary to stay, grow, and thrive in their homes.
-
-  </InfoCard>
-
   <InfoCard title="AC Housing Secure - Emergency Rental Assistance Program" externalHref="https://www.ac-housingsecure.org/?fbclid=IwAR0186ykll8tKe-brqbLkMHiguYJQc0buUF1o6SjhXg_EKebR9fYSJs5hus">
 
   If you’re an Alameda County renter who has fallen behind on rent or utilities payments due to the COVID-19 pandemic, you may qualify for assistance. Income-eligible households pay up to 15 months of rent and utilities, both for past due and future payments.
@@ -67,6 +61,12 @@
   <InfoCard title="AC Housing Secure - Alameda County Homeowner Services" externalHref="https://www.ac-housingsecure.org/otherresources">
 
   Resources for homeowners at risk of foreclosure.
+
+  </InfoCard>
+
+  <InfoCard title="Renew AC - Alameda County's Housing Preservation Loan Program" externalHref="https://www.renewac.org/">
+
+  Provides affordable, low-interest deferred payment loans to assist residents with making home improvements that are necessary to stay, grow, and thrive in their homes.
 
   </InfoCard>
   </InfoCardGrid>
@@ -97,7 +97,7 @@
   <InfoCardGrid title="Immediate Housing Assistance">
   <InfoCard title="211 Buscador de recursos del Condado de Alameda" externalHref="https://achousingchoices.org/">
 
-  Si necesita asistencia inmediata de emergencia para obtener un refugio o vivienda, sírvase poner en contacto con Eden Information & Referral llamando al 510-537-2552 o con la Bay Area Helpline llamando al 1-800-273-6222 o visitando https://achousingchoices.org/.
+  Si necesita asistencia inmediata de emergencia para obtener un refugio o vivienda, sírvase poner en contacto con Eden Information & Referral llamando al [510-537-2552](tel:+1-510-537-2552) o con la Bay Area Helpline llamando al [1-800-273-6222](tel:+1-800-273-6222) o visitando https://achousingchoices.org/.
 
   Condado de Alameda
 
@@ -105,7 +105,7 @@
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
 
-  Número de contacto del Centro de Recursos de Vivienda de BACS: 510-613-0330.
+  Número de contacto del Centro de Recursos de Vivienda de BACS: [510-613-0330](tel:+1-510-613-0330).
 
   Albany, Berkeley, Emeryville y Oakland
 
@@ -172,7 +172,7 @@
   <InfoCardGrid title="Immediate Housing Assistance">
   <InfoCard title="211 阿拉米達縣資源搜尋工具" externalHref="https://achousingchoices.org/">
 
-  如果您需要立即入住緊急收容所和尋求住房協助，請致電 510-537-2552 與 Eden Information & Referral（伊甸資訊和轉介中心）聯絡，或致電 1-800-273-6222 與 Bay Area Helpline（灣區求助熱線）聯絡；或可瀏覽 https://achousingchoices.org/ 。
+  如果您需要立即入住緊急收容所和尋求住房協助，請致電 [510-537-2552](tel:+1-510-537-2552) 與 Eden Information & Referral（伊甸資訊和轉介中心）聯絡，或致電 1-800-273-6222 與 Bay Area Helpline（灣區求助熱線）聯絡；或可瀏覽 https://achousingchoices.org/ 。
 
   阿拉米達縣
 
@@ -180,7 +180,7 @@
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
 
-  BACS 住房資源中心，聯絡電話：510-613-0330。
+  BACS 住房資源中心，聯絡電話：[510-613-0330](tel:+1-510-613-0330)。
 
   Albany、Berkeley、Emeryville 及 Oakland
 
@@ -247,7 +247,7 @@
   <InfoCardGrid title="Immediate Housing Assistance">
   <InfoCard title="211 Công cụ Tìm kiếm Nguồn Trợ giúp Quận Alameda" externalHref="https://achousingchoices.org/">
 
-  Nếu quý vị cần nơi trú ẩn khẩn cấp và hỗ trợ về nhà ở ngay lập tức, vui lòng liên lạc ban Thông tin & Giới thiệu Eden theo số 510-537-2552 hoặc Đường dây Trợ giúp Bay Area theo số 1-800-273-6222, hoặc truy cập https://achousingchoices.org/.
+  Nếu quý vị cần nơi trú ẩn khẩn cấp và hỗ trợ về nhà ở ngay lập tức, vui lòng liên lạc ban Thông tin & Giới thiệu Eden theo số [510-537-2552](tel:+1-510-537-2552) hoặc Đường dây Trợ giúp Bay Area theo số [1-800-273-6222](tel:+1-800-273-6222), hoặc truy cập https://achousingchoices.org/.
 
   Quận Alameda
 
@@ -255,7 +255,7 @@
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
 
-  Trung tâm Nguồn Thông Tin Trợ giúp Gia cư BACS, số điện thoại liên lạc: 510-613-0330.
+  Trung tâm Nguồn Thông Tin Trợ giúp Gia cư BACS, số điện thoại liên lạc: [510-613-0330](tel:+1-510-613-0330).
 
   Albany, Berkeley, Emeryville, và Oakland
 
@@ -330,7 +330,7 @@
 
 Unsheltered adults
 
-Call BACS Coordinated Entry line at 510-658-9480
+Call BACS Coordinated Entry line at [510-658-9480](tel:+1-510-658-9480)
 
 Walk in at 629 Oakland Ave.  
 Office hours: 1-4pm, Mon, Tues, Wed
@@ -341,7 +341,7 @@ Office hours: 1-4pm, Mon, Tues, Wed
 
 Unsheltered adults
 
-Call BOSS Coordinated Entry line at 510-844-8221
+Call BOSS Coordinated Entry line at [510-844-8221](tel:+1-510-844-8221)
 
 Walk in at 2811 Adeline St.  
 Offce hours: 10am-2pm, Mon, Tues, Thur, Fri
@@ -352,9 +352,9 @@ Offce hours: 10am-2pm, Mon, Tues, Thur, Fri
 
 Unsheltered families (with a child under 18) 
 
-Call 510-808-7410 ext. 282 
+Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
 
-If you are already receiving services and need to update your information, text your full name and your updated/new information to 510-435-2772.
+If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
 
 </InfoCard>
 
@@ -362,7 +362,7 @@ If you are already receiving services and need to update your information, text 
 
 Any families or individuals who are still sheltered but face a crisis such as a 3 day pay or quit notice, an eviction notice.
 
-Call 510-613-0330 ext. 2
+Call [510-613-0330](tel:+1-510-613-0330) ext. 2
 
 </InfoCard>
 
@@ -376,8 +376,8 @@ Call 510-613-0330 ext. 2
 
 Unsheltered adults
 
-Call 510-495-0131  
-Email housinghub@bayareacs.org
+Call [510-495-0131](tel:+1-510-495-0131)  
+Email [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
 
 Walk in at 2809 Telegraph Ave.  
 Office hours: 9am-12pm, Mon, Wed, Fri
@@ -388,9 +388,9 @@ Office hours: 9am-12pm, Mon, Wed, Fri
 
 Unsheltered families (with a child under 18) 
 
-Call 510-808-7410 ext. 282 
+Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
 
-If you are already receiving services and need to update your information, text your full name and your updated/new information to 510-435-2772.
+If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
 
 Emeryville
 
@@ -400,8 +400,8 @@ Emeryville
 
 Unsheltered families
 
-Call 510-548-2884  
-Email help@womensdropin.org
+Call [510-548-2884](tel:+1-510-548-2884)  
+Email [help@womensdropin.org](mailto:help@womensdropin.org)
 
 Walk in at 2218 Acton St.  
 Office hours: 8am-4pm, Mon-Fri 
@@ -418,7 +418,7 @@ Office hours: 8am-4pm, Mon-Fri
 
 Unsheltered adults/families
 
-Call 510-357-0205 
+Call [510-357-0205](tel:+1-510-357-0205)
 
 </InfoCard>
 
@@ -426,8 +426,8 @@ Call 510-357-0205
 
 Unsheltered adults/families
 
-Call 510-247-8235  
-Email HaywardHRC@bayareacs.org
+Call [510-247-8235](tel:510-247-8235)  
+Email [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
 
 Walk in at 590 B Street, Hayward  
 Office hours: 1-4pm, Tue and Thur
@@ -444,7 +444,7 @@ Office hours: 1-4pm, Tue and Thur
 
 Unsheltered adults/families
 
-Call 510-371-0447
+Call [510-371-0447](tel:+1-510-371-0447)
 
 Walk in at 3311 Pacific Ave.  
 Drop-in hours: 8am-12pm, Wed and Thur
@@ -463,7 +463,7 @@ Livermore
 
 Unsheltered adults
 
-Call 510-330-5822 
+Call [510-330-5822](tel:+1-510-330-5822)
 
 Walk in at 4075 Papazian Way, Fremont  
 Drop-in hours: 9am-1pm, Mon and Tues 
@@ -474,7 +474,7 @@ Drop-in hours: 9am-1pm, Mon and Tues
 
 Unsheltered families
 
-Call 510-574-2000
+Call [510-574-2000](tel:+1-510-574-2000)
 
 </InfoCard>
 
