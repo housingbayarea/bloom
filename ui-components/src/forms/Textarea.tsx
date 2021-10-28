@@ -9,7 +9,6 @@ export interface TextareaProps {
   cols?: number
   defaultValue?: string
   disabled?: boolean
-  error?: boolean
   errorMessage?: string
   fullWidth?: boolean
   id?: string
