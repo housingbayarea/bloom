@@ -1,7 +1,7 @@
 import React from "react"
 import { useFormContext } from "react-hook-form"
 import { t, GridSection, Textarea } from "@bloom-housing/ui-components"
-import { fieldMessage } from "../../../../lib/helpers"
+import { fieldHasError, fieldMessage } from "../../../../lib/helpers"
 
 const AdditionalEligibility = () => {
   const formMethods = useFormContext()
@@ -47,7 +47,8 @@ const AdditionalEligibility = () => {
             id={"rentalAssistance"}
             fullWidth={true}
             register={register}
-            errorMessage={fieldMessage(errors?.rentalAssistance?.message)}
+            error={fieldHasError(errors?.rentalAssistance)}
+            errorMessage={fieldMessage(errors?.rentalAssistance)}
             inputProps={{
               onChange: () => clearErrors("rentalAssistance"),
             }}
