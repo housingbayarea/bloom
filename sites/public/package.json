@@ -18,10 +18,11 @@
     "dev:all": "concurrently \"yarn dev:listings\" \"yarn dev:server-wait\""
   },
   "dependencies": {
-    "@bloom-housing/ui-components": "^2.0.0-alpha.0",
     "@next/mdx": "11.1.2",
     "@mdx-js/loader": "1.6.22",
     "@sentry/nextjs": "^6.13.2",
+    "@bloom-housing/ui-components": "^2.0.0-alpha.1",
+    "@bloom-housing/shared-helpers": "1.0.5",
     "autoprefixer": "^10.3.4",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
