@@ -54,6 +54,12 @@ export default class extends Component<ListingProps> {
   public render() {
     let buildingSelectionCriteria, preferencesSection
     const listing = this.props.listing
+    // temp patch
+    if (
+      listing?.urlSlug === "bridgepointe_rental_condominiums_1927_bridgepointe_circle_san_mateo_ca"
+    ) {
+      listing.attachments[0].fileUrl = "https://bit.ly/3baub2z"
+    }
 
     const oneLineAddress = <OneLineAddress address={listing.buildingAddress} />
 
