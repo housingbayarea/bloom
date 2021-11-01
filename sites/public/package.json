@@ -1,15 +1,10 @@
 {
   "name": "@bloom-housing/public",
-  "version": "2.0.0-pre-tailwind.24",
-  "author": "Sean Albert <sean.albert@exygy.com>",
+  "version": "2.0.0-pre-tailwind",
   "description": "Public web app reference implementation for the Bloom affordable housing system",
   "main": "index.js",
   "license": "Apache-2.0",
   "private": true,
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org"
-  },
   "scripts": {
     "dev": "NODE_OPTIONS='--inspect=9230' next -p ${NEXTJS_PORT:-3000}",
     "build": "next build",
@@ -23,8 +18,11 @@
     "dev:all": "concurrently \"yarn dev:listings\" \"yarn dev:server-wait\""
   },
   "dependencies": {
+    "@next/mdx": "11.1.2",
+    "@mdx-js/loader": "1.6.22",
+    "@sentry/nextjs": "^6.13.2",
+    "@bloom-housing/ui-components": "^2.0.0-alpha.1",
     "@bloom-housing/shared-helpers": "1.0.5",
-    "@bloom-housing/ui-components": "^2.0.0-alpha.25",
     "autoprefixer": "^10.3.4",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
