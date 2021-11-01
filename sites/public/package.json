@@ -23,7 +23,7 @@
     "dev:all": "concurrently \"yarn dev:listings\" \"yarn dev:server-wait\""
   },
   "dependencies": {
-    "@bloom-housing/shared-helpers": "^1.0.6-alpha.5",
+    "@bloom-housing/shared-helpers": "1.0.5",
     "@bloom-housing/ui-components": "^2.0.0-alpha.25",
     "autoprefixer": "^10.3.4",
     "axios": "^0.21.1",
