@@ -436,6 +436,10 @@
           "label": "Residency",
           "description": "%{county} copy goes here…"
         },
+        "generalResidency": {
+          "label": "Residency",
+          "description": "%{county} copy goes here…"
+        },
         "family": {
           "label": "Family",
           "description": "%{county} copy goes here…"
