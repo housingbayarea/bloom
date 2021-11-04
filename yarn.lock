@@ -2764,7 +2764,7 @@
     typeorm-naming-strategies "^1.1.0"
     typescript "^3.9.7"
 
-"@bloom-housing/backend-core@^2.0.0-pre-tailwind.12", "@bloom-housing/backend-core@^2.0.0-pre-tailwind.15":
+"@bloom-housing/backend-core@^2.0.0-pre-tailwind.12":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@bloom-housing/backend-core/-/backend-core-2.0.0.tgz#9b9058def406a2595c7f4af7b09ab112e9819f5b"
   integrity sha512-8n7O/k3LFt59nRw7uByI8cCOyAvW7tBUw0zLRcfD1BUd+NbS0xWPojPyBFn4G5qZEPyI+N086P5hANNyosuCrQ==
@@ -2823,42 +2823,6 @@
   integrity sha512-Sgya7iu4CzvtxgbVFBnc2QNLZhSq+4C1DPnN9oIk1TiHCaEgcL75Z8DkODLYmdkMEP3eoj1RH/ioQ9rRP6/YPg==
   dependencies:
     "@bloom-housing/backend-core" "^2.0.0-pre-tailwind.12"
-    "@mapbox/mapbox-sdk" "^0.13.0"
-    "@types/body-scroll-lock" "^2.6.1"
-    "@types/jwt-decode" "^2.2.1"
-    "@types/markdown-to-jsx" "^6.11.2"
-    "@types/node" "^12.12.67"
-    "@types/node-polyglot" "^2.4.1"
-    "@types/react-beautiful-dnd" "^13.1.1"
-    "@types/react-dom" "^16.9.5"
-    "@types/react-text-mask" "^5.4.6"
-    "@types/react-transition-group" "^4.4.0"
-    axios "^0.21.1"
-    body-scroll-lock "^3.1.5"
-    jwt-decode "^2.2.0"
-    markdown-to-jsx "^6.11.4"
-    moment "^2.29.1"
-    nanoid "^3.1.12"
-    react "^17.0.2"
-    react-accessible-accordion "^3.3.5"
-    react-beautiful-dnd "^13.1.0"
-    react-dom "^17.0.2"
-    react-dropzone "^11.3.2"
-    react-focus-lock "^2.5.2"
-    react-map-gl "^6.1.16"
-    react-media "^1.10.0"
-    react-tabs "^3.2.2"
-    react-text-mask "^5.4.3"
-    react-transition-group "^4.4.1"
-    tailwindcss "2.2.10"
-    typesafe-actions "^5.1.0"
-
-"@bloom-housing/ui-components@2.0.0-alpha.25":
-  version "2.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/@bloom-housing/ui-components/-/ui-components-2.0.0-alpha.25.tgz#3d1f2285d5d354d92ee08b4286922e71c54698ce"
-  integrity sha512-f8g1w1vdXa/YBbPtmRVhQOu2CKxcqxI9vf/tpc2qDbBjUNKb7vybanWdt6ZJDCDs5VgWQ7rG0xfzCve8lSX/1g==
-  dependencies:
-    "@bloom-housing/backend-core" "^2.0.0-pre-tailwind.15"
     "@mapbox/mapbox-sdk" "^0.13.0"
     "@types/body-scroll-lock" "^2.6.1"
     "@types/jwt-decode" "^2.2.1"
