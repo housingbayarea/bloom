@@ -2711,10 +2711,10 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
-"@bloom-housing/backend-core@2.0.0-pre-tailwind.12":
-  version "2.0.0-pre-tailwind.12"
-  resolved "https://registry.yarnpkg.com/@bloom-housing/backend-core/-/backend-core-2.0.0-pre-tailwind.12.tgz#c5f10fbb8a2ef9796f30f388ff3ef840bcdc44fd"
-  integrity sha512-7WqbcA4/AqIm/6X9o3GkW1PVGEm14IT1PyF1fo3JZfhk6EM4tbAnDE5mnB4XGW9wWoPV7DZbq9VjvPXw4qlW2A==
+"@bloom-housing/backend-core@2.0.0-pre-tailwind.15":
+  version "2.0.0-pre-tailwind.15"
+  resolved "https://registry.yarnpkg.com/@bloom-housing/backend-core/-/backend-core-2.0.0-pre-tailwind.15.tgz#16aac5b1e92788ef4cf61a7bb0f7786202a91b55"
+  integrity sha512-F6bvIEXalwjB8pEA3xhGgrJUaLC/hIvMfrCu52NTqwv32ueLMuNMvrTP8Fph+5+3w50JiIKq6yyWuK3Ml4RFDA==
   dependencies:
     "@anchan828/nest-sendgrid" "^0.3.25"
     "@google-cloud/translate" "^6.2.6"
@@ -2764,7 +2764,7 @@
     typeorm-naming-strategies "^1.1.0"
     typescript "^3.9.7"
 
-"@bloom-housing/backend-core@^2.0.0-pre-tailwind.12":
+"@bloom-housing/backend-core@^2.0.0-pre-tailwind.15":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@bloom-housing/backend-core/-/backend-core-2.0.0.tgz#9b9058def406a2595c7f4af7b09ab112e9819f5b"
   integrity sha512-8n7O/k3LFt59nRw7uByI8cCOyAvW7tBUw0zLRcfD1BUd+NbS0xWPojPyBFn4G5qZEPyI+N086P5hANNyosuCrQ==
@@ -2817,12 +2817,12 @@
     typeorm-naming-strategies "^1.1.0"
     typescript "^3.9.7"
 
-"@bloom-housing/ui-components@2.0.0-alpha.22":
-  version "2.0.0-alpha.22"
-  resolved "https://registry.yarnpkg.com/@bloom-housing/ui-components/-/ui-components-2.0.0-alpha.22.tgz#fc924864f0ba006c85907dbe486b18915898d35e"
-  integrity sha512-Sgya7iu4CzvtxgbVFBnc2QNLZhSq+4C1DPnN9oIk1TiHCaEgcL75Z8DkODLYmdkMEP3eoj1RH/ioQ9rRP6/YPg==
+"@bloom-housing/ui-components@2.0.0-alpha.25":
+  version "2.0.0-alpha.25"
+  resolved "https://registry.yarnpkg.com/@bloom-housing/ui-components/-/ui-components-2.0.0-alpha.25.tgz#3d1f2285d5d354d92ee08b4286922e71c54698ce"
+  integrity sha512-f8g1w1vdXa/YBbPtmRVhQOu2CKxcqxI9vf/tpc2qDbBjUNKb7vybanWdt6ZJDCDs5VgWQ7rG0xfzCve8lSX/1g==
   dependencies:
-    "@bloom-housing/backend-core" "^2.0.0-pre-tailwind.12"
+    "@bloom-housing/backend-core" "^2.0.0-pre-tailwind.15"
     "@mapbox/mapbox-sdk" "^0.13.0"
     "@types/body-scroll-lock" "^2.6.1"
     "@types/jwt-decode" "^2.2.1"
