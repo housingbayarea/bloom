@@ -5,8 +5,6 @@
 
   If you are in need of immediate emergency shelter and housing assistance, please contact Eden Information & Referral at [510-537-2552](tel:+1-510-537-2552) or the Bay Area Helpline at [1-800-273-6222](tel:+1-800-273-6222), or visit https://achousingchoices.org/.
 
-  Alameda County
-
   </InfoCard>
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
@@ -25,28 +23,28 @@
 
   <InfoCard title="Alameda County Housing Resource Centers (HRC)">
 
-  If you are fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911
+  If you are fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911.
 
-  For services, shelter and housing information call 211 or the hotline at [1-800-799-7233](tel:+1-800-799-7233) or 1-800-787-3224 (TTY)
+  For services, shelter and housing information call 211 or the hotline at [1-800-799-7233](tel:+1-800-799-7233) or 1-800-787-3224 (TTY).
   </InfoCard>
   </InfoCardGrid>
 
   <br />
 
-  <InfoCardGrid title="Alameda County Housing & Community Development (HCD) Housing Programs">
-  <InfoCard title="Alameda County Housing & Community Development (HCD) Department" externalHref="https://www.acgov.org/cda/hcd/rhd/index.htm">
+  <InfoCardGrid title="Housing & Community Development (HCD) Housing Programs">
+  <InfoCard title="Housing & Community Development (HCD) Department" externalHref="https://www.acgov.org/cda/hcd/rhd/index.htm">
     
   Information on the Alameda County Housing & Community Development (HCD) Department’s policies and programs. 
     
   </InfoCard>
 
-  <InfoCard title="AC Boost - Alameda County's Down Payment Loan Assistance Program" externalHref="https://www.acboost.org/">
+  <InfoCard title="AC Boost - Down Payment Loan Assistance Program" externalHref="https://www.acboost.org/">
 
   Provides down payment assistance loans to eligible, middle-income, first-time homebuyers.
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - Alameda County's Anti-Displacement Program" externalHref="https://www.centrolegal.org/achousingsecure/">
+  <InfoCard title="AC Housing Secure - Anti-Displacement Program" externalHref="https://www.centrolegal.org/achousingsecure/">
 
   Provides free legal services and emergency financial assistance to tenants and homeowners.
 
@@ -58,13 +56,13 @@
 
   </InfoCard>
 
-  <InfoCard title="AC Housing Secure - Alameda County Homeowner Services" externalHref="https://www.ac-housingsecure.org/otherresources">
+  <InfoCard title="AC Housing Secure - Homeowner Services" externalHref="https://www.ac-housingsecure.org/otherresources">
 
   Resources for homeowners at risk of foreclosure.
 
   </InfoCard>
 
-  <InfoCard title="Renew AC - Alameda County's Housing Preservation Loan Program" externalHref="https://www.renewac.org/">
+  <InfoCard title="Renew AC - Housing Preservation Loan Program" externalHref="https://www.renewac.org/">
 
   Provides affordable, low-interest deferred payment loans to assist residents with making home improvements that are necessary to stay, grow, and thrive in their homes.
 
@@ -98,8 +96,6 @@
   <InfoCard title="211 Buscador de recursos del Condado de Alameda" externalHref="https://achousingchoices.org/">
 
   Si necesita asistencia inmediata de emergencia para obtener un refugio o vivienda, sírvase poner en contacto con Eden Information & Referral llamando al [510-537-2552](tel:+1-510-537-2552) o con la Bay Area Helpline llamando al [1-800-273-6222](tel:+1-800-273-6222) o visitando https://achousingchoices.org/.
-
-  Condado de Alameda
 
   </InfoCard>
 
@@ -174,8 +170,6 @@
 
   如果您需要立即入住緊急收容所和尋求住房協助，請致電 [510-537-2552](tel:+1-510-537-2552) 與 Eden Information & Referral（伊甸資訊和轉介中心）聯絡，或致電 1-800-273-6222 與 Bay Area Helpline（灣區求助熱線）聯絡；或可瀏覽 https://achousingchoices.org/ 。
 
-  阿拉米達縣
-
   </InfoCard>
 
   <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
@@ -248,8 +242,6 @@
   <InfoCard title="211 Công cụ Tìm kiếm Nguồn Trợ giúp Quận Alameda" externalHref="https://achousingchoices.org/">
 
   Nếu quý vị cần nơi trú ẩn khẩn cấp và hỗ trợ về nhà ở ngay lập tức, vui lòng liên lạc ban Thông tin & Giới thiệu Eden theo số [510-537-2552](tel:+1-510-537-2552) hoặc Đường dây Trợ giúp Bay Area theo số [1-800-273-6222](tel:+1-800-273-6222), hoặc truy cập https://achousingchoices.org/.
-
-  Quận Alameda
 
   </InfoCard>
 
@@ -333,18 +325,18 @@ Unsheltered adults
 Call BACS Coordinated Entry line at [510-658-9480](tel:+1-510-658-9480)
 
 Walk in at 629 Oakland Ave.  
-Office hours: 1-4pm, Mon, Tues, Wed
+Office hours: 1-4pm, Monday, Tuesday, and Wednesday
 
 </InfoCard>
 
-<InfoCard title="Building Opportunities for Self-Sufficiency - West Oakland" externalHref="http://www.self-sufficiency.org/">
+<InfoCard title="Berkeley Housing Authority - West Oakland" externalHref="http://www.self-sufficiency.org/">
 
 Unsheltered adults
 
 Call BOSS Coordinated Entry line at [510-844-8221](tel:+1-510-844-8221)
 
 Walk in at 2811 Adeline St.  
-Offce hours: 10am-2pm, Mon, Tues, Thur, Fri
+Offce hours: 10am-2pm, Monday, Tuesday, Thurday, and Friday
 
 </InfoCard>
 
@@ -380,7 +372,7 @@ Call [510-495-0131](tel:+1-510-495-0131)
 Email [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
 
 Walk in at 2809 Telegraph Ave.  
-Office hours: 9am-12pm, Mon, Wed, Fri
+Office hours: 9am-12pm, Monday, Wednesday, and Friday
 
 </InfoCard>
 
@@ -404,7 +396,7 @@ Call [510-548-2884](tel:+1-510-548-2884)
 Email [help@womensdropin.org](mailto:help@womensdropin.org)
 
 Walk in at 2218 Acton St.  
-Office hours: 8am-4pm, Mon-Fri 
+Office hours: 8am-4pm, Monday-Friday 
 
 </InfoCard>
 
@@ -430,7 +422,7 @@ Call [510-247-8235](tel:510-247-8235)
 Email [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
 
 Walk in at 590 B Street, Hayward  
-Office hours: 1-4pm, Tue and Thur
+Office hours: 1-4pm, Tuesday and Thursday
 
 </InfoCard>
 
@@ -447,7 +439,7 @@ Unsheltered adults/families
 Call [510-371-0447](tel:+1-510-371-0447)
 
 Walk in at 3311 Pacific Ave.  
-Drop-in hours: 8am-12pm, Wed and Thur
+Drop-in hours: 8am-12pm, Wednesday and Thursday
 
 Livermore
 
@@ -466,7 +458,7 @@ Unsheltered adults
 Call [510-330-5822](tel:+1-510-330-5822)
 
 Walk in at 4075 Papazian Way, Fremont  
-Drop-in hours: 9am-1pm, Mon and Tues 
+Drop-in hours: 9am-1pm, Monday and Tuesday
 
 </InfoCard>
 
