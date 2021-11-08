@@ -22,8 +22,6 @@
     "@bloom-housing/backend-core": "^3.0.1-alpha.8",
     "@bloom-housing/shared-helpers": "^3.0.1-alpha.1",
     "@bloom-housing/ui-components": "^3.0.1-alpha.8",
-    "@next/mdx": "11.1.2",
-    "@mdx-js/loader": "1.6.22",
     "@sentry/nextjs": "^6.13.2",
     "autoprefixer": "^10.3.4",
     "axios": "^0.21.1",

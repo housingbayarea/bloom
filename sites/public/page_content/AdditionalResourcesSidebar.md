@@ -1,5 +1,3 @@
-import RenderIf from "../components/RenderIf.tsx"
-
 <RenderIf language="default">
 
   #### Contact
