@@ -5,22 +5,11 @@
     },
     "household": {
       "member": {
-        "workInRegion": "Họ có làm việc tại %{county} không?",
         "workInRegionNote": ""
       }
     },
     "preferences": {
       "dontWant": "Tôi không muốn chọn bất kỳ ưu tiên nào trong số này",
-      "liveWork": {
-        "live": {
-          "label": "Sống tại %{county} Ưu tiên",
-          "description": "Ít nhất một thành viên trong hộ gia đình tôi sống tại Thành phố %{county}"
-        },
-        "work": {
-          "label": "Làm việc tại %{county} Ưu tiên",
-          "description": "Ít nhất một thành viên trong hộ gia đình tôi đã làm việc hoặc được đề nghị làm việc tại Thành phố %{county}"
-        }
-      },
       "displacedTenant": {
         "general": {
           "label": "Lựa chọn Ưu tiên Nhà ở dành cho Người Thuê Nhà phải Chuyển chỗ",
