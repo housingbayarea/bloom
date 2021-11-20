@@ -82,7 +82,7 @@ const Layout = (props) => {
             <>
               {t("nav.getFeedback")}
               <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScFVVvd7FDa7puUN4iH2SBl_KAWBu8dRTXNuLIt8Ff9iYF3uA/viewform?usp=sf_link"
+                href="https://docs.google.com/forms/d/e/1FAIpQLScAZrM-4biqpQPFSJfaYef0dIiONYJ95n8pK1c8a5a8I78xxw/viewform"
                 target="_blank"
                 className={"cursor-pointer"}
               >
@@ -145,12 +145,12 @@ const Layout = (props) => {
         </FooterSection>
         <FooterNav copyright={t("footer.copyRight")}>
           <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScFVVvd7FDa7puUN4iH2SBl_KAWBu8dRTXNuLIt8Ff9iYF3uA/viewform?usp=sf_link"
+            href="https://docs.google.com/forms/d/e/1FAIpQLScAZrM-4biqpQPFSJfaYef0dIiONYJ95n8pK1c8a5a8I78xxw/viewform"
             target="_blank"
           >
             {t("footer.giveFeedback")}
           </a>
-          <a href="mailto:housing@sanjoseca.gov">{t("footer.contact")}</a>
+          <a href="mailto:SJHousingPortal@sanjoseca.gov">{t("footer.contact")}</a>
           <Link href="/disclaimer">
             <a>{t("footer.disclaimer")}</a>
           </Link>
