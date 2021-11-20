@@ -1,7 +1,6 @@
 {
   "application": {
     "contact": {
-      "doYouWorkIn": "¿Trabaja usted en %{county}?",
       "doYouWorkInDescription": ""
     },
     "household": {
