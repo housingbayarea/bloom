@@ -1,6 +1,4 @@
-Alameda County Housing Portal is a platform to connect renters and property managers to subsidized affordable housing opportunities.  At Alameda County Housing Portal your privacy is important to us, so we strive to be transparent about how we collect, use and share information about you. This policy is intended to help you understand:
-
-
+City of San Jose Housing Portal is a platform to connect renters and property managers to subsidized affordable housing opportunities. Your privacy is important to us, so we strive to be transparent about how we collect, use, and share information about you. This policy is intended to help you understand:
 
 1. [WHAT INFORMATION WE COLLECT](#information-collect)
 2. [HOW WE USE INFORMATION](#information-use)
@@ -12,39 +10,49 @@ Alameda County Housing Portal is a platform to connect renters and property mana
 
 <br />
 
-Please take a moment to read this privacy policy carefully so that you can understand your rights and our responsibilities regarding your information. This policy also explains your choices about how we use information about you. By using the Service, you consent to the collection and use of information in accordance with this Privacy Policy. 
+Please take a moment to read this privacy policy carefully so that you can understand your rights and our responsibilities regarding your information. This policy also explains your choices about how we use information about you. By using the Service, you consent to the collection and use of information in accordance with this Privacy Policy.
 
-This Privacy Policy (this “Privacy Policy”) governs your use of the Alameda County Housing Portal website  (the “Services” or “Site”) which is owned and operated by the County of Alameda (the “Jurisdiction”). The Jurisdiction is sometimes referred to herein as “we,” “us,” or “our” and the applicant, developer, property manager, City, or other user (collectively the “User”) (as defined below) is sometimes referred to as “you,” “your,” or “customer. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms of Service.
+This Privacy Policy (this “Privacy Policy”) governs your use of the City of San Jose Housing Portal website (the “Services” or “Site”) which is owned and operated by the City of San Jose (the “Jurisdiction”). The Jurisdiction is sometimes referred to herein as “we,” “us,” or “our” and the applicant, developer, property manager, or other user (collectively the “User”) (as defined below) is sometimes referred to as “you,” “your,” or “customer. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms of Service.
+
+**Executive summary** – below is a non-exhaustive summary of our Privacy Policy
+
+**Information collected**: Information provided in your housing application (name, phone number, income, household size, etc.) and additional automatically collected information (IP address, cookie information, etc.) to provide the Services to you
+
+**How your information is used**: Your information allows us to provide you the Services, including the ability to apply to the available affordable housing options. Additional usage includes contacting you regarding the Services and conducting research and development to improve the Services. We will not sell your information for any third-party marketing purposes.
+
+**Who we share you information with**: We may share your information with our third-party service providers, including property managers and developers and staff from our Agents, to comply with legal obligations, to protect and defend our rights and property, ensure the functionality of the Site, or with your permission.
+
+**For further questions**: contact SJHousingPortal@sanjoseca.gov
 
 <h2 id="information-collect" className="my-5">1. WHAT INFORMATION WE COLLECT</h2>
 
 ##### Definitions
 
-We require certain information to provide our Services to you. For example, you may be required to have an account in order to interact with certain aspects of the Services. When you choose to share the information below with us, we collect and use it to operate our Services. "Personal Data" means data that allows someone to identify or contact you, including, for example, your name, address, telephone number, e-mail address, travel preferences, specific expenses, as well as any other non-public information about you that is associated with or linked to any of the foregoing data. "Anonymous Data" means data that is not associated with or linked to your Personal Data; Anonymous Data does not permit the identification of individual persons. As used in this document, the general term “information” includes all data provided by you or collected via the Services, including both Personal Data and Anonymous Data. We collect Personal Data and Anonymous Data, as described below.
+We require certain information to provide our Services to you. For example, you may be required to have an account to interact with certain aspects of the Services. When you choose to share the information below with us, we collect and use it to operate our Services. "Personal Data" means data that allows someone to identify or contact you, including, for example, your name, address, telephone number, e-mail address, travel preferences, specific expenses, as well as any other non-public information about you that is associated with or linked to any of the foregoing data. "Anonymous Data" means data that is not associated with or linked to your Personal Data; Anonymous Data does not permit the identification of individual persons. As used in this document, the general term “information” includes all data provided by you or collected via the Services, including both Personal Data and Anonymous Data. We collect Personal Data and Anonymous Data, as described below.
 
 ##### Information You Provide.
 
-When you use the Services, you will provide information that could be Personal Data, such (a) your name, email address, mobile telephone number, password for the Site, date of birth, tax identification number, schedule, picture, and other registration information; (b) information you provide us when you contact us for help; (c) any information required to ensure a User is eligible to participate in a specific program or aspect of Services; and (d) any other information you enter into the Services.
+When you use the Services, you will provide information that could be Personal Data, such as (a) your name, email address, mobile telephone number, password for the Site, date of birth, tax identification number, schedule, picture, and other registration information; (b) information you provide us when you contact us for help; (c) any information required to ensure a User is eligible to participate in a specific program or aspect of Services; and (d) any other information you enter into the Services.
 
-##### Information We Collect Automatically
+##### Information We Collect Automatically.
 
-We automatically receive and record information from your use of the Services, including but not limited to: Site usage, your IP address, browser type, Internet service provider, referring/exit pages, operating system, date/time stamp, clickstream data, and cookie information. Generally, the Services automatically collect usage information, such as the number and frequency of users of the Services. 
+We automatically receive and record information from your use of the Services, including but not limited to: Site usage, your IP address, browser type, Internet service provider, referring/exit pages, operating system, date/time stamp, clickstream data, and cookie information. Generally, the Services automatically collect usage information, such as the number and frequency of users of the Services.
 
 ##### Cookies.
 
-Cookies are small pieces of information that a website sends to your computer while you are viewing the website. We may use both session cookies (which expire once you close your browser) and persistent cookies (which stay on your computer/mobile phone until you delete them) to provide the Services, and to provide you with a more personal and interactive experience on our Site.  We use cookies to enable our servers to recognize your web browser and tell us how and when you use the Services. Most browsers have an option for turning off the cookie feature, which will prevent your browser from accepting new cookies, as well as (depending on the sophistication of your browser software) allowing you to decide on acceptance of each new cookie in a variety of ways. You will not be able to take advantage of the most attractive features of the Services if you disable your cookies.
+Cookies are small pieces of information that a website sends to your computer while you are viewing the website. We may use both session cookies (which expire once you close your browser) and persistent cookies (which stay on your computer/mobile phone until you delete them) to provide the Services, and to provide you with a more personal and interactive experience on our Site. We use cookies to enable our servers to recognize your web browser and tell us how and when you use the Services. Most browsers have an option for turning off the cookie feature, which will prevent your browser from accepting new cookies, as well as (depending on the sophistication of your browser software) allowing you to decide on acceptance of each new cookie in a variety of ways. You will not be able to take advantage of the most attractive features of the Services if you disable your cookies.
 
 ##### Pixel Tags.
 
-Pixel Tags (also referred to as clear Gifs, Web beacons, or Web bugs). Pixel Tags are tiny graphic images with a unique identifier, similar in function to Cookies, that are used to track online movements of Web users. In contrast to Cookies, which are stored on a user’s computer hard drive, Pixel Tags are embedded invisibly in Web pages. Pixel Tags also allow us to send e-mail messages in a format users can read, and they tell us whether e-mails have been opened to ensure that we are sending only messages that are of interest to our users. The use of a pixel allows us to record, for example, that a user has interacted with a message, visited a particular web page or clicked on a particular advertisement. We do not provide Personal Data to any advertising networks for use outside of the Services.
+Pixel Tags (also referred to as clear Gifs, Web beacons, or Web bugs). Pixel Tags are tiny graphic images with a unique identifier, similar in function to Cookies, that are used to track online movements of Web users. In contrast to Cookies, which are stored on a user’s computer hard drive, Pixel Tags are embedded invisibly in Web pages. Pixel Tags also allow us to send e-mail messages in a format users can read, and they tell us whether e-mails have been opened to ensure that we are sending only messages that are of interest to our users. The use of a pixel allows us to record, for example, that a user has interacted with a message, visited a particular web page, or clicked on a particular advertisement. We do not provide Personal Data to any advertising networks for use outside of the Services.
 
 ##### Analytics.
 
-We use third party analytics services, including but not limited to Google Analytics ("Analytics Services"), to help analyze how users use our Site and Services. We use the information we get from Analytics Services only to improve our Site and Services. The information generated by the Cookies or other technologies about your use of our Site and Services (the "Analytics Information") is transmitted to the Analytics Services. The Analytics Services use Analytics Information to compile reports on user activity. The Analytics Services may also transfer the Analytics Information to third parties where required to do so by law, or where such third parties process Analytics Information on their behalf. Each Analytics Service’s ability to use and share Analytics Information is restricted by such Analytics Service’s Terms of Use and Privacy Policy. By using our Site and Services, you consent to the processing of data about you by Analytics Services in the manner and for the purposes set out above. For a full list of Analytics Services, please contact us at ACHousingPortal@acgov.org.
+We use third party analytics services, including but not limited to Google Analytics ("Analytics Services"), to help analyze how users use our Site and Services. We use the information we get from Analytics Services only to improve our Site and Services. The information generated by the Cookies or other technologies about your use of our Site and Services (the "Analytics Information") is transmitted to the Analytics Services. The Analytics Services use Analytics Information to compile reports on user activity. The Analytics Services may also transfer the Analytics Information to third parties where required to do so by law, or where such third parties process Analytics Information on their behalf. Each Analytics Service’s ability to use and share Analytics Information is restricted by such Analytics Service’s Terms of Use and Privacy Policy. By using our Site and Services, you consent to the processing of data about you by Analytics Services in the manner and for the purposes set out above. For a full list of Analytics Services, please contact us at SJHousingPortal@sanjoseca.gov.
 
 ##### Third Party Data.
 
-We may receive and/or share Personal and/or Anonymous Data about you to companies that help us provide our Services by way of a co-branded or private-labeled website or companies that offer their products and/or services on our Services (e.g., housing developers and property managers). These third party companies may receive Personal Data and Anonymous Data. They will only use such data in compliance with our security and privacy standards set forth in this Privacy Policy.
+We may receive and/or share Personal and/or Anonymous Data about you to companies that help us provide our Services by way of a co-branded or private-labeled website or companies that offer their products and/or services on our Services (e.g., housing developers and property managers). These third-party companies may receive Personal Data and Anonymous Data. They will only use such data in compliance with our security and privacy standards set forth in this Privacy Policy.
 
 <h2 id="information-use" className="my-5">2. HOW WE USE THE INFORMATION</h2>
 
@@ -52,11 +60,11 @@ We strive to ensure that we protect your privacy rights as we process your infor
 
 ##### To provide the Services and personalize your experience.
 
-We use information about you to provide the Services to you, including to process applications for services and related transactions with you, authenticate you when you log in, provide customer support, and operate and maintain the Services. 
+We use information about you to provide the Services to you, including to process applications for services and related transactions with you, authenticate you when you log in, provide customer support, and operate and maintain the Services.
 
 ##### For research and development.
 
-We are always looking for ways to make our Services smarter, faster, more secure, integrated and useful to you. In addition, we intend to use the Aggregate Information (as described below) to positively influence housing policy. To that end, we use collective learnings about how people use our Services and feedback provided directly to us to troubleshoot and to identify trends, usage, activity patterns and areas for integration and improvement of the Services. 
+We are always looking for ways to make our Services smarter, faster, more secure, integrated, and useful to you. In addition, we intend to use the Aggregate Information (as described below) to positively influence housing policy. To that end, we use collective learnings about how people use our Services and feedback provided directly to us to troubleshoot and to identify trends, usage, activity patterns and areas for integration and improvement of the Services.
 
 ##### To communicate with you about the Services.
 
@@ -64,7 +72,7 @@ We use your contact information to send transactional communications via email o
 
 ##### To market, promote, and drive engagement with the Services.
 
-We use your contact information and information about how you use the Services to send promotional communications that may be of specific interest to you, including by email. These communications are aimed at driving engagement and maximizing what you get out of the Services, including information about new features, survey requests, events and other information we think may be of interest to you. We also communicate with you about new product offers and new services.
+We use your contact information and information about how you use the Services to send promotional communications that may be of specific interest to you, including by email. These communications are aimed at driving engagement and maximizing what you get out of the Services, including information about new features, survey requests, events, and other information we think may be of interest to you. We also communicate with you about new product offers and new services.
 
 ##### Conducting surveys and collecting feedback about our Services.
 
@@ -72,7 +80,7 @@ We do this to pursue our legitimate interests to understand if the Services are 
 
 ##### Customer support.
 
-We use your information to resolve technical issues you encounter, to respond to your requests for assistance, to analyze crash information, and to repair and improve the Services.  We also use your information to provide requested assistance (either originated from you, or a person acting legitimately on your behalf) and to offer proactive support when necessary.
+We use your information to resolve technical issues you encounter, to respond to your requests for assistance, to analyze crash information, and to repair and improve the Services. We also use your information to provide requested assistance (either originated from you, or a person acting legitimately on your behalf) and to offer proactive support when necessary.
 
 ##### For safety and security.
 
@@ -80,7 +88,7 @@ We use information about you and your Service use to verify accounts and activit
 
 ##### To protect the public interests and legal rights.
 
-Where required by law, where we believe it is in the public interest, or where it is necessary to protect our legal rights, interests and the interests of others, we use information about you in connection with legal claims, compliance, regulatory, and audit functions.
+Where required by law, where we believe it is in the public interest, or where it is necessary to protect our legal rights, interests, and the interests of others, we use information about you in connection with legal claims, compliance, regulatory, and audit functions.
 
 ##### With your consent.
 
@@ -100,7 +108,7 @@ We use your information to provide you with access to the services you have appl
 
 <h2 id="share-information" className="my-5">3. HOW WE SHARE INFORMATION</h2>
 
-We may share your information with our third-party service providers, including property managers and developers and staff from Alameda County cities and our Agents, to comply with legal obligations, to protect and defend our rights and property, ensure the functionality of the Site, or with your permission. Below are the specific ways we share information we collect about you.
+We may share your information with our third-party service providers, including property managers and developers and staff from our Agents, to comply with legal obligations, to protect and defend our rights and property, ensure the functionality of the Site, or with your permission. Below are the specific ways we share information we collect about you.
 
 ##### User Profile Information.
 
@@ -108,7 +116,7 @@ User profile information including your name, email, phone number and other info
 
 ##### Information Shared with Our Agents.
 
-We employ and contract with people and other entities that perform certain tasks on our behalf and who are under our control (our “Agents”), including companies to build and maintain the Site. We may need to share Personal Data with our Agents in order to provide products or services to you. Unless we tell you differently, our Agents do not have any right to use Personal Data or other information we share with them beyond what is necessary to assist us. You hereby consent to our sharing of Personal Data with our Agents.
+We employ and contract with people and other entities that perform certain tasks on our behalf and who are under our control (our “Agents”), including companies to build and maintain the Site. We may need to share Personal Data with our Agents to provide products or services to you. Unless we tell you differently, our Agents do not have any right to use Personal Data or other information we share with them beyond what is necessary to assist us. You hereby consent to our sharing of Personal Data with our Agents.
 
 ##### IP Address Information.
 
@@ -120,7 +128,7 @@ We share Aggregate Information with our agents, partners, and service providers.
 
 ##### Information Disclosed for Our Protection, the Protection of Others and Legal Requirements.
 
-We also reserve the right to access, read, preserve, and disclose any information as it reasonably believes is necessary to (i) satisfy any applicable law, regulation, legal process or governmental request, (ii) enforce our Terms of Service, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security or technical issues, (iv) respond to user support requests, or (v) protect our rights, property or safety, our users and the public. This includes exchanging information with other companies and organizations for fraud protection and spam/malware prevention.
+We also reserve the right to access, read, preserve, and disclose any information as it reasonably believes is necessary to (i) satisfy any applicable law, regulation, legal process, or governmental request, (ii) enforce our Terms of Service, including investigation of potential violations hereof, (iii) detect, prevent, or otherwise address fraud, security, or technical issues, (iv) respond to user support requests, or (v) protect our rights, property or safety, our users, and the public. This includes exchanging information with other companies and organizations for fraud protection and spam/malware prevention.
 
 ##### Information We Share with Your Consent:
 
@@ -144,11 +152,13 @@ If you have elected to receive marketing emails from us, we retain information a
 
 ##### Property Managers and Developers.
 
-If you are a property manager or developer using the Services and gain access to another user’s Personal Data, you agree to store and secure that Personal Data in compliance with the standards set forth in this Privacy Policy.  
+If you are a property manager or developer using the Services and gain access to another user’s Personal Data, you agree to store and secure that Personal Data in compliance with the standards set forth in this Privacy Policy.
 
 <h2 id="access-information" className="my-5">5. HOW TO ACCESS AND CONTROL YOUR INFORMATION</h2>
 
-You can stop all further collection of information by discontinuing use of the Service.
+You can access and edit your information by logging into your account and going to account settings.
+
+You can stop all further collection of information by discontinuing use of the Service. Information that was provided previously will be retained as necessary to accomplish the purpose for which it was collected or to comply with our legal and contractual obligations, plus 1 year.
 
 <h2 id="additional" className="my-5">6. ADDITIONAL IMPORTANT PRIVACY MATTERS</h2>
 
@@ -158,7 +168,7 @@ The Services are not directed to individuals under 18. We do not knowingly colle
 
 ##### Security:
 
-We are concerned about safeguarding the confidentiality of your Personal Data. We provide physical, electronic, and procedural safeguards to protect information we process and maintain and use a combination of firewall barriers, encryption techniques and authentication procedures. For example, we limit access to your Personal Data to authorized employees and contractors who need to know that information in order to operate, develop or improve our Services. Please be aware that, although we endeavor to provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.
+We are concerned about safeguarding the confidentiality of your Personal Data. We provide physical, electronic, and procedural safeguards to protect information we process and maintain and use a combination of firewall barriers, encryption techniques and authentication procedures. For example, we limit access to your Personal Data to authorized employees and contractors who need to know that information to operate, develop or improve our Services. Please be aware that, although we endeavor to provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.
 
 ##### Links to Other Sites.
 
@@ -166,10 +176,10 @@ Our Service may contain links to other sites that are not operated by us. If you
 
 ##### Changes to this Privacy Policy.
 
-We will notify you when we change this Privacy Policy. We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your Personal Data, or to the Privacy Policy, we will provide notice to you on the Services or by some other means, such as email. Please review the changes carefully. If you agree to the changes, simply continue to use our Services.  Your continued use of our Services after the revised Privacy Policy has become effective indicates that you have read, understood, and agreed to the current version of this Policy.  If you object to any of the changes to our terms and you no longer wish to use our Services, you may close your account(s). Unless stated otherwise, our current Privacy Policy applies to all information that we have about you and your account. Using our Services after a notice of changes has been communicated to you or published on our Services shall constitute consent to the changed terms or practices.
+We will notify you when we change this Privacy Policy. We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your Personal Data, or to the Privacy Policy, we will provide notice to you on the Services or by some other means, such as email. Please review the changes carefully. If you agree to the changes, simply continue to use our Services. Your continued use of our Services after the revised Privacy Policy has become effective indicates that you have read, understood, and agreed to the current version of this Policy. If you object to any of the changes to our terms and you no longer wish to use our Services, you may close your account(s). Unless stated otherwise, our current Privacy Policy applies to all information that we have about you and your account. Using our Services after a notice of changes has been communicated to you or published on our Services shall constitute consent to the changed terms or practices.
 
 <h2 id="contact" className="my-5">7. CONTACT US</h2>
 
 ##### Contacting us:
 
-If you have any questions, please don’t hesitate to contact us at: ACHousingPortal@acgov.org.
+If you have any questions, please don’t hesitate to contact us at: SJHousingPortal@sanjoseca.gov.
