@@ -1,27 +1,15 @@
 {
   "application": {
     "contact": {
-      "doYouWorkIn": "¿Trabaja usted en %{county}?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
-        "workInRegion": "¿Trabaja él o ella en %{county}?",
         "workInRegionNote": ""
       }
     },
     "preferences": {
       "dontWant": "No quiero solicitar ninguna de estas preferencias",
-      "liveWork": {
-        "live": {
-          "label": "Preferencia de vivir en %{county}",
-          "description": "Al menos un miembro de mi hogar vive en %{county}"
-        },
-        "work": {
-          "label": "Preferencia de trabajar en %{county}",
-          "description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en %{county}"
-        }
-      },
       "displacedTenant": {
         "general": {
           "label": "Preferencia de vivienda para inquilinos desplazados",

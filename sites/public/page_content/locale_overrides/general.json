@@ -1,12 +1,12 @@
 {
   "application": {
     "contact": {
-      "doYouWorkIn": "Do you work in %{county} County?",
+      "doYouWorkIn": "Do you work in the City of San Jose?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
-        "workInRegion": "Do they work in the %{county} County?",
+        "workInRegion": "Do they work in the City of San Jose?",
         "workInRegionNote": ""
       }
     },
@@ -17,14 +17,14 @@
     },
     "preferences": {
       "liveWork": {
-        "title": "Live or Work in %{county} County",
+        "title": "Live or Work in the City of San Jose",
         "live": {
-          "label": "Live in %{county} County Preference",
-          "description": "At least one member of my household lives in the %{county} County"
+          "label": "Live in the City of San Jose Preference",
+          "description": "At least one member of my household lives in the City of San Jose"
         },
         "work": {
-          "label": "Work in %{county} County Preference",
-          "description": "At least one member of my household works or has been offered work in the %{county} County"
+          "label": "Work in the City of San Jose Preference",
+          "description": "At least one member of my household works or has been offered work in the City of San Jose"
         }
       },
       "PBV": {
