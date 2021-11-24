@@ -1,12 +1,12 @@
 {
   "application": {
     "contact": {
-      "doYouWorkIn": "Do you work in City of Hayward?",
+      "doYouWorkIn": "Do you work in San Mateo County?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
-        "workInRegion": "Do they work in the City of Hayward?",
+        "workInRegion": "Do they work in San Mateo County?",
         "workInRegionNote": ""
       }
     },
