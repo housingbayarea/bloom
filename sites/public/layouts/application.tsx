@@ -13,6 +13,7 @@ import {
   AuthContext,
   setSiteAlertMessage,
 } from "@bloom-housing/ui-components"
+import { Language } from "@bloom-housing/backend-core"
 
 const Layout = (props) => {
   const { profile, signOut } = useContext(AuthContext)
@@ -23,6 +24,19 @@ const Layout = (props) => {
       prefix: item === "en" ? "" : item,
       label: t(`languages.${item}`),
     })) || []
+
+  const feedbackLink = () => {
+    switch (router.locale) {
+      case Language.es:
+        return "https://docs.google.com/forms/d/e/1FAIpQLScmOWY8qR92vfJbPq6uCgIVW25N_D_u4RF-hwZ17NvprNgqkw/viewform"
+      case Language.vi:
+        return "https://docs.google.com/forms/d/e/1FAIpQLScCANRADZxFT7l0BiHVNifLXWeSstNmaNXqlfpy53jtxF8gxg/viewform"
+      case Language.zh:
+        return "https://docs.google.com/forms/d/e/1FAIpQLSedEJqjP3MtArBrhDwUTAY8jSCTLsIsKVV_i3tMk9EK59XOew/viewform"
+      default:
+        return "https://docs.google.com/forms/d/e/1FAIpQLScAZrM-4biqpQPFSJfaYef0dIiONYJ95n8pK1c8a5a8I78xxw/viewform"
+    }
+  }
 
   const menuLinks: MenuLink[] = [
     {
@@ -81,11 +95,7 @@ const Layout = (props) => {
           notice={
             <>
               {t("nav.getFeedback")}
-              <a
-                href="https://docs.google.com/forms/d/e/1FAIpQLScAZrM-4biqpQPFSJfaYef0dIiONYJ95n8pK1c8a5a8I78xxw/viewform"
-                target="_blank"
-                className={"cursor-pointer"}
-              >
+              <a href={feedbackLink()} target="_blank" className={"cursor-pointer"}>
                 {t("nav.yourFeedback")}
               </a>
               {t("nav.bonusFeedback")}
@@ -144,10 +154,7 @@ const Layout = (props) => {
           />
         </FooterSection>
         <FooterNav copyright={t("footer.copyRight")}>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScAZrM-4biqpQPFSJfaYef0dIiONYJ95n8pK1c8a5a8I78xxw/viewform"
-            target="_blank"
-          >
+          <a href={feedbackLink()} target="_blank">
             {t("footer.giveFeedback")}
           </a>
           <a href="mailto:SJHousingPortal@sanjoseca.gov">{t("footer.contact")}</a>
