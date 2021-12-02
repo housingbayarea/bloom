@@ -1,10 +1,12 @@
 {
   "application": {
     "contact": {
+      "doYouWorkIn": "Do you work in the City of San Jose?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
+        "workInRegion": "Do they work in the City of San Jose?",
         "workInRegionNote": ""
       }
     },
