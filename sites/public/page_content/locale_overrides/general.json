@@ -91,9 +91,6 @@
   "additionalResources": {
     "contact": "Contact",
     "forQuestions": "For listing and application questions, please contact the Property Agent displayed on the listing.",
-    "forGeneralInquiries": "For general program inquiries in Foster City, you may call 650-286-3227",
-    "FCCD": "Foster City Community Development",
-    "FCCDEmail": "planning@fostercity.org",
     "otherResources": "Other Resources",
     "otherResourcesDescription1": "Tenant Resources, Crisis and Health Services, and Legal Assistance",
     "otherResourcesDescription2": "Support with rent payments.",
@@ -102,8 +99,14 @@
     "sharedHousing": "Shared Housing",
     "sharedHousingDescription": "Home Sharing is a living arrangement among two or more unrelated people.",
     "SMCDOH": "San Mateo County's Department of Housing",
-    "smchousingEmail": "housing@smchousing.org",
+    "smchousingEmail": "doorway@smchousing.org",
     "card": {
+      "affordableRentalHousingList": {
+        "title": "Affordable Rental Housing List",
+        "link": "https://housing.smcgov.org/san-mateo-county-affordable-rental-housing-list",
+        "description": "Affordable Rental Opportunities San Mateo County",
+        "region": "San Mateo County"
+      },
       "SMCHousingSearch": {
         "title": "SMCHousingSearch",
         "link": "http://www.socialserve.com/dbh/ViewUnit/663044?ch=SMC&hm=kt9oO6pN",
@@ -144,6 +147,15 @@
         "title": "Project Sentinel",
         "link": "https://www.housing.org/tenants",
         "description": "Services for tenants experiencing housing discrimination",
+        "region": "San Mateo County and Bay Area"
+      },
+      "housingChoices": {
+        "title": "Housing Choices",
+        "link": "https://www.housing.org/tenants",
+        "description": "Housing Choices provides housing navigation services to people with intellectual and developmental disabilities served by the Regional Center.",
+        "description2": "Submit a request for Housing Choices Services.",
+        "phone": "408-498-5777",
+        "email": "intake@housingchoices.org",
         "region": "San Mateo County and Bay Area"
       }
     }

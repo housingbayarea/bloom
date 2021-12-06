@@ -55,6 +55,17 @@ export default () => {
                     </Card>
                   </li>
                 </ul>
+                <ul className="flex-none md:flex mb-6">
+                  <li className="flex-1">
+                    <Card
+                      title={t("additionalResources.card.HavenConnect.title")}
+                      link={t("additionalResources.card.HavenConnect.link")}
+                    >
+                      <p>{t("additionalResources.card.HavenConnect.description")}</p>
+                      <p>{t("additionalResources.card.HavenConnect.region")}</p>
+                    </Card>
+                  </li>
+                </ul>
               </section>
               <section className="info-card-grid">
                 <header className="info-card-grid__header">
@@ -123,6 +134,21 @@ export default () => {
                     </Card>
                   </li>
                 </ul>
+                <ul className="flex-none md:flex">
+                  <li className="flex-1 md:pr-4">
+                    <Card title={t("additionalResources.card.housingChoices.title")}>
+                      <p>{t("additionalResources.card.housingChoices.description")}</p>
+                      <p>{t("additionalResources.card.housingChoices.description2")}</p>
+                      <p>Call {t("additionalResources.card.housingChoices.description3")}</p>
+                      <p>
+                        <a href={"mailto:" + t("additionalResources.card.housingChoices.email")}>
+                          Email {t("additionalResources.card.housingChoices.email")}
+                        </a>
+                      </p>
+                      <p>{t("additionalResources.card.housingChoices.region")}</p>
+                    </Card>
+                  </li>
+                </ul>
               </section>
             </div>
           </div>
@@ -136,11 +162,6 @@ export default () => {
               <a href={"mailto:" + t("additionalResources.smchousingEmail")}>
                 {t("additionalResources.smchousingEmail")}
               </a>
-              <h3 className="text-base font-sans mt-4">{t("additionalResources.FCCD")}</h3>
-              <a href={"mailto:" + t("additionalResources.FCCDEmail")}>
-                {t("additionalResources.FCCDEmail")}
-              </a>
-              <p className="text-sm">{t("additionalResources.forGeneralInquiries")}</p>
             </div>
           </aside>
         </div>
