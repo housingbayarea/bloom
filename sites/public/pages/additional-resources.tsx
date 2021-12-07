@@ -4,7 +4,7 @@ import { PageHeader, t } from "@bloom-housing/ui-components"
 const Card = (props) => {
   return (
     <div className="info-card bg-primary-lighter">
-      <h4 className="info-card__title normal-case text-base tracking-normal">
+      <h4 className="info-card__title normal-case text-base tracking-normal pb-4">
         <a href={props.link} target="_blank">
           {props.title}
         </a>
@@ -42,7 +42,9 @@ export default () => {
                       link={t("additionalResources.card.SMCHousingSearch.link")}
                     >
                       <p>{t("additionalResources.card.SMCHousingSearch.description")}</p>
-                      <p>{t("additionalResources.card.SMCHousingSearch.region")}</p>
+                      <p className={"pt-3"}>
+                        {t("additionalResources.card.SMCHousingSearch.region")}
+                      </p>
                     </Card>
                   </li>
                   <li className="flex-1">
@@ -51,7 +53,20 @@ export default () => {
                       link={t("additionalResources.card.HavenConnect.link")}
                     >
                       <p>{t("additionalResources.card.HavenConnect.description")}</p>
-                      <p>{t("additionalResources.card.HavenConnect.region")}</p>
+                      <p className={"pt-3"}>{t("additionalResources.card.HavenConnect.region")}</p>
+                    </Card>
+                  </li>
+                </ul>
+                <ul className="flex-none md:flex mb-6">
+                  <li className="flex-1 md:w-1/2 md:pr-4 md:flex-none">
+                    <Card
+                      title={t("additionalResources.card.affordableRentalHousingList.title")}
+                      link={t("additionalResources.card.affordableRentalHousingList.link")}
+                    >
+                      <p>{t("additionalResources.card.affordableRentalHousingList.description")}</p>
+                      <p className={"pt-3"}>
+                        {t("additionalResources.card.affordableRentalHousingList.region")}
+                      </p>
                     </Card>
                   </li>
                 </ul>
@@ -70,7 +85,7 @@ export default () => {
                       link={t("additionalResources.card.HIPHousing.link")}
                     >
                       <p>{t("additionalResources.card.HIPHousing.description")}</p>
-                      <p>{t("additionalResources.card.HIPHousing.region")}</p>
+                      <p className={"pt-3"}>{t("additionalResources.card.HIPHousing.region")}</p>
                     </Card>
                   </li>
                 </ul>
@@ -90,7 +105,7 @@ export default () => {
                       link={t("additionalResources.card.HAotCoSM.link")}
                     >
                       <p>{t("additionalResources.card.HAotCoSM.description")}</p>
-                      <p>{t("additionalResources.card.HAotCoSM.region")}</p>
+                      <p className={"pt-3"}>{t("additionalResources.card.HAotCoSM.region")}</p>
                     </Card>
                   </li>
                   <li className="flex-1">
@@ -99,7 +114,7 @@ export default () => {
                       link={t("additionalResources.card.CIH.link")}
                     >
                       <p>{t("additionalResources.card.CIH.description")}</p>
-                      <p>{t("additionalResources.card.CIH.region")}</p>
+                      <p className={"pt-3"}>{t("additionalResources.card.CIH.region")}</p>
                     </Card>
                   </li>
                 </ul>
@@ -110,7 +125,7 @@ export default () => {
                       link={t("additionalResources.card.211bayarea.link")}
                     >
                       <p>{t("additionalResources.card.211bayarea.description")}</p>
-                      <p>{t("additionalResources.card.211bayarea.region")}</p>
+                      <p className={"pt-3"}>{t("additionalResources.card.211bayarea.region")}</p>
                     </Card>
                   </li>
                   <li className="flex-1">
@@ -119,7 +134,32 @@ export default () => {
                       link={t("additionalResources.card.ProjectSentinel.link")}
                     >
                       <p>{t("additionalResources.card.ProjectSentinel.description")}</p>
-                      <p>{t("additionalResources.card.ProjectSentinel.region")}</p>
+                      <p className={"pt-3"}>
+                        {t("additionalResources.card.ProjectSentinel.region")}
+                      </p>
+                    </Card>
+                  </li>
+                </ul>
+                <ul className="flex-none md:flex mb-6">
+                  <li className="flex-1 md:w-1/2 md:pr-4 md:flex-none">
+                    <Card title={t("additionalResources.card.housingChoices.title")}>
+                      <p>{t("additionalResources.card.housingChoices.description")}</p>
+                      <p className={"pt-3"}>
+                        {t("additionalResources.card.housingChoices.description2")}
+                      </p>
+                      <p className={"pt-3"}>
+                        {t("t.call")}{" "}
+                        <a href={"tel:+1-800-799-7233"}>
+                          {" "}
+                          {t("additionalResources.card.housingChoices.phone")}
+                        </a>
+                      </p>
+                      <p className={"pt-3"}>
+                        {t("t.email")}{" "}
+                        <a href={"mailto:" + t("additionalResources.card.housingChoices.email")}>
+                          {t("additionalResources.card.housingChoices.email")}
+                        </a>
+                      </p>
                     </Card>
                   </li>
                 </ul>
@@ -136,11 +176,6 @@ export default () => {
               <a href={"mailto:" + t("additionalResources.smchousingEmail")}>
                 {t("additionalResources.smchousingEmail")}
               </a>
-              <h3 className="text-base font-sans mt-4">{t("additionalResources.FCCD")}</h3>
-              <a href={"mailto:" + t("additionalResources.FCCDEmail")}>
-                {t("additionalResources.FCCDEmail")}
-              </a>
-              <p className="text-sm">{t("additionalResources.forGeneralInquiries")}</p>
             </div>
           </aside>
         </div>
