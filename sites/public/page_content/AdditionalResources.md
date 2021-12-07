@@ -187,13 +187,13 @@
   <br />
 
   <InfoCardGrid title="灣區門戶網站" subtitle="其他縣的可負擔住房機會可在其他灣區門戶網站尋找。">
-  <InfoCard title="San Mateo County" externalHref="https://smc.housingbayarea.org/">
+  <InfoCard title="聖馬刁縣" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
 
-  <InfoCard title="Alameda County" externalHref="https://housing.acgov.org/">
+  <InfoCard title="阿拉米達縣" externalHref="https://housing.acgov.org/">
   </InfoCard>
 
-  <InfoCard title="San Francisco" externalHref="https://housing.sfgov.org/">
+  <InfoCard title="三藩市" externalHref="https://housing.sfgov.org/">
   </InfoCard>
   </InfoCardGrid>
 
