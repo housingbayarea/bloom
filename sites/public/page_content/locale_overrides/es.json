@@ -48,22 +48,22 @@
     }
   },
   "footer": {
-    "copyRight": "Condado de San José © 2020 • Todos los derechos reservados",
+    "copyRight": "Ciudad de San José © 2020 • Todos los derechos reservados",
     "disclaimer": "Exención de responsabilidades",
     "getAssistance": "Obtener asistencia",
     "giveFeedback": "Proporcione sus comentarios",
-    "header": "El Portal de Vivienda del Condado de San José es un proyecto del",
-    "headerUrl": "https://www.acgov.org/cda/hcd/",
-    "headerLink": "Condado de San José - Departamento de Desarrollo Comunitario y de Vivienda (HCD)",
+    "header": "El Portal de la Vivienda de la Ciudad de San José es un proyecto del Departamento de Vivienda de la Ciudad de San José",
     "forAdditionalOpportunities": "Para ver oportunidades adicionales en el Área de la Bahía, sírvase visitar:",
-    "forGeneralInquiries": "Para obtener información general sobre el programa, o acceder a servicios de traducción del contenido de este sitio web por teléfono, puede llamar al HCD del Condado de San José al 408-535-3860.",
-    "forListingQuestions": "Si tiene alguna pregunta relacionada con los listados y la solicitud, sírvase poner en contacto con el Agente de la Propiedad que aparece indicado en cada listado.",
+    "forGeneralInquiries": "Para consultas generales sobre el programa, o para acceder a los servicios de traducción del contenido de este sitio web por teléfono, puede llamar a la Ciudad de San José al 408-535-3860.",
+    "forListingQuestions": "Para preguntas sobre el listado y la solicitud, póngase en contacto con el agente de la propiedad que aparece en cada listado.",
     "privacyPolicy": "Política de privacidad",
     "SFHousingPortal": "Portal de Vivienda de San Francisco",
-    "SFHousingUrl": "https://housing.sfgov.org"
+    "SFHousingUrl": "https://housing.sfgov.org",
+    "SMPortal": "Portal de la Vivienda del Condado de San Mateo",
+    "ACPortal": "Portal de la Vivienda del Condado de Alameda"
   },
   "nav": {
-    "siteTitle": "Portal de Vivienda del Condado de San José",
+    "siteTitle": "Portal de la Vivienda de la Ciudad de San José",
     "getFeedback": "¡Nos encantaría recibir  ",
     "yourFeedback": "sus comentarios!",
     "bonusFeedback": ""
@@ -75,7 +75,7 @@
     "additionalResources": "Lo animamos a que busque otros recursos de vivienda asequible."
   },
   "region": {
-    "name": "Condado de San José"
+    "name": "San José"
   },
   "listings": {
     "depositOrMonthsRent": "",
