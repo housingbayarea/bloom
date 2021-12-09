@@ -22,6 +22,9 @@ import { ListingProgramUpdateDto } from "../../program/dto/listing-program-updat
 
 export class ListingCreateDto extends OmitType(ListingDto, [
   "id",
+  "applicationPickUpAddress",
+  "applicationDropOffAddress",
+  "applicationMailingAddress",
   "createdAt",
   "updatedAt",
   "applicationMethods",
@@ -61,11 +64,6 @@ export class ListingCreateDto extends OmitType(ListingDto, [
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ApplicationMethodCreateDto)
   applicationMethods: ApplicationMethodCreateDto[]
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => AddressCreateDto)
-  applicationAddress?: AddressCreateDto | null
 
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
@@ -222,7 +220,6 @@ export class ListingCreateDto extends OmitType(ListingDto, [
   listingPreferences: ListingPreferenceUpdateDto[]
 
   @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default], each: true })
   @IsDefined({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ListingProgramUpdateDto)

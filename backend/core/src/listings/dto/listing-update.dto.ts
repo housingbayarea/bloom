@@ -26,6 +26,9 @@ export class ListingUpdateDto extends OmitType(ListingDto, [
   "id",
   "createdAt",
   "updatedAt",
+  "applicationMailingAddress",
+  "applicationDropOffAddress",
+  "applicationPickUpAddress",
   "applicationMethods",
   "buildingSelectionCriteriaFile",
   "image",
@@ -84,11 +87,6 @@ export class ListingUpdateDto extends OmitType(ListingDto, [
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => AddressUpdateDto)
-  applicationAddress?: AddressUpdateDto | null
-
-  @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  @Type(() => AddressUpdateDto)
   applicationPickUpAddress?: AddressUpdateDto | null
 
   @Expose()
@@ -117,7 +115,7 @@ export class ListingUpdateDto extends OmitType(ListingDto, [
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default] })
   @Type(() => AssetUpdateDto)
-  image?: AssetUpdateDto
+  image?: AssetUpdateDto | null
 
   @Expose()
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
@@ -241,7 +239,6 @@ export class ListingUpdateDto extends OmitType(ListingDto, [
   listingPreferences: ListingPreferenceUpdateDto[]
 
   @Expose()
-  @IsOptional({ groups: [ValidationsGroupsEnum.default], each: true })
   @IsDefined({ groups: [ValidationsGroupsEnum.default] })
   @ValidateNested({ groups: [ValidationsGroupsEnum.default], each: true })
   @Type(() => ListingProgramUpdateDto)

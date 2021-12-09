@@ -33,7 +33,7 @@ export class ApplicationCsvExporter {
   // could use translations
   unitTypeToReadable(type) {
     const typeMap = {
-      sro: "Single Room Occupancy",
+      SRO: "SRO",
       studio: "Studio",
       oneBdrm: "One Bedroom",
       twoBdrm: "Two Bedroom",
@@ -41,6 +41,34 @@ export class ApplicationCsvExporter {
       fourBdrm: "Four+ Bedroom",
     }
     return typeMap[type] ?? type
+  }
+
+  raceToReadable(type) {
+    const [rootKey, customValue = ""] = type.split(":")
+    const typeMap = {
+      americanIndianAlaskanNative: "American Indian / Alaskan Native",
+      asian: "Asian",
+      "asian-asianIndian": "Asian[Asian Indian]",
+      "asian-otherAsian": `Asian[Other Asian:${customValue}]`,
+      blackAfricanAmerican: "Black / African American",
+      "asian-chinese": "Asian[Chinese]",
+      declineToRespond: "Decline to Respond",
+      "asian-filipino": "Asian[Filipino]",
+      "nativeHawaiianOtherPacificIslander-guamanianOrChamorro":
+        "Native Hawaiian / Other Pacific Islander[Guamanian or Chamorro]",
+      "asian-japanese": "Asian[Japanese]",
+      "asian-korean": "Asian[Korean]",
+      "nativeHawaiianOtherPacificIslander-nativeHawaiian":
+        "Native Hawaiian / Other Pacific Islander[Native Hawaiian]",
+      nativeHawaiianOtherPacificIslander: "Native Hawaiian / Other Pacific Islander",
+      otherMultiracial: `Other / Multiracial:${customValue}`,
+      "nativeHawaiianOtherPacificIslander-otherPacificIslander": `Native Hawaiian / Other Pacific Islander[Other Pacific Islander:${customValue}]`,
+      "nativeHawaiianOtherPacificIslander-samoan":
+        "Native Hawaiian / Other Pacific Islander[Samoan]",
+      "asian-vietnamese": "Asian[Vietnamese]",
+      white: "White",
+    }
+    return typeMap[rootKey] ?? rootKey
   }
 
   exportFromObject(applications: { [key: string]: any }, includeDemographics?: boolean): string {
@@ -56,9 +84,7 @@ export class ApplicationCsvExporter {
         if (includeDemographics) {
           demographics = {
             Ethnicity: app.demographics_ethnicity,
-            Gender: app.demographics_gender,
-            Race: app.demographics_race,
-            "Sexual Orientation": app.demographics_sexual_orientation,
+            Race: app.demographics_race.map((race) => this.raceToReadable(race)),
             "How Did You Hear": app.demographics_how_did_you_hear.join(", "),
           }
         }

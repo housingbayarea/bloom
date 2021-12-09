@@ -12,6 +12,7 @@ import LiveAloneStep from "./LiveAloneStep"
 import HouseholdMemberStep from "./HouseholdMemberStep"
 import SelectedPreferencesStep from "./SelectedPreferencesStep"
 import PreferencesAllStep from "./PreferencesAllStep"
+import ProgramsStep from "./ProgramsStep"
 
 export const loadApplicationFromAutosave = () => {
   if (typeof window != "undefined") {
@@ -88,6 +89,10 @@ export default class ApplicationConductor {
     },
     householdStudent: {
       url: "/applications/household/student",
+    },
+    programs: {
+      url: "/applications/household/programs",
+      definition: ProgramsStep,
     },
     vouchersSubsidies: {
       url: "/applications/financial/vouchers",
