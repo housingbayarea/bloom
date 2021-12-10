@@ -40,6 +40,7 @@ const ApplicationChooseLanguage = () => {
   const listingId = router.query.listingId as string
 
   useEffect(() => {
+    conductor.reset()
     if (!router.isReady && !listingId) return
     if (router.isReady && !listingId) {
       void router.push("/")
