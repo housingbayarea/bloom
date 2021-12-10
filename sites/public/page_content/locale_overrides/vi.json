@@ -1,7 +1,15 @@
 {
   "application": {
     "contact": {
+      "doYouWorkIn": "Bạn có làm việc ở thành phố San Jose không?",
       "doYouWorkInDescription": ""
+    },
+    "review": {
+      "demographics": {
+        "howDidYouHearOptions": {
+          "jurisdictionWebsite": "Trang web của Sở Gia cư San Jose"
+        }
+      }
     },
     "household": {
       "member": {

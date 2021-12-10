@@ -1,11 +1,19 @@
 {
   "application": {
     "contact": {
+      "doYouWorkIn": "你在聖何塞市工作嗎?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
         "workInRegionNote": ""
+      }
+    },
+    "review": {
+      "demographics": {
+        "howDidYouHearOptions": {
+          "jurisdictionWebsite": "聖何塞住房部網站"
+        }
       }
     },
     "preferences": {
