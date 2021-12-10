@@ -142,7 +142,11 @@
     "forListingQuestions": "For listing and application questions, please contact the Property Agent displayed on each listing.",
     "privacyPolicy": "Privacy Policy",
     "SFHousingPortal": "San Francisco Housing Portal",
-    "SFHousingUrl": "https://housing.sfgov.org"
+    "SFHousingUrl": "https://housing.sfgov.org",
+    "SMCHousingPortal": "San Mateo County Housing Portal",
+    "SMCHousingUrl": "https://smc.housingbayarea.org/",
+    "SJHousingPortal": "City of San José Housing Portal",
+    "SJHousingUrl": "https://housing.sanjoseca.gov/"
   },
   "nav": {
     "siteTitle": "Alameda County Housing Portal",

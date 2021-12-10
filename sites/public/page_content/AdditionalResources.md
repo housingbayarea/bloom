@@ -88,6 +88,169 @@
   </InfoCard>
   </InfoCardGrid>
 
+  <br />
+
+  <InfoCardGrid title="City and Region-Related Services">
+
+  ### Oakland
+
+  </InfoCardGrid>
+
+  <section className="info-cards"><div className="info-cards__grid">
+  <InfoCard title="Bay Area Community Services - Downtown Oakland" externalHref="http://www.bayareacs.org/">
+
+  Unsheltered adults
+
+  Call BACS Coordinated Entry line at [510-658-9480](tel:+1-510-658-9480)
+
+  Walk in at 629 Oakland Ave.  
+  Office hours: 1-4pm, Monday, Tuesday, and Wednesday
+
+  </InfoCard>
+
+  <InfoCard title="Berkeley Housing Authority - West Oakland" externalHref="http://www.self-sufficiency.org/">
+
+  Unsheltered adults
+
+  Call BOSS Coordinated Entry line at [510-844-8221](tel:+1-510-844-8221)
+
+  Walk in at 2811 Adeline St.  
+  Offce hours: 10am-2pm, Monday, Tuesday, Thurday, and Friday
+
+  </InfoCard>
+
+  <InfoCard title="Family Front Door">
+
+  Unsheltered families (with a child under 18) 
+
+  Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
+
+  If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
+
+  </InfoCard>
+
+  <InfoCard title="Keep Oakland Housed Program" externalHref="https://www.keepoaklandhoused.org">
+
+  Any families or individuals who are still sheltered but face a crisis such as a 3 day pay or quit notice, an eviction notice.
+
+  Call [510-613-0330](tel:+1-510-613-0330) ext. 2
+
+  </InfoCard>
+
+  </div></section>
+
+  ### North County (Berkeley, Albany, Emeryville) 
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Bay Area Community Services" externalHref="http://www.bayareacs.org/">
+
+  Unsheltered adults
+
+  Call [510-495-0131](tel:+1-510-495-0131)  
+  Email [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
+
+  Walk in at 2809 Telegraph Ave.  
+  Office hours: 9am-12pm, Monday, Wednesday, and Friday
+
+  </InfoCard>
+
+  <InfoCard title="Family Front Door">
+
+  Unsheltered families (with a child under 18) 
+
+  Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
+
+  If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
+
+  Emeryville
+
+  </InfoCard>
+
+  <InfoCard title="Women’s Daytime Drop-in Center" externalHref="https://www.womensdropin.org/">
+
+  Unsheltered families
+
+  Call [510-548-2884](tel:+1-510-548-2884)  
+  Email [help@womensdropin.org](mailto:help@womensdropin.org)
+
+  Walk in at 2218 Acton St.  
+  Office hours: 8am-4pm, Monday-Friday 
+
+  </InfoCard>
+
+  </div></section>
+
+  ### Mid-County
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Building Futures - West (San Leandro and Alameda)" externalHref="https://bfwc.org">
+
+  Unsheltered adults/families
+
+  Call [510-357-0205](tel:+1-510-357-0205)
+
+  </InfoCard>
+
+  <InfoCard title="Bay Area Community Services - East (Hayward and Unincorporated)" externalHref="http://www.bayareacs.org/">
+
+  Unsheltered adults/families
+
+  Call [510-247-8235](tel:510-247-8235)  
+  Email [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
+
+  Walk in at 590 B Street, Hayward  
+  Office hours: 1-4pm, Tuesday and Thursday
+
+  </InfoCard>
+
+  </div></section>
+
+  ### East County/Tri-Valley (Livermore, Dublin, Pleasanton)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+  Unsheltered adults/families
+
+  Call [510-371-0447](tel:+1-510-371-0447)
+
+  Walk in at 3311 Pacific Ave.  
+  Drop-in hours: 8am-12pm, Wednesday and Thursday
+
+  Livermore
+
+  </InfoCard>
+
+  </div></section>
+
+  ### South County/Tri-City (Fremont, Newark, Union City)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+  Unsheltered adults
+
+  Call [510-330-5822](tel:+1-510-330-5822)
+
+  Walk in at 4075 Papazian Way, Fremont  
+  Drop-in hours: 9am-1pm, Monday and Tuesday
+
+  </InfoCard>
+
+  <InfoCard title="Fremont Family Resource Center" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
+
+  Unsheltered families
+
+  Call [510-574-2000](tel:+1-510-574-2000)
+
+  </InfoCard>
+
+  </div></section>
+
 </RenderIf>
 
 <RenderIf language="es">
@@ -160,6 +323,169 @@
   <InfoCard title="Autoridad de la vivienda de Oakland" externalHref="http://www.oakha.org/Pages/default.aspx">
   </InfoCard>
   </InfoCardGrid>
+
+  <br />
+
+  <InfoCardGrid title="SERVICIOS RELACIONADOS CON LA CIUDAD Y LA REGIÓN">
+
+  ### Oakland
+
+  </InfoCardGrid>
+
+  <section className="info-cards"><div className="info-cards__grid">
+  <InfoCard title="Servicios de la comunidad del área de la bahía (Bay Area Community Services, BACS), centro de Oakland" externalHref="http://www.bayareacs.org/">
+
+  Adultos sin hogar y sin acceso a refugios
+
+  Llame a la línea de ingreso coordinado de BACS al [510-658-9480](tel:+1-510-658-9480)
+
+  Atención sin turno en 629 Oakland Ave.  
+  Horarios de atención: De 1 a 4 p. m. los lunes, martes y miércoles
+
+  </InfoCard>
+
+  <InfoCard title="Organismo de la Vivienda de Berkeley (Berkeley Housing Authority), oeste de Oakland" externalHref="http://www.self-sufficiency.org/">
+
+  Adultos sin hogar y sin acceso a refugios
+
+  Llame a la línea de ingreso coordinado de BOSS al [510-844-8221](tel:+1-510-844-8221)
+
+  Atención sin turno en 2811 Adeline St.  
+  Horarios de atención: De 10 a. m. a 2 p. m. los lunes, martes, jueves y viernes
+
+  </InfoCard>
+
+  <InfoCard title="Family Front Door">
+
+  Familias sin hogar y sin acceso a refugios (con hijos menores de 18 años) 
+
+  Llame al [510-808-7410](tel:+1-510-808-7410) ext. 282 
+
+  Si ya recibe servicios y necesita actualizar su información, envíe su nombre completo y su información actualizada o nueva por mensaje de texto al [510-435-2772](sms:+1-510-435-2772).
+
+  </InfoCard>
+
+  <InfoCard title="Programa Keep Oakland Housed" externalHref="https://www.keepoaklandhoused.org">
+
+  Todas las familias y personas que todavía tengan hogar, pero enfrenten una crisis como pago en 3 días o deshaucio, o un aviso de desalojo.
+
+  Llame al [510-613-0330](tel:+1-510-613-0330) ext. 2
+
+  </InfoCard>
+
+  </div></section>
+
+  ### Condado del norte (Berkeley, Albany, Emeryville)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Servicios comunitarios del área de la bahía (Bay Area Community Services)" externalHref="http://www.bayareacs.org/">
+
+  Adultos sin hogar y sin acceso a refugios
+
+  Llame al [510-495-0131](tel:+1-510-495-0131)  
+  Correo electrónico: [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
+
+  Atención sin turno en 2809 Telegraph Ave.  
+  Horarios de atención: De 9 a. m. a 12 p. m. los lunes, miércoles y viernes
+
+  </InfoCard>
+
+  <InfoCard title="Family Front Door">
+
+  Familias sin hogar y sin acceso a refugios (con un hijo menor de 18 años) 
+
+  Llame al [510-808-7410](tel:+1-510-808-7410) ext. 282 
+
+  Si ya recibe servicios y necesita actualizar su información, envíe su nombre completo y su información actualizada o nueva por mensaje de texto al [510-435-2772](sms:+1-510-435-2772).
+
+  Emeryville
+
+  </InfoCard>
+
+  <InfoCard title="Centro de Asistencia Diurno para Mujeres (Women’s Daytime Drop-in Center)" externalHref="https://www.womensdropin.org/">
+
+  Familias sin hogar y sin acceso a refugios
+
+  Llame al [510-548-2884](tel:+1-510-548-2884)  
+  Correo electrónico: [help@womensdropin.org](mailto:help@womensdropin.org)
+
+  Atención sin turno en 2218 Acton St.  
+  Horarios de atención: De 8 a. m. a 4 p. m. de lunes a viernes 
+
+  </InfoCard>
+
+  </div></section>
+
+  ### Condado medio
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Building Futures, oeste (San Leandro y Alameda)" externalHref="https://bfwc.org">
+
+  Adultos y familias sin hogar y sin acceso a refugios
+
+  Llame al [510-357-0205](tel:+1-510-357-0205)
+
+  </InfoCard>
+
+  <InfoCard title="Servicios comunitarios del área de la bahía (Bay Area Community Services), este (Hayward y no incorporados)" externalHref="http://www.bayareacs.org/">
+
+  Familias y adultos sin hogar y sin acceso a refugios
+
+  Llame al [510-247-8235](tel:510-247-8235)  
+  Correo electrónico [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
+
+  Atención sin turno en 590 B Street, Hayward  
+  Horarios de atención: De 1 a 4 p. m. los martes y jueves
+
+  </InfoCard>
+
+  </div></section>
+
+  ### Condado del este/Tri-Valley (Livermore, Dublin, Pleasanton)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+  Adultos y familias sin hogar y sin acceso a refugios
+
+  Llame al [510-371-0447](tel:+1-510-371-0447)
+
+  Atención sin turno en 3311 Pacific Ave.  
+  Horarios de atención sin turno: De 8 a. m. a 12 p. m. los miércoles y jueves
+
+  Livermore
+
+  </InfoCard>
+
+  </div></section>
+
+  ### Condado del sur/Tri-City (Fremont, Newark, Union City)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+
+  Adultos sin hogar y sin acceso a refugios
+
+  Llame al [510-330-5822](tel:+1-510-330-5822)
+
+  Atención sin turno en 4075 Papazian Way, Fremont  
+  Horarios de atención sin turno: De 9 a. m. a 1 p. m. los lunes y martes
+
+  </InfoCard>
+
+  <InfoCard title="Centro de Recursos para Familias de Fremont (Fremont Family Resource Center)" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
+
+  Familias sin hogar y sin acceso a refugios
+
+  Llame al [510-574-2000](tel:+1-510-574-2000)
+
+  </InfoCard>
+
+  </div></section>
 
 </RenderIf>
 
@@ -234,6 +560,169 @@
   </InfoCard>
   </InfoCardGrid>
 
+  <br />
+
+  <InfoCardGrid title="城市及地區相關服務">
+
+  ### Oakland
+
+  </InfoCardGrid>
+
+  <section className="info-cards"><div className="info-cards__grid">
+  <InfoCard title="灣區社區服務–奧克蘭市中心 (Bay Area Community Services - Downtown Oakland)" externalHref="http://www.bayareacs.org/">
+
+  無居所的成年人
+
+  致電 BACS 協調入口專線 [510-658-9480](tel:+1-510-658-9480)
+
+  直接前往 629 Oakland Ave.  
+  辦公室服務時間：週一、週二及週三下午 1-4 點
+
+  </InfoCard>
+
+  <InfoCard title="柏克萊住房管理局 – 西奧克蘭 (Berkeley Housing Authority - West Oakland)" externalHref="http://www.self-sufficiency.org/">
+
+  無居所的成年人
+
+  致電 BOSS 協調入口專線 [510-844-8221](tel:+1-510-844-8221)
+
+  直接前往 2811 Adeline St.  
+  辦公室服務時間：週一、週二、週四及週五上午 10 點至下午 2 點
+
+  </InfoCard>
+
+  <InfoCard title="家庭前門">
+
+  無居所家庭（有 18 歲以下孩童） 
+
+  致電 [510-808-7410](tel:+1-510-808-7410) 分機 282 
+
+  如果您已接受服務並需要更新您的資訊，請將全名及更新後／新資訊傳送至 [510-435-2772](sms:+1-510-435-2772)。
+
+  </InfoCard>
+
+  <InfoCard title="保留奧克蘭住屋計劃(Keep Oakland Housed Program)" externalHref="https://www.keepoaklandhoused.org">
+
+  仍居住在庇護所但面臨危機，例如 3 天工資或辭職通知、驅逐通知的家庭或個人。
+
+  致電 [510-613-0330](tel:+1-510-613-0330) 分機 2
+
+  </InfoCard>
+
+  </div></section>
+
+  ### North County (Berkeley, Albany, Emeryville) 
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="灣區社區服務" externalHref="http://www.bayareacs.org/">
+
+  無居所的成年人
+
+  致電 [510-495-0131](tel:+1-510-495-0131)  
+  電子郵件 [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
+
+  直接前往 2809 Telegraph Ave.  
+  辦公室服務時間：週一、週三及週五上午 9 點至中午 12 點
+
+  </InfoCard>
+
+  <InfoCard title="家庭前門">
+
+  無居所家庭（有 18 歲以下孩童） 
+
+  致電 [510-808-7410](tel:+1-510-808-7410) 分機 282 
+
+  如果您已接受服務並需要更新您的資訊，請將全名及更新後／新資訊傳送至 [510-435-2772](sms:+1-510-435-2772)。
+
+  Emeryville
+
+  </InfoCard>
+
+  <InfoCard title="婦女日間服務中心 (Women’s Daytime Drop-in Center)" externalHref="https://www.womensdropin.org/">
+
+  無居所家庭
+
+  致電 [510-548-2884](tel:+1-510-548-2884)  
+  電子郵件 [help@womensdropin.org](mailto:help@womensdropin.org)
+
+  直接前往 2218 Acton St.。  
+  辦公室服務時間：週一至週五上午 8 點至下午 4 點
+
+  </InfoCard>
+
+  </div></section>
+
+  ### 中郡
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="Building Futures - West (San Leandro 及 Alameda)" externalHref="https://bfwc.org">
+
+  無居所的成年人／家庭
+
+  致電 [510-357-0205](tel:+1-510-357-0205)
+
+  </InfoCard>
+
+  <InfoCard title="灣區社區服務 - 東部 (Hayward 及 Unincorporated)" externalHref="http://www.bayareacs.org/">
+
+  無居所的成年人／家庭
+
+  致電 [510-247-8235](tel:510-247-8235)  
+  電子郵件 [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
+
+  直接前往 590 B Street, Hayward  
+  辦公室服務時間：週二及週四下午 1-4 點
+
+  </InfoCard>
+
+  </div></section>
+
+  ### East County/Tri-Valley (Livermore, Dublin, Pleasanton)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="住所服務" externalHref="https://www.abodeservices.org/">
+
+  無居所的成年人／家庭
+
+  致電 [510-371-0447](tel:+1-510-371-0447)
+
+  直接前往 3311 Pacific Ave.  
+  服務時間：週三及週四上午 8 點至中午 12 點
+
+  Livermore
+
+  </InfoCard>
+
+  </div></section>
+
+  ### South County/Tri-City (Fremont, Newark, Union City)
+
+  <section className="info-cards"><div className="info-cards__grid">
+
+  <InfoCard title="住所服務" externalHref="https://www.abodeservices.org/">
+
+  無居所的成年人
+
+  致電 [510-330-5822](tel:+1-510-330-5822)
+
+  直接前往 4075 Papazian Way, Fremont  
+  服務時間：週一及週二上午 9 點至下午 1 點
+
+  </InfoCard>
+
+  <InfoCard title="費利蒙家庭資源中心 (Fremont Family Resource Center)" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
+
+  無居所家庭
+
+  致電 [510-574-2000](tel:+1-510-574-2000)
+
+  </InfoCard>
+
+  </div></section>
+
 </RenderIf>
 
 <RenderIf language="vi">
@@ -307,167 +796,167 @@
   </InfoCard>
   </InfoCardGrid>
 
-</RenderIf>
+  <br />
 
-<br />
-
-<InfoCardGrid title="City and Region-Related Services">
+  <InfoCardGrid title="CÁC DỊCH VỤ LIÊN QUAN ĐẾN THÀNH PHỐ VÀ VÙNG MIỀN">
 
   ### Oakland
 
-</InfoCardGrid>
+  </InfoCardGrid>
 
-<section className="info-cards"><div className="info-cards__grid">
-<InfoCard title="Bay Area Community Services - Downtown Oakland" externalHref="http://www.bayareacs.org/">
+  <section className="info-cards"><div className="info-cards__grid">
+  <InfoCard title="Cơ Quan Dịch Vụ Cộng Đồng Vùng Vịnh (BACS) - Trung Tâm Thành Phố Oakland" externalHref="http://www.bayareacs.org/">
 
-Unsheltered adults
+  Người trưởng thành không nơi trú ẩn
 
-Call BACS Coordinated Entry line at [510-658-9480](tel:+1-510-658-9480)
+  Gọi tới đường dây Tiếp Nhận Được Điều Phối của BACS theo số [510-658-9480](tel:+1-510-658-9480)
 
-Walk in at 629 Oakland Ave.  
-Office hours: 1-4pm, Monday, Tuesday, and Wednesday
+  Đến tận nơi không cần hẹn trước tại 629 Oakland Ave.  
+  Giờ làm việc: 1-4 giờ chiều, Thứ Hai, Thứ Ba và Thứ Tư
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Berkeley Housing Authority - West Oakland" externalHref="http://www.self-sufficiency.org/">
+  <InfoCard title="Cơ Quan Gia Cư Berkeley - Tây Oakland" externalHref="http://www.self-sufficiency.org/">
 
-Unsheltered adults
+  Người trưởng thành không nơi trú ẩn
 
-Call BOSS Coordinated Entry line at [510-844-8221](tel:+1-510-844-8221)
+  Gọi tới đường dây Tiếp Nhận Được Điều Phối của BOSS theo số [510-844-8221](tel:+1-510-844-8221)
 
-Walk in at 2811 Adeline St.  
-Offce hours: 10am-2pm, Monday, Tuesday, Thurday, and Friday
+  Đến tận nơi không cần hẹn trước tại 2811 Adeline St.  
+  Giờ làm việc: 10 giờ sáng-2 giờ chiều, Thứ Hai, Thứ Ba, Thứ Năm và Thứ Sáu
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Family Front Door">
+  <InfoCard title="Chương trình Family Front Door">
 
-Unsheltered families (with a child under 18) 
+  Những gia đình không có nơi trú ẩn (có con dưới 18 tuổi) 
 
-Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
+  Gọi [510-808-7410](tel:+1-510-808-7410), số máy lẻ 282 
 
-If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
+  Nếu quý vị đã nhận được dịch vụ và cần cập nhật thông tin của mình, vui lòng nhắn đầy đủ họ tên và thông tin mới/đã cập nhật của quý vị tới số   [510-435-2772](sms:+1-510-435-2772).
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Keep Oakland Housed Program" externalHref="https://www.keepoaklandhoused.org">
+  <InfoCard title="Chương Trình Keep Oakland Housed" externalHref="https://www.keepoaklandhoused.org">
 
-Any families or individuals who are still sheltered but face a crisis such as a 3 day pay or quit notice, an eviction notice.
+  Những gia đình và cá nhân có nơi trú ẩn nhưng đang gặp khủng hoảng, ví dụ như thông báo phải trả tiền thuê trong vòng 3 ngày nếu không phải ra khỏi nơi trú ẩn, thông báo trục xuất.
 
-Call [510-613-0330](tel:+1-510-613-0330) ext. 2
+  Gọi [510-613-0330](tel:+1-510-613-0330), số máy lẻ 2
 
-</InfoCard>
+  </InfoCard>
 
-</div></section>
+  </div></section>
 
-### North County (Berkeley, Albany, Emeryville) 
+  ### Quận North (Berkeley, Albany, Emeryville) 
 
-<section className="info-cards"><div className="info-cards__grid">
+  <section className="info-cards"><div className="info-cards__grid">
 
-<InfoCard title="Bay Area Community Services" externalHref="http://www.bayareacs.org/">
+  <InfoCard title="Cơ Quan Dịch Vụ Cộng Đồng Vùng Vịnh" externalHref="http://www.bayareacs.org/">
 
-Unsheltered adults
+  Người trưởng thành không nơi trú ẩn
 
-Call [510-495-0131](tel:+1-510-495-0131)  
-Email [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
+  Gọi số [510-495-0131](tel:+1-510-495-0131)  
+  Email [housinghub@bayareacs.org](mailto:housinghub@bayareacs.org)
 
-Walk in at 2809 Telegraph Ave.  
-Office hours: 9am-12pm, Monday, Wednesday, and Friday
+  Đến tận nơi không cần hẹn trước tại 2809 Telegraph Ave.  
+  Giờ làm việc: 9 giờ sáng-12 giờ trưa, Thứ Hai, Thứ Yư và Thứ Sáu
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Family Front Door">
+  <InfoCard title="Chương trình Family Front Door">
 
-Unsheltered families (with a child under 18) 
+  Những gia đình không có nơi trú ẩn (có con dưới 18 tuổi) 
 
-Call [510-808-7410](tel:+1-510-808-7410) ext. 282 
+  Gọi [510-808-7410](tel:+1-510-808-7410), số máy lẻ 282 
 
-If you are already receiving services and need to update your information, text your full name and your updated/new information to [510-435-2772](sms:+1-510-435-2772).
+  Nếu quý vị đã nhận được dịch vụ và cần cập nhật thông tin của mình, vui lòng nhắn đầy đủ họ tên và thông tin mới/đã cập nhật của quý vị tới số [510-435-2772](sms:+1-510-435-2772).
 
-Emeryville
+  Emeryville
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Women’s Daytime Drop-in Center" externalHref="https://www.womensdropin.org/">
+  <InfoCard title="Trung Tâm Women’s Daytime Drop-in" externalHref="https://www.womensdropin.org/">
 
-Unsheltered families
+  Những gia đình không có nơi trú ẩn
 
-Call [510-548-2884](tel:+1-510-548-2884)  
-Email [help@womensdropin.org](mailto:help@womensdropin.org)
+  Gọi số [510-548-2884](tel:+1-510-548-2884)  
+  Email [help@womensdropin.org](mailto:help@womensdropin.org)
 
-Walk in at 2218 Acton St.  
-Office hours: 8am-4pm, Monday-Friday 
+  Đến tận nơi không cần hẹn trước tại 2218 Acton St.  
+  Giờ làm việc: 8 giờ sáng-4 giờ chiều, Thứ Hai-Thứ Sáu
 
-</InfoCard>
+  </InfoCard>
 
-</div></section>
+  </div></section>
 
-### Mid-County
+  ### Mid-County
 
-<section className="info-cards"><div className="info-cards__grid">
+  <section className="info-cards"><div className="info-cards__grid">
 
-<InfoCard title="Building Futures - West (San Leandro and Alameda)" externalHref="https://bfwc.org">
+  <InfoCard title="Tổ chức Building Futures - Phía tây (San Leandro và Alameda)" externalHref="https://bfwc.org">
 
-Unsheltered adults/families
+  Người trưởng thành/những gia đình không có nơi trú ẩn
 
-Call [510-357-0205](tel:+1-510-357-0205)
+  Gọi số [510-357-0205](tel:+1-510-357-0205)
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Bay Area Community Services - East (Hayward and Unincorporated)" externalHref="http://www.bayareacs.org/">
+  <InfoCard title="Cơ Quan Dịch Vụ Cộng Đồng Vùng Vịnh - Phía đông (Hayward và Unincorporated)" externalHref="http://www.bayareacs.org/">
 
-Unsheltered adults/families
+  Người trưởng thành/những gia đình không có nơi trú ẩn
 
-Call [510-247-8235](tel:510-247-8235)  
-Email [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
+  Gọi số [510-247-8235](tel:510-247-8235)  
+  Email [HaywardHRC@bayareacs.org](mailto:HaywardHRC@bayareacs.org)
 
-Walk in at 590 B Street, Hayward  
-Office hours: 1-4pm, Tuesday and Thursday
+  Đến tận nơi không cần hẹn trước tại 590 B Street, Hayward  
+  Giờ làm việc: 1-4 giờ chiều, Thứ Ba và Thứ Năm
 
-</InfoCard>
+  </InfoCard>
 
-</div></section>
+  </div></section>
 
-### East County/Tri-Valley (Livermore, Dublin, Pleasanton)
+  ### Quận East/Tri-Valley (Livermore, Dublin, Pleasanton)
 
-<section className="info-cards"><div className="info-cards__grid">
+  <section className="info-cards"><div className="info-cards__grid">
 
-<InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+  <InfoCard title="Tổ chức Abode Services" externalHref="https://www.abodeservices.org/">
 
-Unsheltered adults/families
+  Người trưởng thành/những gia đình không có nơi trú ẩn
 
-Call [510-371-0447](tel:+1-510-371-0447)
+  Gọi số [510-371-0447](tel:+1-510-371-0447)
 
-Walk in at 3311 Pacific Ave.  
-Drop-in hours: 8am-12pm, Wednesday and Thursday
+  Đến tận nơi không cần hẹn trước tại 3311 Pacific Ave.  
+  Giờ ghé qua: 8 giờ sáng-12 giờ trưa, Thứ Tư và Thứ Năm
 
-Livermore
+  Livermore
 
-</InfoCard>
+  </InfoCard>
 
-</div></section>
+  </div></section>
 
-### South County/Tri-City (Fremont, Newark, Union City)
+  ### Quận South/Tri-City (Fremont, Newark, Union City)
 
-<section className="info-cards"><div className="info-cards__grid">
+  <section className="info-cards"><div className="info-cards__grid">
 
-<InfoCard title="Abode Services" externalHref="https://www.abodeservices.org/">
+  <InfoCard title="Tổ chức Abode Services" externalHref="https://www.abodeservices.org/">
 
-Unsheltered adults
+  Người trưởng thành không nơi trú ẩn
 
-Call [510-330-5822](tel:+1-510-330-5822)
+  Gọi số [510-330-5822](tel:+1-510-330-5822)
 
-Walk in at 4075 Papazian Way, Fremont  
-Drop-in hours: 9am-1pm, Monday and Tuesday
+  Đến tận nơi không cần hẹn trước tại 4075 Papazian Way, Fremont  
+  Giờ ghé qua: 9 giờ sáng-1 giờ chiều, Thứ Hai và Thứ Ba
 
-</InfoCard>
+  </InfoCard>
 
-<InfoCard title="Fremont Family Resource Center" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
+  <InfoCard title="Trung Tâm Nguồn Hỗ Trợ Gia Đình Fremont" externalHref="https://www.fremont.gov/228/Family-Resource-Center">
 
-Unsheltered families
+  Những gia đình không có nơi trú ẩn
 
-Call [510-574-2000](tel:+1-510-574-2000)
+  Gọi số [510-574-2000](tel:+1-510-574-2000)
 
-</InfoCard>
+  </InfoCard>
 
-</div></section>
+  </div></section>
+
+</RenderIf>

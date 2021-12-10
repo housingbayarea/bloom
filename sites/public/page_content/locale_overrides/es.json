@@ -72,7 +72,11 @@
     "forListingQuestions": "Si tiene alguna pregunta relacionada con los listados y la solicitud, sírvase poner en contacto con el Agente de la Propiedad que aparece indicado en cada listado.",
     "privacyPolicy": "Política de privacidad",
     "SFHousingPortal": "Portal de Vivienda de San Francisco",
-    "SFHousingUrl": "https://housing.sfgov.org"
+    "SFHousingUrl": "https://housing.sfgov.org",
+    "SMCHousingPortal": "Portal de vivienda del condado de San Mateo",
+    "SMCHousingUrl": "https://smc.housingbayarea.org/",
+    "SJHousingPortal": "Portal de vivienda de la ciudad de San Jose",
+    "SJHousingUrl": "https://housing.sanjoseca.gov/"
   },
   "nav": {
     "siteTitle": "Portal de Vivienda del Condado de Alameda",

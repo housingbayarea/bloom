@@ -72,7 +72,11 @@
     "forListingQuestions": "若有上市名單和申請方面的疑問，請聯絡每個上市名單上顯示的物業經紀人。",
     "privacyPolicy": "隱私權政策",
     "SFHousingPortal": "三藩市房屋網站",
-    "SFHousingUrl": "https://housing.sfgov.org"
+    "SFHousingUrl": "https://housing.sfgov.org",
+    "SMCHousingPortal": "San Mateo County 住屋平台",
+    "SMCHousingUrl": "https://smc.housingbayarea.org/",
+    "SJHousingPortal": "City of San Jose 住屋平台",
+    "SJHousingUrl": "https://housing.sanjoseca.gov/"
   },
   "nav": {
     "siteTitle": "阿拉米達縣房屋網站",
