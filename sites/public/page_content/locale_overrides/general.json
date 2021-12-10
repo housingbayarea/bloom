@@ -114,14 +114,14 @@
     "disclaimer": "Disclaimer",
     "getAssistance": "Get Assistance",
     "giveFeedback": "Give Feedback",
-    "header": "City of San José Housing Portal is a project of the",
-    "headerUrl": "https://www.acgov.org/cda/hcd/",
-    "headerLink": "City of San José - Housing and Community Development (HCD) Department",
+    "header": "City of San José Housing Portal is a project of the City of San José - Housing Department",
     "forAdditionalOpportunities": "For additional Bay Area opportunities, please visit:",
-    "forGeneralInquiries": "For general program inquiries, or to access translation services for content on this website by phone, you may call City of San José HCD at 408-535-3860.",
+    "forGeneralInquiries": "For general program inquiries, or to access translation services for content on this website by phone, you may call City of San José at 408-535-3860.",
     "forListingQuestions": "For listing and application questions, please contact the Property Agent displayed on each listing.",
     "privacyPolicy": "Privacy Policy",
     "SFHousingPortal": "San Francisco Housing Portal",
+    "SMPortal": "San Mateo County Housing Portal",
+    "ACPortal": "Alameda County Housing Portal",
     "SFHousingUrl": "https://housing.sfgov.org"
   },
   "nav": {

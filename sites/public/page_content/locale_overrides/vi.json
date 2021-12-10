@@ -48,19 +48,19 @@
     }
   },
   "footer": {
-    "copyRight": "City of San José © 2020 • Giữ Mọi Bản quyền",
+    "copyRight": "Thành Phố San Jose © 2020 • Giữ Mọi Bản quyền",
     "disclaimer": "Tuyên bố miễn trách nhiệm",
     "getAssistance": "Nhận Hỗ trợ",
     "giveFeedback": "Đưa ra Phản hồi",
-    "header": "Cổng thông tin về Gia cư của Quận San José là một dự án của",
-    "headerUrl": "https://www.acgov.org/cda/hcd/",
-    "headerLink": "Quận San José - Sở Gia cư và Phát triển Cộng đồng (HCD)",
+    "header": "Cổng thông tin nhà ở Thành phố San José là một dự án của Thành Phố San José - Ban Gia Cư",
     "forAdditionalOpportunities": "Để có thêm các cơ hội tại Bay Area, vui lòng truy cập:",
-    "forGeneralInquiries": "Đối với các thắc mắc chung về chương trình, hoặc để tiếp cận các dịch vụ thông dịch cho nội dung trên trang web này qua điện thoại, quý vị có thể gọi cho HCD của Quận San José theo số 408-535-3860.",
-    "forListingQuestions": "Đối với các thắc mắc về danh sách nhà và đơn ghi danh, vui lòng liên hệ với Nhân viên Đại diện Bất động sản có trên mỗi danh sách nhà.",
+    "forGeneralInquiries": "Đối với các thắc mắc chung về chương trình, hoặc để tiếp cận các dịch vụ dịch thuật cho nội dung trên trang web này qua điện thoại, bạn có thể gọi cho Thành phố San José theo số 408-535-3860.",
+    "forListingQuestions": "Đối với các câu hỏi về danh sách và đơn xin, vui lòng liên hệ với Đại Lý Bất Động Sản được hiển thị trên mỗi danh sách.",
     "privacyPolicy": "Chính sách Quyền Riêng tư",
     "SFHousingPortal": "Cổng thông tin về Gia cư của San Francisco",
-    "SFHousingUrl": "https://housing.sfgov.org"
+    "SFHousingUrl": "https://housing.sfgov.org",
+    "SMPortal": "Cổng thông tin nhà ở Quận San Mateo",
+    "ACPortal": "Cổng thông tin nhà ở Quận Alameda"
   },
   "nav": {
     "siteTitle": "Cổng thông tin về Gia cư của Quận San José",
@@ -75,7 +75,7 @@
     "additionalResources": "Chúng tôi khuyến khích bạn duyệt qua các nguồn thông tin khác về nhà ở giá cả phải chăng."
   },
   "region": {
-    "name": "Quận San José"
+    "name": "San José"
   },
   "listings": {
     "depositOrMonthsRent": "",

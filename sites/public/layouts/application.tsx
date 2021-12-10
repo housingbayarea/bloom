@@ -121,13 +121,7 @@ const Layout = (props) => {
           <img src="/images/san-jose-logo-white.png" alt="San José" />
         </FooterSection>
         <FooterSection>
-          <p>
-            {t("footer.header")}
-            <br />
-            <a href={t("footer.headerUrl")} target="_blank">
-              {t("footer.headerLink")}
-            </a>
-          </p>
+          <p>{t("footer.header")}</p>
           <p className="mt-10 text-tiny">{t("footer.forListingQuestions")}</p>
           <p className="text-tiny">{t("footer.forGeneralInquiries")}</p>
           <p className="mt-10 text-tiny">
@@ -138,11 +132,11 @@ const Layout = (props) => {
             </a>
             |
             <a className="px-2" href="https://smc.housingbayarea.org/" target="_blank">
-              San Mateo County Housing Portal
+              {t("footer.SMPortal")}
             </a>
             |
             <a className="px-2" href="https://housing.acgov.org/" target="_blank">
-              Alameda County Housing Portal
+              {t("footer.ACPortal")}
             </a>
           </p>
         </FooterSection>
