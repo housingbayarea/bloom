@@ -1,11 +1,19 @@
 {
   "application": {
     "contact": {
+      "doYouWorkIn": "Trabajas en la Ciudad de San José?",
       "doYouWorkInDescription": ""
     },
     "household": {
       "member": {
         "workInRegionNote": ""
+      }
+    },
+    "review": {
+      "demographics": {
+        "howDidYouHearOptions": {
+          "jurisdictionWebsite": "Sitio web del Departamento de Vivienda de San José"
+        }
       }
     },
     "preferences": {
