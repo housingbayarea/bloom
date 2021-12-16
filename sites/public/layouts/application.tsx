@@ -131,7 +131,7 @@ const Layout = (props) => {
               {t("footer.SMCHousingPortal")}
             </a>
             |
-            <a className="px-2" href={t("footer.SFHousingUrl")} target="_blank">
+            <a className="px-2" href={t("footer.SJHousingUrl")} target="_blank">
               {t("footer.SJHousingPortal")}
             </a>
           </p>
