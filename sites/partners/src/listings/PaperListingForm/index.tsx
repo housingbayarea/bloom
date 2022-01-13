@@ -530,7 +530,7 @@ const ListingForm = ({ listing, editMode }: ListingFormProps) => {
 
       setOpenHouseEvents(events)
     }
-  }, [listing, setUnits, setOpenHouseEvents])
+  }, [listing?.units, listing?.events, setUnits, setOpenHouseEvents])
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { getValues, setError, clearErrors, reset } = formMethods
