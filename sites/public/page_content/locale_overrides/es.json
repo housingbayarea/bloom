@@ -12,6 +12,7 @@
     },
     "preferences": {
       "dontWant": "No quiero solicitar ninguna de estas preferencias",
+      "dontWantSingular": "No quiero solicitar esta preferencia",
       "liveWork": {
         "live": {
           "label": "Preferencia de vivir en %{county}",

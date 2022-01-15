@@ -12,6 +12,7 @@
     },
     "preferences": {
       "dontWant": "我不想使用這些優先權",
+      "dontWantSingular": "我不想要这个偏好",
       "liveWork": {
         "live": {
           "label": "住在 %{county} 的優先權",

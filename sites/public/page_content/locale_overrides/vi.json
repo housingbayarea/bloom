@@ -12,6 +12,7 @@
     },
     "preferences": {
       "dontWant": "Tôi không muốn chọn bất kỳ ưu tiên nào trong số này",
+      "dontWantSingular": "Tôi không muốn chọn tùy chọn này",
       "liveWork": {
         "live": {
           "label": "Sống tại %{county} Ưu tiên",
