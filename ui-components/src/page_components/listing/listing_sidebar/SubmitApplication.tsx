@@ -5,7 +5,7 @@ import { SidebarAddress } from "./SidebarAddress"
 import { OrDivider } from "./OrDivider"
 
 export interface PostmarkedApplication {
-  postmarkedApplicationsReceivedByDate: string
+  postmarkedApplicationsReceivedByDate?: string
   developer: string
   applicationsDueDate: string
 }

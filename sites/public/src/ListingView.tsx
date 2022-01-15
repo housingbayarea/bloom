@@ -318,9 +318,11 @@ export const ListingView = (props: ListingProps) => {
         applicationDropOffAddressOfficeHours={listing.applicationDropOffAddressOfficeHours}
         applicationOrganization={listing.applicationOrganization}
         postmarkedApplicationData={{
-          postmarkedApplicationsReceivedByDate: moment(
-            listing.postmarkedApplicationsReceivedByDate
-          ).format(`MMM. DD, YYYY [${t("t.at")}] h A`),
+          postmarkedApplicationsReceivedByDate: listing.postmarkedApplicationsReceivedByDate
+            ? moment(listing.postmarkedApplicationsReceivedByDate).format(
+                `MMM. DD, YYYY [${t("t.at")}] h A`
+              )
+            : undefined,
           developer: listing.developer,
           applicationsDueDate: moment(listing.applicationDueDate).format(
             `MMM. DD, YYYY [${t("t.at")}] h A`
