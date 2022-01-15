@@ -22,6 +22,16 @@
           "description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en %{county}"
         }
       },
+      "liveWorkCity": {
+        "live": {
+          "label": "Preferencia de vivir en Ciudad de %{county}",
+          "description": "Al menos un miembro de mi hogar vive en Ciudad de %{county}"
+        },
+        "work": {
+          "label": "Preferencia de trabajar en Ciudad de %{county}",
+          "description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en Ciudad de %{county}"
+        }
+      },
       "displacedTenant": {
         "general": {
           "label": "Preferencia de vivienda para inquilinos desplazados",

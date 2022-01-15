@@ -22,6 +22,16 @@
           "description": "我家至少有一人在 %{county}工作或獲得工作機會"
         }
       },
+      "liveWorkCity": {
+        "live": {
+          "label": "住在阿拉米达市的偏好",
+          "description": "我的至少一名家庭成员住在阿拉米达市"
+        },
+        "work": {
+          "label": "在阿拉米达市工作",
+          "description": "我的至少一名家庭成员在阿拉米达市工作"
+        }
+      },
       "displacedTenant": {
         "general": {
           "label": "無居所租客房屋優先權",
