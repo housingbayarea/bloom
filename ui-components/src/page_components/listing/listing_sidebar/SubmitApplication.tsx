@@ -49,15 +49,17 @@ const SubmitApplication = (props: ApplicationAddressesProps) => {
           {props.applicationMailingAddress && props.applicationDropOffAddress && (
             <OrDivider bgColor="gray-100" />
           )}
-          {props.applicationDropOffAddress && (
-            <>
-              <h3 className="text-caps-tiny">{t("listings.apply.dropOffApplication")}</h3>
-              <SidebarAddress
-                address={props.applicationDropOffAddress}
-                officeHours={props.applicationDropOffAddressOfficeHours}
-              />
-            </>
-          )}
+        </section>
+      )}
+      {(props.applicationDropOffAddress || props.applicationDropOffAddressOfficeHours) && (
+        <section>
+          <>
+            <h3 className="text-caps-tiny">{t("listings.apply.dropOffApplication")}</h3>
+            <SidebarAddress
+              address={props.applicationDropOffAddress}
+              officeHours={props.applicationDropOffAddressOfficeHours}
+            />
+          </>
         </section>
       )}
     </>
