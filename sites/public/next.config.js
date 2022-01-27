@@ -6,7 +6,7 @@ const withTM = require("next-transpile-modules")([
   "@bloom-housing/ui-components",
   "@bloom-housing/backend-core",
 ])
-const { withSentryConfig } = require("@sentry/nextjs")
+// const { withSentryConfig } = require("@sentry/nextjs")
 const withBundleAnalyzer = require("@next/bundle-analyzer")({
   enabled: process.env.ANALYZE === "true",
 })
@@ -34,7 +34,7 @@ const HOUSING_COUNSELOR_SERVICE_URL = process.env.HOUSING_COUNSELOR_SERVICE_URL
 const bloomTheme = require("./tailwind.config.js")
 const tailwindVars = require("@bloom-housing/ui-components/tailwind.tosass.js")(bloomTheme)
 
-const SentryWebpackPluginOptions = {
+/* const SentryWebpackPluginOptions = {
   // Additional config options for the Sentry Webpack plugin. Keep in mind that
   // the following options are set automatically, and overriding them is not
   // recommended:
@@ -44,41 +44,38 @@ const SentryWebpackPluginOptions = {
   silent: true, // Suppresses all logs
   // For all available options, see:
   // https://github.com/getsentry/sentry-webpack-plugin#options.
-}
+} */
 
 // Tell webpack to compile the ui components package
 // https://www.npmjs.com/package/next-transpile-modules
-module.exports = withSentryConfig(
-  withBundleAnalyzer(
-    withTM({
-      target: "serverless",
-      env: {
-        backendApiBase: BACKEND_API_BASE,
-        listingServiceUrl: BACKEND_API_BASE + LISTINGS_QUERY,
-        listingPhotoSize: process.env.LISTING_PHOTO_SIZE || "1302",
-        mapBoxToken: MAPBOX_TOKEN,
-        housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL,
-        gtmKey: process.env.GTM_KEY || null,
-        idleTimeout: process.env.IDLE_TIMEOUT,
-        jurisdictionName: process.env.JURISDICTION_NAME,
-        cacheRevalidate: process.env.CACHE_REVALIDATE ? Number(process.env.CACHE_REVALIDATE) : 60,
-        cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
-      },
-      i18n: {
-        locales: process.env.LANGUAGES ? process.env.LANGUAGES.split(",") : ["en"],
-        defaultLocale: "en",
-      },
-      sassOptions: {
-        additionalData: tailwindVars,
-      },
-      webpack: (config) => {
-        config.module.rules.push({
-          test: /\.md$/,
-          type: "asset/source",
-        })
-        return config
-      },
-    })
-  ),
-  SentryWebpackPluginOptions
+module.exports = withBundleAnalyzer(
+  withTM({
+    target: "serverless",
+    env: {
+      backendApiBase: BACKEND_API_BASE,
+      listingServiceUrl: BACKEND_API_BASE + LISTINGS_QUERY,
+      listingPhotoSize: process.env.LISTING_PHOTO_SIZE || "1302",
+      mapBoxToken: MAPBOX_TOKEN,
+      housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL,
+      gtmKey: process.env.GTM_KEY || null,
+      idleTimeout: process.env.IDLE_TIMEOUT,
+      jurisdictionName: process.env.JURISDICTION_NAME,
+      cacheRevalidate: process.env.CACHE_REVALIDATE ? Number(process.env.CACHE_REVALIDATE) : 60,
+      cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    },
+    i18n: {
+      locales: process.env.LANGUAGES ? process.env.LANGUAGES.split(",") : ["en"],
+      defaultLocale: "en",
+    },
+    sassOptions: {
+      additionalData: tailwindVars,
+    },
+    webpack: (config) => {
+      config.module.rules.push({
+        test: /\.md$/,
+        type: "asset/source",
+      })
+      return config
+    },
+  })
 )
