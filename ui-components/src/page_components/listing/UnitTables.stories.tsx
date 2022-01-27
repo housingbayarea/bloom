@@ -4,7 +4,7 @@ import { UnitTables } from "./UnitTables"
 import { StandardTable } from "../../tables/StandardTable"
 import Archer from "../../../__tests__/fixtures/archer.json"
 import { unitSummariesTable } from "../../helpers/tableSummaries"
-import { UnitSummary } from "@bloom-housing/backend-core/types"
+import { UnitSummary, UnitType } from "@bloom-housing/backend-core/types"
 
 export default {
   title: "Listing/Unit Summary Tables",
@@ -24,7 +24,7 @@ const summaries: {
   amiPercentages: ["45.0", "30.0"],
   byUnitType: [
     {
-      unitType: "studio",
+      unitType: { name: "studio", numBedrooms: 1 } as UnitType,
       totalAvailable: 41,
       minIncomeRange: { min: "$1,438", max: "$2,208" },
       occupancyRange: { min: 1, max: 2 },
@@ -36,7 +36,7 @@ const summaries: {
   ],
   byUnitTypeWithoutFloor: [
     {
-      unitType: "studio",
+      unitType: { name: "studio", numBedrooms: 1 } as UnitType,
       totalAvailable: 41,
       minIncomeRange: { min: "$1,438", max: "$2,208" },
       occupancyRange: { min: 1, max: 2 },
@@ -79,7 +79,7 @@ const summaries: {
       percent: "45.0",
       byUnitType: [
         {
-          unitType: "studio",
+          unitType: { name: "studio", numBedrooms: 1 } as UnitType,
           totalAvailable: 24,
           minIncomeRange: { min: "$2,208", max: "$2,208" },
           occupancyRange: { min: 1, max: 2 },
@@ -94,7 +94,7 @@ const summaries: {
       percent: "30.0",
       byUnitType: [
         {
-          unitType: "studio",
+          unitType: { name: "studio", numBedrooms: 1 } as UnitType,
           totalAvailable: 16,
           minIncomeRange: { min: "$1,438", max: "$1,438" },
           occupancyRange: { min: 1, max: 2 },
