@@ -14,6 +14,9 @@
         "howDidYouHearOptions": {
           "jurisdictionWebsite": "Sitio web del Departamento de Vivienda de San José"
         }
+      },
+      "terms": {
+        "text": "Esta solicitud debe presentarse antes del miércoles %{applicationDueDate}.<br><br>El agente de arrendamiento se pondrá en contacto con los solicitantes por orden de sorteo y preferencia o por orden de lista de espera hasta que se cubran las vacantes. Se verificará toda la información que ha proporcionado y se confirmará su elegibilidad. Su solicitud puede ser eliminada de la lista de espera si ha hecho alguna declaración fraudulenta y las solicitudes duplicadas de un mismo hogar pueden ser eliminadas ya que solo se permite una solicitud por hogar. En caso de que su solicitud sea elegida para su revisión, prepárese para llenar una solicitud más detallada y proporcionar los documentos de apoyo necesarios. Para obtener más información, póngase en contacto con el promotor o el agente de arrendamiento que aparece en el listado. Póngase en contacto directamente con el promotor/agente de arrendamiento si hay alguna actualización de su solicitud.<br><br>Completar esta solicitud de vivienda no le da derecho a la vivienda ni indica que sea elegible para la misma; todos los solicitantes serán examinados como se indica en los Criterios de Selección de Residentes de la propiedad. No ofrecemos garantías sobre la obtención de una vivienda.<br><br>No puede modificar su solicitud en línea después de enviarla.<br><br>Declaro que lo anterior es verdadero y exacto, y reconozco que cualquier declaración errónea realizada de forma fraudulenta o negligente en esta solicitud puede dar lugar a la eliminación de la lotería."
       }
     },
     "preferences": {
