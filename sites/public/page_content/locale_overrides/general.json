@@ -110,9 +110,7 @@
     },
     "start": {
       "whatToExpect": {
-        "info1": "First we’ll ask about you and the people you plan to live with. Then, we’ll ask you about your income. Finally, we’ll give you an opportunity to review all of your application data before submitting.",
-        "info2": "Please be aware that each household member can only appear on one application for each listing.",
-        "info3": "Any fraudulent statements will cause your application to be removed."
+        "info1": "First we’ll ask about you and the people you plan to live with. Then, we’ll ask you about your income. Finally, we’ll give you an opportunity to review all of your application data before submitting."
       }
     }
   },
