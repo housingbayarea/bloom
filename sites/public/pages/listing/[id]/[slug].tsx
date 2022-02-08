@@ -8,7 +8,7 @@ import { UserStatus } from "../../../lib/constants"
 import Layout from "../../../layouts/application"
 import { ListingView } from "../../../src/ListingView"
 import { MetaTags } from "../../../src/MetaTags"
-import { ErrorPage } from "../../_error"
+import { Custom404 } from "../../404"
 
 interface ListingProps {
   listing: Listing
@@ -43,7 +43,7 @@ export default function ListingPage(props: ListingProps) {
   ])
 
   if (!listing) {
-    return <ErrorPage />
+    return <Custom404 />
   }
 
   const metaDescription = t("pageDescription.listing", {

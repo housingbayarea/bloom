@@ -48,7 +48,7 @@ import {
   pdfUrlFromListingEvents,
 } from "@bloom-housing/shared-helpers"
 import dayjs from "dayjs"
-import { ErrorPage } from "../pages/_error"
+import { Custom404 } from "../pages/404"
 import { useGetApplicationStatusProps } from "../lib/hooks"
 import { getGenericAddress, openInFuture } from "../lib/helpers"
 
@@ -72,7 +72,7 @@ export const ListingView = (props: ListingProps) => {
     : false
 
   if (!listing) {
-    return <ErrorPage />
+    return <Custom404 />
   }
 
   const oneLineAddress = <OneLineAddress address={getGenericAddress(listing.buildingAddress)} />
