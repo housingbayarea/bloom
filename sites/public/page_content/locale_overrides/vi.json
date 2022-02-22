@@ -53,6 +53,13 @@
           "label": "I don't want to be considered"
         }
       }
+    },
+    "start": {
+      "whatToExpect": {
+        "info1": "Trước tiên, chúng tôi sẽ hỏi về bạn và những người bạn định sống cùng. Sau đó, chúng tôi sẽ hỏi bạn về thu nhập của bạn. Cuối cùng, chúng tôi sẽ cho bạn cơ hội để xem xét tất cả dữ liệu đơn đăng ký của bạn trước khi gửi.",
+        "info2": "Xin lưu ý rằng mỗi thành viên trong gia đình chỉ có thể có tên trên một đơn xin cho mỗi danh sách.",
+        "info3": "Nếu có bất kỳ lời khai gian lận nào thì đơn xin của bạn sẽ bị bác bỏ."
+      }
     }
   },
   "footer": {

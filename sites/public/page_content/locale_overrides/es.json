@@ -53,6 +53,13 @@
           "label": "I don't want to be considered"
         }
       }
+    },
+    "start": {
+      "whatToExpect": {
+        "info1": "Primero le preguntaremos sobre usted y las personas con las que piensa vivir. Luego, le preguntaremos sobre sus ingresos. Por último, le daremos la oportunidad de revisar todos los datos de su solicitud antes de enviarla.",
+        "info2": "Tenga en cuenta que cada miembro del hogar solo puede aparecer en una solicitud por cada listado.",
+        "info3": "Cualquier declaración fraudulenta hará que su solicitud sea eliminada."
+      }
     }
   },
   "footer": {
