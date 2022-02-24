@@ -36,6 +36,13 @@
           "link": "https://www.hayward-ca.gov/238/background"
         }
       }
+    },
+    "review": {
+      "demographics": {
+        "howDidYouHearOptions": {
+          "jurisdictionWebsite": "San Mateo County HCD Website"
+        }
+      }
     }
   },
   "footer": {
