@@ -9,6 +9,9 @@
         "howDidYouHearOptions": {
           "jurisdictionWebsite": "Trang web của Sở Gia cư San Jose"
         }
+      },
+      "terms": {
+        "text": "Đơn này phải được nộp trước %{applicationDueDate}.<br><br>Những người làm đơn sẽ được đại lý cho thuê liên hệ theo thứ tự bốc thăm và ưu tiên hoặc thứ tự danh sách chờ cho đến khi các chỗ trống được chiếm ngụ. Tất cả thông tin bạn đã cung cấp sẽ được xác minh và xác nhận tính đủ điều kiện của bạn. Đơn của bạn có thể bị lấy ra khỏi danh sách chờ nếu bạn có bất kỳ khai báo gian dối nào và các đơn trùng lặp từ cùng một hộ gia đình có thể bị lấy ra vì mỗi hộ gia đình chỉ được phép nộp một đơn xin. Nếu đơn đăng ký của bạn được chọn để xem xét, hãy chuẩn bị để điền vào đơn đăng ký chi tiết hơn và cung cấp các tài liệu hỗ trợ cần thiết. Để biết thêm thông tin, vui lòng liên hệ với nhà phát triển hoặc đại lý cho thuê được đăng trong danh sách. Vui lòng liên hệ trực tiếp với nhà phát triển/người quản lý tài sản nếu có bất kỳ cập nhật nào cho đơn xin của bạn.<br><br>Việc hoàn thành đơn xin nhà ở này không cho bạn quyền có được nhà ở hoặc cho thấy bạn đủ điều kiện nhận nhà ở; tất cả những người nộp đơn sẽ được sàng lọc như đã nêu trong Tiêu Chí Lựa Chọn Thường Trú Nhân của tài sản. Chúng tôi không đảm bảo về việc có được nhà ở.<br><br>Bạn không thể thay đổi đơn đăng ký trực tuyến của mình sau khi bạn gửi.<br><br>Tôi tuyên bố rằng những điều ở trên là đúng và chính xác, đồng thời thừa nhận rằng bất kỳ trình bày sai lạc nào được thực hiện một cách gian lận hoặc cẩu thả trong đơn xin này đều có thể dẫn đến việc bị loại ra khỏi cuộc xổ số."
       }
     },
     "household": {
