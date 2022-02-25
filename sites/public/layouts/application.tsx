@@ -41,7 +41,7 @@ const Layout = (props) => {
   if (process.env.housingCounselorServiceUrl) {
     menuLinks.push({
       title: t("nav.getAssistance"),
-      href: "/housing-counselors",
+      href: process.env.housingCounselorServiceUrl,
     })
   }
   if (profile) {
@@ -137,14 +137,11 @@ const Layout = (props) => {
           />
         </FooterSection>
         <FooterNav copyright={t("footer.copyRight")}>
-          <a
-            href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link"
-            target="_blank"
-          >
+          <a href="https://www.surveymonkey.com/r/2QLBYML" target="_blank">
             {t("footer.giveFeedback")}
           </a>
-          <a href="mailto:achousingportal@acgov.org">{t("footer.contact")}</a>
-          <a href="https://www.acgov.org/government/legal.htm" target="_blank">
+          <a href="housing@smchousing.org">{t("footer.contact")}</a>
+          <a href="https://smc.housingbayarea.org/disclaimer" target="_blank">
             {t("footer.disclaimer")}
           </a>
           <Link href="/privacy">{t("footer.privacyPolicy")}</Link>
