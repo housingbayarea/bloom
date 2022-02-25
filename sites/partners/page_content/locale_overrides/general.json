@@ -24,6 +24,13 @@
           "label": "I don't want to be considered"
         }
       }
+    },
+    "review": {
+      "demographics": {
+        "howDidYouHearOptions": {
+          "jurisdictionWebsite": "HCD Website"
+        }
+      }
     }
   }
 }
