@@ -113,7 +113,9 @@ const Layout = (props) => {
           menuLinks={menuLinks}
           logoWidth={"medium"}
         />
-        <main id="main-content">{props.children}</main>
+        <main id="main-content" className="md:overflow-x-hidden">
+          {props.children}
+        </main>
       </div>
 
       <SiteFooter>
