@@ -1,3 +1,4 @@
+import React, { useEffect, useContext } from "react"
 import Head from "next/head"
 import Markdown from "markdown-to-jsx"
 import Layout from "../layouts/application"
@@ -7,7 +8,10 @@ import {
   InfoCard,
   PageHeader,
   MarkdownSection,
+  AuthContext,
 } from "@bloom-housing/ui-components"
+import { UserStatus } from "../lib/constants"
+import { PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
 import RenderIf from "../components/RenderIf"
 
 import pageContent from "../page_content/AdditionalResources.md"
@@ -16,6 +20,16 @@ import sidebarContent from "../page_content/AdditionalResourcesSidebar.md"
 const AdditionalResources = () => {
   const pageTitle = t("pageTitle.additionalResources")
   const subTitle = t("pageDescription.additionalResources")
+
+  const { profile } = useContext(AuthContext)
+
+  useEffect(() => {
+    pushGtmEvent<PageView>({
+      event: "pageView",
+      pageTitle: "Additional Resources",
+      status: profile ? UserStatus.LoggedIn : UserStatus.NotLoggedIn,
+    })
+  }, [profile])
 
   return (
     <Layout>
