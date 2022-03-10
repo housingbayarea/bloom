@@ -33,7 +33,7 @@ const Layout = (props) => {
   if (process.env.housingCounselorServiceUrl) {
     menuLinks.push({
       title: t("nav.getAssistance"),
-      href: process.env.housingCounselorServiceUrl,
+      href: "/get-assistance",
     })
   }
   if (profile) {
