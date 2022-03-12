@@ -155,11 +155,13 @@
     "bonusFeedback": ""
   },
   "pageTitle": {
-    "additionalResources": "Additional Housing Opportunities and Resources"
+    "additionalResources": "Additional Housing Opportunities and Resources",
+    "howItWorks": "How it Works"
   },
   "pageDescription": {
     "additionalResources": "We encourage you to browse other affordable housing resources.",
-    "getAssistance": "Learn more about finding and applying for affordable rental opportunities, and find additional housing listings."
+    "getAssistance": "Learn more about finding and applying for affordable rental opportunities, and find additional housing listings.",
+    "howItWorks": "Learn how you can find and apply for affordable rental opportunities."
   },
   "region": {
     "name": "Alameda County"
