@@ -4,7 +4,7 @@
 
 You can find and apply for affordable rental opportunities.
 
-[Read about how it works](#)
+[Read about how it works](/how-it-works)
 
 ---
 

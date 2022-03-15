@@ -174,5 +174,10 @@
   },
   "timeout": {
     "afterMessage": "We care about your security. We ended your session due to inactivity. Please start a new application to continue."
+  },
+  "welcome": {
+    "howDoesItWork": "How does it work?",
+    "learnHowToApply": "Learn how you can find and apply for affordable rental opportunities.",
+    "readAboutHowItWorks": "Read About How it Works"
   }
 }

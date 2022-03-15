@@ -45,7 +45,7 @@ const GetAssistance = () => {
   useEffect(() => {
     pushGtmEvent<PageView>({
       event: "pageView",
-      pageTitle: "Get Assistance",
+      pageTitle: "How it Works",
       status: profile ? UserStatus.LoggedIn : UserStatus.NotLoggedIn,
     })
   }, [profile])
@@ -76,7 +76,7 @@ const GetAssistance = () => {
                     },
                     h3: {
                       component: ({ children, ...props }) => (
-                        <h3 {...props} className="font-sans text-base text-gray-700 mb-1 mt-3 mb-4">
+                        <h3 {...props} className="font-sans text-base text-gray-700 mt-3 mb-4">
                           {children}
                         </h3>
                       ),
