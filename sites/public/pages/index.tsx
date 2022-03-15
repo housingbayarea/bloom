@@ -104,7 +104,7 @@ export default function Home(props: IndexProps) {
           actions={[]}
         />
 
-        <p>{t("welcome.learnHowToApply")}</p>
+        <p className="text-center">{t("welcome.learnHowToApply")}</p>
 
         <div className="markdown max-w-7xl">
           <Markdown
