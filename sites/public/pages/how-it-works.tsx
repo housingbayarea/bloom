@@ -76,14 +76,17 @@ const GetAssistance = () => {
                     },
                     h3: {
                       component: ({ children, ...props }) => (
-                        <h3 {...props} className="font-sans text-base text-gray-700 mt-3 mb-4">
+                        <h3 {...props} className="font-alt-sans font-semibold text-black mb-4">
                           {children}
                         </h3>
                       ),
                     },
                     h4: {
                       component: ({ children, ...props }) => (
-                        <h4 {...props} className="font-alt-sans font-semibold text-black mb-4">
+                        <h4
+                          {...props}
+                          className="font-alt-sans font-semibold text-lg text-black mb-4 mt-5"
+                        >
                           {children}
                         </h4>
                       ),
@@ -92,7 +95,7 @@ const GetAssistance = () => {
                       component: ({ children, ...props }) => (
                         <h5
                           {...props}
-                          className="font-alt-sans font-semibold text-lg text-black mb-4 mt-5"
+                          className="font-alt-sans font-semibold text-lg text-black mb-1 mt-4"
                         >
                           {children}
                         </h5>

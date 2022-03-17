@@ -1,12 +1,12 @@
 1. ## Find Apartments Accepting Applications (Listings)
 
-  ### Find high-quality, affordable housing opportunities located throughout the Bay Area.
+  <p class="markdown__lead">Find high-quality, affordable housing opportunities located throughout the Bay Area.</p>
 
   The simplest way to find opportunities that are accepting applications is to visit the affordable housing portal within the area you wish to live.
 
   <SubSection closedLabel="Read more about how to find listings" openLabel="Read less about how to find listings">
 
-  Another way to find Affordable Housing is to search the list of “[more housing opportunities and resources](/additional-resources)” available on the affordable housing portal.
+  Another way to find Affordable Housing is to search the list of [more housing opportunities and resources](/additional-resources) available on the affordable housing portal.
 
   These housing opportunities and resources provide the names, locations, and contact information for Affordable Housing programs and properties. Unfortunately, property managers of apartments on these lists are often not able to accept applications because they already have a lot of applications that must be processed before they can accept new applications. You should identify properties that meet your needs and contact the associated properties to find out if those properties are accepting applications. For access to other programs, including housing authority Section housing assistance, please reach out to the listed contacts.
 
@@ -14,13 +14,13 @@
 
 * ## Check Eligibility
 
-  ### Determine if your household meets the requirements for the property.
+  <p class="markdown__lead">Determine if your household meets the requirements for the property.</p>
 
   Affordable housing is reserved for people with limited income and/or other special circumstances. Applicants will need to assess their ability to meet the population and income requirements at the property for which they choose to apply.
 
   <SubSection closedLabel="Read more about checking your eligibility" openLabel="Read less about checking your eligibility">
 
-  #### Population Requirements
+  ### Population Requirements
 
   Most affordable housing properties are available to people with limited income. However, a small percentage is designated for specific populations as well. Examples include:
 
@@ -31,7 +31,7 @@
 
   Be sure to read about the population requirements by going to the property website before contacting the property manager. 
 
-  #### Income Requirements
+  ### Income Requirements
 
   Your total household income cannot exceed the maximum household income limits for the property.
 
@@ -42,29 +42,29 @@
 
   There are three ways to determine if your household meets the minimum and maximum income requirements. These are summarized below.
 
-  ##### 1\. View the Income Requirements for Properties listed on the Doorway website
+  #### 1\. View the income requirements for properties listed on the Doorway website
 
   Properties that are listed on the Doorway Web Portal will show the minimum and maximum household incomes required for applicants. Click on the link for the specific property listing in which you are interested. Scroll down to the tables which list the minimum and maximum income required for each apartment. 
 
-  ##### 2\. Contact the property manager
+  #### 2\. Contact the property manager
 
   If the property you are interested in is not listed on the Doorway web portal, it is most likely not accepting applications at the present time. However, you may contact the property manager listed for that property to find out the eligibility requirements for that site.
 
-  ##### 3\. Check the income tables published by the housing agency in your area
+  #### 3\. Check the income tables published by the housing agency in your area
 
   You can also check the income tables published on the housing agency website in the area in which your desired affordable housing is located. These tables are produced by the U.S Department of Housing and Urban Development (HUD) and are updated annually. Tables for Alameda County are provided here. A household would typically be considered as eligible for most affordable housing if the household income is 60% of Area Median Income (AMI) or below.  However, some properties have rents that are restricted to “moderate” income households with incomes up to 120% of AMI. If you have questions regarding these tables, please contact the agency in the area for which you are looking for affordable housing.
 
-  ##### Preferences
+  #### Preferences
 
   Some cities have adopted “preferences” that provide applicants with a greater chance of being selected. A common example of a preference is a preference for applicants that live or work in the area in which the specific affordable housing site is located. Be sure to provide all the information requested on the application as it may allow you to qualify for any available preferences. 
 
-  If you need help applying, go to the “[Resources](/additional-resources)” page.
+  If you need help applying, go to the [Resources](/additional-resources) page.
 
   </SubSection>
 
 * ## Apply Online
 
-  ### You will be asked to complete a short application for a unit at that property.
+  <p class="markdown__lead">You will be asked to complete a short application for a unit at that property.</p>
 
   Be sure to complete your application by the date specified on the property. Properties listed on the web portal require a minimum amount of information to be submitted on a “short-form” digital or paper application.
 
@@ -78,7 +78,7 @@
 
 * ## Get the results
 
-  ### Once ranking order is ready, results will be posted for you to download.
+  <p class="markdown__lead">Once ranking order is ready, results will be posted for you to download.</p>
 
   Depending on the property, the property manager will confirm that they have received your application by emailing or mailing letters to applicants. Some properties do not provide you with a notification that the property manager has received your application.
 
@@ -92,31 +92,29 @@
 
 * ## Prepare for Next Steps
 
-  ### You may be contacted by the property manager notifying you that you are moving forward.
+  <p class="markdown__lead">You may be contacted by the property manager notifying you that you are moving forward.</p>
 
   Once contacted by the property manager, there are several things you can do to prepare for the next steps. These include getting your finances and financial documents in order and gathering the required personal documents.
 
   <SubSection closedLabel="Read more about preparing for next steps" openLabel="Read less about preparing for next steps">
 
-  #### Finances
+  ### Finances
 
   There are three main ways to improve your financial position so that you can readily qualify for affordable housing. Those three ways include: a) preparing a budget, b) taking care of your credit, and c) gathering the required documents.
 
-  ##### Reviewing Household Budget
+  #### Reviewing Household Budget
 
   By definition, residents of affordable housing are typically expected to pay no more than 30% of their gross income on rent. Reviewing your budget to determine how much money you will have for housing, after deducting other monthly expenses, will help you determine the affordable housing sites for which you will qualify.
 
-  ##### Taking care of your credit
+  #### Taking care of your credit
 
   Property managers may or may not take an applicant’s credit score into consideration when selecting applicants for rental housing. For this reason, it is important to establish and maintain good credit. Credit card balances, and late or missed payments all have an impact on your credit score. 
   
   There are many resources available online to help you understand and improve your credit score.
 
-  ##### Gathering the Required Documents
+  #### Gathering the Required Documents
 
   At some point in the application process, you will be required to submit financial and personal documents to verify the information provided in your application. It is best to start gathering this information before you submit an application for housing.
-
-  [Read more about gathering documents](#)
 
   The documentation that is potentially required is listed below - please note that property managers will not ask for all the documents listed below, these are just examples of the types of documents that may be asked for. It is summarized into two different sections: 1) financial documents and 2) personal documents. Make sure you keep these documents on file so that you are not strapped for time if you get called in for an interview.
   

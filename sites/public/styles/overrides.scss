@@ -30,6 +30,14 @@
     @apply mt-6;
   }
 
+  .markdown__lead {
+    @apply font-sans;
+    @apply text-base;
+    @apply text-gray-700;
+    @apply mt-3;
+    @apply mb-4;
+  }
+
   ol.process-list {
     font-size: 1.06rem;
     line-height: 1.5;

@@ -36,7 +36,7 @@ const GetAssistance = () => {
 
       <section className="md:px-5">
         <article className="markdown max-w-5xl m-auto md:flex">
-          <div className="pt-4 md:w-8/12 md:py-0">
+          <div className="pt-4 md:w-8/12 md:py-0 md:pb-12">
             <MarkdownSection>
               <Markdown
                 options={{
