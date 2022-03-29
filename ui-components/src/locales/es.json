@@ -159,7 +159,7 @@
       },
       "expectingChanges": {
         "title": "Espera cambios en su grupo familiar",
-        "question": "¿Espera que haya cambios en su grupo familiar en los próximos 12 meses?"
+        "question": "¿Prevé algún cambio en su hogar en los próximos 12 meses, como el número de personas?"
       },
       "householdStudent": {
         "title":  "El grupo familiar incluye un estudiante o miembro que está por cumplir 18 años",
@@ -289,6 +289,9 @@
         },
         "senior": {
           "label": "Al menos un miembro de mi hogar es una persona mayor, definida como de 62 años o más (1 punto)"
+        },
+        "veteran": {
+          "label": "Alguien en mi hogar ha servido en el ejército de los Estados Unidos (1 punto)"
         }
       },
       "terminationOfAffordability": {
