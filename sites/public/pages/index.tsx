@@ -87,7 +87,7 @@ export default function Home(props: IndexProps) {
           <ActionBlock
             className="flex-1"
             header={t("welcome.seeMoreOpportunitiesTruncated")}
-            icon={<Icon size="3xl" symbol="building" />}
+            icon={<Icon size="3xl" symbol="house" />}
             actions={[
               <LinkButton href="/additional-resources" key={"additional-resources"}>
                 {t("welcome.viewAdditionalHousingTruncated")}
@@ -100,7 +100,7 @@ export default function Home(props: IndexProps) {
         <ActionBlock
           className="pb-0 -mb-1"
           header={t("welcome.howDoesItWork")}
-          icon={<Icon size="3xl" symbol="building" />}
+          icon={<Icon size="3xl" symbol="frontDoor" />}
           actions={[]}
         />
 
