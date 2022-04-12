@@ -1,113 +1,57 @@
 {
-  "application": {
-    "contact": {
-      "doYouWorkIn": "¿Trabaja usted en %{county}?",
-      "doYouWorkInDescription": ""
-    },
-    "household": {
-      "member": {
-        "workInRegion": "¿Trabaja él o ella en %{county}?",
-        "workInRegionNote": ""
-      }
-    },
-    "preferences": {
-      "dontWant": "No quiero solicitar ninguna de estas preferencias",
-      "dontWantSingular": "No quiero solicitar esta preferencia",
-      "liveWork": {
-        "live": {
-          "label": "Preferencia de vivir en %{county}",
-          "description": "Al menos un miembro de mi hogar vive en %{county}"
-        },
-        "work": {
-          "label": "Preferencia de trabajar en %{county}",
-          "description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en %{county}"
-        }
-      },
-      "liveWorkCity": {
-        "live": {
-          "label": "Preferencia de vivir en Ciudad de %{county}",
-          "description": "Al menos un miembro de mi hogar vive en Ciudad de %{county}"
-        },
-        "work": {
-          "label": "Preferencia de trabajar en Ciudad de %{county}",
-          "description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en Ciudad de %{county}"
-        }
-      },
-      "displacedTenant": {
-        "general": {
-          "label": "Preferencia de vivienda para inquilinos desplazados",
-          "description": "Al menos un miembro de mi hogar fue desplazado de una propiedad residencial debido a la actividad de reurbanización por parte de la Autoridad de Vivienda de Hayward, la Agencia de Reurbanización o la Ciudad de Hayward."
-        },
-        "missionCorridor": {
-          "label": "Preferencia de vivienda para inquilinos desplazados de Mission Boulevard Corridor (SR 238)",
-          "description": "Al menos un miembro de mi hogar es Participante del Programa de SR 238 de acuerdo con lo requerido por los términos del Proyecto de Implementación del Acuerdo de SR 238. Los participantes del programa son inquilinos de propiedades de Caltrans vendidas anteriormente a lo largo del corredor de SR 238 Mission Boulevard y se les dará preferencia de ocupación cuando se construyan nuevas viviendas por debajo del valor del mercado en el corredor."
-        }
-      },
-      "BVSPD": {
-        "title": "Broadway Valdez Specific Plan District",
-        "bvspd": {
-          "label": "Broadway Valdez Specific Plan District",
-          "description": "At least one member of my household lives in the Broadway Valdez Specific Plan District. Boundaries for the District area can be found in the Broadway Valdez District Specific Plan Map",
-          "link": "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf"
-        }
-      },
-      "OSDE": {
-        "title": "Oakland School District Employees",
-        "osde": {
-          "label": "Oakland School District Employees"
-        }
-      },
-      "BHA": {
-        "title": "Berkeley Housing Authority Apartments",
-        "description": "These apartments have a monthly rent that is approximately 30% of household income. I understand I must also qualify through the Berkeley Housing Authority’s requirements for this unit and that there will be both a screening process with SAHA and an additional application process through the Berkeley Housing Authority.",
-        "bha": {
-          "label": "Berkeley Housing Authority Project Based Voucher Section 8 apartments",
-          "description": "The minimum monthly income is $0. The maximum monthly income is $3,995 for 1 person or $4,566 for 2 persons. The maximum annual income is $47,950 for 1 person or $54,800 for 2 persons."
-        },
-        "doNotConsider": {
-          "label": "I don't want to be considered"
-        }
-      }
-    }
-  },
-  "footer": {
-    "copyRight": "Condado de Alameda © 2020 • Todos los derechos reservados",
-    "disclaimer": "Exención de responsabilidades",
-    "getAssistance": "Obtener asistencia",
-    "giveFeedback": "Proporcione sus comentarios",
-    "header": "El Portal de Vivienda del Condado de Alameda es un proyecto del",
-    "headerUrl": "https://www.acgov.org/cda/hcd/",
-    "headerLink": "Condado de Alameda - Departamento de Desarrollo Comunitario y de Vivienda (HCD)",
-    "forAdditionalOpportunities": "Para ver oportunidades adicionales en el Área de la Bahía, sírvase visitar:",
-    "forGeneralInquiries": "Para obtener información general sobre el programa, o acceder a servicios de traducción del contenido de este sitio web por teléfono, puede llamar al HCD del Condado de Alameda al 510-670-5404.",
-    "forListingQuestions": "Si tiene alguna pregunta relacionada con los listados y la solicitud, sírvase poner en contacto con el Agente de la Propiedad que aparece indicado en cada listado.",
-    "privacyPolicy": "Política de privacidad",
-    "SFHousingPortal": "Portal de Vivienda de San Francisco",
-    "SFHousingUrl": "https://housing.sfgov.org",
-    "SMCHousingPortal": "Portal de vivienda del condado de San Mateo",
-    "SMCHousingUrl": "https://smc.housingbayarea.org/",
-    "SJHousingPortal": "Portal de vivienda de la ciudad de San Jose",
-    "SJHousingUrl": "https://housing.sanjoseca.gov/"
-  },
-  "nav": {
-    "siteTitle": "Portal de Vivienda del Condado de Alameda",
-    "getFeedback": "¡Nos encantaría recibir  ",
-    "yourFeedback": "sus comentarios!",
-    "bonusFeedback": ""
-  },
-  "pageTitle": {
-    "additionalResources": "Oportunidades adicionales de vivienda"
-  },
-  "pageDescription": {
-    "additionalResources": "Le invitamos a consultar otros recursos de vivienda de precio accesible."
-  },
-  "region": {
-    "name": "Condado de Alameda"
-  },
-  "listings": {
-    "depositOrMonthsRent": "",
-    "publicLottery": {
-      "header": "LOTERÍA"
-    }
-  }
+  "application.contact.doYouWorkIn": "¿Trabaja usted en %{county}?",
+  "application.contact.doYouWorkInDescription": "",
+  "application.household.member.workInRegion": "¿Trabaja él o ella en %{county}?",
+  "application.household.member.workInRegionNote": "",
+  "application.preferences.dontWant": "No quiero solicitar ninguna de estas preferencias",
+  "application.preferences.dontWantSingular": "No quiero solicitar esta preferencia",
+  "application.preferences.liveWork.live.label": "Preferencia de vivir en %{county}",
+  "application.preferences.liveWork.live.description": "Al menos un miembro de mi hogar vive en %{county}",
+  "application.preferences.liveWork.work.label": "Preferencia de trabajar en %{county}",
+  "application.preferences.liveWork.work.description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en %{county}",
+  "application.preferences.liveWorkCity.live.label": "Preferencia de vivir en Ciudad de %{county}",
+  "application.preferences.liveWorkCity.live.description": "Al menos un miembro de mi hogar vive en Ciudad de %{county}",
+  "application.preferences.liveWorkCity.work.label": "Preferencia de trabajar en Ciudad de %{county}",
+  "application.preferences.liveWorkCity.work.description": "Al menos un miembro de mi hogar trabaja o le han ofrecido trabajo en Ciudad de %{county}",
+  "application.preferences.displacedTenant.general.label": "Preferencia de vivienda para inquilinos desplazados",
+  "application.preferences.displacedTenant.general.description": "Al menos un miembro de mi hogar fue desplazado de una propiedad residencial debido a la actividad de reurbanización por parte de la Autoridad de Vivienda de Hayward, la Agencia de Reurbanización o la Ciudad de Hayward.",
+  "application.preferences.displacedTenant.missionCorridor.label": "Preferencia de vivienda para inquilinos desplazados de Mission Boulevard Corridor (SR 238)",
+  "application.preferences.displacedTenant.missionCorridor.description": "Al menos un miembro de mi hogar es Participante del Programa de SR 238 de acuerdo con lo requerido por los términos del Proyecto de Implementación del Acuerdo de SR 238. Los participantes del programa son inquilinos de propiedades de Caltrans vendidas anteriormente a lo largo del corredor de SR 238 Mission Boulevard y se les dará preferencia de ocupación cuando se construyan nuevas viviendas por debajo del valor del mercado en el corredor.",
+  "application.preferences.BVSPD.title": "Broadway Valdez Specific Plan District",
+  "application.preferences.BVSPD.bvspd.label": "Broadway Valdez Specific Plan District",
+  "application.preferences.BVSPD.bvspd.description": "At least one member of my household lives in the Broadway Valdez Specific Plan District. Boundaries for the District area can be found in the Broadway Valdez District Specific Plan Map",
+  "application.preferences.BVSPD.bvspd.link": "https://cao-94612.s3.amazonaws.com/documents/Broadway-Valdez-Photo-Key-of-projects-3-4-20.pdf",
+  "application.preferences.OSDE.title": "Oakland School District Employees",
+  "application.preferences.OSDE.osde.label": "Oakland School District Employees",
+  "application.preferences.BHA.title": "Berkeley Housing Authority Apartments",
+  "application.preferences.BHA.description": "These apartments have a monthly rent that is approximately 30% of household income. I understand I must also qualify through the Berkeley Housing Authority’s requirements for this unit and that there will be both a screening process with SAHA and an additional application process through the Berkeley Housing Authority.",
+  "application.preferences.BHA.bha.label": "Berkeley Housing Authority Project Based Voucher Section 8 apartments",
+  "application.preferences.BHA.bha.description": "The minimum monthly income is $0. The maximum monthly income is $3,995 for 1 person or $4,566 for 2 persons. The maximum annual income is $47,950 for 1 person or $54,800 for 2 persons.",
+  "application.preferences.BHA.doNotConsider.label": "I don't want to be considered",
+  "footer.copyRight": "Condado de Alameda © 2020 • Todos los derechos reservados",
+  "footer.disclaimer": "Exención de responsabilidades",
+  "footer.getAssistance": "Obtener asistencia",
+  "footer.giveFeedback": "Proporcione sus comentarios",
+  "footer.header": "El Portal de Vivienda del Condado de Alameda es un proyecto del",
+  "footer.headerUrl": "https://www.acgov.org/cda/hcd/",
+  "footer.headerLink": "Condado de Alameda - Departamento de Desarrollo Comunitario y de Vivienda (HCD)",
+  "footer.forAdditionalOpportunities": "Para ver oportunidades adicionales en el Área de la Bahía, sírvase visitar:",
+  "footer.forGeneralInquiries": "Para obtener información general sobre el programa, o acceder a servicios de traducción del contenido de este sitio web por teléfono, puede llamar al HCD del Condado de Alameda al 510-670-5404.",
+  "footer.forListingQuestions": "Si tiene alguna pregunta relacionada con los listados y la solicitud, sírvase poner en contacto con el Agente de la Propiedad que aparece indicado en cada listado.",
+  "footer.privacyPolicy": "Política de privacidad",
+  "footer.SFHousingPortal": "Portal de Vivienda de San Francisco",
+  "footer.SFHousingUrl": "https://housing.sfgov.org",
+  "footer.SMCHousingPortal": "Portal de vivienda del condado de San Mateo",
+  "footer.SMCHousingUrl": "https://smc.housingbayarea.org/",
+  "footer.SJHousingPortal": "Portal de vivienda de la ciudad de San Jose",
+  "footer.SJHousingUrl": "https://housing.sanjoseca.gov/",
+  "nav.siteTitle": "Portal de Vivienda del Condado de Alameda",
+  "nav.getFeedback": "¡Nos encantaría recibir  ",
+  "nav.yourFeedback": "sus comentarios!",
+  "nav.bonusFeedback": "",
+  "pageTitle.additionalResources": "Oportunidades adicionales de vivienda",
+  "pageDescription.additionalResources": "Le invitamos a consultar otros recursos de vivienda de precio accesible.",
+  "region.name": "Condado de Alameda",
+  "listings.depositOrMonthsRent": "",
+  "listings.publicLottery.header": "LOTERÍA"
 }
