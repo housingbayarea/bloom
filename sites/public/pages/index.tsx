@@ -76,7 +76,7 @@ export default function Home(props: IndexProps) {
             <ActionBlock
               className="flex-1"
               header={t("welcome.signUp")}
-              icon={<Icon size="3xl" symbol="envelope" />}
+              icon={<Icon size="3xl" symbol="mailThin" />}
               actions={[
                 <LinkButton key={"sign-up"} href={props.jurisdiction.notificationsSignUpURL}>
                   {t("welcome.signUpToday")}
