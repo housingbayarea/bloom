@@ -30,14 +30,6 @@ const ForgotPassword = () => {
     })
   }, [])
 
-  useEffect(() => {
-    pushGtmEvent<PageView>({
-      event: "pageView",
-      pageTitle: "Forgot Password",
-      status: UserStatus.NotLoggedIn,
-    })
-  }, [])
-
   const onSubmit = async (data: { email: string }) => {
     const { email } = data
 
@@ -56,7 +48,10 @@ const ForgotPassword = () => {
       <FormForgotPassword
         onSubmit={onSubmit}
         control={{ register, errors, handleSubmit }}
-        networkError={{ error: networkError, reset: resetNetworkError }}
+        networkError={{
+          error: { ...networkError, error: !!networkError?.error },
+          reset: resetNetworkError,
+        }}
       />
     </FormsLayout>
   )
