@@ -40,7 +40,7 @@ const Layout = (props) => {
   ]
   if (process.env.housingCounselorServiceUrl) {
     menuLinks.push({
-      title: t("nav.getAssistance"),
+      title: t("pageTitle.getAssistance"),
       href: process.env.housingCounselorServiceUrl,
     })
   }
@@ -53,11 +53,11 @@ const Layout = (props) => {
           href: "/account/dashboard",
         },
         {
-          title: t("nav.myApplications"),
+          title: t("account.myApplications"),
           href: "/account/applications",
         },
         {
-          title: t("nav.accountSettings"),
+          title: t("account.accountSettings"),
           href: "/account/edit",
         },
         {
