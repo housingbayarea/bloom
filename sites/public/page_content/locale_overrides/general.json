@@ -1,182 +1,110 @@
 {
-  "application": {
-    "contact": {
-      "doYouWorkIn": "Do you work in San Mateo County?",
-      "doYouWorkInDescription": ""
-    },
-    "household": {
-      "member": {
-        "workInRegion": "Do they work in San Mateo County?",
-        "workInRegionNote": ""
-      }
-    },
-    "preferences": {
-      "dontWant": "I don't want to claim any of these preferences",
-      "liveWork": {
-        "live": {
-          "label": "Live in City of Hayward Preference",
-          "description": "At least one member of my household lives in the City of Hayward",
-          "link": "application.preferences"
-        },
-        "work": {
-          "label": "Work in City of Hayward Preference",
-          "description": "At least one member of my household works or has been offered work in the City of Hayward",
-          "link": "application.preferences"
-        }
-      },
-      "displacedTenant": {
-        "general": {
-          "label": "Displacee Tenant Housing Preference",
-          "description": "At least one member of my household was displaced from a residential property due to redevelopment activity by the Hayward Housing Authority, the Redevelopment Agency or the City of Hayward.",
-          "link": "application.preferences"
-        },
-        "missionCorridor": {
-          "label": "Mission Boulevard Corridor (SR 238) Displacee Tenant Housing Preference",
-          "description": "At least one member of my household is an SR 238 Program Participant as required under the terms of the SR 238 Settlement Implementation Project. Program Participants are tenants of previously sold Caltrans properties along the SR 238 Mission Boulevard Corridor and are given occupancy preference when new below-market housing is constructed in the Corridor.",
-          "link": "https://www.hayward-ca.gov/238/background"
-        }
-      }
-    },
-    "review": {
-      "demographics": {
-        "howDidYouHearOptions": {
-          "jurisdictionWebsite": "San Mateo County HCD Website"
-        }
-      }
-    }
-  },
-  "footer": {
-    "cityOfSouthSF": "City of South San Francisco",
-    "cityOfSouthSFurl": "http://www.ssf.net/",
-    "contact": "Contact",
-    "copyRight": "© San Mateo County",
-    "disclaimer": "Disclaimer",
-    "getAssistance": "Get Assistance",
-    "giveFeedback": "Give Feedback",
-    "header": "San Mateo County Housing Portal is a project of the",
-    "headerUrl": "https://housing.smcgov.org/",
-    "headerLink": "San Mateo County - Department of Housing (DOH)",
-    "forAdditionalOpportunities": "For additional Bay Area opportunities, please visit:",
-    "forGeneralInquiries": "For general program inquiries, you may call the San Mateo County DOH at 650-802-5050.",
-    "forListingQuestions": "For listing and application questions, please contact the Property Agent displayed on the listing.",
-    "inPartnershipWith": "in partnership with",
-    "privacyPolicy": "Privacy Policy",
-    "sanMateoISD": "San Mateo County's Information Services Department",
-    "sanMateoISDurl": "https://isd.smcgov.org/",
-    "SFHousingPortal": "San Francisco Housing Portal",
-    "SFHousingUrl": "https://housing.sfgov.org",
-    "SJHousingPortal": "San José Housing Portal",
-    "SJHousingUrl": "https://housing.sanjoseca.gov/",
-    "ALAHousingPortal": "Alameda County Housing Portal",
-    "ALAHousingUrl": "https://housing.acgov.org/"
-  },
-  "homepage": {
-    "seeMoreOpportunities": "See more rental and ownership housing opportunities",
-    "viewAdditionalOpportunities": "View Additional Housing Opportunities"
-  },
-  "region": {
-    "name": "San Mateo County Housing Portal",
-    "short": "San Mateo County"
-  },
-  "welcome": {
-    "seeRentalListings": "See Rentals"
-  },
-  "pageTitle": {
-    "rent": "See Rentals",
-    "privacyPolicy": "Privacy Policy",
-    "additionalResources": "Additional Housing Opportunities"
-  },
-  "pageDescription": {
-    "additionalResources": "We encourage you to browse other affordable housing resources."
-  },
-  "nav": {
-    "siteTitle": "San Mateo County Housing",
-    "listings": "Browse Properties",
-    "getFeedback": "This is a preview of our new website. We're just getting started. We'd love to get ",
-    "yourFeedback": "your feedback"
-  },
-  "additionalResources": {
-    "contact": "Contact",
-    "forQuestions": "For listing and application questions, please contact the Property Agent displayed on the listing.",
-    "otherResources": "Other Resources",
-    "otherResourcesDescription1": "Tenant Resources, Crisis and Health Services, and Legal Assistance",
-    "otherResourcesDescription2": "Support with rent payments.",
-    "rentals": "Rentals",
-    "rentalsDescription": "Lists developed each month by community nonprofit agencies.",
-    "sharedHousing": "Shared Housing",
-    "sharedHousingDescription": "Home Sharing is a living arrangement among two or more unrelated people.",
-    "SMCDOH": "San Mateo County's Department of Housing",
-    "smchousingEmail": "doorway@smchousing.org",
-    "card": {
-      "affordableRentalHousingList": {
-        "title": "Affordable Rental Housing List",
-        "link": "https://housing.smcgov.org/san-mateo-county-affordable-rental-housing-list",
-        "description": "Affordable Rental Opportunities San Mateo County",
-        "region": "San Mateo County"
-      },
-      "SMCHousingSearch": {
-        "title": "SMCHousingSearch",
-        "link": "http://www.socialserve.com/dbh/ViewUnit/663044?ch=SMC&hm=kt9oO6pN",
-        "description": "Rental and Shared Housing Opportunities",
-        "region": "San Mateo County"
-      },
-      "HavenConnect": {
-        "title": "Haven Connect",
-        "link": "https://apply.havenconnect.com/",
-        "description": "Affordable Housing",
-        "region": "San Mateo County, Bay Area, and Beyond"
-      },
-      "HIPHousing": {
-        "title": "HIP Housing",
-        "link": "https://hiphousing.org/programs/home-sharing-program/",
-        "description": "Shared Housing Opportunities",
-        "region": "San Mateo County"
-      },
-      "HAotCoSM": {
-        "title": "Housing Authority of the County of San Mateo",
-        "link": "https://www.smchousingwaitlist.org/landing",
-        "description": "Housing Choice Vouchers/ Section 8 program",
-        "region": "San Mateo County"
-      },
-      "CIH": {
-        "title": "Community Infomation Handbook",
-        "link": "https://hsa.smcgov.org/sites/hsa.smcgov.org/files/documents/files/CIH2019_English_020719.pdf",
-        "description": "Community Services",
-        "region": "San Mateo County"
-      },
-      "211bayarea": {
-        "title": "211 United Way Bay Area",
-        "link": "https://www.211bayarea.org/sanmateo/",
-        "description": "Health and Human Services Information, including crisis services",
-        "region": "San Mateo County and Bay Area"
-      },
-      "ProjectSentinel": {
-        "title": "Project Sentinel",
-        "link": "https://www.housing.org/tenants",
-        "description": "Services for tenants experiencing housing discrimination",
-        "region": "San Mateo County and Bay Area"
-      },
-      "housingChoices": {
-        "title": "Housing Choices",
-        "link": "https://www.housing.org/tenants",
-        "description": "Housing Choices provides housing navigation services to people with intellectual and developmental disabilities served by the Regional Center.",
-        "description2": "Submit a request for Housing Choices Services.",
-        "phone": "408-498-5777",
-        "email": "intake@housingchoices.org",
-        "region": "San Mateo County and Bay Area"
-      }
-    }
-  },
-  "listings": {
-    "depositOrMonthsRent": "",
-    "publicLottery": {
-      "header": "Lottery"
-    },
-    "reservedTypePlural": {
-      "55+": "55+"
-    }
-  },
-  "timeout": {
-    "afterMessage": "We care about your security. We ended your session due to inactivity. Please start a new application to continue."
-  }
+  "application.contact.doYouWorkIn": "Do you work in San Mateo County?",
+  "application.contact.doYouWorkInDescription": "",
+  "application.household.member.workInRegion": "Do they work in San Mateo County?",
+  "application.household.member.workInRegionNote": "",
+  "application.preferences.dontWant": "I don't want to claim any of these preferences",
+  "application.preferences.liveWork.live.label": "Live in City of Hayward Preference",
+  "application.preferences.liveWork.live.description": "At least one member of my household lives in the City of Hayward",
+  "application.preferences.liveWork.live.link": "application.preferences",
+  "application.preferences.liveWork.work.label": "Work in City of Hayward Preference",
+  "application.preferences.liveWork.work.description": "At least one member of my household works or has been offered work in the City of Hayward",
+  "application.preferences.liveWork.work.link": "application.preferences",
+  "application.preferences.displacedTenant.general.label": "Displacee Tenant Housing Preference",
+  "application.preferences.displacedTenant.general.description": "At least one member of my household was displaced from a residential property due to redevelopment activity by the Hayward Housing Authority, the Redevelopment Agency or the City of Hayward.",
+  "application.preferences.displacedTenant.general.link": "application.preferences",
+  "application.preferences.displacedTenant.missionCorridor.label": "Mission Boulevard Corridor (SR 238) Displacee Tenant Housing Preference",
+  "application.preferences.displacedTenant.missionCorridor.description": "At least one member of my household is an SR 238 Program Participant as required under the terms of the SR 238 Settlement Implementation Project. Program Participants are tenants of previously sold Caltrans properties along the SR 238 Mission Boulevard Corridor and are given occupancy preference when new below-market housing is constructed in the Corridor.",
+  "application.preferences.displacedTenant.missionCorridor.link": "https://www.hayward-ca.gov/238/background",
+  "application.review.demographics.howDidYouHearOptions.jurisdictionWebsite": "San Mateo County HCD Website",
+  "footer.cityOfSouthSF": "City of South San Francisco",
+  "footer.cityOfSouthSFurl": "http://www.ssf.net/",
+  "footer.contact": "Contact",
+  "footer.copyRight": "© San Mateo County",
+  "footer.disclaimer": "Disclaimer",
+  "footer.getAssistance": "Get Assistance",
+  "footer.giveFeedback": "Give Feedback",
+  "footer.header": "San Mateo County Housing Portal is a project of the",
+  "footer.headerUrl": "https://housing.smcgov.org/",
+  "footer.headerLink": "San Mateo County - Department of Housing (DOH)",
+  "footer.forAdditionalOpportunities": "For additional Bay Area opportunities, please visit:",
+  "footer.forGeneralInquiries": "For general program inquiries, you may call the San Mateo County DOH at 650-802-5050.",
+  "footer.forListingQuestions": "For listing and application questions, please contact the Property Agent displayed on the listing.",
+  "footer.inPartnershipWith": "in partnership with",
+  "footer.privacyPolicy": "Privacy Policy",
+  "footer.sanMateoISD": "San Mateo County's Information Services Department",
+  "footer.sanMateoISDurl": "https://isd.smcgov.org/",
+  "footer.SFHousingPortal": "San Francisco Housing Portal",
+  "footer.SFHousingUrl": "https://housing.sfgov.org",
+  "footer.SJHousingPortal": "San José Housing Portal",
+  "footer.SJHousingUrl": "https://housing.sanjoseca.gov/",
+  "footer.ALAHousingPortal": "Alameda County Housing Portal",
+  "footer.ALAHousingUrl": "https://housing.acgov.org/",
+  "homepage.seeMoreOpportunities": "See more rental and ownership housing opportunities",
+  "homepage.viewAdditionalOpportunities": "View Additional Housing Opportunities",
+  "region.name": "San Mateo County Housing Portal",
+  "region.short": "San Mateo County",
+  "welcome.seeRentalListings": "See Rentals",
+  "pageTitle.rent": "See Rentals",
+  "pageTitle.privacyPolicy": "Privacy Policy",
+  "pageTitle.additionalResources": "Additional Housing Opportunities",
+  "pageDescription.additionalResources": "We encourage you to browse other affordable housing resources.",
+  "nav.siteTitle": "San Mateo County Housing",
+  "nav.listings": "Browse Properties",
+  "nav.getFeedback": "This is a preview of our new website. We're just getting started. We'd love to get ",
+  "nav.yourFeedback": "your feedback",
+  "additionalResources.contact": "Contact",
+  "additionalResources.forQuestions": "For listing and application questions, please contact the Property Agent displayed on the listing.",
+  "additionalResources.otherResources": "Other Resources",
+  "additionalResources.otherResourcesDescription1": "Tenant Resources, Crisis and Health Services, and Legal Assistance",
+  "additionalResources.otherResourcesDescription2": "Support with rent payments.",
+  "additionalResources.rentals": "Rentals",
+  "additionalResources.rentalsDescription": "Lists developed each month by community nonprofit agencies.",
+  "additionalResources.sharedHousing": "Shared Housing",
+  "additionalResources.sharedHousingDescription": "Home Sharing is a living arrangement among two or more unrelated people.",
+  "additionalResources.SMCDOH": "San Mateo County's Department of Housing",
+  "additionalResources.smchousingEmail": "doorway@smchousing.org",
+  "additionalResources.card.affordableRentalHousingList.title": "Affordable Rental Housing List",
+  "additionalResources.card.affordableRentalHousingList.link": "https://housing.smcgov.org/san-mateo-county-affordable-rental-housing-list",
+  "additionalResources.card.affordableRentalHousingList.description": "Affordable Rental Opportunities San Mateo County",
+  "additionalResources.card.affordableRentalHousingList.region": "San Mateo County",
+  "additionalResources.card.SMCHousingSearch.title": "SMCHousingSearch",
+  "additionalResources.card.SMCHousingSearch.link": "http://www.socialserve.com/dbh/ViewUnit/663044?ch=SMC&hm=kt9oO6pN",
+  "additionalResources.card.SMCHousingSearch.description": "Rental and Shared Housing Opportunities",
+  "additionalResources.card.SMCHousingSearch.region": "San Mateo County",
+  "additionalResources.card.HavenConnect.title": "Haven Connect",
+  "additionalResources.card.HavenConnect.link": "https://apply.havenconnect.com/",
+  "additionalResources.card.HavenConnect.description": "Affordable Housing",
+  "additionalResources.card.HavenConnect.region": "San Mateo County, Bay Area, and Beyond",
+  "additionalResources.card.HIPHousing.title": "HIP Housing",
+  "additionalResources.card.HIPHousing.link": "https://hiphousing.org/programs/home-sharing-program/",
+  "additionalResources.card.HIPHousing.description": "Shared Housing Opportunities",
+  "additionalResources.card.HIPHousing.region": "San Mateo County",
+  "additionalResources.card.HAotCoSM.title": "Housing Authority of the County of San Mateo",
+  "additionalResources.card.HAotCoSM.link": "https://www.smchousingwaitlist.org/landing",
+  "additionalResources.card.HAotCoSM.description": "Housing Choice Vouchers/ Section 8 program",
+  "additionalResources.card.HAotCoSM.region": "San Mateo County",
+  "additionalResources.card.CIH.title": "Community Infomation Handbook",
+  "additionalResources.card.CIH.link": "https://hsa.smcgov.org/sites/hsa.smcgov.org/files/documents/files/CIH2019_English_020719.pdf",
+  "additionalResources.card.CIH.description": "Community Services",
+  "additionalResources.card.CIH.region": "San Mateo County",
+  "additionalResources.card.211bayarea.title": "211 United Way Bay Area",
+  "additionalResources.card.211bayarea.link": "https://www.211bayarea.org/sanmateo/",
+  "additionalResources.card.211bayarea.description": "Health and Human Services Information, including crisis services",
+  "additionalResources.card.211bayarea.region": "San Mateo County and Bay Area",
+  "additionalResources.card.ProjectSentinel.title": "Project Sentinel",
+  "additionalResources.card.ProjectSentinel.link": "https://www.housing.org/tenants",
+  "additionalResources.card.ProjectSentinel.description": "Services for tenants experiencing housing discrimination",
+  "additionalResources.card.ProjectSentinel.region": "San Mateo County and Bay Area",
+  "additionalResources.card.housingChoices.title": "Housing Choices",
+  "additionalResources.card.housingChoices.link": "https://www.housing.org/tenants",
+  "additionalResources.card.housingChoices.description": "Housing Choices provides housing navigation services to people with intellectual and developmental disabilities served by the Regional Center.",
+  "additionalResources.card.housingChoices.description2": "Submit a request for Housing Choices Services.",
+  "additionalResources.card.housingChoices.phone": "408-498-5777",
+  "additionalResources.card.housingChoices.email": "intake@housingchoices.org",
+  "additionalResources.card.housingChoices.region": "San Mateo County and Bay Area",
+  "listings.depositOrMonthsRent": "",
+  "listings.publicLottery.header": "Lottery",
+  "listings.reservedTypePlural.55+": "55+",
+  "timeout.afterMessage": "We care about your security. We ended your session due to inactivity. Please start a new application to continue."
 }
