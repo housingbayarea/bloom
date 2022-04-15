@@ -14,7 +14,6 @@ module.exports = {
     enabled: process.env.NODE_ENV !== "development",
     content: [
       "./pages/**/*.tsx",
-      "./page_content/**/*.md",
       "./src/**/*.tsx",
       "./layouts/**/*.tsx",
       "../../ui-components/src/**/*.tsx",

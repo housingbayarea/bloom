@@ -79,15 +79,9 @@
   "nav.yourFeedback": "your feedback!",
   "nav.bonusFeedback": "",
   "pageTitle.additionalResources": "Additional Housing Opportunities and Resources",
-  "pageTitle.howItWorks": "How it Works",
   "pageDescription.additionalResources": "We encourage you to browse other affordable housing resources.",
-  "pageDescription.getAssistance": "Learn more about finding and applying for affordable rental opportunities, and find additional housing listings.",
-  "pageDescription.howItWorks": "Learn how you can find and apply for affordable rental opportunities.",
   "region.name": "Alameda County",
   "listings.depositOrMonthsRent": "",
   "listings.publicLottery.header": "Lottery",
-  "timeout.afterMessage": "We care about your security. We ended your session due to inactivity. Please start a new application to continue.",
-  "welcome.howDoesItWork": "How does it work?",
-  "welcome.learnHowToApply": "Learn how you can find and apply for affordable rental opportunities.",
-  "welcome.readAboutHowItWorks": "Read About How it Works"
+  "timeout.afterMessage": "We care about your security. We ended your session due to inactivity. Please start a new application to continue."
 }
