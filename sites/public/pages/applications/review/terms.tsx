@@ -106,7 +106,7 @@ const ApplicationTerms = () => {
 
         <Form id="review-terms" className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-card__pager-row">
-            <div className="markdown mt-4">
+            <div className="markdown">
               <Markdown
                 options={{
                   disableParsingRawHTML: false,
