@@ -106,9 +106,24 @@ const ApplicationTerms = () => {
 
         <Form id="review-terms" className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-card__pager-row">
-            <Markdown options={{ disableParsingRawHTML: false }}>
-              {t("application.review.terms.text", { applicationDueDate: applicationDueDate })}
-            </Markdown>
+            <div className="markdown">
+              <Markdown
+                options={{
+                  disableParsingRawHTML: false,
+                  overrides: {
+                    li: {
+                      component: ({ children, ...props }) => (
+                        <li {...props} className="mb-4">
+                          {children}
+                        </li>
+                      ),
+                    },
+                  },
+                }}
+              >
+                {t("application.review.terms.text", { applicationDueDate: applicationDueDate })}
+              </Markdown>
+            </div>
 
             <div className="mt-4">
               <FieldGroup
