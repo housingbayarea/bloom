@@ -342,5 +342,12 @@
   "users.totalUsers": "total users",
   "users.unconfirmed": "Unconfirmed",
   "users.userDetails": "User Details",
-  "welcome.seeRentalListings": "Browse Rentals"
+  "welcome.seeRentalListings": "Browse Rentals",
+  "application.programs.VHHP.veteran.label": "Veteran",
+  "application.programs.VHHP.veteranStatus.label": "Veteran Status",
+  "application.preferences.oaklandHousingAuthority.liveOrWork.label": "Live or Work",
+  "application.preferences.oaklandHousingAuthority.family.label": "Family",
+  "application.preferences.oaklandHousingAuthority.veteran.label": "Veteran",
+  "application.preferences.southAlamedaCounty.live.label": "Live in Fremont, Newark or Union City",
+  "application.preferences.southAlamedaCounty.work.label": "Work in Fremont, Newark or Union City"
 }
