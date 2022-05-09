@@ -37,7 +37,7 @@
 
   * Household: A “household” may be just one person, or two or more persons. All household members that will be living in the home must be included in the application. 
   * Household income: The combined annual income from all persons over 18 years old who are part of the household. 
-  * Maximum household income: You will be asked to provide the “ross” Maximum Income (also known as Gross Household Income). This refers to the total income before taxes or other deductions. 
+  * Maximum household income: You will be asked to provide the “gross” Maximum Income (also known as Gross Household Income). This refers to the total income before taxes or other deductions. 
   * Minimum household income: The minimum monthly income required to be eligible for the property, typically equal to 1.5 or 2 times monthly rent.
 
   There are three ways to determine if your household meets the minimum and maximum income requirements. 

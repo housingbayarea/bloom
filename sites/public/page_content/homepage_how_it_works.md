@@ -1,4 +1,4 @@
-1. #### Find Listings
+1. #### Find Apartments Accepting Applications (Listings)
 
   Find high-quality, affordable housing opportunities located throughout the Bay Area.
 
@@ -14,6 +14,6 @@
 
   Once ranking order is ready, results will be posted for you to download.
 
-* #### Prepare for Next Steps
+* #### Get Prepared for Placement
 
   You may be contacted by the property manager notifying you that you are moving forward.
