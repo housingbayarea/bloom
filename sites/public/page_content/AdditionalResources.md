@@ -4,13 +4,14 @@
   <InfoCard title="How it Works?"  externalHref="https://res.cloudinary.com/exygy/image/upload/v1652106469/Revised_Affordable_Housing_Application_and_Selection_Process_-_San_Jose_ENG_nbgp6i.pdf">
   This guide describes affordable housing and how to get into it.
   </InfoCard>
-  <InfoCard title="San Mateo County" externalHref="https://smc.housingbayarea.org/">
-  </InfoCard>
 
   <InfoCard title="Alameda County" externalHref="https://housing.acgov.org/">
   </InfoCard>
 
   <InfoCard title="San Francisco" externalHref="https://housing.sfgov.org/">
+  </InfoCard>
+
+  <InfoCard title="San Mateo County" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
   </InfoCardGrid>
   <br />
@@ -73,13 +74,12 @@
   Esta guía describe la vivienda asequible y cómo conseguirla.
   </InfoCard>
 
-  <InfoCard title="Condado de San Mateo" externalHref="https://smc.housingbayarea.org/">
-  </InfoCard>
-
   <InfoCard title="Condado de Alameda" externalHref="https://housing.acgov.org/">
   </InfoCard>
 
   <InfoCard title="San Francisco" externalHref="https://housing.sfgov.org/">
+  </InfoCard>
+  <InfoCard title="Condado de San Mateo" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
   </InfoCardGrid>
   <br />
@@ -142,14 +142,15 @@
     本指南介紹可負擔住房以及如何申請。
   </InfoCard>
 
-  <InfoCard title="聖馬刁縣" externalHref="https://smc.housingbayarea.org/">
-  </InfoCard>
-
   <InfoCard title="阿拉米達縣" externalHref="https://housing.acgov.org/">
   </InfoCard>
 
   <InfoCard title="三藩市" externalHref="https://housing.sfgov.org/">
   </InfoCard>
+
+  <InfoCard title="聖馬刁縣" externalHref="https://smc.housingbayarea.org/">
+  </InfoCard>
+
   </InfoCardGrid>
   <br />
 
@@ -210,14 +211,15 @@
     Hướng dẫn này mô tả nhà ở giá phải chăng và cách có được.
   </InfoCard>
 
-  <InfoCard title="Quận San Mateo" externalHref="https://smc.housingbayarea.org/">
-  </InfoCard>
-
   <InfoCard title="Quận Alameda" externalHref="https://housing.acgov.org/">
   </InfoCard>
 
   <InfoCard title="San Francisco" externalHref="https://housing.sfgov.org/">
   </InfoCard>
+
+  <InfoCard title="Quận San Mateo" externalHref="https://smc.housingbayarea.org/">
+  </InfoCard>
+
   </InfoCardGrid>
   <br />
 
