@@ -1,6 +1,9 @@
 <RenderIf language="default">
 
-  <InfoCardGrid title="Bay Area Doorway Portals" subtitle="Affordable housing opportunities in other counties can be found at other Bay Area Doorway Portals.">
+  <InfoCardGrid title="Bay Area Doorway Portals" subtitle="San José’s Doorway portal is one of several similar Bay Area websites created to simplify the process to find and apply for affordable rental housing. Affordable housing opportunities in other counties can be found at other Bay Area Doorway Portals.">
+  <InfoCard title="How it Works?"  externalHref="https://res.cloudinary.com/exygy/image/upload/v1652106469/Revised_Affordable_Housing_Application_and_Selection_Process_-_San_Jose_ENG_nbgp6i.pdf">
+  This guide describes affordable housing and how to get into it.
+  </InfoCard>
   <InfoCard title="San Mateo County" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
 
@@ -65,7 +68,11 @@
 </RenderIf>
 
 <RenderIf language="es">
-  <InfoCardGrid title="Portales del Área de la Bahía" subtitle="Puede encontrar oportunidades de vivienda asequible en otros condados en otros portales del Área de la Bahía.">
+  <InfoCardGrid title="Portales del Área de la Bahía" subtitle="El portal Doorway de San José es uno de muchos sitios web similares del Área de la Bahía que fue creado para simplificar el proceso de encontrar y postularse para el alquiler de viviendas asequibles. Puede encontrar oportunidades de vivienda asequible en otros condados en otros portales del Área de la Bahía.">
+  <InfoCard title="¿Cómo funciona?"  externalHref="https://res.cloudinary.com/exygy/image/upload/v1652106470/Revised_Affordable_Housing_Application_and_Selection_Process_-_San_Jose_spa_bvxvff.pdf">
+  Esta guía describe la vivienda asequible y cómo conseguirla.
+  </InfoCard>
+
   <InfoCard title="Condado de San Mateo" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
 
@@ -130,7 +137,11 @@
 </RenderIf>
 
 <RenderIf language="zh">
-  <InfoCardGrid title="灣區門戶網站" subtitle="其他縣的可負擔住房機會可在其他灣區門戶網站尋找。">
+  <InfoCardGrid title="灣區門戶網站" subtitle="聖荷西市Doorway門戶網站是灣區幾個類似的網站之一，旨在簡化尋找和申請可負擔租房的過程。其他縣的可負擔住房機會可在其他灣區門戶網站尋找。">
+  <InfoCard title="這個怎麼運作？" externalHref="https://res.cloudinary.com/exygy/image/upload/v1652106470/Revised_Affordable_Housing_Application_and_Selection_Process_-_San_Jose-TCH_uuuf2f.pdf">
+    本指南介紹可負擔住房以及如何申請。
+  </InfoCard>
+
   <InfoCard title="聖馬刁縣" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
 
@@ -194,7 +205,11 @@
 </RenderIf>
 
 <RenderIf language="vi">
-  <InfoCardGrid title="CỔNG THÔNG TIN CỬA NGÕ VÙNG VỊNH" subtitle="Có thể tìm thấy các cơ hội nhà ở giá cả phải chăng ở các quận khác tại các Cổng thông tin Cửa Ngõ Vùng Vịnh khác.">
+  <InfoCardGrid title="CỔNG THÔNG TIN CỬA NGÕ VÙNG VỊNH" subtitle="Cổng thông tin Doorway của San José là một trong số các trang web tương tự của Vùng Vịnh được tạo ra để đơn giản hóa quy trình tìm và đăng ký nhà cho thuê giá phải chăng. Có thể tìm thấy các cơ hội nhà ở giá cả phải chăng ở các quận khác tại các Cổng thông tin Cửa Ngõ Vùng Vịnh khác.">
+  <InfoCard title="Làm thế nào nó hoạt động?" externalHref="https://res.cloudinary.com/exygy/image/upload/v1652106470/Revised_Affordable_Housing_Application_and_Selection_Process_-_San_JoseVietFinal_je8c2j.pdf">
+    Hướng dẫn này mô tả nhà ở giá phải chăng và cách có được.
+  </InfoCard>
+
   <InfoCard title="Quận San Mateo" externalHref="https://smc.housingbayarea.org/">
   </InfoCard>
 
