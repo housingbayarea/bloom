@@ -18,6 +18,7 @@ import { ConfirmationModal } from "../src/ConfirmationModal"
 import { MetaTags } from "../src/MetaTags"
 import { fetchJurisdictionByName } from "../lib/hooks"
 import Markdown from "markdown-to-jsx"
+import RenderIf from "../components/RenderIf"
 
 import pageContent from "../page_content/homepage_how_it_works.md"
 
@@ -110,6 +111,7 @@ export default function Home(props: IndexProps) {
           <Markdown
             options={{
               overrides: {
+                RenderIf,
                 ol: {
                   component: ({ ...props }) => (
                     <ol {...props} className="process-list has-horizontal-layout" />
