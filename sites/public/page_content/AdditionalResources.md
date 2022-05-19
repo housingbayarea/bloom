@@ -274,7 +274,7 @@ Call [510-574-2000](tel:+1-510-574-2000)
 
 <RenderIf language="es">
 
-<InfoCardGrid title="Immediate Housing Assistance" subtitle="Si está huyendo de violencia doméstica, agresión sexual o trata de personas y está en peligro inmediato, llame al 911.
+<InfoCardGrid title="Asistencia de vivienda inmediata" subtitle="Si está huyendo de violencia doméstica, agresión sexual o trata de personas y está en peligro inmediato, llame al 911.
 ">
 <InfoCard title="211 Buscador de recursos del Condado de Alameda" externalHref="https://achousingchoices.org/">
 
@@ -538,18 +538,16 @@ Llame al [510-574-2000](tel:+1-510-574-2000)
 
 <RenderIf language="zh">
 
-  <InfoCardGrid title="Immediate Housing Assistance">
+  <InfoCardGrid title="即時住房援助" subtitle="如果您正在逃離家庭暴力、性侵害，或人口販賣，而且處於直接危險之中，請撥打 911">
   <InfoCard title="211 阿拉米達縣資源搜尋工具" externalHref="https://achousingchoices.org/">
 
-如果您需要立即入住緊急收容所和尋求住房協助，請致電 [510-537-2552](tel:+1-510-537-2552) 與 Eden Information & Referral（伊甸資訊和轉介中心）聯絡，或致電 1-800-273-6222 與 Bay Area Helpline（灣區求助熱線）聯絡；或可瀏覽 https://achousingchoices.org/ 。
+如果您需要緊急避難所和住宅協助，請撥打 [211](tel:+1-510-537-2552) 聯絡伊甸資訊與轉介 (Eden Information & Referral) ，或撥打灣區協助熱線 (Bay Area Helpline) [1-800-273-6222](tel:+1-800-273-6222)。
 
   </InfoCard>
 
-  <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
+  <InfoCard title="獨立生活" externalHref="https://ilacalifornia.org/alameda-county/directory/">
 
-BACS 住房資源中心，聯絡電話：[510-613-0330](tel:+1-510-613-0330)。
-
-Albany、Berkeley、Emeryville 及 Oakland
+尋找適合於殘障人士，包括精神疾病，和其他可能受益於共享生活環境的成年人，由私人擁有或經營的住宅或大樓。
 
   </InfoCard>
 
@@ -558,11 +556,23 @@ Albany、Berkeley、Emeryville 及 Oakland
 提供租屋援助、住房援助、租客／房東諮詢、房屋尋找、房屋共享以及抵押和購買房屋諮詢服務。
 
   </InfoCard>
-  </InfoCardGrid>
-  
+  <InfoCard title="住宅資源中心 (Housing Resource Centers, HRC)" externalHref="https://drive.google.com/file/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/view?usp=sharing">
+
+Alameda 縣內都設有住宅資源中心 (Housing Resource Centers, HRCs)，為目前無家可歸的人提供支援。
+
+如果您人在 Alameda 縣內，且目前無家可歸，您可以撥打伊甸資訊與轉介 (Eden Information & Referral) 的電話 [510-537-2552](tel:+1-510-537-2552) 與 HRC 聯絡，或是搜尋[您附近的服務據點]((https://drive.google.com/file/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/view?usp=sharing)，直接與 HRC 聯絡
+
+  </InfoCard>
+  <InfoCard title="押金和租金協助" externalHref="https://achousingchoices.org/deposit-rental-assistance-housing-search-assistance-resources/">
+
+搜尋租金和押金協助資源。
+
+  </InfoCard>
+</InfoCardGrid>
+
   <br />
 
-  <InfoCardGrid title="阿拉米達縣房屋及社區發展部 (HCD) 住房計劃">
+  <InfoCardGrid title="Alameda 縣房屋及社區發展部 (Housing & Community Development, HCD) 住宅計畫">
   <InfoCard title="阿拉米達縣房屋及社區發展部 (HCD)" externalHref="https://www.acgov.org/cda/hcd/rhd/index.htm">
     
   有關阿拉米達縣房屋及社區發展部 (HCD) 政策和計劃的資訊。 
@@ -609,12 +619,13 @@ Albany、Berkeley、Emeryville 及 Oakland
 
   <br />
 
-  <InfoCardGrid title="城市及地區相關服務">
-
+<section className="info-cards">
+  <header className="info-cards__header">
+    <h2 className="info-cards__title">城市及地區相關服務</h2>
+    <p className="info-cards__subtitle">隨著詳細資訊的變化，您可以<a href = "https://docs.google.com/document/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/edit?usp=sharing&ouid=104857760863458372387&rtpof=true&sd=true">查看有關免預約辦公室辦公時間的最新資訊</a>.</p>
+  </header>
 ### Oakland
-
-  </InfoCardGrid>
-
+</section>
   <section className="info-cards"><div className="info-cards__grid">
   <InfoCard title="灣區社區服務–奧克蘭市中心 (Bay Area Community Services - Downtown Oakland)" externalHref="http://www.bayareacs.org/">
 
@@ -623,11 +634,11 @@ Albany、Berkeley、Emeryville 及 Oakland
 致電 BACS 協調入口專線 [510-658-9480](tel:+1-510-658-9480)
 
 直接前往 629 Oakland Ave.  
- 辦公室服務時間：週一、週二及週三下午 1-4 點
+辦公室服務時間：週一、週二及週三下午 1-4 點
 
   </InfoCard>
 
-  <InfoCard title="柏克萊住房管理局 – 西奧克蘭 (Berkeley Housing Authority - West Oakland)" externalHref="http://www.self-sufficiency.org/">
+  <InfoCard title="BOSS 協調進入 - West Oakland" externalHref="http://www.self-sufficiency.org/">
 
 無居所的成年人
 
@@ -635,6 +646,15 @@ Albany、Berkeley、Emeryville 及 Oakland
 
 直接前往 2811 Adeline St.  
  辦公室服務時間：週一、週二、週四及週五上午 10 點至下午 2 點
+
+  </InfoCard>
+   <InfoCard title="EOCP 協調進入 - East Oakland">
+
+無居所的成年人
+
+撥打 [510-463-4601](tel:+1-510-463-4601) 聯絡 EOCP 協調進入
+
+或在以下辦公時間，親洽 7515 International Blvd.星期四和星期五上午 10 點至下午 3 點
 
   </InfoCard>
 
@@ -704,14 +724,20 @@ Emeryville
 
   <section className="info-cards"><div className="info-cards__grid">
 
-  <InfoCard title="Building Futures - West (San Leandro 及 Alameda)" externalHref="https://bfwc.org">
+  <InfoCard title="Building Futures - West (San Leandro)" externalHref="https://bfwc.org">
 
 無居所的成年人／家庭
 
 致電 [510-357-0205](tel:+1-510-357-0205)
 
   </InfoCard>
+  <InfoCard title="Building Futures - West (Alameda)" externalHref="https://bfwc.org/">
 
+無居所的成年人／家庭
+
+撥打 [510-201-0203](tel:+1-510-201-0203)
+
+  </InfoCard>
   <InfoCard title="灣區社區服務 - 東部 (Hayward 及 Unincorporated)" externalHref="http://www.bayareacs.org/">
 
 無居所的成年人／家庭
