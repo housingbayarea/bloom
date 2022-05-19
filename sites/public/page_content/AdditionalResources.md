@@ -800,18 +800,18 @@ Livermore
 
 <RenderIf language="vi">
 
-  <InfoCardGrid title="Immediate Housing Assistance">
+  <InfoCardGrid title="Hỗ trợ nhà ở ngay lập tức">
   <InfoCard title="211 Công cụ Tìm kiếm Nguồn Trợ giúp Quận Alameda" externalHref="https://achousingchoices.org/">
 
-Nếu quý vị cần nơi trú ẩn khẩn cấp và hỗ trợ về nhà ở ngay lập tức, vui lòng liên lạc ban Thông tin & Giới thiệu Eden theo số [510-537-2552](tel:+1-510-537-2552) hoặc Đường dây Trợ giúp Bay Area theo số [1-800-273-6222](tel:+1-800-273-6222), hoặc truy cập https://achousingchoices.org/.
+Nếu quý vị cần chỗ trú ẩn khẩn cấp tức thì và hỗ trợ về nhà ở, vui lòng liên hệ Trung tâm Thông tin và Giới thiệu Eden theo số [211](tel:+1-510-537-2552) hoặc Đường dây trợ giúp Vùng Vịnh theo số [1-800-273-6222](tel:+1-800-273-6222.
+
+Quý vị cũng có thể truy cập trang web hướng dẫn để biết các dịch vụ liên quan đến nhà ở và dịch vụ tổng hợp
 
   </InfoCard>
 
-  <InfoCard title="Bay Area Community Services" externalHref="https://www.bayareacs.org/">
+  <InfoCard title="Sống Độc lập" externalHref="https://ilacalifornia.org/alameda-county/directory/">
 
-Trung tâm Nguồn Thông Tin Trợ giúp Gia cư BACS, số điện thoại liên lạc: [510-613-0330](tel:+1-510-613-0330).
-
-Albany, Berkeley, Emeryville, và Oakland
+Tìm kiếm nhà ở hoặc chung cư do tư nhân sở hữu hoặc điều hành, cung cấp nhà ở chung cho người trưởng thành khuyết tật, bao gồm cả bệnh tâm thần, cùng những người khác có thể hưởng lợi từ môi trường sống chung.
 
   </InfoCard>
 
@@ -820,11 +820,25 @@ Albany, Berkeley, Emeryville, và Oakland
 Cung cấp hỗ trợ tiền thuê nhà, hỗ trợ nhà ở, cố vấn cho người thuê nhà/chủ nhà, tìm kiếm nhà, chia sẻ nhà, và cố vấn về tiền mua nhà trả góp và mua nhà.
 
   </InfoCard>
-  </InfoCardGrid>
-  
+    
+  <InfoCard title="Trung tâm Nguồn thông tin Nhà ở (HRC)" externalHref="https://drive.google.com/file/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/view?usp=sharing">
+
+Quận Alameda có các Trung tâm Nguồn thông tin Nhà ở (HRC) trên toàn Quận để hỗ trợ những người hiện đang trong tình trạng vô gia cư.
+
+Nếu đang trong tình trạng vô gia cư tại Quận Alameda, quý vị có thể liên hệ với HRC khi gọi cho Trung tâm Thông tin và Giới thiệu Eden theo số [510-537-2552](tel:+1-510-537-2552) hoặc quý vị có thể liên hệ trực tiếp với HRC [bằng cách tìm điểm truy cập gần quý vị](https://drive.google.com/file/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/view?usp=sharing).
+
+  </InfoCard>
+
+  <InfoCard title="Hỗ trợ Tiền đặt cọc và Tiền thuê nhà" externalHref="https://achousingchoices.org/deposit-rental-assistance-housing-search-assistance-resources/">
+
+Tìm các nguồn thông tin về hỗ trợ tiền thuê nhà và tiền đặt cọc.
+
+  </InfoCard>
+</InfoCardGrid>
+
   <br />
 
-  <InfoCardGrid title="Sở Gia cư và Phát triển Cộng đồng (HCD) Quận Alameda">
+  <InfoCardGrid title="Chương trình Nhà ở của Sở Gia cư và Phát triển Cộng đồng (HCD) Quận Alameda">
   <InfoCard title="Sở Gia cư & Phát triển Cộng đồng (HCD) Quận Alameda " externalHref="https://www.acgov.org/cda/hcd/rhd/index.htm">
     
   Thông tin về các chính sách và chương trình của Sở Gia cư và Phát triển Cộng đồng (HCD) Quận Alameda. 
@@ -871,11 +885,18 @@ Cung cấp các khoản vay trả chậm lãi suất thấp để hỗ trợ cá
 
   <br />
 
-  <InfoCardGrid title="CÁC DỊCH VỤ LIÊN QUAN ĐẾN THÀNH PHỐ VÀ VÙNG MIỀN">
+  <InfoCardGrid title="">
 
 ### Oakland
 
   </InfoCardGrid>
+<section className="info-cards">
+  <header className="info-cards__header">
+    <h2 className="info-cards__title">CÁC DỊCH VỤ LIÊN QUAN ĐẾN THÀNH PHỐ VÀ VÙNG MIỀN</h2>
+    <p className="info-cards__subtitle">Khi thông tin chi tiết thay đổi, quý vị có thể <a href="https://docs.google.com/document/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/edit?usp=sharing&ouid=104857760863458372387&rtpof=true&sd=true">xem thông tin mới nhất về giờ làm việc không cần hẹn trước</a>.</p>
+  </header>
+### Oakland
+</section>
 
   <section className="info-cards"><div className="info-cards__grid">
   <InfoCard title="Cơ Quan Dịch Vụ Cộng Đồng Vùng Vịnh (BACS) - Trung Tâm Thành Phố Oakland" externalHref="http://www.bayareacs.org/">
@@ -889,7 +910,7 @@ Gọi tới đường dây Tiếp Nhận Được Điều Phối của BACS theo
 
   </InfoCard>
 
-  <InfoCard title="Cơ Quan Gia Cư Berkeley - Tây Oakland" externalHref="http://www.self-sufficiency.org/">
+  <InfoCard title="Tiếp nhận Phối hợp BOSS - Tây Oakland" externalHref="http://www.self-sufficiency.org/">
 
 Người trưởng thành không nơi trú ẩn
 
@@ -897,6 +918,15 @@ Gọi tới đường dây Tiếp Nhận Được Điều Phối của BOSS theo
 
 Đến tận nơi không cần hẹn trước tại 2811 Adeline St.  
  Giờ làm việc: 10 giờ sáng-2 giờ chiều, Thứ Hai, Thứ Ba, Thứ Năm và Thứ Sáu
+
+  </InfoCard>
+  <InfoCard title="Tiếp nhận Phối hợp EOCP - Đông Oakland">
+
+Người trưởng thành Không có nơi trú ẩn
+
+Hãy gọi cho hệ thống Tiếp nhận Phối hợp EOCP theo số [510-844-8221](tel:+1-510-844-8221)
+
+Quý vị có thể đến 7515 International Blvd. mà không cần hẹn trước Giờ làm việc: 10 giờ sáng - 3 giờ chiều, thứ Năm và thứ Sáu
 
   </InfoCard>
 
@@ -966,14 +996,20 @@ Gọi số [510-548-2884](tel:+1-510-548-2884)
 
   <section className="info-cards"><div className="info-cards__grid">
 
-  <InfoCard title="Tổ chức Building Futures - Phía tây (San Leandro và Alameda)" externalHref="https://bfwc.org">
+  <InfoCard title="Tổ chức Building Futures - Phía tây (San Leandro)" externalHref="https://bfwc.org">
 
 Người trưởng thành/những gia đình không có nơi trú ẩn
 
 Gọi số [510-357-0205](tel:+1-510-357-0205)
 
   </InfoCard>
+  <InfoCard title="Building Futures - Tây (Alameda)" externalHref="https://bfwc.org/">
 
+Người trưởng thành/gia đình không có nơi trú ẩn
+
+Hãy gọi số [510-201-0203](tel:+1-510-201-0203)
+
+  </InfoCard>
   <InfoCard title="Cơ Quan Dịch Vụ Cộng Đồng Vùng Vịnh - Phía đông (Hayward và Unincorporated)" externalHref="http://www.bayareacs.org/">
 
 Người trưởng thành/những gia đình không có nơi trú ẩn
