@@ -97,52 +97,54 @@ export default function Home(props: IndexProps) {
           />
         </div>
       </div>
-      <div className="homepage-extra bg-gray-100 px-4 pb-16">
-        <ActionBlock
-          className="pb-0 -mb-1"
-          header={t("welcome.howDoesItWork")}
-          icon={<Icon size="3xl" symbol="frontDoor" />}
-          actions={[]}
-        />
+      {process.env.showHIW && (
+        <div className="homepage-extra bg-gray-100 px-4 pb-16">
+          <ActionBlock
+            className="pb-0 -mb-1"
+            header={t("welcome.howDoesItWork")}
+            icon={<Icon size="3xl" symbol="frontDoor" />}
+            actions={[]}
+          />
 
-        <p className="text-center">{t("welcome.learnHowToApply")}</p>
+          <p className="text-center">{t("welcome.learnHowToApply")}</p>
 
-        <div className="markdown max-w-7xl">
-          <Markdown
-            options={{
-              overrides: {
-                RenderIf,
-                ol: {
-                  component: ({ ...props }) => (
-                    <ol {...props} className="process-list has-horizontal-layout" />
-                  ),
+          <div className="markdown max-w-7xl">
+            <Markdown
+              options={{
+                overrides: {
+                  RenderIf,
+                  ol: {
+                    component: ({ ...props }) => (
+                      <ol {...props} className="process-list has-horizontal-layout" />
+                    ),
+                  },
+                  h4: {
+                    component: ({ children, ...props }) => (
+                      <h4
+                        {...props}
+                        className="font-alt-sans font-semibold text-base text-black mb-1 mt-0"
+                      >
+                        {children}
+                      </h4>
+                    ),
+                  },
+                  p: {
+                    component: ({ children, ...props }) => (
+                      <p {...props} className="text-gray-700 text-sm mt-3 mb-2">
+                        {children}
+                      </p>
+                    ),
+                  },
                 },
-                h4: {
-                  component: ({ children, ...props }) => (
-                    <h4
-                      {...props}
-                      className="font-alt-sans font-semibold text-base text-black mb-1 mt-0"
-                    >
-                      {children}
-                    </h4>
-                  ),
-                },
-                p: {
-                  component: ({ children, ...props }) => (
-                    <p {...props} className="text-gray-700 text-sm mt-3 mb-2">
-                      {children}
-                    </p>
-                  ),
-                },
-              },
-            }}
-          >
-            {pageContent}
-          </Markdown>
+              }}
+            >
+              {pageContent}
+            </Markdown>
+          </div>
+
+          <LinkButton href="/how-it-works">{t("welcome.readAboutHowItWorks")}</LinkButton>
         </div>
-
-        <LinkButton href="/how-it-works">{t("welcome.readAboutHowItWorks")}</LinkButton>
-      </div>
+      )}
       <ConfirmationModal
         setSiteAlertMessage={(alertMessage, alertType) => setAlertInfo({ alertMessage, alertType })}
       />
