@@ -25,6 +25,7 @@ Provides rental assistance, housing assistance, tenant/landlord counseling, home
 Alameda County has Housing Resource Centers (HRCs) throughout the County to support people currently experiencing homelessness.
 
 If you are experiencing homelessness in Alameda County you may connect with an HRC by calling Eden Information & Referral at [510-537-2552](tel:+1-510-537-2552) or you may connect with an HRC directly by [finding an access point near you](https://drive.google.com/file/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/view?usp=sharing).
+
 </InfoCard>
 <InfoCard title="Deposit and Rental Assistance" externalHref="https://achousingchoices.org/deposit-rental-assistance-housing-search-assistance-resources/">
 Find resources for rental and deposit assistance.

@@ -114,5 +114,10 @@
   "application.preferences.fremontPref.work.label": "Work in Fremont: At least one member of my household works** in the City of Fremont",
   "application.preferences.emeryvillePref.live.label": "At least one member of my household lives in the Emeryville",
   "application.preferences.emeryvillePref.work.label": "At least one member of my household works at least 50% of weekly hours in Emeryville",
-  "application.preferences.emeryvillePref.child.label": "I have a child enrolled in the Emeryville Unified School District (EUSD) or Emeryville Child Development Center (ECDC)"
+  "application.preferences.emeryvillePref.child.label": "I have a child enrolled in the Emeryville Unified School District (EUSD) or Emeryville Child Development Center (ECDC)",
+  "additionalResources.immediateHousing.title": "Immediate Housing Assistance",
+  "additionalResources.immediateHousing.description": "If you're fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911.",
+  "additionalResources.alaCountyHCD.title": "Alameda County Housing & Community Development (HCD) Housing Programs",
+  "additionalResources.alaHousingAuthorities.title": "Housing Authorities in Alameda County",
+  "additionalResources.alaHousingAuthorities.description": "Public Housing Authorities (PHAs) typically oversee two programs that provide direct assistance to tenants: overseeing units of public housing, and administering the Section 8 Housing Choice Voucher program. However, some PHAs no longer manage public units, and the scale of these programs can also vary widely. Please contact your local PHA to find out how they may be of assistance to you."
 }
