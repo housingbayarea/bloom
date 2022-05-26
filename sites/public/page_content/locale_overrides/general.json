@@ -90,5 +90,10 @@
   "application.preferences.fremontPref.work.label": "Work in Fremont: At least one member of my household works** in the City of Fremont",
   "application.preferences.emeryvillePref.live.label": "At least one member of my household lives in the Emeryville",
   "application.preferences.emeryvillePref.work.label": "At least one member of my household works at least 50% of weekly hours in Emeryville",
-  "application.preferences.emeryvillePref.child.label": "I have a child enrolled in the Emeryville Unified School District (EUSD) or Emeryville Child Development Center (ECDC)"
+  "application.preferences.emeryvillePref.child.label": "I have a child enrolled in the Emeryville Unified School District (EUSD) or Emeryville Child Development Center (ECDC)",
+  "additionalResources.doorwayPortal.title": "Bay Area Doorway Portals",
+  "additionalResources.doorwayPortal.description": "San José’s Doorway portal is one of several similar Bay Area websites created to simplify the process to find and apply for affordable rental housing. Affordable housing opportunities in other counties can be found at other Bay Area Doorway Portals.",
+  "additionalResources.sccAffordableHousing.title": "Santa Clara County Affordable Housing Opportunities",
+  "additionalResources.sccAffordableHousing.description": "View affordable housing opportunities in Santa Clara County.",
+  "additionalResources.cityRegionResources.title": "City and Region-related Resources"
 }

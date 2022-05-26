@@ -44,5 +44,10 @@
   "pageDescription.additionalResources": "我們鼓勵您瀏覽其他可負擔住房資源。",
   "region.name": "聖荷西",
   "listings.depositOrMonthsRent": "",
-  "listings.publicLottery.header": "抽籤"
+  "listings.publicLottery.header": "抽籤",
+  "additionalResources.doorwayPortal.title": "灣區門戶網站",
+  "additionalResources.doorwayPortal.description": "聖荷西市Doorway門戶網站是灣區幾個類似的網站之一，旨在簡化尋找和申請可負擔租房的過程。其他縣的可負擔住房機會可在其他灣區門戶網站尋找。",
+  "additionalResources.sccAffordableHousing.title": "聖塔克拉拉縣的可負擔住房機會",
+  "additionalResources.sccAffordableHousing.description": "查看聖克拉拉縣的可負擔住房機會。",
+  "additionalResources.cityRegionResources.title": "城市和地區的相關資源"
 }
