@@ -567,15 +567,15 @@
     * Bằng chứng tự kinh doanh
     * Tiền cấp dưỡng 
     * Lương hưu hoặc thu nhập hưu trí hiện tại
-
-
+  
+  
   * Chi tiêu:
     * Sao kê tài khoản vãng lai
     * Sao kê tài khoản tiết kiệm
     * Sao kê thẻ tín dụng gần đây nhất
     * Chi trả tiền cấp dưỡng
-
-
+  
+  
   * Thông tin tài chính khác:
     * Sao kê chính thức cuối cùng của 401k hoặc IRA
     * Tài sản – như xe cộ, cổ phiếu hoặc bất động sản

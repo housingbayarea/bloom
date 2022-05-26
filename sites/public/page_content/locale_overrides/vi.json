@@ -48,13 +48,17 @@
   "footer.SMCHousingUrl": "https://smc.housingbayarea.org/",
   "footer.SJHousingPortal": "Cổng Thông Tin Gia Cư Thành Phố San Jose",
   "footer.SJHousingUrl": "https://housing.sanjoseca.gov/",
+  "listings.depositOrMonthsRent": "",
+  "listings.publicLottery.header": "XỔ SỐ",
   "nav.siteTitle": "Cổng thông tin về Gia cư của Quận Alameda",
   "nav.getFeedback": "Chúng tôi rất mong nhận được ",
   "nav.yourFeedback": "ý kiến phản hồi của quý vị",
   "nav.bonusFeedback": "",
-  "pageTitle.additionalResources": "Các Cơ hội Nhà ở Bổ sung",
   "pageDescription.additionalResources": "Chúng tôi khuyến khích quý vị xem các nguồn thông tin trợ giúp về nhà ở giá phải chăng khác.",
+  "pageDescription.howItWorks": "Tìm hiểu cách tìm và đăng ký các cơ hội thuê nhà giá cả phải chăng.",
+  "pageTitle.additionalResources": "Các Cơ hội Nhà ở Bổ sung",
+  "pageTitle.howItWorks": "Cách thức hoạt động",
   "region.name": "Quận Alameda",
-  "listings.depositOrMonthsRent": "",
-  "listings.publicLottery.header": "XỔ SỐ"
+  "welcome.howDoesItWork": "Cách thức hoạt động?",
+  "welcome.learnHowToApply": "Tìm hiểu cách tìm và đăng ký các cơ hội thuê nhà giá cả phải chăng."
 }

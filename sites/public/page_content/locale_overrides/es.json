@@ -48,13 +48,17 @@
   "footer.SMCHousingUrl": "https://smc.housingbayarea.org/",
   "footer.SJHousingPortal": "Portal de vivienda de la ciudad de San Jose",
   "footer.SJHousingUrl": "https://housing.sanjoseca.gov/",
+  "listings.depositOrMonthsRent": "",
+  "listings.publicLottery.header": "LOTERÍA",
   "nav.siteTitle": "Portal de Vivienda del Condado de Alameda",
   "nav.getFeedback": "¡Nos encantaría recibir  ",
   "nav.yourFeedback": "sus comentarios!",
   "nav.bonusFeedback": "",
-  "pageTitle.additionalResources": "Oportunidades adicionales de vivienda",
   "pageDescription.additionalResources": "Le invitamos a consultar otros recursos de vivienda de precio accesible.",
+  "pageDescription.howItWorks": "Obtenga más información sobre cómo encontrar y solicitar alquileres económicos.",
+  "pageTitle.additionalResources": "Oportunidades adicionales de vivienda",
+  "pageTitle.howItWorks": "¿Cómo funciona?",
   "region.name": "Condado de Alameda",
-  "listings.depositOrMonthsRent": "",
-  "listings.publicLottery.header": "LOTERÍA"
+  "welcome.howDoesItWork": "¿Cómo funciona?",
+  "welcome.learnHowToApply": "Obtenga más información sobre cómo encontrar y solicitar alquileres económicos."
 }
