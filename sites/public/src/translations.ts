@@ -9,6 +9,7 @@ import additionalGeneralTranslations from "../page_content/locale_overrides/gene
 import additionalSpanishTranslations from "../page_content/locale_overrides/es.json"
 import additionalChineseTranslations from "../page_content/locale_overrides/zh.json"
 import additionalViatnameseTranslations from "../page_content/locale_overrides/vi.json"
+import additionalTagalogTranslations from "../page_content/locale_overrides/tl.json"
 
 export const translations = {
   general: generalTranslations,
@@ -23,4 +24,5 @@ export const overrideTranslations = {
   es: additionalSpanishTranslations,
   zh: additionalChineseTranslations,
   vi: additionalViatnameseTranslations,
+  tl: additionalTagalogTranslations,
 } as Record<string, any>

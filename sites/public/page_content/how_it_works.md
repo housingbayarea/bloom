@@ -591,3 +591,152 @@
   </SubSection>
 
 </RenderIf>
+
+<RenderIf language="tl">
+
+1. ## Maghanap ng mga Apartment na Tumatanggap ng Application (Mga Lista)
+
+  <p class="markdown__lead">Maghanap ng mataas ang kalidad, abot-kayang oportunidad ng pabahay na matatagpuan sa buong Alameda County.</p>
+
+  Ang pinakasimpleng paraan upang makahanap ng mga oportunidad na tumatanggap ng mga application ay bisitahin ang portal ng abot-kayang pabahay sa loob ng lugar na nais mong tirahan.
+
+  <SubSection closedLabel="Magbasa pa tungkol sa kung paano maghanap ng mga listahan" openLabel="Magbasa pa tungkol sa kung paano maghanap ng mga listahan">
+
+  Ang isa pang paraan para makahanap ng Abot-kayang Pabahay ay ang paghahanap sa listahan ng [Mga Karagdagang Oportunidad at Resources](/additional-resources) ng Pabahay na makukuha sa portal ng abot-kayang pabahay.
+
+  Ang mga oportunidad ng pabahay na ito at resource ay nagbibigay ng mga pangalan, lokasyon, at impormasyon ng kontak para sa mga programa ng abot-kayang pabahay at property. Maaari mo ring tingnan ang aming kapatid na website ang [AC Housing Choices](https://achousingchoices.org/) para sa listahan ng dagdag na abot-kayang mga apartment property. Gayunpaman, ang mga tagapamahala ng ari-arian ng mga apartment sa mga listahang iyon ay maaaring hindi makatanggap ng mga application dahil mayroon na silang maraming application na dapat iproseso bago sila makatanggap ng mga bagong application. Magsimula sa pamamagitan ng pagtukoy sa mga property na nakakatugon sa iyong mga pangangailangan at pagkatapos ay makipag-ugnayan sa mga nauugnay na property para malaman kung ang mga property na iyon ay tumatanggap ng mga application. Para sa access sa iba pang mga programa, kabilang ang housing authority Seksyon 8 tulong sa pabahay, makipag-ugnayan sa mga nakalistang contact sa page ng [Karagdagang Mga Oportunidad ng Pabahay at Resource](/additional-resources).
+
+  </SubSection>
+
+2. ## Tingnan Kung Kwalipikado
+
+  <p class="markdown__lead">Alamin kung natutugunan ng iyong sambahayan ang mga kinakailangan para sa property.</p>
+
+  Ang abot-kayang pabahay ay nakalaan para sa mga taong may limitadong kita at/o iba pang mga espesyal na kalagayan. Kakailanganin ng mga aplikante na suriin ang kanilang kakayahang matugunan ang mga kinakailangan sa populasyon at kita sa property kung saan nila piniling mag-apply.
+
+  <SubSection closedLabel="Magbasa pa tungkol sa pagsusuri ng iyong pagiging kwalipikado" openLabel="Magbasa pa tungkol sa pagsusuri ng iyong pagiging kwalipikado">
+
+  ### Mga Kinakailangan ng Populasyon
+
+  Karamihan sa mga abot-kayang pabahay ay available sa mga taong may limitadong kita. Gayunpaman, ang isang maliit na porsyento ay itinalaga rin para sa mga partikular na populasyon. Kasama sa mga halimbawa ang:
+
+  * Mga senior: Maaaring kabilang dito ang mga apartment na itinalaga bilang pabahay sa “senior” para sa mga indibidwal na lampas na sa partikular na edad.
+  * Mga taong may kapansanan sa pag-unlad: Ang lahat ng unit sa isang property, o isang porsyento ng mga unit sa loob ng isang property, ay maaaring italaga para sa mga taong may mga kapansanan.
+  * Transition Age Youth (TAY): Ang Transition Age Youth ay mga indibidwal sa pagitan ng edad na 16 at 24 na taong gulang na nasa transition mula sa kustodiya ng estado o mga lugar ng foster care at nasa panganib.
+  * Espesyal na mga pangangailangan: Sinasaklaw ng mga espesyal na pangangailangan ang iba't ibang populasyon, kabilang ngunit hindi limitado sa mga sambahayan na nakakaranas ng kawalan ng tirahan, o nasa panganib ng mawalan ng tirahan, gayundin ang mga indibidwal na may kapansanan sa pag-unlad. Ang mga tahanan sa mga partikular na komunidad na ito ay karaniwang may kasamang mga serbisyo o feature na sumusuporta sa populasyon ng Espesyal na Pangangailangan.
+
+  Siguruhin na nabasa ang tungkol sa mga kinakailangan ng populasyon sa pamamagitan ng pagpunta sa listahan ng property sa portal ng abot-kayang pabahay bago makipag-ugnayan sa tagapamahala ng property.
+
+  ### Mga Kinakailangang Kita
+
+  Ang kabuuang kita ng iyong sambahayan ay hindi maaaring lumampas sa pinakamataas na limitasyon ng kita ng sambahayan para sa ari-arian, batay sa mga sumusunod na kahulugan:
+
+  * Sambahayan: Ang “sambahayan” ay maaaring isang tao lamang, o dalawa o maraming tao. Lahat ng miyembro ng sambahayan na maninirahan sa bahay ay dapat kasama sa application.
+  * Kita ng sambahayan: Ang pinagsama-samang taunang kita mula sa lahat ng mga taong higit sa 18 taong gulang na bahagi ng sambahayan.
+  * Pinakamataas na kita ng sambahayan: Hihilingin sa iyo na magbigay ng “Kabuuang” Pinakamataas na Kita (na kilala rin bilang Kabuuang Kita ng Sambahayan). Ito ay tumutukoy sa kabuuang kita bago kaltasan ng buwis o iba pang kaltas.
+  * Pinakamababang kita ng sambahayan: Ang minimum na buwanang kita na kinakailangan upang maging karapat-dapat para sa property ay karaniwang katumbas ng 1.5 o 2 beses na buwanang renta.
+
+  May tatlong paraan upang matukoy kung natutugunan ng iyong sambahayan ang pinakamababa at pinakamataas na mga kinakailangan sa kita.
+
+  #### 1\. Tingnan ang Mga Kinakailangan sa Kita para sa Mga Property na nakalista sa Portal ng Alameda County Housing
+
+  Ang mga property na nakalista sa Portal ng Alameda County Housing ay magpapakita ng kinakailangan sa pinakamababa at pinakamataas na mga kinakailangan sa kita ng sambahayan para sa mga aplikante. Mag-click sa link para sa partikular na listahan ng property kung saan ka interesado. Mag-scroll pababa sa mga talahanayan na naglilista ng kinakailangan sa pinakamababa at pinakamataas na kita para sa bawat apartment.
+
+  #### 2\. Kontakin ang property manager
+
+  Kung ang gusto mong property ay hindi nakalista sa Portal ng Alameda County Housing, malamang na hindi ito tumatanggap ng mga application sa kasalukuyan. Gayunpaman, maaari kang makipag-ugnayan sa property manager na nakalista para sa property na iyon para malaman ang mga kinakailangan sa pagiging kwalipikado.
+
+  #### 3\. Tingnan ang mga talahanayan ng kita na inilathala ng housing agency sa inyong lugar
+
+  Maaari mo ring tingnan ang mga talahanayan ng kita na inilathala sa website ng housing agency sa lugar kung saan matatagpuan ang iyong gustong abot-kayang pabahay. Ang mga talahanayang ito ay ginawa ng U.S Department of Housing and Urban Development (HUD) at ina-update taun-taon. [Ang mga talahanayan para sa County ng Alameda ay ibinibigay dito.](https://www.acgov.org/cda/hcd/hud-income-rent_limits.htm) Ang isang sambahayan ay karaniwang itinuturing na kwalipikado para sa pinaka-abot-kayang pabahay kung ang kita ng sambahayan ay 60% ng Area Median Income (AMI) o mas mababa. Gayunpaman, ang ilang mga property ay limitadong nagpaparenta sa “katamtamang” kita na mga sambahayan na may mga kita na hanggang 120% ng AMI. Kung mayroon kang mga katanungan tungkol sa mga talahanayang ito, mangyaring makipag-ugnayan sa ahensya sa lugar kung saan ka naghahanap ng abot-kayang pabahay.
+
+  #### Mga Pagpipilian
+
+  Ang ilan sa mga lungsod ay gumamit ng “mga pagpipilian” na nagbibigay sa mga aplikante na nakakatugon sa mga pamantayan sa kagustuhan ng mas malaking pagkakataong mapili. Ang karaniwang halimbawa ay isang pagpipilian para sa mga aplikante na nakatira o nagtatrabaho sa lugar kung saan matatagpuan ang abot-kayang pabahay. Tiyaking naibigay ang lahat ng impormasyong hinihiling sa application dahil maaari itong magpapahintulot sa iyo na maging kwalipikado para sa anumang available na mga pagpipilian.
+
+  Kung kailangan mo ng tulong sa pag-a-apply, magpunta sa page ng [Mga Resource](/additional-resources).
+
+  </SubSection>
+
+3. ## Mag-apply Online
+
+  <p class="markdown__lead">Hihilingin sa iyo na kumpletuhin ang maikling application para sa unit sa property na iyon.</p>
+
+  Siguruhing nakumpleto ang iyong application sa petsang tinukoy ng property. Ang mga property na nakalista sa web portal ay humihingi ng minimum na dami ng impormasyon na isusumite sa “short-form” digital o paper application.
+
+  <SubSection closedLabel="Alamin pa ang tungkol sa pag-apply online" openLabel="Alamin pa ang tungkol sa pag-apply online">
+
+  Pagkatapos mong isumite ang iyong application, maaari kang tawagan ng property manager. Kapag tinawagan, hihilingin sa iyo na magbigay ng dokumento sa iyong kita at pananalapi.
+
+  Kung hindi ka agad napili para sa isang placement interview, hindi ito nangangahulugan na hindi ka kwalipikadong manirahan sa property. Maaaring ingatan ng property manager ang iyong application sa loob ng ilang taon bago makipag-ugnayan sa iyo. Patuloy na makipag-ugnayan sa property manager sa pamamagitan ng pana-panahong pag-check in tungkol sa status ng iyong application.
+
+  Dahil sa mataas na pangangailangan para sa abot-kayang pabahay, maaaring magtagal bago ka makontak para sa potensyal na placement sa isang partikular na apartment. Samakatuwid, mahalagang mag-apply ka para sa pabahay sa maraming property na nakakatugon sa iyong mga pangangailangan sa pabahay at subaybayan ang mga ari-arian kung saan ka nag-apply. Mahalaga rin na kumpletuhin ang Hakbang 5 (Maghanda para sa Placement) kahit na hindi ka kaagad nakontak ng property manager para sa placement sa isang apartment. Ang pagsasaayos ng iyong pananalapi, kabilang ang pagsusuri sa badyet ng iyong sambahayan, pag-aalaga sa iyong kredito, at pangangalap ng mga kinakailangang dokumento, ay maghahanda sa iyo kapag nakipag-ugnayan sa iyo ang isang property manager.
+
+  </SubSection>
+
+4. ## Tanggapin ang resulta
+
+  <p class="markdown__lead">Makikipag-ugnayan sa iyo ang property manager para sa karagdagang mga tagubilin.</p>
+
+  Ang oras sa pagitan ng pagsusumite ng iyong application at pakikipag-ugnayan ng property manager ay depende sa bilang ng mga bakante sa property. Maaaring magkakaiba ito mula sa ilang linggo hanggang ilang buwan at sa ilang mga kaso ay maaaring tumagal ng hanggang ilang taon. Ang ilang mga tao ay hindi pinipili para sa susunod na hakbang sa proseso dahil hindi sila kwalipikadong manirahan sa apartment dahil sa kanilang kita o iba pang dahilan.
+
+  <SubSection closedLabel="Magbasa pa tungkol sa pagtanggap ng resulta" openLabel="Magbasa pa tungkol sa pagtanggap ng resulta">
+
+  Mayroong dalawang paraan na ginagamit ng mga property manager upang matukoy ang pagkakasunud-sunod kung saan ang mga aplikante ay piniling magpatuloy sa proseso ng application. Ang isang paraan ay ayusin ang mga application ayon sa petsa at oras na natanggap ang application (“first come, first serve”). Ang pangalawang paraan ay ang pag-randomize ng mga application sa isang computer upang makabuo ng pagkakasunod-sunod para sa lahat ng mga application. Ang randomization ng mga application ay nagaganap lamang pagkatapos ng takdang petsa ng application.
+
+  Kung nakatanggap ka ng sulat o email mula sa property manager na nag-aabiso sa iyo na sumusulong ka sa proseso ng application, malapit ka nang mapili para sa isang apartment. Dapat mong ingatan ang record ng anumang dokumentong natatanggap mo mula sa property manager.
+
+  </SubSection>
+
+5. ## Maging Handa para sa Placement
+
+  <p class="mt-4">Kung inabisuhan ka na sumusulong ka sa proseso ng application, magkakaroon ng dalawang susunod na hakbang: 1) pagsusumite ng mga dokumento ng pagkakakilanlan at impormasyong pinansyal sa property manager; at 2) pakikipag-usap sa property manager.</p>
+
+  <SubSection closedLabel="Alamin pa ang tungkol sa paghahanda para sa susunod na mga hakbang" openLabel="Alamin pa ang tungkol sa paghahanda para sa susunod na mga hakbang">
+
+  ### 1\. Pagsusumite ng mga dokumento ng pagkakakilanlan at pinansyal na impormasyon
+
+  Hihilingin ng property manager ang mga dokumento para ma-verify ang impormasyong ibinigay sa iyong application. Ang pangangalap ng impormasyong ito bago ka tawagan ng property manager ay makakatulong sa iyong maghanda para sa pagpili bilang nangungupahan sa isang apartment. 
+
+  Ang mga dokumento na maaaring kailanganin ng isang property manager ay ibubuod sa ibaba sa dalawang magkaibang kategorya: A) mga dokumento ng pagkakakilanlan at B) impormasyong pinansyal. Maaaring iba’t iba ang hanay ng mga dokumentong hinihingi, depende sa mga kinakailangan ng property para sa placement.
+
+  #### A\. Mga Dokumento ng Pagkakakilanlan
+
+  Ang mga dokumentong nakalista sa ibaba ay hindi kinakailangan, ngunit maaaring makatulong ang mga ito sa property manager na suriin ang iyong application.
+
+  * Pagkakakilanlang mga larawan ng bawat isa sa inyong sambahayan na 18 o mas matanda
+  * Sertipiko ng Kapanganakan, o Social Security Card, o pasaporte ng lahat na wala pang 18.
+
+  #### B\. Pinansiyal na Impormasyon
+
+  * Kita: Hihilingin sa iyo na ibigay ang lahat ng source ng kita para sa bawat miyembro ng iyong sambahayan na higit sa 18 taong gulang. Kasama sa mga halimbawa ang:
+    * Welfare, Mga benepisyo ng Betarano, social security letter  
+    * Voucher ng tulong sa pagrenta
+    * Kamakailang mga paystub mula sa iyong kasalukuyang employer
+    * Patunay ng Self-Employment
+    * Sustento 
+    * Kasalukuyang kita ng pensiyon o pagreretiro
+  
+  
+  * Mga gastos:
+    * Mga Checking account statement
+    * Mga Savings account statement
+    * Pinakabagong credit card statement
+    * Pagbabayad ng sustento
+  
+  
+  * Iba Pang Pinansyal na Impormasyon:
+    * Ang huling opisyal na pahayag ng 401k o IRA 
+    * Mga asset – sa ibang salita ay, mga sasakyan, stocks o real estate 
+
+  Susuriin ng property manager ang iyong kredito bilang bahagi ng pagsusuri sa iyong impormasyon sa pananalapi. Maraming mga mapagkukunan na magagamit online upang matulungan kang maunawaan at mapabuti ang iyong credit score. Ang isang artikulo ay [Paano Mapapabuti ang Iyong Credit Score: Mga Tips at Trick (debt.org)](https://www.debt.org/credit/improving-your-score/).
+
+  Tulad ng nabanggit, **Hindi mo na kailangang magkaroon ng mga dokumentong ito para isumite ang iyong paunang application** sa pamamagitan Portal ng Alameda County Housing. Gayunpaman, ang pangangalap ng mga dokumentong ito ay makakatulong sa iyong maghanda para sa susunod na hakbang sa proseso ng application. Kung wala ka ng mga dokumentong ito, maaari kang makakuha ng tulong mula sa isang tagapayo sa pabahay, na makakatulong sa iyong makuha ang mga ito. Makipag-ugnayan sa ahensya ng pabahay sa iyong lugar upang malaman kung paano makakuha ng pagpapayo sa pabahay.
+
+  ### 2\. Pakikipag-usap sa Property Manager
+
+  Ang placement interview ay ang huling hakbang sa proseso ng  application. Depende sa property, maaaring hilingin ng property manager na makipag-usap sa iyo bago o pagkatapos mong kolektahin ang mga hininging dokumento. Maaaring hilingin ng property manager na dumalo sa pagpupulong ang lahat ng miyembro ng iyong sambahayan. Susuriin ng property manager ang iyong mga dokumento kasama mo at aalamin kung kwalipikado ka o hindi na manirahan sa apartment.
+
+  </SubSection>
+
+</RenderIf>
