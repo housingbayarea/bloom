@@ -93,3 +93,27 @@
   Quý vị có thể được người quản lý khu nhà liên hệ để thông báo rằng quý vị có thể tiếp tục tham gia quy trình.
 
 </RenderIf>
+
+<RenderIf language="tl">
+
+1. #### Maghanap ng mga Apartment na Tumatanggap ng Application (Mga Lista)
+
+  Maghanap ng mataas ang kalidad, abot-kayang oportunidad ng pabahay na matatagpuan sa buong Alameda County.
+
+* #### Tingnan Kung Kwalipikado
+
+  Alamin kung ang sambahayan mo ay nakatutugon sa mga kinakailangan para sa property.
+
+* #### Mag-apply Online
+
+  Hihilingin sa iyo na kumpletuhin ang maikling application para sa unit sa property na iyon.
+
+* #### Tanggapin ang Resulta
+
+  Kapag handa na ang ranking order, ang resulta ay ipo-post para ma-download mo.
+
+* #### Maging Handa Para sa Placement
+
+  Maaari kang kontakin ng property manager para abisuhan ka na magpapatuloy ka sa proseso.
+
+</RenderIf>
