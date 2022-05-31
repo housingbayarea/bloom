@@ -119,5 +119,7 @@
   "additionalResources.immediateHousing.description": "If you're fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911.",
   "additionalResources.alaCountyHCD.title": "Alameda County Housing & Community Development (HCD) Housing Programs",
   "additionalResources.alaHousingAuthorities.title": "Housing Authorities in Alameda County",
-  "additionalResources.alaHousingAuthorities.description": "Public Housing Authorities (PHAs) typically oversee two programs that provide direct assistance to tenants: overseeing units of public housing, and administering the Section 8 Housing Choice Voucher program. However, some PHAs no longer manage public units, and the scale of these programs can also vary widely. Please contact your local PHA to find out how they may be of assistance to you."
+  "additionalResources.alaHousingAuthorities.description": "Public Housing Authorities (PHAs) typically oversee two programs that provide direct assistance to tenants: overseeing units of public housing, and administering the Section 8 Housing Choice Voucher program. However, some PHAs no longer manage public units, and the scale of these programs can also vary widely. Please contact your local PHA to find out how they may be of assistance to you.",
+  "additionalResources.cityRegionServices.title": "City and Region-Related Services",
+  "additionalResources.cityRegionServices.description": "As details change, you can view the most up to date information on drop-in office hours."
 }

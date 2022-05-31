@@ -2,7 +2,7 @@
 
 ### [AC Boost - Down Payment Loan Assistance Program](https://www.acboost.org/)
 
-Information on the Alameda County Housing & Community Development (HCD) Department’s policies and programs.
+Provides down payment assistance loans to eligible, middle-income, first-time homebuyers.
 
 </RenderIf>
 

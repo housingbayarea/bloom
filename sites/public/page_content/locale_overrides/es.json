@@ -58,5 +58,7 @@
   "additionalResources.immediateHousing.description": "Si está huyendo de violencia doméstica, agresión sexual o trata de personas y está en peligro inmediato, llame al 911.",
   "additionalResources.alaCountyHCD.title": "Programas de vivienda de Desarrollo Comunitario y de Vivienda (Housing & Community Development, HCD) del Condado de Alameda.",
   "additionalResources.alaHousingAuthorities.title": "Autoridades de Vivienda del Condado de Alameda",
-  "additionalResources.alaHousingAuthorities.description": "Las Autoridades de Vivienda Pública (PHAs) generalmente supervisan dos programas que proporcionan asistencia directa a inquilinos: supervisando unidades de vivienda pública, y administrando el programa de Cupones Section 8 Housing Choice. Sin embargo, algunas PHA ya no administran viviendas públicas, y la escala de estos programas también puede variar ampliamente. Sírvase poner en contacto con su PHA local para informarse sobre cómo pueden ayudarle."
+  "additionalResources.alaHousingAuthorities.description": "Las Autoridades de Vivienda Pública (PHAs) generalmente supervisan dos programas que proporcionan asistencia directa a inquilinos: supervisando unidades de vivienda pública, y administrando el programa de Cupones Section 8 Housing Choice. Sin embargo, algunas PHA ya no administran viviendas públicas, y la escala de estos programas también puede variar ampliamente. Sírvase poner en contacto con su PHA local para informarse sobre cómo pueden ayudarle.",
+  "additionalResources.cityRegionServices.title": "SERVICIOS RELACIONADOS CON LA CIUDAD Y LA REGIÓN",
+  "additionalResources.cityRegionServices.description": "Como los datos cambian, puede ver la información actualizada en el horario de atención sin turno."
 }
