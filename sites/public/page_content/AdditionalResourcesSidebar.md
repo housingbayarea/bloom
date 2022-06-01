@@ -1,4 +1,4 @@
-<RenderIf language="en,tl">
+<RenderIf language="en">
 
 #### Contact
 
@@ -41,6 +41,18 @@ Si tiene alguna pregunta sobre los listados y la solicitud, sírvase poner en co
 Đối với các thắc mắc về danh sách nhà và đơn ghi danh, vui lòng liên lạc với Nhân viên Đại diện Bất động sản có trên danh sách.
 
 **Sở Gia cư và Phát triển Cộng đồng (HCD) Quận Alameda**
+
+**[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
+
+</RenderIf>
+
+<RenderIf language="tl">
+
+#### Makipag-ugnayan
+
+Para sa mga tanong sa listahan at aplikasyon, mangyaring makipag-ugnayan sa Ahente ng Ari-arian na ipinapakita sa listahan.
+
+**Alameda County's Housing & Development Department (HCD)**
 
 **[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
 
