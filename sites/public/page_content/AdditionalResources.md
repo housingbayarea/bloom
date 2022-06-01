@@ -1,4 +1,4 @@
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
   <InfoCardGrid title="Immediate Housing Assistance" subtitle="If you're fleeing domestic violence, sexual assault or human trafficking and in immediate danger, call 911.">
   <InfoCard title="211 Alameda County Resource Finder" externalHref="https://achousingchoices.org/">
