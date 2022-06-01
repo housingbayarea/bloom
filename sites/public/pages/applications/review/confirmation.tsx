@@ -47,7 +47,8 @@ const ApplicationConfirmation = () => {
     } else {
       return ""
     }
-  }, [listing])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listing, router.locale])
 
   useEffect(() => {
     pushGtmEvent<PageView>({

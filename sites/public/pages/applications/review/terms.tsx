@@ -2,7 +2,7 @@
 5.3 Terms
 View of application terms with checkbox
 */
-import React, { useContext, useEffect, useState } from "react"
+import React, { useContext, useEffect, useMemo, useState } from "react"
 import { useRouter } from "next/router"
 import {
   AppearanceStyleType,
@@ -17,6 +17,7 @@ import {
 } from "@bloom-housing/ui-components"
 import { useForm } from "react-hook-form"
 import Markdown from "markdown-to-jsx"
+import { ListingReviewOrder } from "@bloom-housing/backend-core/types"
 import { OnClientSide, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
 import FormsLayout from "../../../layouts/forms"
 import { useFormConductor } from "../../../lib/hooks"
@@ -31,6 +32,19 @@ const ApplicationTerms = () => {
 
   const currentPageSection = 5
   const applicationDueDate = new Date(listing?.applicationDueDate).toDateString()
+
+  const reviewOrder = useMemo(() => {
+    if (listing) {
+      if (listing.reviewOrderType === ListingReviewOrder.lottery) {
+        return t("application.review.confirmation.eligibleApplicants.lottery")
+      } else {
+        return t("application.review.confirmation.eligibleApplicants.FCFS")
+      }
+    } else {
+      return ""
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [listing, router.locale])
 
   /* Form Handler */
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -121,7 +135,10 @@ const ApplicationTerms = () => {
                   },
                 }}
               >
-                {t("application.review.terms.text", { applicationDueDate: applicationDueDate })}
+                {t("application.review.terms.text", {
+                  applicationDueDate: applicationDueDate,
+                  reviewOrder,
+                })}
               </Markdown>
             </div>
 
