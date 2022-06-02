@@ -1,4 +1,4 @@
-<RenderIf language="en,tl">
+<RenderIf language="default">
 
 1. #### Find Apartments Accepting Applications (Listings)
 
