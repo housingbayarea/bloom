@@ -1,4 +1,4 @@
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### EOCP Coordinated Entry - East Oakland
 

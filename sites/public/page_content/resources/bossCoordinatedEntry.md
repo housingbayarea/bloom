@@ -1,4 +1,4 @@
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### [BOSS Coordinated Entry - West Oakland](http://www.self-sufficiency.org/)
 

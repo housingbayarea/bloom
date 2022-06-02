@@ -1,4 +1,4 @@
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### [Berkeley Housing Authority](https://www.cityofberkeley.info/bha/)
 

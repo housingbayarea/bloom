@@ -3,7 +3,7 @@
     margin-top:2rem;
 }
 </style>
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### East County/Tri-Valley (Livermore, Dublin, Pleasanton)
 

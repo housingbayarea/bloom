@@ -3,7 +3,7 @@
     margin-top:2rem;
 }
 </style>
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### Mid-County
 

@@ -3,7 +3,7 @@
     margin-top:2rem;
 }
 </style>
-<RenderIf language="default">
+<RenderIf language="en,tl">
 
 ### South County/Tri-City (Fremont, Newark, Union City)
 
