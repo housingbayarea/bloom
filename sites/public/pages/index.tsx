@@ -18,7 +18,7 @@ import { ConfirmationModal } from "../src/ConfirmationModal"
 import { MetaTags } from "../src/MetaTags"
 import { fetchJurisdictionByName } from "../lib/hooks"
 import Markdown from "markdown-to-jsx"
-import RenderIf from "../src/RenderIf"
+import RenderIf from "../components/RenderIf"
 
 import pageContent from "../page_content/homepage_how_it_works.md"
 

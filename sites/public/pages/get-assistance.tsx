@@ -5,10 +5,10 @@ import Layout from "../layouts/application"
 import { t, Icon, PageHeader, MarkdownSection, AuthContext } from "@bloom-housing/ui-components"
 import { UserStatus } from "../lib/constants"
 import { PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
-import RenderIf from "../src/RenderIf"
+import RenderIf from "../components/RenderIf"
 
 import pageContent from "../page_content/get_assistance.md"
-import sidebarContent from "../page_content/resources/sidebar.md"
+import sidebarContent from "../page_content/AdditionalResourcesSidebar.md"
 
 const GetAssistance = () => {
   const pageTitle = t("pageTitle.getAssistance")
