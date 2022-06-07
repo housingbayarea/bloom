@@ -66,6 +66,7 @@ const GetAssistance = () => {
             <MarkdownSection fullwidth>
               <Markdown
                 options={{
+                  slugify: (str) => str.replace(/ /gi, "-").toLowerCase(),
                   overrides: {
                     h2: {
                       component: ({ children, ...props }) => (

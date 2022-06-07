@@ -89,7 +89,9 @@ const ApplicationConfirmation = () => {
           <ApplicationTimeline />
 
           <Markdown options={{ disableParsingRawHTML: true }}>
-            {t("application.review.confirmation.whatHappensNext", { reviewOrder })}
+            {`${t("application.review.confirmation.whatHappensNext", { reviewOrder })}\n\n${t(
+              "application.review.confirmation.prepareForNextSteps"
+            )}`}
           </Markdown>
         </div>
 
