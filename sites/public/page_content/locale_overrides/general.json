@@ -6,6 +6,7 @@
   "application.referralApplication.instructions": "The permanent supportive housing units are referred directly through Alameda County's Coordinated Entry System. Households experiencing homelessness can call 211 in order to get connected to an Access Point to learn more about the coordinated entry system and access housing-related resources and information. Although this property is only accepting applications through the Permanent Supportive Housing (PSH) target list, calling 211 can help you with other homeless resources through the Coordinated Entry System.",
   "application.referralApplication.furtherInformation": "For further information",
   "application.referralApplication.phoneNumber": "211",
+  "application.review.confirmation.prepareForNextSteps": "### Prepare for next steps\n\nWhile you wait, there are things you can do to prepare for potential next steps and future opportunities.\n\n[Read about how you can prepare for next steps](/how-it-works#get-prepared-for-placement)",
   "application.preferences.liveWork.title": "Live or Work in %{county} County",
   "application.preferences.liveWork.live.label": "Live in %{county} County Preference",
   "application.preferences.liveWork.live.description": "At least one member of my household lives in the %{county} County",
