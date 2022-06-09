@@ -5,7 +5,7 @@ import Layout from "../layouts/application"
 import { t, PageHeader, MarkdownSection, AuthContext } from "@bloom-housing/ui-components"
 import { UserStatus } from "../lib/constants"
 import { PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
-import RenderIf from "../components/RenderIf"
+import RenderIf from "../src/RenderIf"
 
 import pageContent from "../page_content/how_it_works.md"
 
