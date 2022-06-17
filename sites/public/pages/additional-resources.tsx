@@ -2,15 +2,9 @@ import React, { useEffect, useContext } from "react"
 import Head from "next/head"
 import Markdown from "markdown-to-jsx"
 import Layout from "../layouts/application"
-import {
-  t,
-  InfoCardGrid,
-  PageHeader,
-  MarkdownSection,
-  AuthContext,
-} from "@bloom-housing/ui-components"
+import { t, InfoCardGrid, PageHeader, MarkdownSection } from "@bloom-housing/ui-components"
 import { UserStatus } from "../lib/constants"
-import { PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
+import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
 import Resource from "../src/Resource"
 import RenderIf from "../src/RenderIf"
 
