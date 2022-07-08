@@ -11,12 +11,11 @@ async function main() {
   }
   const json = await csv({ delimiter: "," }).fromFile(process.argv[2])
   for (const row of json) {
-    console.log("row = ", row)
     const writePath = path.resolve("", `sites/public/page_content/resources/${row.file}`)
     let resource = ""
 
     const style = JSON.parse(`{"md":"${row.style}"}`)
-    console.log("style = ", style)
+
     if (style.md.length) {
       resource = style.md
     }
