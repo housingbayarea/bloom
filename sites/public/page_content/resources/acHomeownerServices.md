@@ -5,7 +5,6 @@
 Resources for homeowners at risk of foreclosure.
 
 </RenderIf>
-
 <RenderIf language="es">
 
 ### [AC Housing Secure - Servicios para propietarios de viviendas](https://www.ac-housingsecure.org/otherresources)
@@ -13,7 +12,6 @@ Resources for homeowners at risk of foreclosure.
 Recursos para propietarios en riesgo de ejecución hipotecaria.
 
 </RenderIf>
-
 <RenderIf language="zh">
 
 ### [AC Housing Secure - 房主服務](https://www.ac-housingsecure.org/otherresources)
