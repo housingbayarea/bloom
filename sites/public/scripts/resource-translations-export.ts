@@ -19,7 +19,6 @@ function main() {
     const readPath = path.resolve("", `${filePath}/${file}`)
     const content = fs.readFileSync(readPath, "utf8")
     const style = content.match(/<style>(.|\s)*?<\/style>/)
-    console.log("style = ", style)
     const sections = content.match(/<RenderIf language="(\w+,?)+">(.|\s)*?<\/RenderIf>/g)
     if (sections === null) continue
     writeStream.write(`${file},`)
