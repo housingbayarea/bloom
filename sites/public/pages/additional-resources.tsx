@@ -6,6 +6,7 @@ import { t, InfoCardGrid, PageHeader, MarkdownSection } from "@bloom-housing/ui-
 import { UserStatus } from "../lib/constants"
 import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
 import Resource from "../src/Resource"
+import HowItWorks from "../page_content/resources/HowItWorks.md"
 import SMCHousingSearch from "../page_content/resources/SMCHousingSearch.md"
 import HavenConnect from "../page_content/resources/HavenConnect.md"
 import AffordableRentalHousingList from "../page_content/resources/AffordableRentalHousingList.md"
@@ -44,6 +45,7 @@ const AdditionalResources = () => {
                 title={t("additionalResources.rentals")}
                 subtitle={t("additionalResources.rentalsDescription")}
               >
+                <Resource>{HowItWorks}</Resource>
                 <Resource>{SMCHousingSearch}</Resource>
                 <Resource>{HavenConnect}</Resource>
                 <Resource>{AffordableRentalHousingList}</Resource>
