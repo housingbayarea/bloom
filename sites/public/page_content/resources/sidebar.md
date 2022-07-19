@@ -9,7 +9,6 @@ For listing and application questions, please contact the Property Agent display
 **[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
 
 </RenderIf>
-
 <RenderIf language="es">
 
 #### Contacto
@@ -21,7 +20,6 @@ Si tiene alguna pregunta sobre los listados y la solicitud, sírvase poner en co
 **[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
 
 </RenderIf>
-
 <RenderIf language="zh">
 
 #### 接觸
@@ -33,7 +31,6 @@ Si tiene alguna pregunta sobre los listados y la solicitud, sírvase poner en co
 **[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
 
 </RenderIf>
-
 <RenderIf language="vi">
 
 #### Tiếp xúc
@@ -45,7 +42,6 @@ Si tiene alguna pregunta sobre los listados y la solicitud, sírvase poner en co
 **[achousingportal@acgov.org](mailto:achousingportal@acgov.org)**
 
 </RenderIf>
-
 <RenderIf language="tl">
 
 #### Makipag-ugnayan
