@@ -29,7 +29,7 @@ export class newHopwaProgram1658941145026 implements MigrationInterface {
                       WHERE title = 'Housing Opportunities for Persons with AIDS (HOPWA)';
                     `
     )
-    const res = await queryRunner.query(
+    await queryRunner.query(
       `INSERT INTO jurisdictions_programs_programs (jurisdictions_id, programs_id) VALUES ($1, $2)`,
       [jurisdiction[0].id, program[0].id]
     )
