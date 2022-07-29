@@ -73,6 +73,9 @@ export class ListingsController {
     @Param("id") listingId: string,
     @Query() queryParams: ListingsRetrieveQueryParams
   ): Promise<ListingDto> {
+    console.log("controller")
+    console.log({ listingId })
+    console.log(typeof listingId)
     if (listingId === undefined || listingId === "undefined") {
       return mapTo(ListingDto, {})
     }

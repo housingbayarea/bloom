@@ -16,6 +16,8 @@ import { reformatAndUpdateListing, ListingPropertyFieldsUpdate } from "./update-
 // Sample usage:
 // $ yarn ts-node scripts/update-listings-from-csv.ts http://localhost:3100 admin@example.com:abcdef path/to/file.csv
 
+const listingsService = new client.ListingsService()
+
 async function main() {
   if (process.argv.length < 5) {
     console.log(
@@ -56,11 +58,6 @@ async function main() {
   const [importApiUrl, userAndPassword, csvFilePath] = process.argv.slice(2)
   const [email, password] = userAndPassword.split(":")
 
-  serviceOptions.axios = axios.create({
-    baseURL: importApiUrl,
-    timeout: 10000,
-  })
-
   // Read raw CSV data into memory.
   // Note: createReadStream creates ReadStream's whose on("data", ...) methods are called
   // asynchronously. To ensure that all CSV lines are read in before we start trying to update
@@ -80,38 +77,40 @@ async function main() {
   console.log(`CSV file successfully read in; ${rawListingFields.length} listings to update`)
 
   const getVal = (val) => {
-    return val !== "null" ? val : null
+    return val !== "null" ? val.toString() : null
   }
 
   const uploadFailureMessages = []
   let numListingsSuccessfullyUpdated = 0
+
   for (const listingFields of rawListingFields) {
     const buildingAddress: client.AddressUpdate = {
       id: getVal(listingFields.building_address_id),
-      street: getVal(listingFields.street),
-      zipCode: getVal(listingFields.zip_code),
-      city: getVal(listingFields.city),
-      state: getVal(listingFields.state),
-      longitude: getVal(listingFields.longitude),
-      latitude: getVal(listingFields.latitude),
+      street: getVal(listingFields.street) ?? "",
+      street2: getVal(listingFields.street2) ?? "",
+      zipCode: getVal(listingFields.zip_code) ?? "",
+      city: getVal(listingFields.city) ?? "",
+      state: getVal(listingFields.state) ?? "",
+      longitude: parseFloat(getVal(listingFields.longitude)),
+      latitude: parseFloat(getVal(listingFields.latitude)),
     }
 
     const listing: ListingPropertyFieldsUpdate = {
-      id: listingFields.id,
-      name: listingFields.name,
+      id: getVal(listingFields.id),
+      name: getVal(listingFields.name),
       buildingAddress: buildingAddress,
       accessibility: getVal(listingFields.accessibility),
       amenities: getVal(listingFields.amenities),
-      buildingTotalUnits: getVal(listingFields.building_total_units),
-      developer: getVal(listingFields.developer),
-      householdSizeMax: getVal(listingFields.household_size_max),
-      householdSizeMin: getVal(listingFields.household_size_min),
+      buildingTotalUnits: parseInt(getVal(listingFields.building_total_units)),
+      developer: getVal(listingFields.developer) ?? "",
+      householdSizeMax: parseInt(getVal(listingFields.household_size_max)),
+      householdSizeMin: parseInt(getVal(listingFields.household_size_min)),
       neighborhood: getVal(listingFields.neighborhood),
       petPolicy: getVal(listingFields.pet_policy),
       smokingPolicy: getVal(listingFields.smoking_policy),
-      unitsAvailable: getVal(listingFields.units_available),
+      unitsAvailable: parseInt(getVal(listingFields.units_available)),
       unitAmenities: getVal(listingFields.unit_amenities),
-      yearBuilt: getVal(listingFields.year_built),
+      yearBuilt: parseInt(getVal(listingFields.year_built)),
       servicesOffered: getVal(listingFields.services_offered),
     }
 

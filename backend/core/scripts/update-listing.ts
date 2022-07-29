@@ -1,11 +1,13 @@
 import * as client from "../types/src/backend-swagger"
 import axios from "axios"
+import axiosStatic from "axios"
+
+import qs from "qs"
 import { serviceOptions } from "../types/src/backend-swagger"
 
 // NOTE: This script relies on any logged-in users having permission to update
 // listings (defined in backend/core/src/auth/authz_policy.csv)
 
-const listingsService = new client.ListingsService()
 const authService = new client.AuthService()
 
 export type ListingPropertyFieldsUpdate = Pick<
@@ -28,22 +30,13 @@ export type ListingPropertyFieldsUpdate = Pick<
   | "servicesOffered"
 >
 
-async function getListing(id: string) {
-  try {
-    return await listingsService.retrieve({
-      id,
-    })
-  } catch (e) {
-    console.log(id)
-    throw new Error(e.response.data.message)
-  }
-}
-
 async function updateListing(
   existingListing: client.Listing,
   listingUpdate: ListingPropertyFieldsUpdate
 ) {
   const newListing = { ...existingListing, ...listingUpdate }
+  const listingsService = new client.ListingsService()
+
   try {
     return await listingsService.update({
       id: existingListing.id,
@@ -80,11 +73,32 @@ export async function reformatAndUpdateListing(
     timeout: 10000,
     headers: {
       Authorization: `Bearer ${accessToken}`,
+      language: "en",
     },
   })
 
-  const existingListing = await getListing(listingUpdate.id)
+  console.log("axios config created")
 
+  const listingsService = new client.ListingsService()
+
+  console.log(listingUpdate.id)
+  console.log({ listingUpdate })
+  console.log(listingUpdate.developer)
+
+  const existingListing = await listingsService.retrieve(
+    {
+      id: listingUpdate.id,
+      view: "full",
+    },
+    { headers: { test: "123" } }
+  )
+
+  // console.log({ existingListing })
+
+  const updatedListing = await updateListing(existingListing, listingUpdate)
+  // console.log({ updatedListing })
   // Update the listing, and then return it.
-  return await updateListing(existingListing, listingUpdate)
+  return updatedListing
+
+  return null
 }

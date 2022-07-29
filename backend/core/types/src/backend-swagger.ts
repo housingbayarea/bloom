@@ -45,6 +45,7 @@ export function axios(
   }
 }
 
+//
 export function getConfigs(
   method: string,
   contentType: string,
@@ -1322,7 +1323,7 @@ export class ListingsService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { view: params["view"] }
-      let data = null
+      let data = undefined
 
       configs.data = data
       axios(configs, resolve, reject)
