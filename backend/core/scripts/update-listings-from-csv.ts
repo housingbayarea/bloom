@@ -1,8 +1,6 @@
 import csv from "csv-parser"
 import fs from "fs"
-import axios from "axios"
 import * as client from "../types/src/backend-swagger"
-import { serviceOptions } from "../types/src/backend-swagger"
 import { reformatAndUpdateListing, ListingPropertyFieldsUpdate } from "./update-listing"
 
 // This script reads in listing data from a CSV file and sends requests to the backend to update
@@ -15,8 +13,6 @@ import { reformatAndUpdateListing, ListingPropertyFieldsUpdate } from "./update-
 
 // Sample usage:
 // $ yarn ts-node scripts/update-listings-from-csv.ts http://localhost:3100 admin@example.com:abcdef path/to/file.csv
-
-const listingsService = new client.ListingsService()
 
 async function main() {
   if (process.argv.length < 5) {
@@ -98,7 +94,6 @@ async function main() {
     const listing: ListingPropertyFieldsUpdate = {
       id: getVal(listingFields.id),
       name: getVal(listingFields.name),
-      buildingAddress: buildingAddress,
       accessibility: getVal(listingFields.accessibility),
       amenities: getVal(listingFields.amenities),
       buildingTotalUnits: parseInt(getVal(listingFields.building_total_units)),
@@ -112,6 +107,10 @@ async function main() {
       unitAmenities: getVal(listingFields.unit_amenities),
       yearBuilt: parseInt(getVal(listingFields.year_built)),
       servicesOffered: getVal(listingFields.services_offered),
+    }
+
+    if (buildingAddress.street !== "") {
+      listing["buildingAddress"] = buildingAddress
     }
 
     try {

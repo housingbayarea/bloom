@@ -1,8 +1,6 @@
 import * as client from "../types/src/backend-swagger"
 import axios from "axios"
-import axiosStatic from "axios"
 
-import qs from "qs"
 import { serviceOptions } from "../types/src/backend-swagger"
 
 // NOTE: This script relies on any logged-in users having permission to update
@@ -77,13 +75,7 @@ export async function reformatAndUpdateListing(
     },
   })
 
-  console.log("axios config created")
-
   const listingsService = new client.ListingsService()
-
-  console.log(listingUpdate.id)
-  console.log({ listingUpdate })
-  console.log(listingUpdate.developer)
 
   const existingListing = await listingsService.retrieve(
     {
@@ -93,12 +85,7 @@ export async function reformatAndUpdateListing(
     { headers: { test: "123" } }
   )
 
-  // console.log({ existingListing })
-
   const updatedListing = await updateListing(existingListing, listingUpdate)
-  // console.log({ updatedListing })
   // Update the listing, and then return it.
   return updatedListing
-
-  return null
 }
