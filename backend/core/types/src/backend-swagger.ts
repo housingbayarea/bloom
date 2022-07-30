@@ -45,7 +45,6 @@ export function axios(
   }
 }
 
-//
 export function getConfigs(
   method: string,
   contentType: string,

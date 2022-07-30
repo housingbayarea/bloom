@@ -77,13 +77,10 @@ export async function reformatAndUpdateListing(
 
   const listingsService = new client.ListingsService()
 
-  const existingListing = await listingsService.retrieve(
-    {
-      id: listingUpdate.id,
-      view: "full",
-    },
-    { headers: { test: "123" } }
-  )
+  const existingListing = await listingsService.retrieve({
+    id: listingUpdate.id,
+    view: "full",
+  })
 
   const updatedListing = await updateListing(existingListing, listingUpdate)
   // Update the listing, and then return it.
