@@ -41,8 +41,9 @@ async function updateListing(
       body: newListing,
     })
   } catch (e) {
-    console.log(newListing)
-    throw new Error(e.response.data.message)
+    console.log(newListing.name)
+    console.log(e.response)
+    throw new Error(e)
   }
 }
 
@@ -54,7 +55,7 @@ export async function reformatAndUpdateListing(
 ) {
   serviceOptions.axios = axios.create({
     baseURL: apiUrl,
-    timeout: 10000,
+    timeout: 1000000,
   })
 
   // Log in to retrieve an access token.
@@ -68,7 +69,7 @@ export async function reformatAndUpdateListing(
   // Update the axios config so future requests include the access token in the header.
   serviceOptions.axios = axios.create({
     baseURL: apiUrl,
-    timeout: 10000,
+    timeout: 1000000,
     headers: {
       Authorization: `Bearer ${accessToken}`,
       language: "en",
