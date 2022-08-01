@@ -73,7 +73,7 @@ async function main() {
   console.log(`CSV file successfully read in; ${rawListingFields.length} listings to update`)
 
   const getVal = (val) => {
-    return val !== "null" ? val.toString() : null
+    return val && val !== "null" ? val.toString() : null
   }
 
   const uploadFailureMessages = []
