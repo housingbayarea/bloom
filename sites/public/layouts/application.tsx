@@ -142,7 +142,7 @@ const Layout = (props) => {
           <a href="https://www.surveymonkey.com/r/2QLBYML" target="_blank">
             {t("footer.giveFeedback")}
           </a>
-          <a href="mailto:housing@smchousing.org">{t("footer.contact")}</a>
+          <a href="mailto:doorway@smchousing.org">{t("footer.contact")}</a>
           <a href="https://smc.housingbayarea.org/disclaimer" target="_blank">
             {t("footer.disclaimer")}
           </a>
