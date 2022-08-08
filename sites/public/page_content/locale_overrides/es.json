@@ -40,8 +40,10 @@
   "nav.getFeedback": "¡Nos encantaría recibir  ",
   "nav.yourFeedback": "sus comentarios!",
   "nav.bonusFeedback": "",
-  "pageTitle.additionalResources": "Oportunidades y recursos adicionales de vivienda",
-  "pageDescription.additionalResources": "Lo animamos a que busque otros recursos de vivienda asequible.",
+  "pageDescription.additionalResources": "Le invitamos a consultar otros recursos de vivienda de precio accesible.",
+  "pageDescription.howItWorks": "Obtenga más información sobre cómo encontrar y solicitar alquileres económicos.",
+  "pageTitle.additionalResources": "Oportunidades adicionales de vivienda",
+  "pageTitle.howItWorks": "¿Cómo funciona?",
   "region.name": "San José",
   "listings.depositOrMonthsRent": "",
   "listings.publicLottery.header": "LOTERÍA",
@@ -49,5 +51,8 @@
   "additionalResources.doorwayPortal.description": "El portal Doorway de San José es uno de muchos sitios web similares del Área de la Bahía que fue creado para simplificar el proceso de encontrar y postularse para el alquiler de viviendas asequibles. Puede encontrar oportunidades de vivienda asequible en otros condados en otros portales del Área de la Bahía.",
   "additionalResources.sccAffordableHousing.title": "Oportunidades de vivienda asequible en el condado de Santa Clara",
   "additionalResources.sccAffordableHousing.description": "Vea las oportunidades de vivienda asequible en el condado de Santa Clara.",
-  "additionalResources.cityRegionResources.title": "Recursos Relacionados con la Ciudad y la Región"
+  "additionalResources.cityRegionResources.title": "Recursos Relacionados con la Ciudad y la Región",
+  "welcome.howDoesItWork": "¿Cómo funciona?",
+  "welcome.learnHowToApply": "Obtenga más información sobre cómo encontrar y solicitar alquileres económicos.",
+  "welcome.readAboutHowItWorks": "Lea acerca de cómo funciona"
 }
