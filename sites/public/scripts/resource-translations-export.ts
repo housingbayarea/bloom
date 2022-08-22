@@ -30,7 +30,8 @@ function main() {
       }
       return acc
     }, {})
-
+    console.log(langIndex)
+    console.log(sections)
     for (const section of sections) {
       const languageMatch = section.match(/language="((\w+,?)+)"/)
       const language = languageMatch[1].split(",")
