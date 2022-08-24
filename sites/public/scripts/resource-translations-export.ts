@@ -13,7 +13,7 @@ function main() {
     path.resolve("", "sites/public/scripts/resource-translations-export.csv")
   )
   // write headers
-  writeStream.write(`file,style,String to Translate,${LANGUAGES}\n`)
+  writeStream.write(`file,style,lang, title, url, body\n`)
 
   for (const file of files) {
     const readPath = path.resolve("", `${filePath}/${file}`)
@@ -21,44 +21,56 @@ function main() {
     const style = content.match(/<style>(.|\s)*?<\/style>/)
     const sections = content.match(/<RenderIf language="(\w+,?)+">(.|\s)*?<\/RenderIf>/g)
     if (sections === null) continue
-    writeStream.write(`${file},`)
-    writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
-    const langIndex = langArray.reduce((acc, curr, i) => {
-      acc[curr] = {
-        i,
-        content: "",
-      }
-      return acc
-    }, {})
-    console.log(langIndex)
-    console.log(sections)
+
+    // const langIndex = langArray.reduce((acc, curr, i) => {
+    //   acc[curr] = {
+    //     i,
+    //     content: "",
+    //   }
+    //   return acc
+    // }, {})
     for (const section of sections) {
+      writeStream.write(`${file},`)
+      writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
       const languageMatch = section.match(/language="((\w+,?)+)"/)
       const language = languageMatch[1].split(",")
-      const hasEn = language.some((lang) => lang === "en")
-      const noEn = language.filter((lang) => lang !== "en")
+      // const hasEn = language.some((lang) => lang === "en")
+      // const noEn = language.filter((lang) => lang !== "en")
       const contentMatch = section.match(/<RenderIf language="(\w+,?)+">((.|\s)*?)<\/RenderIf>/)
-      const content = JSON.stringify(contentMatch[2])
-      if (hasEn) {
-        writeStream.write(`${content},`)
+      const content = contentMatch[2]
+      const resourceCardComponents = []
+      const titleMatch = content.match(/###\s*\[(.+)\]/)
+      resourceCardComponents.push(titleMatch ? titleMatch[1] : ",")
+      const urlMatch = content.match(/\s*\((.*\))/)
+      resourceCardComponents.push(urlMatch ? urlMatch[1] : ",")
+      const bodyMatch = content.match(/(\n+\s+|.+)+/)
+      resourceCardComponents.push(bodyMatch ? `"${bodyMatch[1]}"` : ",")
+      writeStream.write(language.toString() + ",")
+      writeStream.write(resourceCardComponents.toString())
 
-        if (noEn.length > 0) {
-          noEn.forEach((lang) => {
-            if (langIndex[lang]) {
-              langIndex[lang].content = ""
-            }
-          })
-        }
-      } else {
-        langIndex[language[0]].content = content
-      }
-    }
-    const translations = new Array(langArray.length)
-    for (const lang in langIndex) {
-      translations[langIndex[lang].i] = langIndex[lang].content
-    }
+      // const content = JSON.stringify(contentMatch[2])
+      //   if (hasEn) {
+      //     writeStream.write(`${content},`)
 
-    writeStream.write(`${translations.join(",")}\n`)
+      //     if (noEn.length > 0) {
+      //       noEn.forEach((lang) => {
+      //         if (langIndex[lang]) {
+      //           langIndex[lang].content = ""
+      //         }
+      //       })
+      //     }
+      //   } else {
+      //     langIndex[language[0]].content = content
+      //   }
+      // }
+      // const translations = new Array(langArray.length)
+      // for (const lang in langIndex) {
+      //   translations[langIndex[lang].i] = langIndex[lang].content
+      // }
+
+      writeStream.write(`\n`)
+      // break
+    }
   }
 }
 
