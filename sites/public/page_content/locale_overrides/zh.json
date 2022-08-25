@@ -40,8 +40,11 @@
   "nav.getFeedback": "我們希望獲得 ",
   "nav.yourFeedback": "您的回饋意見",
   "nav.bonusFeedback": "！為感謝您花時間提供回饋意見，您可獲得一張禮品卡。",
-  "pageTitle.additionalResources": "其他住房機會和資源",
-  "pageDescription.additionalResources": "我們鼓勵您瀏覽其他可負擔住房資源。",
+  "pageDescription.additionalResources": "我們建議您瀏覽其他可負擔房屋資源。",
+  "pageDescription.getAssistance": "詳細瞭解如何尋找和申請經濟適用房的租賃機會，並查找其他住房清單。",
+  "pageDescription.howItWorks": "了解如何尋找並申請可負擔的租屋機會。",
+  "pageTitle.additionalResources": "其他住房機會",
+  "pageTitle.howItWorks": "運作方式",
   "region.name": "聖荷西",
   "listings.depositOrMonthsRent": "",
   "listings.publicLottery.header": "抽籤",
@@ -49,5 +52,8 @@
   "additionalResources.doorwayPortal.description": "聖荷西市Doorway門戶網站是灣區幾個類似的網站之一，旨在簡化尋找和申請可負擔租房的過程。其他縣的可負擔住房機會可在其他灣區門戶網站尋找。",
   "additionalResources.sccAffordableHousing.title": "聖塔克拉拉縣的可負擔住房機會",
   "additionalResources.sccAffordableHousing.description": "查看聖克拉拉縣的可負擔住房機會。",
-  "additionalResources.cityRegionResources.title": "城市和地區的相關資源"
+  "additionalResources.cityRegionResources.title": "城市和地區的相關資源",
+  "welcome.howDoesItWork": "運作方式？",
+  "welcome.learnHowToApply": "了解如何尋找並申請可負擔的租屋機會。",
+  "welcome.readAboutHowItWorks": "閱讀它是如何工作的"
 }

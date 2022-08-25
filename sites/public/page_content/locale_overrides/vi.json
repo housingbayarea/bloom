@@ -40,8 +40,11 @@
   "nav.getFeedback": "Chúng tôi rất mong nhận được ",
   "nav.yourFeedback": "ý kiến phản hồi của quý vị",
   "nav.bonusFeedback": "",
-  "pageTitle.additionalResources": "Cơ Hội và Nguồn Lực Bổ Sung Về Nhà Ở",
-  "pageDescription.additionalResources": "Chúng tôi khuyến khích bạn duyệt qua các nguồn thông tin khác về nhà ở giá cả phải chăng.",
+  "pageDescription.additionalResources": "Chúng tôi khuyến khích quý vị xem các nguồn thông tin trợ giúp về nhà ở giá phải chăng khác.",
+  "pageDescription.getAssistance": "Tìm hiểu thêm về việc tìm kiếm và đăng ký các cơ hội cho thuê giá cả phải chăng và tìm danh sách nhà ở bổ sung.",
+  "pageDescription.howItWorks": "Tìm hiểu cách tìm và đăng ký các cơ hội thuê nhà giá cả phải chăng.",
+  "pageTitle.additionalResources": "Các Cơ hội Nhà ở Bổ sung",
+  "pageTitle.howItWorks": "Cách thức hoạt động",
   "region.name": "San José",
   "listings.depositOrMonthsRent": "",
   "listings.publicLottery.header": "XỔ SỐ",
@@ -49,5 +52,8 @@
   "additionalResources.doorwayPortal.description": "Cổng thông tin Doorway của San José là một trong số các trang web tương tự của Vùng Vịnh được tạo ra để đơn giản hóa quy trình tìm và đăng ký nhà cho thuê giá phải chăng. Có thể tìm thấy các cơ hội nhà ở giá cả phải chăng ở các quận khác tại các Cổng thông tin Cửa Ngõ Vùng Vịnh khác.",
   "additionalResources.sccAffordableHousing.title": "Cơ hội nhà ở phù hợp thuộc Quận Santa Clara",
   "additionalResources.sccAffordableHousing.description": "Xem các cơ hội nhà ở giá cả phải chăng ở Quận Santa Clara.",
-  "additionalResources.cityRegionResources.title": "CÁC NGUỒN TÀI NGUYÊN CÓ LIÊN QUAN CỦA THÀNH PHỐ VÀ KHU VỰC"
+  "additionalResources.cityRegionResources.title": "CÁC NGUỒN TÀI NGUYÊN CÓ LIÊN QUAN CỦA THÀNH PHỐ VÀ KHU VỰC",
+  "welcome.howDoesItWork": "Cách thức hoạt động?",
+  "welcome.learnHowToApply": "Tìm hiểu cách tìm và đăng ký các cơ hội thuê nhà giá cả phải chăng.",
+  "welcome.readAboutHowItWorks": "Đọc về cách nó hoạt động"
 }
