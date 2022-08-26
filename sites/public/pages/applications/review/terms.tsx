@@ -2,7 +2,7 @@
 5.3 Terms
 View of application terms with checkbox
 */
-import React, { useContext, useEffect, useMemo, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import {
   AppearanceStyleType,
@@ -41,19 +41,6 @@ const ApplicationTerms = () => {
     currentPageSection += 1
   const applicationDueDate = new Date(listing?.applicationDueDate).toDateString()
 
-  const reviewOrder = useMemo(() => {
-    if (listing) {
-      if (listing.reviewOrderType === ListingReviewOrder.lottery) {
-        return "* " + t("application.review.confirmation.eligibleApplicants.lottery")
-      } else {
-        return "* " + t("application.review.confirmation.eligibleApplicants.FCFS")
-      }
-    } else {
-      return ""
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [listing, router.locale])
-
   /* Form Handler */
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, handleSubmit, errors } = useForm()
@@ -86,7 +73,8 @@ const ApplicationTerms = () => {
         setSubmitting(false)
         setApiError(true)
         window.scrollTo(0, 0)
-        throw new Error(JSON.stringify(err.response.data))
+        console.error(`Error creating application: ${err}`)
+        throw err
       })
   }
 
@@ -134,15 +122,15 @@ const ApplicationTerms = () => {
         <Form id="review-terms" className="mt-4" onSubmit={handleSubmit(onSubmit)}>
           <div className="form-card__pager-row">
             {listing?.applicationDueDate && (
-              <Markdown className="markdown" options={{ disableParsingRawHTML: false }}>
+              <Markdown options={{ disableParsingRawHTML: false }}>
                 {t("application.review.terms.textSubmissionDate", {
                   applicationDueDate: applicationDueDate,
                 })}
               </Markdown>
             )}
 
-            <Markdown className="markdown" options={{ disableParsingRawHTML: false }}>
-              {t("application.review.terms.text", { reviewOrder })}
+            <Markdown options={{ disableParsingRawHTML: false }}>
+              {t("application.review.terms.text")}
             </Markdown>
 
             <div className="mt-4">

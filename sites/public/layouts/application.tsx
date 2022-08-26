@@ -89,7 +89,7 @@ const Layout = (props) => {
                 {t("nav.yourFeedback")}
               </a>
               {t("nav.bonusFeedback")}
-            </>
+            </a>
           }
           title={t("nav.siteTitle")}
           languages={languages.map((lang) => {
