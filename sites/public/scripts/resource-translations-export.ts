@@ -55,7 +55,7 @@ function main() {
         const contentMatch = section.match(/<RenderIf language="(\w+,?)+">((.|\s)*?)<\/RenderIf>/)
         const content = contentMatch[2]
         const languageMatch = section.match(/language="((\w+,?)+)"/)
-        writeStream.write(deconstructResource(content, languageMatch[1] && "en"))
+        writeStream.write(deconstructResource(content, languageMatch[1] ?? "en"))
         writeStream.write(`\n`)
       }
     }
