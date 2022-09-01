@@ -6,6 +6,9 @@ import vietnameseTranslations from "@bloom-housing/ui-components/src/locales/vi.
 import tagalogTranslations from "@bloom-housing/ui-components/src/locales/tl.json"
 
 import additionalGeneralTranslations from "../page_content/locale_overrides/general.json"
+import additionalSpanishTranslations from "../page_content/locale_overrides/es.json"
+import additionalChineseTranslations from "../page_content/locale_overrides/zh.json"
+import additionalVietnameseTranslations from "../page_content/locale_overrides/vi.json"
 
 export const translations = {
   general: generalTranslations,
@@ -17,4 +20,7 @@ export const translations = {
 
 export const overrideTranslations = {
   en: additionalGeneralTranslations,
+  es: additionalSpanishTranslations,
+  zh: additionalChineseTranslations,
+  vi: additionalVietnameseTranslations,
 } as Record<string, any>

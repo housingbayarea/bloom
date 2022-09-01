@@ -38,7 +38,7 @@ async function main() {
     }
 
     let section = `<RenderIf language="${row.lang}">\n`
-    row.url ? (section += `### [${row.title}] (${row.url}) \n`) : (section += `### ${row.title} \n`)
+    row.url ? (section += `### [${row.title}](${row.url}) \n`) : (section += `### ${row.title} \n`)
     section += `\n${row.body}\n`
     section += "</RenderIf>\n"
     resource += section
