@@ -11,7 +11,7 @@ const deconstructResource = (content: string, lang: string): string => {
   resourceCardArr.push(titleMatch ? titleMatch[1] : ",")
   const urlMatch = content.match(/\s*\((.*)\)/)
   resourceCardArr.push(urlMatch ? urlMatch[1] : ",")
-  const bodyMatch = content.match(/(\]|\))\n+((\n+|\s+|.+)+)/)
+  const bodyMatch = content.match(/(\]|\))\n+((\n+|\s+|.+)+)\n/)
   console.log(bodyMatch)
   resourceCardArr.push(bodyMatch ? `"${bodyMatch[2]}"` : ",")
   return resourceCardArr.toString()

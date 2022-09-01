@@ -18,7 +18,7 @@ async function main() {
     console.log(fileName)
     console.log("------------------------------------------")
 
-    if (row.files !== fileName) {
+    if (row.file !== fileName) {
       if (resource === "") {
         writePath = path.resolve("", `sites/public/page_content/resources/${row.file}`)
         fileName = row.file
