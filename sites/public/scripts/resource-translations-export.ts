@@ -16,7 +16,7 @@ const deconstructResource = (content: string, lang: string): string => {
   // console.log(contentClean)
   // console.log(bodyMatch[1])
   // console.log("=========")
-  resourceCardArr.push(bodyMatch[1] ? `"${bodyMatch[1]}"` : ",")
+  resourceCardArr.push(bodyMatch[1] ? `"${bodyMatch[1].trim()}"` : ",")
   return resourceCardArr.toString()
 }
 

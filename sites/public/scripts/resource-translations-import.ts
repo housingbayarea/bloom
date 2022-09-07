@@ -14,10 +14,6 @@ async function main() {
   let resource = ""
   let writePath = ""
   for (const row of json) {
-    console.log(row.file)
-    console.log(fileName)
-    console.log("------------------------------------------")
-
     if (row.file !== fileName) {
       if (resource === "") {
         writePath = path.resolve("", `sites/public/page_content/resources/${row.file}`)
