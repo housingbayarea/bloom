@@ -8,14 +8,15 @@ const langTranslated = []
 // run with e.g. ts-node sites/public/scripts/resource-translations-export.ts
 const deconstructResource = (content: string, lang: string): string => {
   const resourceCardArr = [lang]
-  const titleMatch = content.match(/###\s*\[(.+)\]/)
+  const titleMatch = content.match(/###\s*\[(.+)\]|### ([ \S]*)/)
   resourceCardArr.push(titleMatch ? titleMatch[1] : ",")
   const urlMatch = content.match(/\s*\((.*)\)/)
   resourceCardArr.push(urlMatch ? urlMatch[1] : ",")
-  // const bodyMatch = content.match(/(\)\s+\n)((\n+|\s+|.+)+)/)
-  const bodyMatch = content.match(/(^### (\(*\S+|\s+\)*|\n+| *))((^\S+|\s+)+)/)
-  const bodyStr = bodyMatch ? bodyMatch[3].trim() : ","
-  resourceCardArr.push(bodyMatch ? `"${bodyStr}"` : ",")
+  const bodyMatch = content.match(/\n+([\s\S]+)/)
+  // console.log(contentClean)
+  // console.log(bodyMatch[1])
+  // console.log("=========")
+  resourceCardArr.push(bodyMatch[1] ? `"${bodyMatch[1]}"` : ",")
   return resourceCardArr.toString()
 }
 
@@ -59,16 +60,20 @@ function main() {
       for (const section of sections) {
         writeStream.write(`${file},`)
         writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
-        const contentMatch = section.match(/<RenderIf language="(\w+,?)+">((.|\s)*?)<\/RenderIf>/)
+        const contentMatch = section.match(
+          /<RenderIf language="(\w+,?)+">\n*((.|\s)*?)<\/RenderIf>/
+        )
         const content = contentMatch[2]
         const languageMatch = section.match(/language="((\w+,?)+)"/)
         langTranslated.push(languageMatch[1])
         writeStream.write(deconstructResource(content, languageMatch[1] ?? "en"))
         writeStream.write(`\n`)
       }
-      const missingTranslations = langArray.filter((lang) => !langTranslated.includes(lang))
-      for (const lang of missingTranslations) {
-        writeStream.write(templateRow(file, style, lang))
+      if (translationTemplate) {
+        const missingTranslations = langArray.filter((lang) => !langTranslated.includes(lang))
+        for (const lang of missingTranslations) {
+          writeStream.write(templateRow(file, style, lang))
+        }
       }
     }
   }
