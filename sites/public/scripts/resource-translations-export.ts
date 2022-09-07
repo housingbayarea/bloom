@@ -3,6 +3,7 @@ import * as path from "path"
 
 const LANGUAGES = "es,zh,vi"
 const langArray = LANGUAGES.split(",")
+const langTranslated = []
 
 // run with e.g. ts-node sites/public/scripts/resource-translations-export.ts
 const deconstructResource = (content: string, lang: string): string => {
@@ -11,10 +12,18 @@ const deconstructResource = (content: string, lang: string): string => {
   resourceCardArr.push(titleMatch ? titleMatch[1] : ",")
   const urlMatch = content.match(/\s*\((.*)\)/)
   resourceCardArr.push(urlMatch ? urlMatch[1] : ",")
-  const bodyMatch = content.match(/(\)\s+\n)((\n+|\s+|.+)+)/)
-  console.log(bodyMatch)
-  resourceCardArr.push(bodyMatch ? `"${bodyMatch[2]}"` : ",")
+  // const bodyMatch = content.match(/(\)\s+\n)((\n+|\s+|.+)+)/)
+  const bodyMatch = content.match(/(^### (\(*\S+|\s+\)*|\n+| *))((^\S+|\s+)+)/)
+  const bodyStr = bodyMatch ? bodyMatch[3].trim() : ","
+  resourceCardArr.push(bodyMatch ? `"${bodyStr}"` : ",")
   return resourceCardArr.toString()
+}
+
+const templateRow = (file: string, style: RegExpMatchArray, lang: string): string => {
+  let rowStr = `${file},`
+  rowStr += style !== null ? JSON.stringify(style[0] + "\n") + "," : ","
+  rowStr += `${lang},,,\n`
+  return rowStr
 }
 
 function main() {
@@ -43,9 +52,7 @@ function main() {
         writeStream.write(deconstructResource(content, "en"))
         writeStream.write(`\n`)
         for (const lang of langArray) {
-          writeStream.write(`${file},`)
-          writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
-          writeStream.write(`${lang},,,\n`)
+          writeStream.write(templateRow(file, style, lang))
         }
       }
     } else {
@@ -55,8 +62,13 @@ function main() {
         const contentMatch = section.match(/<RenderIf language="(\w+,?)+">((.|\s)*?)<\/RenderIf>/)
         const content = contentMatch[2]
         const languageMatch = section.match(/language="((\w+,?)+)"/)
+        langTranslated.push(languageMatch[1])
         writeStream.write(deconstructResource(content, languageMatch[1] ?? "en"))
         writeStream.write(`\n`)
+      }
+      const missingTranslations = langArray.filter((lang) => !langTranslated.includes(lang))
+      for (const lang of missingTranslations) {
+        writeStream.write(templateRow(file, style, lang))
       }
     }
   }
