@@ -28,10 +28,9 @@ async function main() {
       fileName = row.file
     }
     // Skip empty rows (incomplete template csv)
-    if (!row.body || !row.title) continue
+    if (!row.title) continue
 
     const style = JSON.parse(`{"md":"${row.style}"}`)
-
     if (style.md.length) {
       fileContent += style.md
     }
