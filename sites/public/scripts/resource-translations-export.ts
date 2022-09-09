@@ -6,6 +6,13 @@ const langArray = LANGUAGES.split(",")
 const langTranslated = []
 
 // run with e.g. ts-node sites/public/scripts/resource-translations-export.ts
+
+/**
+ * Breaks down resource card content (everything between RenderIf) to populate a single row in csv
+ * @param content single string including title, url, and description
+ * @param lang language code of row
+ * @returns comma-separated string in structure of csv
+ */
 const deconstructResource = (content: string, lang: string): string => {
   const resourceCardArr = [lang]
   const titleMatch = content.match(/###\s*\[(.+)\]|### ([ \S]*)/)
@@ -16,7 +23,13 @@ const deconstructResource = (content: string, lang: string): string => {
   resourceCardArr.push(bodyMatch[1] ? `"${bodyMatch[1].trim()}"` : ",")
   return resourceCardArr.toString()
 }
-
+/**
+ * Generates template rows for which translations can be later filled in
+ * @param file string of markdown file name
+ * @param style custom css regex match object
+ * @param lang language code
+ * @returns comma-separated string in structure of csv
+ */
 const templateRow = (file: string, style: RegExpMatchArray, lang: string): string => {
   let rowStr = `${file},`
   rowStr += style !== null ? JSON.stringify(style[0] + "\n") + "," : ","
@@ -42,8 +55,11 @@ function main() {
     const content = fs.readFileSync(readPath, "utf8")
     const style = content.match(/<style>(.|\s)*?<\/style>/)
     const sections = content.match(/<RenderIf language="(\w+,?)+">(.|\s)*?<\/RenderIf>/g)
+    // Path 1: sections is null when the RenderIf format hasn't been implemented (aka no translations)
     if (sections === null) {
+      //Path 1a: Go to next file (sidebar not in resource card format)
       if (!translationTemplate || file === "Sidebar.md") continue
+      //Path 1b: Write english content to csv, write empty rows for all other languages
       else {
         writeStream.write(`${file},`)
         writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
@@ -53,7 +69,9 @@ function main() {
           writeStream.write(templateRow(file, style, lang))
         }
       }
-    } else {
+    }
+    // Path 2: RenderIf format exists, deconstruct + write each language to a new row
+    else {
       for (const section of sections) {
         writeStream.write(`${file},`)
         writeStream.write(style !== null ? JSON.stringify(style[0] + "\n") + "," : ",")
@@ -67,6 +85,7 @@ function main() {
         writeStream.write(`\n`)
       }
       if (translationTemplate) {
+        // Generate empty rows for languages in langArray that weren't in file (handles adding new languages)
         const missingTranslations = langArray.filter((lang) => !langTranslated.includes(lang))
         for (const lang of missingTranslations) {
           writeStream.write(templateRow(file, style, lang))
