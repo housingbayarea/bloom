@@ -219,7 +219,6 @@ export const defaultListing: ListingSeedType = {
   waitlistOpenSpots: null,
   isWaitlistOpen: false,
   waitlistMaxSize: null,
-  whatToExpect: "Custom what to expect text",
   listingAvailability: ListingAvailability.availableUnits,
 }
 

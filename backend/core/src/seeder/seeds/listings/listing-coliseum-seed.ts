@@ -106,7 +106,7 @@ const coliseumListing: ListingSeedType = {
   waitlistMaxSize: 3000,
   waitlistOpenSpots: 3000,
   isWaitlistOpen: true,
-  whatToExpect: null,
+  whatToExpect: "Custom what to expect text",
   listingAvailability: ListingAvailability.availableUnits,
   utilities: {
     water: false,
