@@ -94,3 +94,7 @@ dump.rdb
 
 # pg dumps
 *.dump
+
+# internal-use script outputs
+resource-translations-export.csv
+
