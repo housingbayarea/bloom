@@ -8,7 +8,7 @@ import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpe
 import RenderIf from "../src/RenderIf"
 
 import pageContent from "../page_content/get_assistance.md"
-import sidebarContent from "../page_content/resources/sidebar.md"
+import sidebarContent from "../page_content/resources/Sidebar.md"
 
 const GetAssistance = () => {
   const pageTitle = t("pageTitle.getAssistance")
