@@ -5,6 +5,7 @@ import Layout from "../layouts/application"
 import { t, InfoCardGrid, PageHeader, MarkdownSection } from "@bloom-housing/ui-components"
 import { UserStatus } from "../lib/constants"
 import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
+import RenderIf from "../src/RenderIf"
 import Resource from "../src/Resource"
 import HowItWorks from "../page_content/resources/HowItWorks.md"
 import SMCHousingSearch from "../page_content/resources/SMCHousingSearch.md"
@@ -17,6 +18,7 @@ import BayArea211 from "../page_content/resources/BayArea211.md"
 import ProjectSentinel from "../page_content/resources/ProjectSentinel.md"
 import HousingChoices from "../page_content/resources/HousingChoices.md"
 import Sidebar from "../page_content/resources/Sidebar.md"
+
 const AdditionalResources = () => {
   const pageTitle = t("pageTitle.additionalResources")
   const subTitle = t("pageDescription.additionalResources")
@@ -80,6 +82,7 @@ const AdditionalResources = () => {
                         </h4>
                       ),
                     },
+                    RenderIf
                   },
                 }}
               >
