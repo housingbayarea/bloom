@@ -4,6 +4,7 @@ import * as path from "path"
 const LANGUAGES = "es,zh,vi"
 const langArray = LANGUAGES.split(",")
 const langTranslated = []
+const ignoreFiles = ["Sidebar.md"]
 
 // run with e.g. ts-node sites/public/scripts/resource-translations-export.ts
 
@@ -58,7 +59,7 @@ function main() {
     // Path 1: sections is null when the RenderIf format hasn't been implemented (aka no translations)
     if (sections === null) {
       //Path 1a: Go to next file (sidebar not in resource card format)
-      if (!translationTemplate || file === "Sidebar.md") continue
+      if (!translationTemplate || ignoreFiles.includes(file)) continue
       //Path 1b: Write english content to csv, write empty rows for all other languages
       else {
         writeStream.write(`${file},`)

@@ -91,3 +91,6 @@ test-coverage/
 
 # redis dumps
 dump.rdb
+
+# internal-use script outputs
+resource-translations-export.csv
