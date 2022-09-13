@@ -82,7 +82,7 @@ const AdditionalResources = () => {
                         </h4>
                       ),
                     },
-                    RenderIf
+                    RenderIf,
                   },
                 }}
               >
