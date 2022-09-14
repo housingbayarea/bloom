@@ -4,7 +4,7 @@
 
   <p class="markdown__lead">Find high-quality, affordable rental housing opportunities located throughout San José on the listing page of this Housing Portal.</p>
 
-  The simplest way to find opportunities that are accepting applications is to visit the affordable housing portal within the area you wish to live.
+  The simplest way to find opportunities that are accepting applications is to [visit the affordable housing portal](/listings) within the area you wish to live.
 
   <SubSection closedLabel="Read more about how to find listings" openLabel="Read less about how to find listings">
 
