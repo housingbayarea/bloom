@@ -1,6 +1,4 @@
-Alameda County Housing Portal is a platform to connect renters and property managers to subsidized affordable housing opportunities.  At Alameda County Housing Portal your privacy is important to us, so we strive to be transparent about how we collect, use and share information about you. This policy is intended to help you understand:
-
-
+Alameda County Housing Portal is a platform to connect renters and property managers to subsidized affordable housing opportunities. At Alameda County Housing Portal your privacy is important to us, so we strive to be transparent about how we collect, use and share information about you. This policy is intended to help you understand:
 
 1. [WHAT INFORMATION WE COLLECT](#information-collect)
 2. [HOW WE USE INFORMATION](#information-use)
@@ -12,9 +10,9 @@ Alameda County Housing Portal is a platform to connect renters and property mana
 
 <br />
 
-Please take a moment to read this privacy policy carefully so that you can understand your rights and our responsibilities regarding your information. This policy also explains your choices about how we use information about you. By using the Service, you consent to the collection and use of information in accordance with this Privacy Policy. 
+Please take a moment to read this privacy policy carefully so that you can understand your rights and our responsibilities regarding your information. This policy also explains your choices about how we use information about you. By using the Service, you consent to the collection and use of information in accordance with this Privacy Policy.
 
-This Privacy Policy (this “Privacy Policy”) governs your use of the Alameda County Housing Portal website  (the “Services” or “Site”) which is owned and operated by the County of Alameda (the “Jurisdiction”). The Jurisdiction is sometimes referred to herein as “we,” “us,” or “our” and the applicant, developer, property manager, City, or other user (collectively the “User”) (as defined below) is sometimes referred to as “you,” “your,” or “customer. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms of Service.
+This Privacy Policy (this “Privacy Policy”) governs your use of the Alameda County Housing Portal website (the “Services” or “Site”) which is owned and operated by the County of Alameda (the “Jurisdiction”). The Jurisdiction is sometimes referred to herein as “we,” “us,” or “our” and the applicant, developer, property manager, City, or other user (collectively the “User”) (as defined below) is sometimes referred to as “you,” “your,” or “customer. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms of Service.
 
 <h2 id="information-collect" className="my-5">1. WHAT INFORMATION WE COLLECT</h2>
 
@@ -28,11 +26,11 @@ When you use the Services, you will provide information that could be Personal D
 
 ##### Information We Collect Automatically
 
-We automatically receive and record information from your use of the Services, including but not limited to: Site usage, your IP address, browser type, Internet service provider, referring/exit pages, operating system, date/time stamp, clickstream data, and cookie information. Generally, the Services automatically collect usage information, such as the number and frequency of users of the Services. 
+We automatically receive and record information from your use of the Services, including but not limited to: Site usage, your IP address, browser type, Internet service provider, referring/exit pages, operating system, date/time stamp, clickstream data, and cookie information. Generally, the Services automatically collect usage information, such as the number and frequency of users of the Services.
 
 ##### Cookies.
 
-Cookies are small pieces of information that a website sends to your computer while you are viewing the website. We may use both session cookies (which expire once you close your browser) and persistent cookies (which stay on your computer/mobile phone until you delete them) to provide the Services, and to provide you with a more personal and interactive experience on our Site.  We use cookies to enable our servers to recognize your web browser and tell us how and when you use the Services. Most browsers have an option for turning off the cookie feature, which will prevent your browser from accepting new cookies, as well as (depending on the sophistication of your browser software) allowing you to decide on acceptance of each new cookie in a variety of ways. You will not be able to take advantage of the most attractive features of the Services if you disable your cookies.
+Cookies are small pieces of information that a website sends to your computer while you are viewing the website. We may use both session cookies (which expire once you close your browser) and persistent cookies (which stay on your computer/mobile phone until you delete them) to provide the Services, and to provide you with a more personal and interactive experience on our Site. We use cookies to enable our servers to recognize your web browser and tell us how and when you use the Services. Most browsers have an option for turning off the cookie feature, which will prevent your browser from accepting new cookies, as well as (depending on the sophistication of your browser software) allowing you to decide on acceptance of each new cookie in a variety of ways. You will not be able to take advantage of the most attractive features of the Services if you disable your cookies.
 
 ##### Pixel Tags.
 
@@ -52,11 +50,11 @@ We strive to ensure that we protect your privacy rights as we process your infor
 
 ##### To provide the Services and personalize your experience.
 
-We use information about you to provide the Services to you, including to process applications for services and related transactions with you, authenticate you when you log in, provide customer support, and operate and maintain the Services. 
+We use information about you to provide the Services to you, including to process applications for services and related transactions with you, authenticate you when you log in, provide customer support, and operate and maintain the Services.
 
 ##### For research and development.
 
-We are always looking for ways to make our Services smarter, faster, more secure, integrated and useful to you. In addition, we intend to use the Aggregate Information (as described below) to positively influence housing policy. To that end, we use collective learnings about how people use our Services and feedback provided directly to us to troubleshoot and to identify trends, usage, activity patterns and areas for integration and improvement of the Services. 
+We are always looking for ways to make our Services smarter, faster, more secure, integrated and useful to you. In addition, we intend to use the Aggregate Information (as described below) to positively influence housing policy. To that end, we use collective learnings about how people use our Services and feedback provided directly to us to troubleshoot and to identify trends, usage, activity patterns and areas for integration and improvement of the Services.
 
 ##### To communicate with you about the Services.
 
@@ -72,7 +70,7 @@ We do this to pursue our legitimate interests to understand if the Services are 
 
 ##### Customer support.
 
-We use your information to resolve technical issues you encounter, to respond to your requests for assistance, to analyze crash information, and to repair and improve the Services.  We also use your information to provide requested assistance (either originated from you, or a person acting legitimately on your behalf) and to offer proactive support when necessary.
+We use your information to resolve technical issues you encounter, to respond to your requests for assistance, to analyze crash information, and to repair and improve the Services. We also use your information to provide requested assistance (either originated from you, or a person acting legitimately on your behalf) and to offer proactive support when necessary.
 
 ##### For safety and security.
 
@@ -144,7 +142,7 @@ If you have elected to receive marketing emails from us, we retain information a
 
 ##### Property Managers and Developers.
 
-If you are a property manager or developer using the Services and gain access to another user’s Personal Data, you agree to store and secure that Personal Data in compliance with the standards set forth in this Privacy Policy.  
+If you are a property manager or developer using the Services and gain access to another user’s Personal Data, you agree to store and secure that Personal Data in compliance with the standards set forth in this Privacy Policy.
 
 <h2 id="access-information" className="my-5">5. HOW TO ACCESS AND CONTROL YOUR INFORMATION</h2>
 
@@ -166,7 +164,7 @@ Our Service may contain links to other sites that are not operated by us. If you
 
 ##### Changes to this Privacy Policy.
 
-We will notify you when we change this Privacy Policy. We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your Personal Data, or to the Privacy Policy, we will provide notice to you on the Services or by some other means, such as email. Please review the changes carefully. If you agree to the changes, simply continue to use our Services.  Your continued use of our Services after the revised Privacy Policy has become effective indicates that you have read, understood, and agreed to the current version of this Policy.  If you object to any of the changes to our terms and you no longer wish to use our Services, you may close your account(s). Unless stated otherwise, our current Privacy Policy applies to all information that we have about you and your account. Using our Services after a notice of changes has been communicated to you or published on our Services shall constitute consent to the changed terms or practices.
+We will notify you when we change this Privacy Policy. We may change this Privacy Policy from time to time. If we make significant changes in the way we treat your Personal Data, or to the Privacy Policy, we will provide notice to you on the Services or by some other means, such as email. Please review the changes carefully. If you agree to the changes, simply continue to use our Services. Your continued use of our Services after the revised Privacy Policy has become effective indicates that you have read, understood, and agreed to the current version of this Policy. If you object to any of the changes to our terms and you no longer wish to use our Services, you may close your account(s). Unless stated otherwise, our current Privacy Policy applies to all information that we have about you and your account. Using our Services after a notice of changes has been communicated to you or published on our Services shall constitute consent to the changed terms or practices.
 
 <h2 id="contact" className="my-5">7. CONTACT US</h2>
 
