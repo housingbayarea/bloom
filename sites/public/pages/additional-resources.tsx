@@ -2,7 +2,7 @@ import React, { useEffect, useContext } from "react"
 import Head from "next/head"
 import Markdown from "markdown-to-jsx"
 import Layout from "../layouts/application"
-import { t, InfoCardGrid, PageHeader, MarkdownSection } from "@bloom-housing/ui-components"
+import { t, InfoCardGrid, PageHeader, MarkdownSection, Heading } from "@bloom-housing/ui-components"
 import { UserStatus } from "../lib/constants"
 import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
 import Resource from "../src/Resource"
@@ -104,9 +104,9 @@ const AdditionalResources = () => {
               </InfoCardGrid>
               <section className="info-cards">
                 <header className="info-cards__header">
-                  <h2 className="info-cards__title">
+                  <Heading priority={3} style={"sidebarHeader"}>
                     {t("additionalResources.cityRegionServices.title")}
-                  </h2>
+                  </Heading>
                   <p className="info-cards__subtitle">
                     <a href="https://docs.google.com/document/d/1U6d4KIXAFMMF8E2H-VAi3gpLy71L3Tvm/edit?usp=sharing&ouid=104857760863458372387&rtpof=true&sd=true">
                       {t("additionalResources.cityRegionServices.description")}
