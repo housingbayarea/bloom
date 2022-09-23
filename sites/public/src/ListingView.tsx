@@ -67,6 +67,24 @@ interface ListingProps {
   jurisdiction?: Jurisdiction
 }
 
+const getWhatToExpectContent = (listing: Listing) => {
+  if (listing.whatToExpect) return { content: listing.whatToExpect, expandableContent: null }
+  if (listing.reviewOrderType === ListingReviewOrder.lottery)
+    return {
+      content: t("whatToExpect.lottery"),
+      expandableContent: t("whatToExpect.lotteryReadMore"),
+    }
+  if (listing.listingAvailability === ListingAvailability.openWaitlist)
+    return {
+      content: t("whatToExpect.waitlist"),
+      expandableContent: t("whatToExpect.waitlistReadMore"),
+    }
+  if (listing.reviewOrderType === ListingReviewOrder.firstComeFirstServe)
+    return { content: t("whatToExpect.fcfs"), expandableContent: t("whatToExpect.fcfsReadMore") }
+
+  return null
+}
+
 export const ListingView = (props: ListingProps) => {
   let buildingSelectionCriteria, preferencesSection
   const { listing } = props
@@ -344,25 +362,7 @@ export const ListingView = (props: ListingProps) => {
     return date ? dayjs(date).format(format) : null
   }
 
-  const getWhatToExpectContent = () => {
-    if (listing.whatToExpect) return { content: listing.whatToExpect, expandableContent: null }
-    if (listing.reviewOrderType === ListingReviewOrder.lottery)
-      return {
-        content: t("whatToExpect.lottery"),
-        expandableContent: t("whatToExpect.lotteryReadMore"),
-      }
-    if (listing.listingAvailability === ListingAvailability.openWaitlist)
-      return {
-        content: t("whatToExpect.waitlist"),
-        expandableContent: t("whatToExpect.waitlistReadMore"),
-      }
-    if (listing.reviewOrderType === ListingReviewOrder.firstComeFirstServe)
-      return { content: t("whatToExpect.fcfs"), expandableContent: t("whatToExpect.fcfsReadMore") }
-
-    return null
-  }
-
-  const whatToExpectContent = getWhatToExpectContent()
+  const whatToExpectContent = getWhatToExpectContent(listing)
 
   const applySidebar = () => (
     <>
