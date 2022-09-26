@@ -109,7 +109,7 @@ const Layout = (props) => {
       </div>
 
       <SiteFooter>
-      <FooterSection>
+        <FooterSection>
           <img src="/images/alameda-logo-white.svg" alt="Alameda County" />
         </FooterSection>
         <FooterSection>
