@@ -12,6 +12,7 @@ import {
   ListingAvailability,
   Jurisdiction,
   ApplicationSection,
+  ListingReviewOrder,
 } from "@bloom-housing/backend-core/types"
 import {
   AdditionalFees,
@@ -64,6 +65,24 @@ interface ListingProps {
   listing: Listing
   preview?: boolean
   jurisdiction?: Jurisdiction
+}
+
+const getWhatToExpectContent = (listing: Listing) => {
+  if (listing.whatToExpect) return { content: listing.whatToExpect, expandableContent: null }
+  if (listing.reviewOrderType === ListingReviewOrder.lottery)
+    return {
+      content: t("whatToExpect.lottery"),
+      expandableContent: t("whatToExpect.lotteryReadMore"),
+    }
+  if (listing.listingAvailability === ListingAvailability.openWaitlist)
+    return {
+      content: t("whatToExpect.waitlist"),
+      expandableContent: t("whatToExpect.waitlistReadMore"),
+    }
+  if (listing.reviewOrderType === ListingReviewOrder.firstComeFirstServe)
+    return { content: t("whatToExpect.fcfs"), expandableContent: t("whatToExpect.fcfsReadMore") }
+
+  return null
 }
 
 export const ListingView = (props: ListingProps) => {
@@ -343,6 +362,8 @@ export const ListingView = (props: ListingProps) => {
   const getDateString = (date: Date, format: string) => {
     return date ? dayjs(date).format(format) : null
   }
+
+  const whatToExpectContent = getWhatToExpectContent(listing)
 
   const applySidebar = () => (
     <>
@@ -768,7 +789,8 @@ export const ListingView = (props: ListingProps) => {
             )}
             {lotterySection}
             <ExpandableSection
-              content={listing.whatToExpect}
+              content={whatToExpectContent?.content}
+              expandableContent={whatToExpectContent?.expandableContent}
               strings={{
                 title: t("whatToExpect.label"),
                 readMore: t("t.readMore"),
