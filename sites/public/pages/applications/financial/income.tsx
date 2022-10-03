@@ -92,7 +92,7 @@ const ApplicationIncome = () => {
     if (!validationError) {
       const toSave = { income, incomePeriod }
 
-      conductor.completeSection(3)
+      conductor.completeSection(currentPageSection)
       conductor.currentStep.save(toSave)
       conductor.routeToNextOrReturnUrl()
     }
@@ -212,6 +212,8 @@ const ApplicationIncome = () => {
                 validation={{ required: true }}
                 fields={incomePeriodValues}
                 dataTestId={"app-income-period"}
+                fieldGroupClassName="grid grid-cols-1"
+                fieldClassName="ml-0"
               />
             </fieldset>
           </div>
