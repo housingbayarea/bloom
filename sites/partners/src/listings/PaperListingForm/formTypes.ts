@@ -156,7 +156,6 @@ export const formDefaults: FormListing = {
   urlSlug: undefined,
   showWaitlist: false,
   reviewOrderType: null,
-  listingAvailability: null,
   unitsSummary: [],
   unitsSummarized: {
     unitTypes: [],
