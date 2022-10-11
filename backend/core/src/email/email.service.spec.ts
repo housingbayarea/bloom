@@ -70,7 +70,7 @@ const translationServiceMock = {
               },
               eligible: {
                 fcfs:
-                  "Eligible applicants will be contacted on a first come first serve basis until vacancies are filled.",
+                  "Eligibile applicants will be contacted on a first come first serve basis until vacancies are filled.",
                 fcfsPreference:
                   "Housing preferences, if applicable, will affect first come first serve order.",
                 lottery:
@@ -78,7 +78,7 @@ const translationServiceMock = {
                 lotteryPreference:
                   "Housing preferences, if applicable, will affect lottery rank order.",
                 waitlist:
-                  "Eligible applicants will be placed on the waitlist on a first come first serve basis until waitlist spots are filled.",
+                  "Eligibile applicants will be placed on the waitlist on a first come first serve basis until waitlist spots are filled.",
                 waitlistPreference:
                   "Housing preferences, if applicable, will affect waitlist order.",
                 waitlistContact:
@@ -94,7 +94,6 @@ const translationServiceMock = {
               readHowYouCanPrepare: "Read about how you can prepare for next steps",
               needToMakeUpdates: "Need to make updates?",
               ifYouNeedToUpdateInformation: "",
-
               shouldBeChosen:
                 "Should your application be chosen, be prepared to fill out a more detailed application and provide required supporting documents.",
               subject: "Your Application Confirmation",
