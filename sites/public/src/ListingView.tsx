@@ -66,6 +66,24 @@ interface ListingProps {
   jurisdiction?: Jurisdiction
 }
 
+const getWhatToExpectContent = (listing: Listing) => {
+  if (listing.whatToExpect) return { content: listing.whatToExpect, expandableContent: null }
+  if (listing.reviewOrderType === ListingReviewOrder.lottery)
+    return {
+      content: t("whatToExpect.lottery"),
+      expandableContent: t("whatToExpect.lotteryReadMore"),
+    }
+  if (listing.reviewOrderType === ListingReviewOrder.waitlist)
+    return {
+      content: t("whatToExpect.waitlist"),
+      expandableContent: t("whatToExpect.waitlistReadMore"),
+    }
+  if (listing.reviewOrderType === ListingReviewOrder.firstComeFirstServe)
+    return { content: t("whatToExpect.fcfs"), expandableContent: t("whatToExpect.fcfsReadMore") }
+
+  return null
+}
+
 export const ListingView = (props: ListingProps) => {
   let buildingSelectionCriteria, preferencesSection
   const { listing } = props
@@ -343,6 +361,8 @@ export const ListingView = (props: ListingProps) => {
   const getDateString = (date: Date, format: string) => {
     return date ? dayjs(date).format(format) : null
   }
+
+  const whatToExpectContent = getWhatToExpectContent(listing)
 
   const applySidebar = () => (
     <>
@@ -767,7 +787,8 @@ export const ListingView = (props: ListingProps) => {
             )}
             {lotterySection}
             <ExpandableSection
-              content={listing.whatToExpect}
+              content={whatToExpectContent?.content ?? listing.whatToExpect}
+              expandableContent={whatToExpectContent?.expandableContent}
               strings={{
                 title: t("whatToExpect.label"),
                 readMore: t("t.readMore"),
