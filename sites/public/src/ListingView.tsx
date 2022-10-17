@@ -9,7 +9,6 @@ import {
   ApplicationMethod,
   ApplicationMethodType,
   ListingStatus,
-  ListingAvailability,
   Jurisdiction,
   ApplicationSection,
   ListingReviewOrder,
@@ -74,7 +73,7 @@ const getWhatToExpectContent = (listing: Listing) => {
       content: t("whatToExpect.lottery"),
       expandableContent: t("whatToExpect.lotteryReadMore"),
     }
-  if (listing.listingAvailability === ListingAvailability.openWaitlist)
+  if (listing.reviewOrderType === ListingReviewOrder.waitlist)
     return {
       content: t("whatToExpect.waitlist"),
       expandableContent: t("whatToExpect.waitlistReadMore"),
@@ -150,7 +149,7 @@ export const ListingView = (props: ListingProps) => {
   if (amiValues.length == 1) {
     groupedUnits = getSummariesTable(
       listing.unitsSummarized.byUnitTypeAndRent,
-      listing.listingAvailability
+      listing.reviewOrderType
     )
   } // else condition is handled inline below
 
@@ -432,15 +431,15 @@ export const ListingView = (props: ListingProps) => {
     return (
       <QuantityRowSection
         quantityRows={
-          listing.listingAvailability === ListingAvailability.openWaitlist ? waitlistRow : unitRow
+          listing.reviewOrderType === ListingReviewOrder.waitlist ? waitlistRow : unitRow
         }
         strings={{
           sectionTitle:
-            listing.listingAvailability === ListingAvailability.openWaitlist
+            listing.reviewOrderType === ListingReviewOrder.waitlist
               ? t("listings.waitlist.isOpen")
               : t("listings.vacantUnitsAvailable"),
           description:
-            listing.listingAvailability === ListingAvailability.openWaitlist
+            listing.reviewOrderType === ListingReviewOrder.waitlist
               ? t("listings.waitlist.submitForWaitlist")
               : t("listings.availableUnitsDescription"),
         }}
@@ -567,7 +566,7 @@ export const ListingView = (props: ListingProps) => {
               })
 
               groupedUnits = byAMI
-                ? getSummariesTable(byAMI.byUnitType, listing.listingAvailability)
+                ? getSummariesTable(byAMI.byUnitType, listing.reviewOrderType)
                 : []
 
               return (
@@ -788,7 +787,7 @@ export const ListingView = (props: ListingProps) => {
             )}
             {lotterySection}
             <ExpandableSection
-              content={whatToExpectContent?.content}
+              content={whatToExpectContent?.content ?? listing.whatToExpect}
               expandableContent={whatToExpectContent?.expandableContent}
               strings={{
                 title: t("whatToExpect.label"),
