@@ -4855,9 +4855,6 @@ export interface Listing {
   reviewOrderType?: ListingReviewOrder
 
   /**  */
-  listingAvailability?: ListingAvailability
-
-  /**  */
   showWaitlist: boolean
 
   /**  */
@@ -5294,9 +5291,6 @@ export interface ListingCreate {
   reviewOrderType?: ListingReviewOrder
 
   /**  */
-  listingAvailability?: ListingAvailability
-
-  /**  */
   applicationMethods: ApplicationMethodCreate[]
 
   /**  */
@@ -5692,9 +5686,6 @@ export interface ListingUpdate {
 
   /**  */
   reviewOrderType?: ListingReviewOrder
-
-  /**  */
-  listingAvailability?: ListingAvailability
 
   /**  */
   id?: string
@@ -6285,11 +6276,7 @@ export enum ListingStatus {
 export enum ListingReviewOrder {
   "lottery" = "lottery",
   "firstComeFirstServe" = "firstComeFirstServe",
-}
-
-export enum ListingAvailability {
-  "availableUnits" = "availableUnits",
-  "openWaitlist" = "openWaitlist",
+  "waitlist" = "waitlist",
 }
 
 export enum ListingEventType {
