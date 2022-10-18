@@ -104,7 +104,7 @@ const AdditionalResources = () => {
               </InfoCardGrid>
               <section className="info-cards">
                 <header className="info-cards__header">
-                  <Heading priority={2} style={"sidebarHeader"} className={"text-tiny"}>
+                  <Heading priority={2} styleType="underlineWeighted" className={"text-tiny"}>
                     {t("additionalResources.cityRegionServices.title")}
                   </Heading>
                   <p className="info-cards__subtitle">
