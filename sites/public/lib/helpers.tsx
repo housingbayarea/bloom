@@ -192,7 +192,7 @@ export const untranslateMultiselectQuestion = (
           if (selectedOption) {
             option.key = selectedOption.untranslatedText ?? selectedOption.text
           } else if (question.optOutText === option.key) {
-            option.key = question.untranslatedOptoutText ?? question.optOutText
+            option.key = question.untranslatedOptOutText ?? question.optOutText
           }
 
           if (option.extraData) {

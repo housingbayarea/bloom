@@ -58,7 +58,7 @@ class MultiselectQuestion {
   @Expose()
   @IsString({ groups: [ValidationsGroupsEnum.default] })
   @IsOptional({ groups: [ValidationsGroupsEnum.default] })
-  untranslatedOptoutText?: string
+  untranslatedOptOutText?: string
 
   @Column({ type: "text", nullable: true })
   @Expose()

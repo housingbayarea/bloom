@@ -1638,7 +1638,7 @@ export class MultiselectQuestionsService {
   /**
    * Get multiselect question by id
    */
-  retrieve1(
+  retrieveListings(
     params: {
       /**  */
       multiselectQuestionId: string
@@ -4545,7 +4545,7 @@ export interface MultiselectQuestion {
   untranslatedText?: string
 
   /**  */
-  untranslatedOptoutText?: string
+  untranslatedOptOutText?: string
 
   /**  */
   subText?: string
@@ -5950,7 +5950,7 @@ export interface MultiselectQuestionCreate {
   untranslatedText?: string
 
   /**  */
-  untranslatedOptoutText?: string
+  untranslatedOptOutText?: string
 
   /**  */
   subText?: string
@@ -5988,7 +5988,7 @@ export interface MultiselectQuestionUpdate {
   untranslatedText?: string
 
   /**  */
-  untranslatedOptoutText?: string
+  untranslatedOptOutText?: string
 
   /**  */
   subText?: string

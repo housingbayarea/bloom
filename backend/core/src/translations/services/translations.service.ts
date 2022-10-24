@@ -99,7 +99,7 @@ export class TranslationsService extends AbstractServiceFactory<
     for (let i = 0; i < listing.listingMultiselectQuestions?.length; i++) {
       listing.listingMultiselectQuestions[i].multiselectQuestion.untranslatedText =
         listing.listingMultiselectQuestions[i].multiselectQuestion.text
-      listing.listingMultiselectQuestions[i].multiselectQuestion.untranslatedOptoutText =
+      listing.listingMultiselectQuestions[i].multiselectQuestion.untranslatedOptOutText =
         listing.listingMultiselectQuestions[i].multiselectQuestion.optOutText
       pathsToFilter.push(`listingMultiselectQuestions[${i}].multiselectQuestion.text`)
       pathsToFilter.push(`listingMultiselectQuestions[${i}].multiselectQuestion.description`)
