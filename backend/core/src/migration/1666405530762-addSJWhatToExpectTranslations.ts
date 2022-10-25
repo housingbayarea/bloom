@@ -25,10 +25,12 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
           "Las preferencias para la vivienda, si corresponden, alterarán el orden de postulación.",
         lottery:
           "Una vez finalizado el período de solicitud, los solicitantes elegibles se ordenarán según el resultado de la lotería.",
-        lotteryPreference: "Las preferencias para la vivienda, si corresponden, alterarán el orden resultante de la lotería.",
+        lotteryPreference:
+          "Las preferencias para la vivienda, si corresponden, alterarán el orden resultante de la lotería.",
         waitlist:
           "Eligibile applicants will be placed on the waitlist on a first come first serve basis until waitlist spots are filled.",
-        waitlistPreference: "Las preferencias para la vivienda, si corresponden, alterarán el orden en la lista de espera.",
+        waitlistPreference:
+          "Las preferencias para la vivienda, si corresponden, alterarán el orden en la lista de espera.",
         waitlistContact:
           "Es posible que se comuniquen con usted mientras esté en la lista de espera para confirmar que desea permanecer en ella.",
       },
@@ -51,21 +53,15 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
     sjChinese.confirmation = {
       ...sjChinese.confirmation,
       eligible: {
-        fcfs:
-          "我們將按照「先申請先入住」的原則聯絡合格的申請人，直至空置房被入住為止。",
-        fcfsPreference:
-          "住房優惠（如果適用）將影響「先申請先入住」順序。",
-        lottery:
-          "一旦申請期結束，合格的申請人將按抽籤名次進行排序。",
+        fcfs: "我們將按照「先申請先入住」的原則聯絡合格的申請人，直至空置房被入住為止。",
+        fcfsPreference: "住房優惠（如果適用）將影響「先申請先入住」順序。",
+        lottery: "一旦申請期結束，合格的申請人將按抽籤名次進行排序。",
         lotteryPreference: "住房優惠（如果適用）將影響抽籤名次。",
-        waitlist:
-          "合格的申請人將按照「先申請先入住」的原則進入候補名單，直至候補名單額滿為止。",
+        waitlist: "合格的申請人將按照「先申請先入住」的原則進入候補名單，直至候補名單額滿為止。",
         waitlistPreference: "住房優惠（如果適用）將影響候補名單的順序。",
-        waitlistContact:
-          "我們可能會在您進入候補名單時與您聯絡，確認您希望繼續留在候補名單上。",
+        waitlistContact: "我們可能會在您進入候補名單時與您聯絡，確認您希望繼續留在候補名單上。",
       },
-      interview:
-        "如果我們聯絡您要求進行面談，您需要填寫更詳細的申請表並提供證明文件。",
+      interview: "如果我們聯絡您要求進行面談，您需要填寫更詳細的申請表並提供證明文件。",
     }
 
     await queryRunner.query(
@@ -89,10 +85,12 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
           "Các ưu tiên về nhà ở, nếu có, sẽ làm thay đổi thứ tự ai đến trước được phục vụ trước.",
         lottery:
           "Sau khi thời gian nộp đơn kết thúc, những người nộp đơn hội đủ điều kiện sẽ được sắp xếp theo thứ tự dựa trên xếp hạng rút thăm.",
-        lotteryPreference: "Các ưu tiên về nhà ở, nếu có, sẽ làm thay đổi thứ tự xếp hạng rút thăm.",
+        lotteryPreference:
+          "Các ưu tiên về nhà ở, nếu có, sẽ làm thay đổi thứ tự xếp hạng rút thăm.",
         waitlist:
           "Những người nộp đơn hội đủ điều kiện sẽ được ghi tên vào danh sách chờ trên cơ sở ai đến trước được phục vụ trước cho đến khi các vị trí trong danh sách chờ được lấp đầy.",
-        waitlistPreference: "Các ưu tiên về nhà ở, nếu có, sẽ làm thay đổi thứ tự trong danh sách chờ.Housing preferences, if applicable, will affect waitlist order.",
+        waitlistPreference:
+          "Các ưu tiên về nhà ở, nếu có, sẽ làm thay đổi thứ tự trong danh sách chờ.Housing preferences, if applicable, will affect waitlist order.",
         waitlistContact:
           "Chúng tôi có thể liên lạc với quý vị khi quý vị đang ở trong danh sách chờ để xác nhận rằng quý vị muốn tiếp tục ở lại trong danh sách chờ.",
       },
