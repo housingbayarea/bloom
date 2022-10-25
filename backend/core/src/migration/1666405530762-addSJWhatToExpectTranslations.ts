@@ -10,7 +10,7 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
     )
 
     let sjSpanish = await queryRunner.query(
-      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($1)`,
+      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($2)`,
       [sanJoseJurisdiction, Language.es]
     )
 
@@ -42,7 +42,7 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
     )
 
     let sjChinese = await queryRunner.query(
-      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($1)`,
+      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($2)`,
       [sanJoseJurisdiction, Language.zh]
     )
 
@@ -74,7 +74,7 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
     )
 
     let sjVietnamese = await queryRunner.query(
-      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($1)`,
+      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($2)`,
       [sanJoseJurisdiction, Language.vi]
     )
 
