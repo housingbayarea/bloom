@@ -28,7 +28,7 @@ export class addSJWhatToExpectTranslations1666405530762 implements MigrationInte
         lotteryPreference:
           "Las preferencias para la vivienda, si corresponden, alterarán el orden resultante de la lotería.",
         waitlist:
-          "Eligibile applicants will be placed on the waitlist on a first come first serve basis until waitlist spots are filled.",
+          "Los solicitantes elegibles se colocarán en la lista de espera por orden de llegada hasta que se llenen los lugares de la lista de espera.",
         waitlistPreference:
           "Las preferencias para la vivienda, si corresponden, alterarán el orden en la lista de espera.",
         waitlistContact:
