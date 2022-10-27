@@ -473,7 +473,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
           "Al menos un miembro de mi hogar vive en la Ciudad de San Mateo",
           "Al menos un miembro de mi hogar trabaja en la Ciudad de San Mateo",
         ],
-        text: "Vive o trabaja en la Ciudad de San Mateo",
+        text: "Vivir o trabajar en la Ciudad de San Mateo",
         opt_out_text: null,
       },
       {
@@ -569,7 +569,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
           "Sí, soy un inquilino registrado de la ciudad de San Mateo",
           "No, no soy un inquilino registrado de la ciudad de San Mateo",
         ],
-        text: "Inquilino Registrado de la Ciudad de San Mateo",
+        text: "Inquilino registrado de la ciudad de San Mateo",
         opt_out_text: "No quiero esta preferencia",
       },
       {
@@ -1034,7 +1034,8 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
         opt_out_text: null,
       },
       {
-        options: ["我家至少有一名成员住在圣马特奥市", "我的至少一名家庭成员在圣马特奥市工作"],
+        options: ["我的至少一名家庭成员住在圣马特奥市", "我的至少一名家庭成员在圣马特奥市工作"],
+
         text: "在圣马特奥市生活或工作",
         opt_out_text: null,
       },
@@ -1121,7 +1122,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
       },
 
       {
-        options: ["是的,我是圣马特奥市注册租户", "不,我不是圣马特奥市注册租户"],
+        options: ["是的，我是圣马特奥市注册租户", "不，我不是圣马特奥市注册租户"],
         text: "圣马特奥市注册租户",
         opt_out_text: "我不想要这个偏好",
       },
@@ -1165,16 +1166,16 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
         opt_out_text: null,
       },
       {
-        options: ["Neighborhood Residents Preference"],
-        text: "Mga Neighborhood Residents",
+        options: ["Kagustuhan ng mga Naninirahan sa Kapitbahayan"],
+        text: "Mga Naninirahan sa Kapitbahayan",
         opt_out_text: null,
       },
       {
         options: [
-          "Tumira sa Lungsod ng Oakland Preference",
-          "Magtrabaho sa Lungsod ng Oakland Preference",
+          "Nakatira sa Lungsod ng Oakland Preference",
+          "Magtrabaho sa City of Oakland Preference",
         ],
-        text: "Live/Trabaho sa Oakland",
+        text: "Nakatira/Nagtatrabaho sa Oakland",
         opt_out_text: null,
       },
       {
@@ -1204,7 +1205,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
       },
       {
         options: [
-          "Residency",
+          "Paninirahan",
           "Pamilya",
           "Beterano",
           "Walang tirahan",
@@ -1212,7 +1213,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
         ],
         text: "OAKLAND HOUSING AUTHORITY PROJECT-BASED VOUCHER",
         opt_out_text:
-          "Ayaw kong isaalang-alang para sa mga unit ng voucher na nakabatay sa proyekto ng Oakland Housing Authority",
+          "Hindi ko gustong isaalang-alang para sa mga unit ng voucher na nakabatay sa proyekto ng Oakland Housing Authority",
       },
       {
         options: [
@@ -1280,7 +1281,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
         opt_out_text: null,
       },
       {
-        options: ["Displaced Household Preference"],
+        options: ["Inilipat na Kagustuhan sa Sambahayan"],
         text: "Oakland Displaced Household",
         opt_out_text: null,
       },
@@ -1415,7 +1416,7 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
       },
       {
         options: ["Interesado ako"],
-        text: "Mga Oportunidad sa Pabahay para sa mga Taong may AIDS (HOPWA)",
+        text: "Mga Pagkakataon sa Pabahay para sa mga Taong may AIDS (HOPWA)",
         opt_out_text: "Hindi ako interesado",
       },
       {
@@ -1458,7 +1459,8 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
           return !match
         }
       }
-    } else if (app.preferences?.length) {
+    }
+    if (app.preferences?.length) {
       for (const preference of app.preferences) {
         const match = this.matchesEnglishVersion(preference.key)
         if (!match) {
@@ -1483,91 +1485,95 @@ export class multiselectTranslationFix1666583981588 implements MigrationInterfac
             a.programs,
             a.preferences
         FROM applications a
+          LEFT JOIN listings l ON l.id = a.listing_id
         WHERE (a.programs != '[]' OR a.preferences != '[]')
-            AND a.language != 'en'
             AND a.created_at > '06/01/2022'
-        ORDER BY created_at desc
+            AND l.name not like '%test%' AND l.name not like '%Test%'
+        ORDER BY a.created_at desc
     `)
 
     const promiseArray: Promise<any>[] = []
     for (const app of applications) {
       // check to see if the data needs to be untranslated
       if (this.needToUntranslate(app)) {
-        // update the program/preference data with the untranslated strings
+        // update the program/preference data
         promiseArray.push(this.untranslate(app, queryRunner))
       }
     }
     await Promise.all(promiseArray)
   }
 
-  public untranslate(app: any, queryRunner: QueryRunner) {
-    const translationSet = this.translations[app.language as string]
+  public findTranslation(key: string, keyIndex: number) {
+    for (const translationSetKey in this.translations) {
+      // loop through all possible translation values
+      const translationSet = this.translations[translationSetKey]
+
+      if (keyIndex === -1) {
+        // if we searching for a top level key
+        const topLevelIndex = translationSet.findIndex((translation) => translation.text === key)
+        if (topLevelIndex !== -1) {
+          return { topLevelIndex }
+        }
+      } else {
+        // if we are searching for an option key
+        const translation = translationSet[keyIndex]
+        if (translation.options?.length) {
+          let useOptOut = false
+          const optionIndex = translation.options.findIndex((option) => option === key)
+          if (optionIndex === -1 && translation.opt_out_text === key) {
+            // if we haven't found the option in this set, check the opt out text
+            useOptOut = true
+          }
+          if (optionIndex !== -1 || useOptOut) {
+            return { topLevelIndex: keyIndex, optionIndex, useOptOut }
+          }
+        }
+      }
+    }
+    return { topLevelIndex: -1, optionIndex: -1, useOptOut: false }
+  }
+
+  public untranslateHelper(dataSet: any[], app: any) {
+    if (!dataSet?.length) {
+      return []
+    }
     const englishTranslations = this.translations["en"]
-    const updatePrograms = app.programs.map((program) => {
-      const toReturn: any = { ...program }
-      const translationIndex = translationSet.findIndex(
-        (translation) => translation.text === program.key
-      )
-      if (translationIndex === -1) {
+    return dataSet.map((data) => {
+      const toReturn: any = { ...data }
+      const { topLevelIndex: keyIndex } = this.findTranslation(data.key, -1)
+
+      if (keyIndex === -1) {
         console.error(app)
         throw new Error("no key translation found")
       }
-      toReturn.key = englishTranslations[translationIndex].text
+      toReturn.key = englishTranslations[keyIndex].text
 
-      program.options.forEach((option, index) => {
-        let useOptOut = false
-        const optionTranslationIndex = translationSet[translationIndex].options.findIndex(
-          (translation) => translation === option.key
-        )
+      if (data.options?.length) {
+        data.options.forEach((option, index) => {
+          const { topLevelIndex, optionIndex, useOptOut } = this.findTranslation(
+            option.key,
+            keyIndex
+          )
 
-        if (optionTranslationIndex === -1) {
-          if (translationSet[translationIndex].opt_out_text === option.key) {
-            useOptOut = true
-          } else {
+          if (optionIndex === -1 && !useOptOut) {
             console.error(app)
             throw new Error("no option translation found")
           }
-        }
 
-        toReturn.options[index].key = useOptOut
-          ? englishTranslations[translationIndex].opt_out_text
-          : englishTranslations[translationIndex].options[optionTranslationIndex]
-      })
+          toReturn.options[index].key = useOptOut
+            ? englishTranslations[topLevelIndex].opt_out_text
+            : englishTranslations[topLevelIndex].options[optionIndex]
 
-      return toReturn
-    })
-    const updatePreferences = app.preferences.map((preference) => {
-      const toReturn: any = { ...preference }
-      const translationIndex = translationSet.findIndex(
-        (translation) => translation.text === preference.key
-      )
-      if (translationIndex === -1) {
-        console.error(app)
-        throw new Error("no key translation found")
+          return toReturn
+        })
       }
-      toReturn.key = englishTranslations[translationIndex].text
-
-      preference.options.forEach((option, index) => {
-        let useOptOut = false
-        const optionTranslationIndex = translationSet[translationIndex].options.findIndex(
-          (translation) => translation === option.key
-        )
-        if (optionTranslationIndex === -1) {
-          if (translationSet[translationIndex].opt_out_text === option.key) {
-            useOptOut = true
-          } else {
-            console.error(app)
-            throw new Error("no option translation found")
-          }
-        }
-
-        toReturn.options[index].key = useOptOut
-          ? englishTranslations[translationIndex].opt_out_text
-          : englishTranslations[translationIndex].options[optionTranslationIndex]
-      })
-
       return toReturn
     })
+  }
+
+  public untranslate(app: any, queryRunner: QueryRunner) {
+    const updatePrograms = this.untranslateHelper(app.programs, app)
+    const updatePreferences = this.untranslateHelper(app.preferences, app)
 
     return queryRunner.query(
       `
