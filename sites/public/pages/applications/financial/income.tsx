@@ -78,6 +78,7 @@ const ApplicationIncome = () => {
 
   const onSubmit = (data) => {
     const { income, incomePeriod } = data
+    const incomeValue = income.replaceAll(",", "")
 
     // TODO: toggle this verification off at the jurisdiction level with a feature flag
     // Skip validation of total income if the applicant has income vouchers.
@@ -90,7 +91,7 @@ const ApplicationIncome = () => {
     setIncomeError(validationError)
 
     if (!validationError) {
-      const toSave = { income, incomePeriod }
+      const toSave = { income: incomeValue, incomePeriod }
 
       conductor.completeSection(currentPageSection)
       conductor.currentStep.save(toSave)
