@@ -50,7 +50,7 @@ const ApplicationConfirmation = () => {
       default:
         return { text: "" }
     }
-  }, [listing])
+  }, [listing, router.locale])
 
   useEffect(() => {
     pushGtmEvent<PageView>({
