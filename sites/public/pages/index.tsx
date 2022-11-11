@@ -16,9 +16,19 @@ import Layout from "../layouts/application"
 import { ConfirmationModal } from "../src/ConfirmationModal"
 import { MetaTags } from "../src/MetaTags"
 import { fetchJurisdictionByName } from "../lib/hooks"
+import Markdown from "markdown-to-jsx"
+import RenderIf from "../src/RenderIf"
 
 interface IndexProps {
   jurisdiction: Jurisdiction
+}
+
+const getHowItWorks = async (jurisdiction: string) => {
+  return import(
+    `../page_content/jurisdiction_overrides/${jurisdiction
+      .toLowerCase()
+      .replace(" ", "_")}/homepage_how_it_works.md`
+  )
 }
 
 export default function Home(props: IndexProps) {
@@ -28,6 +38,7 @@ export default function Home(props: IndexProps) {
   }
   const { profile } = useContext(AuthContext)
   const [alertInfo, setAlertInfo] = useState(blankAlertInfo)
+  const [howItWorksContent, setHowItWorksContent] = useState("")
 
   useEffect(() => {
     pushGtmEvent<PageView>({
@@ -36,6 +47,16 @@ export default function Home(props: IndexProps) {
       status: profile ? UserStatus.LoggedIn : UserStatus.NotLoggedIn,
     })
   }, [profile])
+
+  useEffect(() => {
+    const loadPageContent = async () => {
+      const privacy = await getHowItWorks(process.env.jurisdictionName || "")
+      setHowItWorksContent(privacy.default)
+    }
+    loadPageContent().catch(() => {
+      console.log("homepage how it work section doesn't exist")
+    })
+  }, [])
 
   const heroTitle = (
     <>
@@ -72,7 +93,7 @@ export default function Home(props: IndexProps) {
             <ActionBlock
               className="flex-1"
               header={t("welcome.signUp")}
-              icon={<Icon size="3xl" symbol="mailThin" />}
+              icon={<Icon size="3xl" symbol="envelope" />}
               actions={[
                 <LinkButton key={"sign-up"} href={props.jurisdiction.notificationsSignUpURL}>
                   {t("welcome.signUpToday")}
@@ -83,7 +104,7 @@ export default function Home(props: IndexProps) {
           <ActionBlock
             className="flex-1"
             header={t("welcome.seeMoreOpportunitiesTruncated")}
-            icon={<Icon size="3xl" symbol="building" />}
+            icon={<Icon size="3xl" symbol="house" />}
             actions={[
               <LinkButton href="/additional-resources" key={"additional-resources"}>
                 {t("welcome.viewAdditionalHousingTruncated")}
@@ -91,6 +112,52 @@ export default function Home(props: IndexProps) {
             ]}
           />
         </div>
+      </div>
+      <div className="homepage-extra bg-gray-100 px-4 pb-16">
+        <ActionBlock
+          className="pb-0 -mb-1"
+          header={t("welcome.howDoesItWork")}
+          icon={<Icon size="3xl" symbol="frontDoor" />}
+          actions={[]}
+        />
+
+        <p className="text-center">{t("welcome.learnHowToApply")}</p>
+
+        <div className="markdown max-w-7xl">
+          <Markdown
+            options={{
+              overrides: {
+                RenderIf,
+                ol: {
+                  component: ({ ...props }) => (
+                    <ol {...props} className="process-list has-horizontal-layout" />
+                  ),
+                },
+                h4: {
+                  component: ({ children, ...props }) => (
+                    <h4
+                      {...props}
+                      className="font-alt-sans font-semibold text-base text-black mb-1 mt-0"
+                    >
+                      {children}
+                    </h4>
+                  ),
+                },
+                p: {
+                  component: ({ children, ...props }) => (
+                    <p {...props} className="text-gray-700 text-sm mt-3 mb-2">
+                      {children}
+                    </p>
+                  ),
+                },
+              },
+            }}
+          >
+            {howItWorksContent}
+          </Markdown>
+        </div>
+
+        <LinkButton href="/how-it-works">{t("welcome.readAboutHowItWorks")}</LinkButton>
       </div>
       <ConfirmationModal
         setSiteAlertMessage={(alertMessage, alertType) => setAlertInfo({ alertMessage, alertType })}
