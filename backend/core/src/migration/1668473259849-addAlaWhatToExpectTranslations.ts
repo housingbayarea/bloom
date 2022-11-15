@@ -131,7 +131,6 @@ export class addAlaWhatToExpectTranslations1668473259849 implements MigrationInt
       },
       interview:
         "Kapag tinawagan ka para sa isang interbyu, hihilingin sa inyo na sagutan nang mas detalyado ang aplikasyon at magbigay ng karagdagang mga dokumento.",
-      
     }
 
     await queryRunner.query(
