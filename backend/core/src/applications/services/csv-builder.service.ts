@@ -99,6 +99,9 @@ export class CsvBuilder {
       })
     })
 
+    // this covers the case where a header has a comma or a double quote in its text
+    // we use the csv spec and escape the comma by wrapping the whole thing in double quotes
+    // we use the csv spec and escape the double quotes by use a second set of double quotes
     let csvString = headers.reduce((accumulator, curr) => {
       return `${accumulator}${accumulator.length ? "," : ""}"${curr.replace(/"/g, `""`)}"`
     }, "")
