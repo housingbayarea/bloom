@@ -99,7 +99,9 @@ export class CsvBuilder {
       })
     })
 
-    let csvString = headers.join(",")
+    let csvString = headers.reduce((accumulator, curr) => {
+      return `${accumulator}${accumulator.length ? "," : ""}"${curr.replace(/"/g, `""`)}"`
+    }, "")
     csvString += "\n"
 
     // turn rows into csv format
