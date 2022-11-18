@@ -51,7 +51,7 @@ describe("CSVBuilder", () => {
 
   it("create CSV with escaped double quotes", () => {
     const response = service.buildFromIdIndex({ 1: { foo: '"', bar: "foo" } })
-    expect(response).toBe('"foo","bar"\n"\\"","foo"\n')
+    expect(response).toBe('"foo","bar"\n"""","foo"\n')
   })
 
   it("create CSV with comma in value", () => {
