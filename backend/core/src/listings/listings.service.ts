@@ -150,7 +150,21 @@ export class ListingsService {
 
   async findOne(listingId: string, lang: Language = Language.en, view = "full") {
     const qb = getView(this.listingRepository.createQueryBuilder("listings"), view).getViewQb()
-    const result = await qb.where("listings.id = :id", { id: listingId }).getOne()
+    const fullListingDataQuery = qb.where("listings.id = :id", { id: listingId }).getOne()
+
+    const fullUnitDataQuery = this.listingRepository
+      .createQueryBuilder("listings")
+      .select("listings.id")
+      .leftJoinAndSelect("listings.units", "units")
+      .leftJoinAndSelect("units.amiChartOverride", "amiChartOverride")
+      .leftJoinAndSelect("units.unitType", "unitTypeRef")
+      .leftJoinAndSelect("units.unitRentType", "unitRentType")
+      .leftJoinAndSelect("units.priorityType", "priorityType")
+      .leftJoinAndSelect("units.amiChart", "amiChart")
+      .getOne()
+
+    const [result, unitData] = await Promise.all([fullListingDataQuery, fullUnitDataQuery])
+    result.units = unitData.units
 
     if (!result) {
       throw new NotFoundException()
