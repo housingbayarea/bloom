@@ -2,7 +2,6 @@ import { Inject, Injectable, NotFoundException, Scope } from "@nestjs/common"
 import { InjectRepository } from "@nestjs/typeorm"
 import { Pagination } from "nestjs-typeorm-paginate"
 import { In, Repository } from "typeorm"
-import { Interval } from "@nestjs/schedule"
 import { Listing } from "./entities/listing.entity"
 import { getView } from "./views/view"
 import { summarizeUnits, summarizeUnitsByTypeAndRent } from "../shared/units-transformations"
@@ -67,8 +66,17 @@ export class ListingsService {
       .getViewQb()
       .addInnerFilteredQuery(innerFilteredQuery)
       .addOrderConditions(params.orderBy, params.orderDir)
-      .addOrderBy("units.max_occupancy", "ASC", "NULLS LAST")
       .getManyPaginated()
+
+    if (!params.view || params.view === "full") {
+      const promiseArray = listingsPaginated.items.map((listing) =>
+        this.getUnitsForListing(listing.id)
+      )
+      const units = await Promise.all(promiseArray)
+      listingsPaginated.items.forEach((listing, index) => {
+        listing.units = units[index].units
+      })
+    }
 
     return {
       ...listingsPaginated,
@@ -101,8 +109,12 @@ export class ListingsService {
 
   async update(listingDto: ListingUpdateDto) {
     const qb = this.getFullyJoinedQueryBuilder()
-    qb.where("listings.id = :id", { id: listingDto.id })
-    const listing = await qb.getOne()
+    const fullListingDataQuery = qb.where("listings.id = :id", { id: listingDto.id }).getOne()
+
+    const fullUnitDataQuery = this.getUnitsForListing(listingDto.id)
+
+    const [listing, unitData] = await Promise.all([fullListingDataQuery, fullUnitDataQuery])
+    listing.units = unitData.units
 
     if (!listing) {
       throw new NotFoundException()
@@ -152,16 +164,7 @@ export class ListingsService {
     const qb = getView(this.listingRepository.createQueryBuilder("listings"), view).getViewQb()
     const fullListingDataQuery = qb.where("listings.id = :id", { id: listingId }).getOne()
 
-    const fullUnitDataQuery = this.listingRepository
-      .createQueryBuilder("listings")
-      .select("listings.id")
-      .leftJoinAndSelect("listings.units", "units")
-      .leftJoinAndSelect("units.amiChartOverride", "amiChartOverride")
-      .leftJoinAndSelect("units.unitType", "unitTypeRef")
-      .leftJoinAndSelect("units.unitRentType", "unitRentType")
-      .leftJoinAndSelect("units.priorityType", "priorityType")
-      .leftJoinAndSelect("units.amiChart", "amiChart")
-      .getOne()
+    const fullUnitDataQuery = this.getUnitsForListing(listingId)
 
     const [result, unitData] = await Promise.all([fullListingDataQuery, fullUnitDataQuery])
     result.units = unitData.units
@@ -198,5 +201,19 @@ export class ListingsService {
       id: listingId,
       jurisdictionId,
     })
+  }
+
+  private getUnitsForListing(listingId: string) {
+    return this.listingRepository
+      .createQueryBuilder("listings")
+      .select("listings.id")
+      .leftJoinAndSelect("listings.units", "units")
+      .leftJoinAndSelect("units.amiChartOverride", "amiChartOverride")
+      .leftJoinAndSelect("units.unitType", "unitTypeRef")
+      .leftJoinAndSelect("units.unitRentType", "unitRentType")
+      .leftJoinAndSelect("units.priorityType", "priorityType")
+      .leftJoinAndSelect("units.amiChart", "amiChart")
+      .where("listings.id = :id", { id: listingId })
+      .getOne()
   }
 }
