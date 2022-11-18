@@ -2,7 +2,7 @@
 
 ### Homeless Hotline
 
-If you are homeless and seeking help, please contact the Homeless Helpline (operated by HomeFirst):
+If you are homeless and seeking help, please contact the Homeless Helpline
 
 Call [408-385-2400](tel:+1-408-385-2400)
 
