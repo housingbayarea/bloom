@@ -102,41 +102,6 @@ export class addAlaWhatToExpectTranslations1668473259849 implements MigrationInt
       `UPDATE "translations" SET translations = ($1) where jurisdiction_id = ($2) and language = ($3)`,
       [alaVietnamese, alamedaJurisdiction, Language.vi]
     )
-
-    let alaFilipino = await queryRunner.query(
-      `SELECT translations FROM translations WHERE jurisdiction_id = ($1) AND language = ($2)`,
-      [alamedaJurisdiction, Language.tl]
-    )
-
-    alaFilipino = alaFilipino["0"]["translations"]
-
-    alaFilipino.confirmation = {
-      ...alaFilipino.confirmation,
-      whatHappensNext: "What happens next?",
-      eligible: {
-        fcfs:
-          "Ang mga kwalipikadong aplikante ay kokontakin sa batayang first come first serve hanggang sa mapuno ang bakante.",
-        fcfsPreference:
-          "Ang mga pagpipilian sa pabahay ay makakaapekto sa order ng waitlist, kung naaangkop.",
-        lottery:
-          "Kapag nagsara na ang oras ang aplikasyon, ang mga kwalipikadong aplikante ay ilalagay sa pila batay sa ranggo ng lottery.",
-        lotteryPreference:
-          "Ang mga pagpipilian sa pabahay ay makakaapekto sa order ng waitlist, kung naaangkop.",
-        waitlist:
-          "Ang mga kwalipikadong aplikante ay ilalagay sa waitlist sa batayang first come first serve hanggang sa mapuno ang mga puwesto ng waitlist.",
-        waitlistPreference:
-          "Ang mga pagpipilian sa pabahay ay makakaapekto sa order ng waitlist, kung naaangkop.",
-        waitlistContact:
-          "Maaari kang kontakin habang nasa waitlist para kumpirmahin na gusto mong manatiling nasa waitlist.",
-      },
-      interview:
-        "Kapag tinawagan ka para sa isang interbyu, hihilingin sa inyo na sagutan nang mas detalyado ang aplikasyon at magbigay ng karagdagang mga dokumento.",
-    }
-
-    await queryRunner.query(
-      `UPDATE "translations" SET translations = ($1) where jurisdiction_id = ($2) and language = ($3)`,
-      [alaFilipino, alamedaJurisdiction, Language.tl]
-    )
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {}
