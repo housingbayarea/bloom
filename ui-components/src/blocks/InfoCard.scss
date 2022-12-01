@@ -33,12 +33,12 @@
 }
 
 .info-card__title {
-  color:var(--title-color);
-  text-transform:var(--title-text-transform);
-  font-weight:bold;
-  font-size:var(--title-font-size);
-  font-family:var(--bloom-font-sans);
-  letter-spacing:var(--title-letter-spacing);
+  color: var(--title-color);
+  text-transform: var(--title-text-transform);
+  font-weight: bold;
+  font-size: var(--title-font-size);
+  font-family: var(--title-font-family);
+  letter-spacing: var(--title-letter-spacing);
 }
 
 .info-card__header {
