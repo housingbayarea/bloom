@@ -1,4 +1,19 @@
-export const headScript = () => {
+export const gaFourScript = () => {
+  const gtmKey = process.env.gtmKey
+  if (gtmKey) {
+    return `<script async src="https://www.googletagmanager.com/gtag/js?id=${gtmKey}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date()); gtag('config', '${gtmKey}');
+    </script>
+    `
+  } else {
+    return ""
+  }
+}
+
+export const uaScript = () => {
   const gtmKey = process.env.gtmKey
   if (gtmKey) {
     return `
