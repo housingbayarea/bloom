@@ -325,7 +325,10 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     confirmAccount: async (token) => {
       dispatch(startLoading())
       try {
-        console.log("328:", { isUserServiceAvailable: !!userService, isTokenAvailable: !!token })
+        console.log("328:", {
+          isUserServiceAvailable: !!userService?.confirm,
+          isTokenAvailable: !!token,
+        })
         const response = await userService?.confirm({ body: { token } })
         if (response) {
           dispatch(saveToken({ accessToken: response.accessToken, apiUrl, dispatch }))
@@ -335,6 +338,9 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
             return profile
           }
         }
+        return undefined
+      } catch (e) {
+        console.log("340:", { e })
         return undefined
       } finally {
         dispatch(stopLoading())
