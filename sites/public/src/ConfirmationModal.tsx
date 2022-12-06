@@ -57,15 +57,13 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
           window.scrollTo(0, 0)
         })
         .catch((error) => {
-          if (!error) {
-            const {
-              response: { data },
-            } = error
-            if (data.statusCode === 406) {
-              setSiteAlertMessage(t(`authentication.createAccount.errors.${data.message}`), "alert")
-            } else {
-              setOpenModal(true)
-            }
+          const {
+            response: { data },
+          } = error
+          if (data.statusCode === 406) {
+            setSiteAlertMessage(t(`authentication.createAccount.errors.${data.message}`), "alert")
+          } else {
+            setOpenModal(true)
           }
         })
     }
