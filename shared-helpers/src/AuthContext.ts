@@ -325,6 +325,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     confirmAccount: async (token) => {
       dispatch(startLoading())
       try {
+        console.log("328:", { isUserServiceAvailable: !!userService, isTokenAvailable: !!token })
         const response = await userService?.confirm({ body: { token } })
         if (response) {
           dispatch(saveToken({ accessToken: response.accessToken, apiUrl, dispatch }))
