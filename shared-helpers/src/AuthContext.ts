@@ -341,7 +341,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         return undefined
       } catch (e) {
         console.log("340:", { e })
-        return undefined
+        return e
       } finally {
         dispatch(stopLoading())
       }
