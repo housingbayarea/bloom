@@ -10,7 +10,7 @@ import {
   ConfigProvider,
   AuthProvider,
 } from "@bloom-housing/shared-helpers"
-import { bodyTopTag, pageChangeHandler, gaFourScript, uaScript } from "../src/customScripts"
+import { bodyTopTag, pageChangeHandler, headScript } from "../src/customScripts"
 import { AppSubmissionContext } from "../lib/AppSubmissionContext"
 import ApplicationConductor, {
   loadApplicationFromAutosave,
@@ -63,16 +63,10 @@ function BloomApp({ Component, router, pageProps }: AppProps) {
     if (!document.body.dataset.customScriptsLoaded) {
       router.events.on("routeChangeComplete", pageChangeHandler)
 
-      const uaScriptTag = document.createElement("script")
-      uaScriptTag.textContent = uaScript()
-      if (uaScriptTag.textContent !== "") {
-        document.head.append(uaScriptTag)
-      }
-
-      const gaFourScriptTmpl = document.createElement("template")
-      gaFourScriptTmpl.innerHTML = gaFourScript()
-      if (gaFourScriptTmpl.innerHTML !== "") {
-        document.head.append(gaFourScriptTmpl.content.cloneNode(true))
+      const headScriptTmpl = document.createElement("template")
+      headScriptTmpl.innerHTML = headScript()
+      if (headScriptTmpl.innerHTML !== "") {
+        document.head.append(headScriptTmpl.content.cloneNode(true))
       }
 
       const bodyTopTagTmpl = document.createElement("template")
