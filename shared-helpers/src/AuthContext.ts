@@ -148,16 +148,14 @@ const reducer = createReducer(
         dispatch(saveToken({ apiUrl, accessToken: newAccessToken, dispatch }))
       )
 
-      if (!serviceOptions.axios) {
-        serviceOptions.axios = axiosStatic.create({
-          baseURL: apiUrl,
-          headers: {
-            language: state.language,
-            jurisdictionName: process.env.jurisdictionName,
-            ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
-          },
-        })
-      }
+      serviceOptions.axios = axiosStatic.create({
+        baseURL: apiUrl,
+        headers: {
+          language: state.language,
+          jurisdictionName: process.env.jurisdictionName,
+          ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+        },
+      })
 
       return {
         ...rest,
@@ -328,6 +326,19 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
     confirmAccount: async (token) => {
       dispatch(startLoading())
       try {
+        serviceOptions.axios = axiosStatic.create({
+          baseURL: apiUrl,
+          headers: {
+            language: router.locale,
+            jurisdictionName: process.env.jurisdictionName,
+            appUrl: window.location.origin,
+            ...(state.accessToken && { Authorization: `Bearer ${state.accessToken}` }),
+          },
+          paramsSerializer: (params) => {
+            return qs.stringify(params)
+          },
+        })
+
         const response = await userService?.confirm({ body: { token } })
         if (response) {
           dispatch(saveToken({ accessToken: response.accessToken, apiUrl, dispatch }))
