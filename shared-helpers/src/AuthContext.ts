@@ -147,14 +147,17 @@ const reducer = createReducer(
       const refreshTimer = scheduleTokenRefresh(accessToken, (newAccessToken) =>
         dispatch(saveToken({ apiUrl, accessToken: newAccessToken, dispatch }))
       )
-      serviceOptions.axios = axiosStatic.create({
-        baseURL: apiUrl,
-        headers: {
-          language: state.language,
-          jurisdictionName: process.env.jurisdictionName,
-          ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
-        },
-      })
+
+      if (!serviceOptions.axios) {
+        serviceOptions.axios = axiosStatic.create({
+          baseURL: apiUrl,
+          headers: {
+            language: state.language,
+            jurisdictionName: process.env.jurisdictionName,
+            ...(accessToken && { Authorization: `Bearer ${accessToken}` }),
+          },
+        })
+      }
 
       return {
         ...rest,

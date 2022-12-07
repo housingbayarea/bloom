@@ -48,6 +48,7 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
   }
 
   useEffect(() => {
+    console.log("51:", { serviceOptions })
     if (router?.query?.token && !profile && !!serviceOptions.axios) {
       confirmAccount(router.query.token.toString())
         .then(() => {
