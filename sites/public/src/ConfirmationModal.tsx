@@ -8,6 +8,7 @@ import {
   AlertBox,
   AppearanceSizeType,
 } from "@bloom-housing/ui-components"
+import { serviceOptions } from "@bloom-housing/backend-core/types"
 import { AuthContext } from "@bloom-housing/shared-helpers"
 import { useRouter } from "next/router"
 import { useContext, useEffect, useRef, useState } from "react"
@@ -47,7 +48,7 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
   }
 
   useEffect(() => {
-    if (router?.query?.token && !profile) {
+    if (router?.query?.token && !profile && !!serviceOptions.axios) {
       confirmAccount(router.query.token.toString())
         .then(() => {
           void router.push({
@@ -69,7 +70,7 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
     }
     // This ensures useEffect is called only once
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, profile])
+  }, [router, profile, serviceOptions])
 
   return (
     <Modal

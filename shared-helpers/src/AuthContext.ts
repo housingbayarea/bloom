@@ -64,7 +64,7 @@ type ContextProps = {
     passwordConfirmation: string
   ) => Promise<User | undefined>
   signOut: () => void
-  confirmAccount: (token: string, numberOfRuns?: number) => Promise<User | undefined>
+  confirmAccount: (token: string) => Promise<User | undefined>
   forgotPassword: (email: string) => Promise<string | undefined>
   createUser: (user: UserCreate) => Promise<UserBasic | undefined>
   resendConfirmation: (email: string) => Promise<Status | undefined>
@@ -322,7 +322,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
         dispatch(stopLoading())
       }
     },
-    confirmAccount: async (token, numberOfRuns = 0) => {
+    confirmAccount: async (token) => {
       dispatch(startLoading())
       try {
         const response = await userService?.confirm({ body: { token } })
@@ -335,12 +335,6 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
           }
         }
         return undefined
-      } catch (e) {
-        if (!numberOfRuns && e.message === "please inject yourself instance like axios  ") {
-          // if we failed because axios wasn't ready try again but we don't want an infinite loop
-          return await contextValues.confirmAccount(token, 1)
-        }
-        throw e
       } finally {
         dispatch(stopLoading())
       }
