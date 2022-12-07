@@ -70,7 +70,7 @@ const ConfirmationModal = (props: ConfirmationModalProps) => {
     }
     // This ensures useEffect is called only once
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [router, profile, serviceOptions])
+  }, [router, profile, serviceOptions.axios])
 
   return (
     <Modal
