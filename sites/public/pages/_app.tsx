@@ -10,7 +10,14 @@ import {
   ConfigProvider,
   AuthProvider,
 } from "@bloom-housing/shared-helpers"
-import { bodyTopTag, pageChangeHandler, headScript } from "../src/customScripts"
+import {
+  bodyTopTag,
+  pageChangeHandler,
+  testScript,
+  headScript,
+  testScriptOne,
+  testScriptTwo,
+} from "../src/customScripts"
 import { AppSubmissionContext } from "../lib/AppSubmissionContext"
 import ApplicationConductor, {
   loadApplicationFromAutosave,
@@ -63,17 +70,18 @@ function BloomApp({ Component, router, pageProps }: AppProps) {
     if (!document.body.dataset.customScriptsLoaded) {
       router.events.on("routeChangeComplete", pageChangeHandler)
 
-      const headScriptTmpl = document.createElement("template")
-      headScriptTmpl.innerHTML = headScript()
-      if (headScriptTmpl.innerHTML !== "") {
-        document.head.append(headScriptTmpl.content.cloneNode(true))
-      }
+      // const headScriptTag = document.createElement("script")
+      // headScriptTag.textContent = testScript()
+      // if (headScriptTag.textContent !== "") {
+      document.head.append(testScriptOne())
+      document.head.append(testScriptTwo())
+      // }
 
-      const bodyTopTagTmpl = document.createElement("template")
-      bodyTopTagTmpl.innerHTML = bodyTopTag()
-      if (bodyTopTagTmpl.innerHTML !== "") {
-        document.body.prepend(bodyTopTagTmpl.content.cloneNode(true))
-      }
+      // const bodyTopTagTmpl = document.createElement("template")
+      // bodyTopTagTmpl.innerHTML = bodyTopTag()
+      // if (bodyTopTagTmpl.innerHTML !== "") {
+      //   document.body.prepend(bodyTopTagTmpl.content.cloneNode(true))
+      // }
 
       document.body.dataset.customScriptsLoaded = "true"
     }

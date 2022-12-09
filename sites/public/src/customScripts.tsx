@@ -1,3 +1,27 @@
+export const testScriptOne = () => {
+  const gtmKey = process.env.gtmKey
+  const script = document.createElement("script")
+  script.async = true
+
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${gtmKey}`
+  return script
+}
+
+export const testScriptTwo = () => {
+  const gtmKey = process.env.gtmKey
+  const script = document.createElement("script")
+  script.innerHTML = `
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-92LSKY0KHG');`
+  return script
+}
+
+// export const testScriptTwo = () => {
+// }
+
 export const headScript = () => {
   const gtmKey = process.env.gtmKey
   if (gtmKey) {
