@@ -10,14 +10,7 @@ import {
   ConfigProvider,
   AuthProvider,
 } from "@bloom-housing/shared-helpers"
-import {
-  bodyTopTag,
-  pageChangeHandler,
-  testScript,
-  headScript,
-  testScriptOne,
-  testScriptTwo,
-} from "../src/customScripts"
+import { pageChangeHandler, gaLoadScript, gaCaptureScript, uaScript } from "../src/customScripts"
 import { AppSubmissionContext } from "../lib/AppSubmissionContext"
 import ApplicationConductor, {
   loadApplicationFromAutosave,
@@ -70,18 +63,18 @@ function BloomApp({ Component, router, pageProps }: AppProps) {
     if (!document.body.dataset.customScriptsLoaded) {
       router.events.on("routeChangeComplete", pageChangeHandler)
 
-      // const headScriptTag = document.createElement("script")
-      // headScriptTag.textContent = testScript()
-      // if (headScriptTag.textContent !== "") {
-      document.head.append(testScriptOne())
-      document.head.append(testScriptTwo())
-      // }
+      // GA 4 Tracking
+      const gaLoadNode = gaLoadScript()
+      const gaCaptureNode = gaCaptureScript()
+      if (gaLoadNode) document.head.append(gaLoadNode)
+      if (gaCaptureNode) document.head.append(gaCaptureNode)
 
-      // const bodyTopTagTmpl = document.createElement("template")
-      // bodyTopTagTmpl.innerHTML = bodyTopTag()
-      // if (bodyTopTagTmpl.innerHTML !== "") {
-      //   document.body.prepend(bodyTopTagTmpl.content.cloneNode(true))
-      // }
+      // UA Tracking
+      const uaScriptTag = document.createElement("script")
+      uaScriptTag.textContent = uaScript()
+      if (uaScriptTag.textContent !== "") {
+        document.head.append(uaScriptTag)
+      }
 
       document.body.dataset.customScriptsLoaded = "true"
     }
