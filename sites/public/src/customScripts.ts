@@ -33,17 +33,6 @@ export const uaScript = () => {
   }
 }
 
-export const bodyTopTag = () => {
-  const gtmKey = process.env.gtmKey
-  if (gtmKey) {
-    return `
-    <noscript><iframe height="0" src="//www.googletagmanager.com/ns.html?id=${gtmKey}" style="display:none;visibility:hidden" width="0"></iframe></noscript>
-  `
-  } else {
-    return ""
-  }
-}
-
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 export const pageChangeHandler = (url: any) => {
