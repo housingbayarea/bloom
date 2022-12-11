@@ -1,9 +1,11 @@
 export const gaLoadScript = () => {
   const gaKey = process.env.gaKey
-  const script = document.createElement("script")
-  script.async = true
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${gaKey}`
-  return script
+  if (gaKey) {
+    const script = document.createElement("script")
+    script.async = true
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${gaKey}`
+    return script
+  } else return null
 }
 
 export const gaCaptureScript = () => {

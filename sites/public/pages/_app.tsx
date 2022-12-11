@@ -66,9 +66,10 @@ function BloomApp({ Component, router, pageProps }: AppProps) {
       // GA 4 Tracking
       const gaLoadNode = gaLoadScript()
       const gaCaptureNode = gaCaptureScript()
-      if (gaLoadNode) document.head.append(gaLoadNode)
-      if (gaCaptureNode) document.head.append(gaCaptureNode)
-
+      if (gaLoadNode && gaCaptureNode) {
+        document.head.append(gaLoadNode)
+        document.head.append(gaCaptureNode)
+      }
       // UA Tracking
       const uaScriptTag = document.createElement("script")
       uaScriptTag.textContent = uaScript()
