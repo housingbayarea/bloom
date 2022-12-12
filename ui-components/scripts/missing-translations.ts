@@ -8,6 +8,10 @@ function main() {
     [key: string]: string
   }
 
+  type JurisdictionOverrideMap = {
+    [key: string]: MissingTranslation[]
+  }
+
   type MissingTranslation = {
     [key: string]: TranslationInfo
   }
@@ -15,8 +19,11 @@ function main() {
   type TranslationInfo = {
     value: string
     location: string
+    jurisOverrides: string[]
   }
   const jurisdictions = ["alameda", "san_jose", "san_mateo"]
+
+  const jurisOverrideTracker: JurisdictionOverrideMap[] = []
 
   const enBaseTranslations = require("../src/locales/general.json")
   const esBaseTranslations = require("../src/locales/es.json")
@@ -47,16 +54,29 @@ function main() {
 
   const findMissingBaseTranslations = (
     enBaseTranslations: TranslationsType,
-    checkBaseTranslations: TranslationsType
+    checkBaseTranslations: TranslationsType,
+    jurisOverrideTracker: JurisdictionOverrideMap[]
   ) => {
     const missingTranslations: MissingTranslation[] = []
     const enBaseKeys = Object.keys(enBaseTranslations)
     const checkBaseKeys = Object.keys(checkBaseTranslations)
     enBaseKeys.forEach((key) => {
-      if (!checkBaseKeys.includes(key)) {
+      const jurisOverrideArr: string[] = []
+      Object.entries(jurisOverrideTracker).forEach((entry) => {
+        if (Object.keys(entry[1]).includes(key)) jurisOverrideArr.push(entry[0])
+      })
+      if (
+        // not overriden by all jurisdictions
+        jurisOverrideArr.length !== jurisdictions.length &&
+        // not overriden by hba-wide override file
+        !Object.keys(enOverrideTranslations).includes(key) &&
+        // doesn't have translations
+        !checkBaseKeys.includes(key)
+      ) {
         missingTranslations[key] = {
           value: enBaseTranslations[key],
           location: "ui-components",
+          jurisOverrides: jurisOverrideArr.toString(),
         }
       }
     })
@@ -138,17 +158,19 @@ function main() {
         console.log(`${entry[0]},${entry[1].location},"${entry[1].value}"`)
       )
     })
+    jurisOverrideTracker[jurisdiction] = enJurisTranslations
   })
   console.log("------------Shared translations------------")
   baseTranslations.forEach((translationSet) => {
     const missingBaseTranslations = findMissingBaseTranslations(
       enBaseTranslations,
-      translationSet.baseTranslations
+      translationSet.baseTranslations,
+      jurisOverrideTracker
     )
     Object.entries(missingBaseTranslations).forEach((entry) =>
       console.log(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${entry[0]},${entry[1].location},"${entry[1].value}"`
+        `${entry[0]},${entry[1].location},"${entry[1].value}","${entry[1].jurisOverrides}"`
       )
     )
   })
