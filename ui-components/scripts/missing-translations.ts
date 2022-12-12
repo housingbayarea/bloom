@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // Prints out keys/strings that exist in the english file but not in a foreign language translation file
 // Temporarily update the ui-components tsconfig to include `"module": "commonjs"`
-// example: `ts-node missing-translations > missing-foreign-keys.csv`
+// from the scripts folder run `yarn ts-node scripts/missing-translations > hba-missing-translations.csv`
 
 function main() {
   type TranslationsType = {
@@ -148,7 +148,7 @@ function main() {
     Object.entries(missingBaseTranslations).forEach((entry) =>
       console.log(
         // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${entry[0]},${entry[1].location},"${entry[1].value}"}`
+        `${entry[0]},${entry[1].location},"${entry[1].value}"`
       )
     )
   })
