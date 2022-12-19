@@ -45,7 +45,7 @@ module.exports = withBundleAnalyzer(
       mapBoxToken: MAPBOX_TOKEN,
       housingCounselorServiceUrl: HOUSING_COUNSELOR_SERVICE_URL,
       gaKey: process.env.GA_KEY || null,
-      uaKey: process.env.UA_KEY || null,
+      gtmKey: process.env.GTM_KEY || null,
       idleTimeout: process.env.IDLE_TIMEOUT,
       jurisdictionName: process.env.JURISDICTION_NAME,
       cacheRevalidate: process.env.CACHE_REVALIDATE ? Number(process.env.CACHE_REVALIDATE) : 60,
