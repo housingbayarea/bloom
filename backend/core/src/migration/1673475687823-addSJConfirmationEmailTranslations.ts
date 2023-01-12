@@ -17,10 +17,10 @@ export class addSJConfirmationEmailTranslations1673475687823 implements Migratio
     sjSpanish = sjSpanish["0"]["translations"]
     sjSpanish.confirmation = {
       ...sjSpanish.confirmation,
-      gotYourConfirmationNumber: "Recibimos tu solicitud para",
-      applicationReceived: 'Aplicación <br />recibida<span class="sr-only"> completed</span>',
-      applicationsClosed: 'Solicitud <br />cerrada<span class="sr-only"> not completed</span>',
-      applicationsRanked: 'Solicitud <br />clasificada<span class="sr-only"> not completed</span>',
+      gotYourConfirmationNumber: "Recibimos tu solicitud para:",
+      applicationReceived: "Aplicación <br />recibida",
+      applicationsClosed: "Solicitud <br />cerrada",
+      applicationsRanked: "Solicitud <br />clasificada",
       whatHappensNext: "¿Qué pasa después?",
       needToMakeUpdates: "¿Necesitas hacer actualizaciones?",
     }
@@ -44,10 +44,10 @@ export class addSJConfirmationEmailTranslations1673475687823 implements Migratio
     sjChinese = sjChinese["0"]["translations"]
     sjChinese.confirmation = {
       ...sjChinese.confirmation,
-      gotYourConfirmationNumber: "我們收到了您的申請",
-      applicationReceived: '申請 <br />已收到<span class="sr-only"> completed</span>',
-      applicationsClosed: '申請 <br />關閉<span class="sr-only"> not completed</span>',
-      applicationsRanked: '申請 <br />排名<span class="sr-only"> not completed</span>',
+      gotYourConfirmationNumber: "我們收到了您的申請：",
+      applicationReceived: "申請 <br />已收到",
+      applicationsClosed: "申請 <br />關閉",
+      applicationsRanked: "申請 <br />排名",
       whatHappensNext: "接下來發生什麼？",
       needToMakeUpdates: "需要更新嗎？",
     }
@@ -70,10 +70,10 @@ export class addSJConfirmationEmailTranslations1673475687823 implements Migratio
     sjVietnamese = sjVietnamese["0"]["translations"]
     sjVietnamese.confirmation = {
       ...sjVietnamese.confirmation,
-      gotYourConfirmationNumber: "Chúng tôi đã nhận được ứng dụng của bạn cho",
-      applicationReceived: 'Ứng dụng <br />nhận được<span class="sr-only"> completed</span>',
-      applicationsClosed: 'Ứng dụng <br />đã đóng<span class="sr-only"> not completed</span>',
-      applicationsRanked: 'Ứng dụng <br />được xếp hạng<span class="sr-only"> not completed</span>',
+      gotYourConfirmationNumber: "Chúng tôi đã nhận được ứng dụng của bạn cho:",
+      applicationReceived: "Ứng dụng <br />nhận được",
+      applicationsClosed: "Ứng dụng <br />đã đóng",
+      applicationsRanked: "Ứng dụng <br />được xếp hạng",
       whatHappensNext: "Chuyện gì xảy ra tiếp theo?",
       needToMakeUpdates: "Cần thực hiện cập nhật?",
     }
