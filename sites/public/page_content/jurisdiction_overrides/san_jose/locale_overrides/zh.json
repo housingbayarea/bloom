@@ -70,7 +70,7 @@
   "additionalResources.sccAffordableHousing.description": "查看聖克拉拉縣的可負擔住房機會。",
   "additionalResources.cityRegionResources.title": "城市和地區的相關資源",
   "t.units": "單元",
-  "timeout.afterMessage": "我們關心您的安全。 由於不活動，我們結束了您的會話。 請啟動一個新的應用程序以繼續。",
+  "application.timeout.afterMessage": "我們關心您的安全。 由於不活動，我們結束了您的會話。 請啟動一個新的應用程序以繼續。",
   "welcome.howDoesItWork": "運作方式？",
   "welcome.learnHowToApply": "了解如何尋找並申請可負擔的租屋機會。",
   "welcome.readAboutHowItWorks": "閱讀它是如何工作的",

@@ -70,7 +70,7 @@
   "additionalResources.sccAffordableHousing.description": "Vea las oportunidades de vivienda asequible en el condado de Santa Clara.",
   "additionalResources.cityRegionResources.title": "Recursos Relacionados con la Ciudad y la Región",
   "t.units": "unidades",
-  "timeout.afterMessage": "Nos preocupamos por tu seguridad. Finalizamos tu sesión por inactividad. Inicie una nueva aplicación para continuar.",
+  "application.timeout.afterMessage": "Nos preocupamos por tu seguridad. Finalizamos tu sesión por inactividad. Inicie una nueva aplicación para continuar.",
   "welcome.howDoesItWork": "¿Cómo funciona?",
   "welcome.learnHowToApply": "Obtenga más información sobre cómo encontrar y solicitar alquileres económicos.",
   "welcome.readAboutHowItWorks": "Lea acerca de cómo funciona",

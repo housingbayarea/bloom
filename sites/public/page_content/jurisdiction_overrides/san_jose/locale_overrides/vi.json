@@ -70,7 +70,7 @@
   "additionalResources.sccAffordableHousing.description": "Xem các cơ hội nhà ở giá cả phải chăng ở Quận Santa Clara.",
   "additionalResources.cityRegionResources.title": "CÁC NGUỒN TÀI NGUYÊN CÓ LIÊN QUAN CỦA THÀNH PHỐ VÀ KHU VỰC",
   "t.units": "đơn nguyên",
-  "timeout.afterMessage": "Chúng tôi quan tâm đến an toàn của bạn. Chúng tôi đã kết thúc phiên của bạn do không hoạt động. Vui lòng bắt đầu một ứng dụng mới để tiếp tục.",
+  "application.timeout.afterMessage": "Chúng tôi quan tâm đến an toàn của bạn. Chúng tôi đã kết thúc phiên của bạn do không hoạt động. Vui lòng bắt đầu một ứng dụng mới để tiếp tục.",
   "welcome.howDoesItWork": "Cách thức hoạt động?",
   "welcome.learnHowToApply": "Tìm hiểu cách tìm và đăng ký các cơ hội thuê nhà giá cả phải chăng.",
   "welcome.readAboutHowItWorks": "Đọc về cách nó hoạt động",
