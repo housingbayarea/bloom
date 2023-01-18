@@ -427,6 +427,17 @@ export const ListingView = (props: ListingProps) => {
         emphasized: true,
       },
     ]
+    const description = () => {
+      switch (listing.reviewOrderType) {
+        case ListingReviewOrder.waitlist:
+          return t("listings.waitlist.submitForWaitlist")
+        case ListingReviewOrder.firstComeFirstServe:
+          return t("listings.eligibleApplicants.FCFS")
+        default:
+          return t("listings.availableUnitsDescription")
+      }
+    }
+
     return (
       <QuantityRowSection
         quantityRows={
@@ -437,10 +448,7 @@ export const ListingView = (props: ListingProps) => {
             listing.reviewOrderType === ListingReviewOrder.waitlist
               ? t("listings.waitlist.isOpen")
               : t("listings.vacantUnitsAvailable"),
-          description:
-            listing.reviewOrderType === ListingReviewOrder.waitlist
-              ? t("listings.waitlist.submitForWaitlist")
-              : t("listings.availableUnitsDescription"),
+          description: description(),
         }}
       />
     )
