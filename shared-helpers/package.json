@@ -16,7 +16,7 @@
     "prettier": "prettier --write \"**/*.ts\""
   },
   "dependencies": {
-    "@bloom-housing/backend-core": "^7.6.0",
+    "@bloom-housing/backend-core": "^7.0.1",
     "@bloom-housing/ui-components": "^7.3.0"
   },
   "devDependencies": {
