@@ -2075,6 +2075,60 @@
   resolved "https://registry.yarnpkg.com/@bcoe/v8-coverage/-/v8-coverage-0.2.3.tgz#75a2e8b51cb758a7553d6804a5932d7aace75c39"
   integrity sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==
 
+"@bloom-housing/backend-core@^7.6.0":
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/@bloom-housing/backend-core/-/backend-core-7.6.0.tgz#d15c78f1f9f732105fcf496225a0c6aab9f256ad"
+  integrity sha512-wn73QXw87jbcuKEdN+3fM+TUBOKHaQ+8roy2yGKM6Uc9rLqt1E0qXTwW8myMm8Y6LEUDT5EaeDNnT8GM8ViGVw==
+  dependencies:
+    "@anchan828/nest-sendgrid" "^0.3.25"
+    "@google-cloud/translate" "^6.2.6"
+    "@nestjs/cli" "^8.2.1"
+    "@nestjs/common" "^8.3.1"
+    "@nestjs/config" "^1.2.0"
+    "@nestjs/core" "^8.3.1"
+    "@nestjs/jwt" "^8.0.0"
+    "@nestjs/passport" "^8.2.1"
+    "@nestjs/platform-express" "^8.3.1"
+    "@nestjs/schedule" "^2.1.0"
+    "@nestjs/swagger" "5.2.0"
+    "@nestjs/throttler" "^2.0.0"
+    "@nestjs/typeorm" "~8.0.3"
+    "@types/cache-manager" "^3.4.0"
+    async-retry "^1.3.1"
+    axios "0.21.2"
+    cache-manager "^3.4.0"
+    casbin "5.13.0"
+    class-transformer "0.3.1"
+    class-validator "^0.12.2"
+    cloudinary "^1.25.2"
+    dayjs "^1.10.7"
+    dotenv "^8.2.0"
+    express "^4.17.1"
+    handlebars "^4.7.6"
+    joi "^17.3.0"
+    jwt-simple "^0.5.6"
+    lodash "^4.17.21"
+    nanoid "^3.1.12"
+    nestjs-twilio "^2.1.0"
+    nestjs-typeorm-paginate "^3.1.3"
+    newrelic "7.5.1"
+    node-polyglot "^2.4.0"
+    passport "^0.6.0"
+    passport-custom "^1.1.1"
+    passport-jwt "^4.0.0"
+    passport-local "^1.0.0"
+    pg "^8.4.1"
+    reflect-metadata "^0.1.13"
+    rimraf "^3.0.2"
+    rxjs "^7.5.4"
+    swagger-ui-express "^4.1.4"
+    ts-node "10.8.0"
+    twilio "^3.71.3"
+    typeorm "0.2.41"
+    typeorm-naming-strategies "^1.1.0"
+    typescript "4.6.4"
+    uuid "^8.3.2"
+
 "@bloom-housing/ui-components@^7.3.0":
   version "7.3.0"
   resolved "https://registry.yarnpkg.com/@bloom-housing/ui-components/-/ui-components-7.3.0.tgz#b75be9527930c68ece4ad40013e6ef446cd4f873"
@@ -13181,11 +13235,6 @@ nanoid@^3.1.12, nanoid@^3.1.23:
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.31.tgz#f5b58a1ce1b7604da5f0605757840598d8974dc6"
   integrity sha512-ZivnJm0o9bb13p2Ot5CpgC2rQdzB9Uxm/mFZweqm5eMViqOJe3PV6LU2E30SiLgheesmcPrjquqraoolONSA0A==
 
-nanoid@^3.3.4:
-  version "3.3.4"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
-  integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
-
 nanomatch@^1.2.9:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/nanomatch/-/nanomatch-1.2.13.tgz#b87a8aa4fc0de8fe6be88895b38983ff265bd119"
@@ -14258,11 +14307,6 @@ parse-path@^4.0.0:
     qs "^6.9.4"
     query-string "^6.13.8"
 
-parse-srcset@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/parse-srcset/-/parse-srcset-1.0.2.tgz#f2bd221f6cc970a938d88556abc589caaaa2bde1"
-  integrity sha512-/2qh0lav6CmI15FzA3i/2Bzk2zCgQhGMkvhOhKNcBVQ1ldgpbfiNTVslmooUmWJcADi1f1kIeynbDRVzNlfR6Q==
-
 parse-url@^6.0.0:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/parse-url/-/parse-url-6.0.5.tgz#4acab8982cef1846a0f8675fa686cef24b2f6f9b"
@@ -14670,15 +14714,6 @@ postcss@^8.1.6, postcss@^8.2.1, postcss@^8.3.6:
     colorette "^1.2.2"
     nanoid "^3.1.23"
     source-map-js "^0.6.2"
-
-postcss@^8.3.11:
-  version "8.4.14"
-  resolved "https://registry.yarnpkg.com/postcss/-/postcss-8.4.14.tgz#ee9274d5622b4858c1007a74d76e42e56fd21caf"
-  integrity sha512-E398TUmfAYFPBSdzgeieK2Y1+1cpdxJx8yXbK/m57nRhKSmk1GB2tO4lbLBtlkfPQTDKfe4Xqv1ASWPpayPEig==
-  dependencies:
-    nanoid "^3.3.4"
-    picocolors "^1.0.0"
-    source-map-js "^1.0.2"
 
 postgres-array@~2.0.0:
   version "2.0.0"
@@ -15956,18 +15991,6 @@ sane@^4.0.3:
     micromatch "^3.1.4"
     minimist "^1.1.1"
     walker "~1.0.5"
-
-sanitize-html@^2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/sanitize-html/-/sanitize-html-2.7.1.tgz#a6c2c1a88054a79eeacfac9b0a43f1b393476901"
-  integrity sha512-oOpe8l4J8CaBk++2haoN5yNI5beekjuHv3JRPKUx/7h40Rdr85pemn4NkvUB3TcBP7yjat574sPlcMAyv4UQig==
-  dependencies:
-    deepmerge "^4.2.2"
-    escape-string-regexp "^4.0.0"
-    htmlparser2 "^6.0.0"
-    is-plain-object "^5.0.0"
-    parse-srcset "^1.0.2"
-    postcss "^8.3.11"
 
 sass-loader@^10.0.3:
   version "10.0.3"
