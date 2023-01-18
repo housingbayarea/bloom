@@ -7,7 +7,7 @@ import Layout from "../layouts/application"
 
 const getDisclaimerSection = async (jurisdiction: string) => {
   return import(
-    `../../../page_content/jurisdiction_overrides/${jurisdiction
+    `../page_content/jurisdiction_overrides/${jurisdiction
       .toLowerCase()
       .replace(" ", "_")}/disclaimer.md`
   )

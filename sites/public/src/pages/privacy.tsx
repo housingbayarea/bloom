@@ -8,7 +8,7 @@ import Layout from "../layouts/application"
 
 const getPrivacySection = async (jurisdiction: string) => {
   return import(
-    `../../../page_content/jurisdiction_overrides/${jurisdiction
+    `../page_content/jurisdiction_overrides/${jurisdiction
       .toLowerCase()
       .replace(" ", "_")}/privacy_policy.md`
   )

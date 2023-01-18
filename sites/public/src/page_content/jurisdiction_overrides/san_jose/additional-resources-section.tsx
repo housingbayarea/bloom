@@ -1,7 +1,7 @@
 import { t, InfoCardGrid, MarkdownSection } from "@bloom-housing/ui-components"
 import Markdown from "markdown-to-jsx"
-import RenderIf from "../../../src/RenderIf"
-import Resource from "../../../src/Resource"
+import RenderIf from "../../../RenderIf"
+import Resource from "../../../Resource"
 
 // Import Markdown resource cards:
 import doorwayPortal from "./resources/doorwayPortal.md"

@@ -1,8 +1,8 @@
 import React from "react"
 import Markdown from "markdown-to-jsx"
 import { t, InfoCardGrid, MarkdownSection, Heading } from "@bloom-housing/ui-components"
-import Resource from "../../../src/Resource"
-import RenderIf from "../../../src/RenderIf"
+import Resource from "../../../Resource"
+import RenderIf from "../../../RenderIf"
 
 // Import Markdown resource cards:
 import sidebarContent from "./resources/sidebar.md"

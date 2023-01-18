@@ -19,7 +19,7 @@ import { translations, overrideTranslations, jurisdictionTranslations } from "..
 import LinkComponent from "../components/core/LinkComponent"
 
 // Note: import overrides.scss last so that it overrides styles defined in imports above
-import "../../styles/overrides.scss"
+import "../styles/overrides.scss"
 
 function BloomApp({ Component, router, pageProps }: AppProps) {
   const { locale } = router
