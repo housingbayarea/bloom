@@ -36,7 +36,7 @@ function main() {
   })
 
   // Add new keys if not present
-  const newTranslationsFile: any = fs.readFileSync(filePath, "utf-8")
+  const newTranslationsFile: string = fs.readFileSync(filePath, "utf-8")
   const newTranslations = newTranslationsFile.split("\n")
   newTranslations.forEach((translation: string) => {
     const [key, ...values] = translation.split(",")
