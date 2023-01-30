@@ -8,7 +8,8 @@ San Mateo County and Bay Area
 Call [211](tel:+1-211)  
 </RenderIf>
 <RenderIf language="es">
-### [211 United Way Bay Area](https://www.211bayarea.org/sanmateo/)
+
+### [211 United Way Área de la Bahía](https://www.211bayarea.org/sanmateo/)
 
 Información de salud y servicios humanos, incluidos servicios en casos de crisis
 
@@ -18,7 +19,7 @@ Llamar [211](tel:+1-211)
 
 </RenderIf>
 <RenderIf language="zh">
-### [211 United Way Bay Area](https://www.211bayarea.org/sanmateo/)
+### [211聯合之路灣區](https://www.211bayarea.org/sanmateo/)
 
 健康和人類服務資訊，包括危機服務
 
@@ -27,7 +28,8 @@ Llamar [211](tel:+1-211)
 撥打 [211](tel:+1-211)  
 </RenderIf>
 <RenderIf language="vi">
-### [211 United Way Bay Area](https://www.211bayarea.org/sanmateo/)
+
+### [211 Khu vực vịnh United Way](https://www.211bayarea.org/sanmateo/)
 
 Thông Tin Y Tế và Dịch Vụ Nhân Sinh, bao gồm cả dịch vụ hỗ trợ giải quyết khủng hoảng
 
