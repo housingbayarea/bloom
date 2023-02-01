@@ -1,6 +1,10 @@
 {
   "name": "@bloom-housing/shared-helpers",
+<<<<<<< HEAD
   "version": "7.2.0",
+=======
+  "version": "7.3.1",
+>>>>>>> 1863d2d33 (chore(release): version)
   "description": "Shared helpers for Bloom affordable housing system",
   "homepage": "https://github.com/bloom-housing/bloom/tree/master/shared-helpers",
   "main": "index.js",
@@ -16,7 +20,11 @@
     "prettier": "prettier --write \"**/*.ts\""
   },
   "dependencies": {
+<<<<<<< HEAD
     "@bloom-housing/backend-core": "^7.6.0",
+=======
+    "@bloom-housing/backend-core": "^7.7.1",
+>>>>>>> 1863d2d33 (chore(release): version)
     "@bloom-housing/ui-components": "^8.0.0"
   },
   "devDependencies": {
