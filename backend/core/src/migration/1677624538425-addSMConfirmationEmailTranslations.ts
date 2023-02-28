@@ -1,8 +1,8 @@
 import {MigrationInterface, QueryRunner} from "typeorm";
 import { Language } from "../shared/types/language-enum"
 
-export class addSMConfirmationEmailTranslations1674748434254 implements MigrationInterface {
-    name = 'addSMConfirmationEmailTranslations1674748434254'
+export class addSMConfirmationEmailTranslations1677624538425 implements MigrationInterface {
+    name = 'addSMConfirmationEmailTranslations1677624538425'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         const [{ id: sanMateoJurisdiction }] = await queryRunner.query(
