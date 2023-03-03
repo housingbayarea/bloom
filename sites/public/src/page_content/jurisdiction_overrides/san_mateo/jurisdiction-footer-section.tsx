@@ -1,4 +1,5 @@
-import { ExygyFooter, FooterNav, FooterSection, SiteFooter, t } from "@bloom-housing/ui-components"
+import { FooterNav, FooterSection, SiteFooter, t } from "@bloom-housing/ui-components"
+import { ExygyFooter } from "@bloom-housing/shared-helpers"
 import Link from "next/link"
 
 export const JurisdictionFooterSection = () => {
@@ -22,7 +23,7 @@ export const JurisdictionFooterSection = () => {
           </a>
           |
           <a className="px-2" href="https://housing.acgov.org/" target="_blank" rel="noreferrer">
-            Alameda County Housing Portal
+            {t("footer.ALAHousingPortal")}
           </a>
           |
           <a
@@ -31,7 +32,7 @@ export const JurisdictionFooterSection = () => {
             target="_blank"
             rel="noreferrer"
           >
-            City of San José Housing Portal
+            {t("footer.SJHousingPortal")}
           </a>
         </p>
       </FooterSection>
