@@ -10,8 +10,6 @@ export class addAlamedaConfirmationEmailTranslations1677847240364 implements Mig
         )
 
         const alaSpanish = {
-            jurisdictionId: alamedaJurisdiction,
-            language: Language.es,
             confirmation: {
                 gotYourConfirmationNumber: "Recibimos tu solicitud para:",
                 yourConfirmationNumber: "Su número de confirmación",
@@ -47,8 +45,6 @@ export class addAlamedaConfirmationEmailTranslations1677847240364 implements Mig
         )
 
         const alaVietnamese = {
-            jurisdictionId: alamedaJurisdiction,
-            Language: Language.vi,
             confirmation: {
                 gotYourConfirmationNumber: "Chúng tôi đã nhận được đơn đăng ký của bạn cho",
                 yourConfirmationNumber: "Số Xác Nhận Của Bạn",
@@ -85,8 +81,6 @@ export class addAlamedaConfirmationEmailTranslations1677847240364 implements Mig
         )
 
         const alaChinese =  {
-            jurisdictionId: alamedaJurisdiction,
-            Language: Language.zh,
             confirmation:{
             gotYourConfirmationNumber: "我們已收到您的申請",
             yourConfirmationNumber: "您的確認編號",
