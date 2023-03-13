@@ -7,6 +7,7 @@ import HowItWorks from "./resources/HowItWorks.md"
 import SMCHousingSearch from "./resources/SMCHousingSearch.md"
 import HavenConnect from "./resources/HavenConnect.md"
 import HIPHousing from "./resources/HIPHousing.md"
+import HAotCoSM from "./resources/HAotCoSM.md"
 import CIH from "./resources/CIH.md"
 import BayArea211 from "./resources/BayArea211.md"
 import ProjectSentinel from "./resources/ProjectSentinel.md"
@@ -37,6 +38,7 @@ export const AdditionalResourcesSection = () => {
               title={t("additionalResources.otherResources")}
               subtitle={t("additionalResources.otherResourcesDescription")}
             >
+              <Resource>{HAotCoSM}</Resource>
               <Resource>{CIH}</Resource>
               <Resource>{BayArea211}</Resource>
               <Resource>{ProjectSentinel}</Resource>
