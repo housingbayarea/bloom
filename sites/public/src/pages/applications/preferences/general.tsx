@@ -8,7 +8,6 @@ import {
   AppearanceStyleType,
   Button,
   FormCard,
-  Heading,
   t,
   Form,
   ProgressNav,
@@ -54,7 +53,12 @@ const ApplicationPreferencesGeneral = () => {
 
   return (
     <FormsLayout>
-      <FormCard header={<Heading priority={1}>{listing?.name}</Heading>}>
+      <FormCard
+        header={{
+          isVisible: true,
+          title: listing?.name,
+        }}
+      >
         <ProgressNav
           currentPageSection={currentPageSection}
           completedSections={application.completedSections}

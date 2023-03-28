@@ -10,7 +10,6 @@ import {
   t,
   ProgressNav,
   Form,
-  Heading,
 } from "@bloom-housing/ui-components"
 import FormsLayout from "../../../layouts/forms"
 import { useRouter } from "next/router"
@@ -65,7 +64,12 @@ const ApplicationWhatToExpect = () => {
 
   return (
     <FormsLayout>
-      <FormCard header={<Heading priority={1}>{listing?.name}</Heading>}>
+      <FormCard
+        header={{
+          isVisible: true,
+          title: listing?.name,
+        }}
+      >
         <ProgressNav
           currentPageSection={currentPageSection}
           completedSections={application.completedSections}

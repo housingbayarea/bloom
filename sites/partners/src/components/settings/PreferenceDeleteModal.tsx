@@ -66,7 +66,7 @@ export const PreferenceDeleteModal = ({
         title={t("settings.preferenceChangesRequired")}
         open={!!multiselectQuestion}
         onClose={onClose}
-        scrollableModal
+        scrollable
         actions={[
           <Button
             type="button"

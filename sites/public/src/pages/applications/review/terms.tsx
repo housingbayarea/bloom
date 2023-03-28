@@ -13,7 +13,6 @@ import {
   Form,
   AlertBox,
   ProgressNav,
-  Heading,
 } from "@bloom-housing/ui-components"
 import {
   ApplicationSection,
@@ -128,7 +127,12 @@ const ApplicationTerms = () => {
 
   return (
     <FormsLayout>
-      <FormCard header={<Heading priority={1}>{listing?.name}</Heading>}>
+      <FormCard
+        header={{
+          isVisible: true,
+          title: listing?.name,
+        }}
+      >
         <ProgressNav
           currentPageSection={currentPageSection}
           completedSections={application.completedSections}

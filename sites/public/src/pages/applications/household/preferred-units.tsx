@@ -9,7 +9,6 @@ import {
   FieldGroup,
   Form,
   FormCard,
-  Heading,
   ProgressNav,
   t,
 } from "@bloom-housing/ui-components"
@@ -73,7 +72,12 @@ const ApplicationPreferredUnits = () => {
 
   return (
     <FormsLayout>
-      <FormCard header={<Heading priority={1}>{listing?.name}</Heading>}>
+      <FormCard
+        header={{
+          isVisible: true,
+          title: listing?.name,
+        }}
+      >
         <ProgressNav
           currentPageSection={currentPageSection}
           completedSections={application.completedSections}

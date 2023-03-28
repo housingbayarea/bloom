@@ -5,7 +5,6 @@ import {
   AlertBox,
   LinkButton,
   Hero,
-  Heading,
   t,
   SiteAlert,
   ActionBlock,
@@ -94,8 +93,8 @@ export default function Home(props: IndexProps) {
           {props.jurisdiction && props.jurisdiction.notificationsSignUpURL && (
             <ActionBlock
               className="flex-1"
-              header={<Heading priority={2}>{t("welcome.signUp")}</Heading>}
-              icon={<Icon size="3xl" symbol="mailThin" />}
+              header={t("welcome.signUp")}
+              icon={<Icon size="3xl" symbol="envelope" />}
               actions={[
                 <LinkButton
                   key={"sign-up"}
@@ -109,8 +108,8 @@ export default function Home(props: IndexProps) {
           )}
           <ActionBlock
             className="flex-1"
-            header={<Heading priority={2}>{t("welcome.seeMoreOpportunitiesTruncated")}</Heading>}
-            icon={<Icon size="3xl" symbol="building" />}
+            header={t("welcome.seeMoreOpportunitiesTruncated")}
+            icon={<Icon size="3xl" symbol="house" />}
             actions={[
               <LinkButton
                 href="/additional-resources"

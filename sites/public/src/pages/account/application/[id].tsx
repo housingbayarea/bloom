@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react"
-import { t, FormCard, dateToString, Heading } from "@bloom-housing/ui-components"
+import { t, FormCard, dateToString } from "@bloom-housing/ui-components"
 import Link from "next/link"
 import FormSummaryDetails from "../../../components/shared/FormSummaryDetails"
 import FormsLayout from "../../../layouts/forms"
@@ -49,7 +49,12 @@ export default () => {
       <RequireLogin signInPath="/sign-in" signInMessage={t("t.loginIsRequired")}>
         <FormsLayout>
           {noApplication && (
-            <FormCard header={<Heading priority={1}>{t("account.application.error")}</Heading>}>
+            <FormCard
+              header={{
+                isVisible: true,
+                title: t("account.application.error"),
+              }}
+            >
               <p className="field-note mb-5">{t("account.application.noApplicationError")}</p>
               <a href={`applications`} className="button is-small">
                 {t("account.application.return")}
@@ -57,7 +62,12 @@ export default () => {
             </FormCard>
           )}
           {unauthorized && (
-            <FormCard header={<Heading priority={1}>{t("account.application.error")}</Heading>}>
+            <FormCard
+              header={{
+                isVisible: true,
+                title: t("account.application.error"),
+              }}
+            >
               <p className="field-note mb-5">{t("account.application.noAccessError")}</p>
               <a href={`applications`} className="button is-small">
                 {t("account.application.return")}
@@ -67,7 +77,10 @@ export default () => {
           {application && (
             <>
               <FormCard
-                header={<Heading priority={1}>{t("account.application.confirmation")}</Heading>}
+                header={{
+                  isVisible: true,
+                  title: t("account.application.confirmation"),
+                }}
               >
                 <div className="py-2">
                   {listing && (

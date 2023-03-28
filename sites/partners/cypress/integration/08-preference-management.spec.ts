@@ -9,7 +9,7 @@ describe("Preference Management Tests", () => {
 
   beforeEach(() => {
     cy.visit("/")
-    cy.getByTestId("Settings-2").click()
+    cy.getByTestId("Settings").click()
     cy.location("pathname").should("include", "/settings")
   })
 
