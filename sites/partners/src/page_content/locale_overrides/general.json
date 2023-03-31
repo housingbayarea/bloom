@@ -357,6 +357,8 @@
   "t.endTime": "End Time",
   "t.enterAmount": "Enter amount",
   "t.export": "Export",
+  "t.exportSuccess": "The file has been exported",
+  "t.exportToCSV": "Export to CSV",
   "t.fileName": "File Name",
   "t.filter": "Filter",
   "t.hide": "hide",
