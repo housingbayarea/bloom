@@ -22,7 +22,7 @@ export class translationCleanUp1682009156841 implements MigrationInterface {
       data = JSON.stringify(data)
       await queryRunner.query(`
             UPDATE translations
-            SET translations = '${data}'
+            SET translations = '${data.replace(/'/g, "''")}'
             WHERE id = '${translation.id}'
         `)
     }
