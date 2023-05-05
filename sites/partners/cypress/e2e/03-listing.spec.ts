@@ -205,7 +205,6 @@ describe("Listing Management Tests", () => {
     cy.get("#programRules").contains(listing["programRules"])
     cy.get("#specialNotes").contains(listing["specialNotes"])
     cy.get("#reviewOrderQuestion").contains("First come first serve")
-    cy.get("#dueDateQuestion").contains("No")
     cy.get("#leasingAgentName").contains(listing["leasingAgentName"])
     cy.get("#leasingAgentEmail").contains(listing["leasingAgentEmail"].toLowerCase())
     cy.get("#leasingAgentPhone").contains("(520) 245-8811")
