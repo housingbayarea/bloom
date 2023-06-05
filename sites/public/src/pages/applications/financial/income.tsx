@@ -187,7 +187,9 @@ const ApplicationIncome = () => {
               label={t("application.financial.income.prompt")}
               caps={true}
               placeholder={t("application.financial.income.placeholder")}
-              validation={{ required: true, min: 0.01 }}
+              // TODO: Commenting out temporarily due to application issues
+              // validation={{ required: true, min: 0.01 }}
+              validation={{ required: true }}
               error={errors.income}
               register={register}
               errorMessage={t("errors.numberError")}
