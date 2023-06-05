@@ -6,6 +6,7 @@ Unsheltered adults/families
 Call [510-686-2332](tel:+1-510-686-2332)
 
 Walk in at 1840 Fairway Dr, San Leandro
+
 Drop-in hours: 10am – 2pm Tue
 
 </RenderIf>
@@ -17,6 +18,7 @@ Adultos y familias sin hogar y sin acceso a refugios
 Llame al [510-686-2332](tel:+1-510-686-2332)
 
 Entra en 1840 Fairway Dr, San Leandro
+
 Horario de atención: 10 a. m. a 2 p. m.
 
 </RenderIf>
@@ -28,6 +30,7 @@ Horario de atención: 10 a. m. a 2 p. m.
 致電 [510-686-2332](tel:+1-510-686-2332)
 
 走进 1840 Fairway Dr, San Leandro
+
 上门服务时间：周二上午 10 点至下午 2 点
 
 </RenderIf>
@@ -39,6 +42,7 @@ Người trưởng thành/những gia đình không có nơi trú ẩn
 Gọi số [510-686-2332](tel:+1-510-686-2332)
 
 Đi bộ tại 1840 Fairway Dr, San Leandro
+
 Giờ nhận phòng: 10 giờ sáng - 2 giờ chiều Thứ Ba
 
 </RenderIf>
@@ -50,6 +54,7 @@ Mga adultong/pamilyang walang matitirhan
 Tawagan ang [510-686-2332](tel:+1-510-686-2332)
 
 Maglakad sa 1840 Fairway Dr, San Leandro
+
 Mga oras ng pag-drop-in: 10am - 2pm Mar
 
 </RenderIf>

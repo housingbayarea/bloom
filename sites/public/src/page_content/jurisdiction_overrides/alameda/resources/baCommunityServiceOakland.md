@@ -6,6 +6,7 @@ Unsheltered adults
 Call BACS Coordinated Entry line at [510-658-9480](tel:+1-510-658-9480)
 
 Walk in at 629 Oakland Avenue, Oakland
+
 Office hours: 12-3pm Mon, Tues, Wed, Thur, Fri
 
 </RenderIf>
@@ -17,6 +18,7 @@ Adultos sin hogar y sin acceso a refugios
 Llame a la línea de ingreso coordinado de BACS al [510-658-9480](tel:+1-510-658-9480)
 
 Entra en 629 Oakland Avenue, Oakland
+
 Horario de oficina: 12-3pm lunes, martes, miércoles, jueves, viernes
 
 </RenderIf>
@@ -28,6 +30,7 @@ Horario de oficina: 12-3pm lunes, martes, miércoles, jueves, viernes
 致電 BACS 協調入口專線 [510-658-9480](tel:+1-510-658-9480)
 
 走进奥克兰奥克兰大道 629 号
+
 办公时间：周一、周二、周三、周四、周五中午 12 点至下午 3 点
 
 </RenderIf>
@@ -39,6 +42,7 @@ Người trưởng thành không nơi trú ẩn
 Gọi tới đường dây Tiếp Nhận Được Điều Phối của BACS theo số [510-658-9480](tel:+1-510-658-9480)
 
 Đi bộ tại 629 Oakland Avenue, Oakland
+
 Giờ hành chính: 12-3pm Thứ Hai, Thứ Ba, Thứ Tư, Thứ Năm, Thứ Sáu
 </RenderIf>
 <RenderIf language="tl">
@@ -49,6 +53,7 @@ Mga pamilyang walang matitirhan
 Tawagan ang BACS Coordinated Entry line sa [510-658-9480](tel:+1-510-658-9480)
 
 Maglakad sa 629 Oakland Avenue, Oakland
+
 Mga oras ng opisina: 12-3pm Lun, Mar, Miyerkules, Huwebes, Biy
 
 </RenderIf>
