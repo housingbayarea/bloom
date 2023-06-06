@@ -25,11 +25,12 @@ import { AppSubmissionContext } from "../../../lib/applications/AppSubmissionCon
 import { UserStatus } from "../../../lib/constants"
 
 const ApplicationConfirmation = () => {
-  const { application, listing } = useContext(AppSubmissionContext)
+  const { application, listing, conductor } = useContext(AppSubmissionContext)
   const { initialStateLoaded, profile } = useContext(AuthContext)
   const router = useRouter()
 
   const imageUrl = imageUrlFromListing(listing, parseInt(process.env.listingPhotoSize))[0]
+  const fromDoorway = conductor.doorway
 
   const content = useMemo(() => {
     switch (listing?.reviewOrderType) {
@@ -127,7 +128,13 @@ const ApplicationConfirmation = () => {
 
           <div className="form-card__pager-row py-6">
             <span className="lined text-sm" data-testid={"app-confirmation-browse"}>
-              <Link href="/listings">{t("application.review.confirmation.browseMore")}</Link>
+              {fromDoorway ? (
+                <Link href="www.doorway.housingbayarea.org/listings">
+                  {t("application.review.confirmation.browseMoreDoorway")}
+                </Link>
+              ) : (
+                <Link href="/listings">{t("application.review.confirmation.browseMore")}</Link>
+              )}
             </span>
           </div>
 

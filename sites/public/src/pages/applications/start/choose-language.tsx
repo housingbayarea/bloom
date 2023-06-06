@@ -54,7 +54,6 @@ const ApplicationChooseLanguage = () => {
   const { conductor, application } = context
 
   const listingId = router.query.listingId
-
   useEffect(() => {
     pushGtmEvent<PageView>({
       event: "pageView",
@@ -70,6 +69,8 @@ const ApplicationChooseLanguage = () => {
       void router.push("/")
       return
     }
+    const fromDoorway = router.query.doorway === "true"
+    conductor.doorway = fromDoorway
 
     if (!context.listing || context.listing.id !== listingId) {
       void loadListing(listingId, setListing, conductor, context, "en")

@@ -125,6 +125,7 @@ export default class ApplicationConductor {
   returnToReview = false
   currentStepIndex = 0
   navigatedThroughBack = false
+  doorway = false
 
   private _config: ApplicationFormConfig = {
     sections: [],
