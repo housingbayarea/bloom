@@ -26,8 +26,6 @@ const ApplicationWhatToExpect = () => {
   const { conductor, application, listing } = useFormConductor("whatToExpect")
   const router = useRouter()
   const currentPageSection = 1
-  const fromDoorway = conductor.doorway
-  console.log(fromDoorway)
 
   /* Form Handler */
   const { handleSubmit } = useForm()
