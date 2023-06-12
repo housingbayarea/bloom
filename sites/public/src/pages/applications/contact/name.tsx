@@ -29,6 +29,7 @@ const ApplicationName = () => {
   const { profile } = useContext(AuthContext)
   const { conductor, application, listing } = useFormConductor("primaryApplicantName")
   const [autofilled, setAutofilled] = useState(false)
+
   const currentPageSection = 1
 
   /* Form Handler */
