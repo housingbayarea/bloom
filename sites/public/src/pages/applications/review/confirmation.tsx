@@ -30,7 +30,7 @@ const ApplicationConfirmation = () => {
   const router = useRouter()
 
   const imageUrl = imageUrlFromListing(listing, parseInt(process.env.listingPhotoSize))[0]
-  const fromDoorway = window?.sessionStorage?.getItem("bloom-app-doorway")
+  const doorwayApp = window?.sessionStorage?.getItem("bloom-app-doorway")
 
   const content = useMemo(() => {
     switch (listing?.reviewOrderType) {
@@ -128,7 +128,7 @@ const ApplicationConfirmation = () => {
 
           <div className="form-card__pager-row py-6">
             <span className="lined text-sm" data-testid={"app-confirmation-browse"}>
-              {fromDoorway ? (
+              {doorwayApp ? (
                 <Link href={`https://dev.doorway.housingbayarea.org/${router.locale}/listings`}>
                   {t("application.review.confirmation.browseMoreDoorway")}
                 </Link>
