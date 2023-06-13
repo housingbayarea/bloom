@@ -129,7 +129,7 @@ const ApplicationConfirmation = () => {
           <div className="form-card__pager-row py-6">
             <span className="lined text-sm" data-testid={"app-confirmation-browse"}>
               {doorwayApp ? (
-                <Link href={`https://dev.doorway.housingbayarea.org/${router.locale}/listings`}>
+                <Link href={`${process.env.doorwayUrl}/${router.locale}/listings`}>
                   {t("application.review.confirmation.browseMoreDoorway")}
                 </Link>
               ) : (
