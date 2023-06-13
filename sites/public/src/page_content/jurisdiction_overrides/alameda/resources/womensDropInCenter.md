@@ -6,7 +6,8 @@ Unsheltered families
 Call [510-548-2884](tel:+1-510-548-2884)  
  Email [help@womensdropin.org](mailto:help@womensdropin.org)
 
-Walk in at 2218 Acton St. Mon
+Walk in at 2218 Acton St.
+
 Office Hours: Wed, Fri 9am-2pm
 
 </RenderIf>
@@ -18,8 +19,9 @@ Familias sin hogar y sin acceso a refugios
 Llame al [510-548-2884](tel:+1-510-548-2884)  
  Correo electrónico: [help@womensdropin.org](mailto:help@womensdropin.org)
 
-Entra en 2218 Acton St. Mon
-Horario de oficina: miércoles, viernes 9am-2pm
+Entra en 2218 Acton St.
+
+Horario de oficina: lunes, miércoles y viernes 9am-2pm
 
 </RenderIf>
 <RenderIf language="zh">
@@ -30,8 +32,9 @@ Horario de oficina: miércoles, viernes 9am-2pm
 致電 [510-548-2884](tel:+1-510-548-2884)  
  電子郵件 [help@womensdropin.org](mailto:help@womensdropin.org)
 
-走进 2218 Acton St. Mon
-办公时间：周三、周五上午 9 点至下午 2 点
+走进 2218 Acton St.
+
+办公时间：周一、周三、周五上午 9 点至下午 2 点
 
 </RenderIf>
 <RenderIf language="vi">
@@ -42,8 +45,9 @@ Những gia đình không có nơi trú ẩn
 Gọi số [510-548-2884](tel:+1-510-548-2884)  
  Email [help@womensdropin.org](mailto:help@womensdropin.org)
 
-Đi bộ tại 2218 Acton St. Mon
-Giờ làm việc: Thứ Tư, Thứ Sáu, 9 giờ sáng - 2 giờ chiều
+Đi bộ tại 2218 Acton St.
+
+Giờ làm việc: Thứ Hai, Thứ Tư, Thứ Sáu, 9 giờ sáng - 2 giờ chiều
 
 </RenderIf>
 <RenderIf language="tl">
@@ -54,7 +58,8 @@ Mga pamilyang walang matitirhan
 Tawagan ang [510-548-2884](tel:+1-510-548-2884)  
 Mag-email sa [help@womensdropin.org](mailto:help@womensdropin.org)
 
-Maglakad sa 2218 Acton St. Mon
-Mga Oras ng Opisina: Miy, Biy 9am-2pm
+Maglakad sa 2218 Acton St.
+
+Mga Oras ng Opisina: Lun, Miy, Biy 9am-2pm
 
 </RenderIf>
