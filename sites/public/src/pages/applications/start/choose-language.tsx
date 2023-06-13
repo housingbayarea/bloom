@@ -76,7 +76,7 @@ const ApplicationChooseLanguage = () => {
       conductor.listing = context.listing
       setListing(context.listing)
     }
-    if (typeof window != "undefined" && router.query.doorway === "true") {
+    if (typeof window !== "undefined" && router.query.doorway === "true") {
       window.sessionStorage.setItem("bloom-app-doorway", "true")
     }
   }, [router, conductor, context, listingId])
