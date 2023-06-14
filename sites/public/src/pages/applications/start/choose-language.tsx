@@ -76,8 +76,8 @@ const ApplicationChooseLanguage = () => {
       conductor.listing = context.listing
       setListing(context.listing)
     }
-    if (typeof window !== "undefined" && router.query.doorway === "true") {
-      window.sessionStorage.setItem("bloom-app-doorway", "true")
+    if (typeof window !== "undefined" && router.query.source === "dhp") {
+      window.sessionStorage.setItem("bloom-app-source", "dhp")
     }
   }, [router, conductor, context, listingId])
 
