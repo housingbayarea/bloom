@@ -8,7 +8,7 @@ Call [510-548-2884](tel:+1-510-548-2884)
 
 Walk in at 2218 Acton St.
 
-Office Hours: Wed, Fri 9am-2pm
+Office Hours: Mon, Wed, Fri 9am-2pm
 
 </RenderIf>
 <RenderIf language="es">

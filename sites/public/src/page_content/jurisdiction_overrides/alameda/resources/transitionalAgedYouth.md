@@ -7,8 +7,8 @@ Call Covenant House at [510-379-1010](tel:+1-510-379-1010) (ask for the Wellness
 
 Walk in at 200 Harrison Street, Oakland
 
-Drop-in hours Tues and Thurs 1-3pm
-Youth are also able to go to adult and family access points.
+Drop-in hours: Tues and Thurs 1-3pm  
+ Youth are also able to go to adult and family access points.
 
 </RenderIf>
 <RenderIf language="es">
@@ -20,8 +20,8 @@ Llame a Covenant House al [510-379-1010](tel:+1-510-379-1010) (pregunte por el C
 
 Entra en 200 Harrison Street, Oakland
 
-Horario de atención martes y jueves de 1 a 3 p. m.
-Los jóvenes también pueden ir a los puntos de acceso para adultos y familiares.
+Horario de atención: martes y jueves de 1 a 3 p. m.  
+ Los jóvenes también pueden ir a los puntos de acceso para adultos y familiares.
 
 </RenderIf>
 <RenderIf language="zh">
@@ -33,8 +33,8 @@ Los jóvenes también pueden ir a los puntos de acceso para adultos y familiares
 
 走进奥克兰哈里森街 200 号
 
-周二和周四下午 1-3 点上门服务
-青少年也可以前往成人和家庭接入点。
+上门服务时间：周二和周四下午 1-3 点  
+ 青少年也可以前往成人和家庭接入点。
 
 </RenderIf>
 <RenderIf language="vi">
@@ -46,8 +46,8 @@ Gọi cho Covenant House theo số [510-379-1010](tel:+1-510-379-1010) (yêu c�
 
 Đi bộ tại 200 Harrison Street, Oakland
 
-Giờ nhận phòng Thứ Ba và Thứ Năm 1-3 giờ chiều
-Thanh niên cũng có thể truy cập các điểm truy cập dành cho người lớn và gia đình.
+Giờ nhận phòng: Thứ Ba và Thứ Năm 1-3 giờ chiều  
+ Thanh niên cũng có thể truy cập các điểm truy cập dành cho người lớn và gia đình.
 
 </RenderIf>
 <RenderIf language="tl">
@@ -59,7 +59,7 @@ Tumawag sa Covenant House sa [510-379-1010](tel:+1-510-379-1010) (humingi ng Wel
 
 Maglakad sa 200 Harrison Street, Oakland
 
-Mga oras ng pag-drop-in Martes at Huwebes 1-3pm
-Nagagawa rin ng mga kabataan na pumunta sa mga access point ng adult at pamilya.
+Mga oras ng pag-drop-in: Martes at Huwebes 1-3pm  
+ Nagagawa rin ng mga kabataan na pumunta sa mga access point ng adult at pamilya.
 
 </RenderIf>
