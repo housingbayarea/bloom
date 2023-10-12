@@ -225,7 +225,7 @@ export const downloadExternalPDF = async (fileURL: string, fileName: string) => 
         const link = document.createElement("a")
         link.href = url
         link.setAttribute("download", `${fileName}.pdf`)
-
+        link.target = "_blank"
         document.body.appendChild(link)
         link.click()
         link.parentNode.removeChild(link)
