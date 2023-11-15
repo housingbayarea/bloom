@@ -2,7 +2,7 @@ import { AmiChartCreateDto } from "../../src/ami-charts/dto/ami-chart.dto"
 import { BaseEntity } from "typeorm"
 // THIS FILE WAS AUTOMATICALLY GENERATED FROM emeryville-2023.txt.
 export const ami: Omit<AmiChartCreateDto, keyof BaseEntity | "jurisdiction"> = {
-  name: "emeryville-2023",
+  name: "Emeryville 2023",
   items: [
     {
       percentOfAmi: 32,
