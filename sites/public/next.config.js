@@ -43,6 +43,7 @@ module.exports = withBundleAnalyzer({
     cacheRevalidate: process.env.CACHE_REVALIDATE ? Number(process.env.CACHE_REVALIDATE) : 60,
     cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
     doorwayUrl: process.env.DOORWAY_URL,
+    showMandatedAccounts: process.env.SHOW_MANDATED_ACCOUNTS === "TRUE",
   },
   i18n: {
     locales: process.env.LANGUAGES ? process.env.LANGUAGES.split(",") : ["en"],
