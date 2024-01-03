@@ -90,7 +90,7 @@ const GetApplication = (props: ApplicationsProps) => {
       {props.applicationsOpen && props.onlineApplicationURL && (
         <>
           {disableApplyButton ? (
-            <Button className="w-full mb-2" disabled id={"listing-view-apply-button"}>
+            <Button disabled className="w-full mb-2" data-testid={"listing-view-apply-button"}>
               {props.strings?.applyOnline ?? t("listings.apply.applyOnline")}
             </Button>
           ) : (
