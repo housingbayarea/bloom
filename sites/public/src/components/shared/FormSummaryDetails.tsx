@@ -1,7 +1,11 @@
 import React, { Fragment, useEffect, useState } from "react"
 import { LocalizedLink, MultiLineAddress, t } from "@bloom-housing/ui-components"
 import { FieldValue } from "@bloom-housing/ui-seeds"
-import { getUniqueUnitTypes, AddressHolder } from "@bloom-housing/shared-helpers"
+import {
+  getUniqueUnitTypes,
+  AddressHolder,
+  cleanMultiselectString,
+} from "@bloom-housing/shared-helpers"
 import {
   Address,
   AllExtraDataTypes,
@@ -113,17 +117,18 @@ const FormSummaryDetails = ({
   ) => {
     const initialMultiselectQuestion = listing.listingMultiselectQuestions.find(
       (elem) =>
-        elem.multiselectQuestion.text.replace(/\.|,|'/g, "") === question.key.replace(/\.|,|'/g, "")
+        cleanMultiselectString(elem.multiselectQuestion.text) ===
+        cleanMultiselectString(question.key)
     )
 
     const initialOption = initialMultiselectQuestion?.multiselectQuestion.options.find(
-      (elem) => elem.text.replace(/\.|,|'/g, "") === option.key
+      (elem) => cleanMultiselectString(elem.text) === option.key
     )
 
     const initialOptOut = initialMultiselectQuestion?.multiselectQuestion.optOutText
 
     const optOutOption =
-      option.key === initialOptOut?.replace(/\.|,|'/g, "") ? initialOptOut : undefined
+      option.key === cleanMultiselectString(initialOptOut) ? initialOptOut : undefined
 
     return initialOption?.text || optOutOption || option.key
   }

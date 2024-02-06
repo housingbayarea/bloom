@@ -2,7 +2,13 @@ import React, { useEffect, useMemo, useState } from "react"
 import { Field, t, FieldGroup, resolveObject } from "@bloom-housing/ui-components"
 import { FieldValue, Grid } from "@bloom-housing/ui-seeds"
 import { useFormContext } from "react-hook-form"
-import { stateKeys, getInputType, fieldName, AddressHolder } from "@bloom-housing/shared-helpers"
+import {
+  stateKeys,
+  getInputType,
+  fieldName,
+  AddressHolder,
+  cleanMultiselectString,
+} from "@bloom-housing/shared-helpers"
 import {
   ApplicationSection,
   ListingMultiselectQuestion,
@@ -44,7 +50,7 @@ const FormMultiselectQuestions = ({
           fieldName(
             listingQuestion?.multiselectQuestion.text,
             applicationSection,
-            option.text.replace(/\.|,|'/g, "")
+            cleanMultiselectString(option.text)
           )
         )
       )
@@ -75,7 +81,7 @@ const FormMultiselectQuestions = ({
     const optionFieldName = fieldName(
       question.text,
       applicationSection,
-      option.text.replace(/\.|,|'/g, "")
+      cleanMultiselectString(option.text)
     )
     return (
       <React.Fragment key={option.text}>

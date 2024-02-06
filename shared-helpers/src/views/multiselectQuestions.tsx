@@ -21,6 +21,10 @@ import { stateKeys } from "../utilities/formKeys"
 import { AddressHolder } from "../utilities/constants"
 import { FormAddressAlternate } from "./address/FormAddressAlternate"
 
+export const cleanMultiselectString = (name: string | undefined) => {
+  return name?.replace(/\.|,|'/g, "")
+}
+
 export const listingSectionQuestions = (
   listing: Listing,
   applicationSection: ApplicationSection
@@ -37,8 +41,8 @@ export const fieldName = (
   applicationSection: ApplicationSection,
   optionName?: string
 ) => {
-  return `application.${applicationSection}.${questionName?.replace(/\.|,|'/g, "")}${
-    optionName ? `.${optionName?.replace(/\.|,|'/g, "")}` : ""
+  return `application.${applicationSection}.${cleanMultiselectString(questionName)}${
+    optionName ? `.${cleanMultiselectString(optionName)}` : ""
   }`
 }
 
@@ -343,7 +347,8 @@ export const mapCheckboxesToApi = (
   question: MultiselectQuestion,
   applicationSection: ApplicationSection
 ): ApplicationMultiselectQuestion => {
-  const data = formData["application"][applicationSection][question.text.replace(/\.|,|'/g, "")]
+  const data =
+    formData["application"][applicationSection][cleanMultiselectString(question.text) || ""]
   const claimed = !!Object.keys(data).filter((key) => data[key] === true).length
 
   const addressFields = Object.keys(data).filter((option) => Object.keys(data[option]))
@@ -380,9 +385,9 @@ export const mapCheckboxesToApi = (
 
       const getFinalKey = () => {
         const optionKey = question?.options?.find(
-          (elem) => elem.text.replace(/\.|,|'/g, "") === key
+          (elem) => cleanMultiselectString(elem.text) === key
         )?.text
-        const cleanOptOutKey = question?.optOutText?.replace(/\.|,|'/g, "")
+        const cleanOptOutKey = cleanMultiselectString(question?.optOutText)
         if (cleanOptOutKey === key) return question?.optOutText || key
         return optionKey || key
       }
@@ -442,7 +447,7 @@ export const mapApiToMultiselectForm = (
     if (appQuestion.inputType === "checkbox") {
       options = question.options.reduce((acc, curr) => {
         const claimed = curr.checked
-        const cleanKey = curr.key.replace(/\.|,|'/g, "")
+        const cleanKey = cleanMultiselectString(curr.key) || ""
         if (appQuestion.inputType === "checkbox") {
           acc[cleanKey] = claimed
           if (curr.extraData?.length) {
