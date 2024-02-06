@@ -433,26 +433,27 @@ export const mapApiToMultiselectForm = (
     if (appQuestion.inputType === "checkbox") {
       options = question.options.reduce((acc, curr) => {
         const claimed = curr.checked
+        const cleanKey = curr.key.replace(/\.|,|'/g, "")
         if (appQuestion.inputType === "checkbox") {
-          acc[curr.key] = claimed
+          acc[cleanKey] = claimed
           if (curr.extraData?.length) {
-            acc[`${curr.key}-address`] = curr.extraData[0].value
+            acc[`${cleanKey}-address`] = curr.extraData[0].value
 
             const addressHolderName = curr.extraData?.find(
               (field) => field.key === AddressHolder.Name
             )
             if (addressHolderName) {
-              acc[`${curr.key}-${AddressHolder.Name}`] = addressHolderName.value
+              acc[`${cleanKey}-${AddressHolder.Name}`] = addressHolderName.value
             }
 
             const addressHolderRelationship = curr.extraData?.find(
               (field) => field.key === AddressHolder.Relationship
             )
             if (addressHolderRelationship) {
-              acc[`${curr.key}-${AddressHolder.Relationship}`] = addressHolderRelationship.value
+              acc[`${cleanKey}-${AddressHolder.Relationship}`] = addressHolderRelationship.value
             }
             if (curr?.mapPinPosition) {
-              acc[`${curr.key}-mapPinPosition`] = curr.mapPinPosition
+              acc[`${cleanKey}-mapPinPosition`] = curr.mapPinPosition
             }
           }
         }

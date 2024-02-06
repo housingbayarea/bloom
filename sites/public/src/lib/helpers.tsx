@@ -184,7 +184,9 @@ export const untranslateMultiselectQuestion = (
 
   data.forEach((datum) => {
     const question = multiselectQuestions.find(
-      (elem) => elem.multiselectQuestion.text === datum.key
+      (elem) =>
+        elem.multiselectQuestion.text === datum.key ||
+        elem.multiselectQuestion.untranslatedText === datum.key
     )?.multiselectQuestion
 
     if (question) {
@@ -192,11 +194,12 @@ export const untranslateMultiselectQuestion = (
 
       if (datum.options) {
         datum.options.forEach((option) => {
-          const selectedOption = question.options.find((elem) => elem.text === option.key)
-
+          const selectedOption = question.options.find((elem) => {
+            return elem.text.replace(/\.|,|'/g, "") === option.key
+          })
           if (selectedOption) {
             option.key = selectedOption.untranslatedText ?? selectedOption.text
-          } else if (question.optOutText === option.key) {
+          } else if (question?.optOutText?.replace(/\.|,|'/g, "") === option.key) {
             option.key = question.untranslatedOptOutText ?? question.optOutText
           }
 
