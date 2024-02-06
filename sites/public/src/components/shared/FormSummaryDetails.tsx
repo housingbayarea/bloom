@@ -107,6 +107,27 @@ const FormSummaryDetails = ({
     return `${name ? `${name}\n` : ""}${relationship ? `${relationship}\n` : ""}${helperText}`
   }
 
+  const getOptionText = (
+    question: ApplicationMultiselectQuestion,
+    option: ApplicationMultiselectQuestionOption
+  ) => {
+    const initialMultiselectQuestion = listing.listingMultiselectQuestions.find(
+      (elem) =>
+        elem.multiselectQuestion.text.replace(/\.|,|'/g, "") === question.key.replace(/\.|,|'/g, "")
+    )
+
+    const initialOption = initialMultiselectQuestion?.multiselectQuestion.options.find(
+      (elem) => elem.text.replace(/\.|,|'/g, "") === option.key
+    )
+
+    const initialOptOut = initialMultiselectQuestion?.multiselectQuestion.optOutText
+
+    const optOutOption =
+      option.key === initialOptOut?.replace(/\.|,|'/g, "") ? initialOptOut : undefined
+
+    return initialOption?.text || optOutOption || option.key
+  }
+
   const multiselectQuestionSection = (
     applicationSection: ApplicationSection,
     appLink: string,
@@ -141,7 +162,7 @@ const FormSummaryDetails = ({
                         testId={"app-summary-preference"}
                         className={"pb-6 whitespace-pre-wrap"}
                       >
-                        {option.key}
+                        {getOptionText(question, option)}
                       </FieldValue>
                     ))
                 )}

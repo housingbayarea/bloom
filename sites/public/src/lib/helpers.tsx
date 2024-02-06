@@ -195,11 +195,13 @@ export const untranslateMultiselectQuestion = (
       if (datum.options) {
         datum.options.forEach((option) => {
           const selectedOption = question.options.find((elem) => {
-            return elem.text.replace(/\.|,|'/g, "") === option.key
+            return elem.text.replace(/\.|,|'/g, "") === option.key.replace(/\.|,|'/g, "")
           })
           if (selectedOption) {
             option.key = selectedOption.untranslatedText ?? selectedOption.text
-          } else if (question?.optOutText?.replace(/\.|,|'/g, "") === option.key) {
+          } else if (
+            question?.optOutText?.replace(/\.|,|'/g, "") === option.key.replace(/\.|,|'/g, "")
+          ) {
             option.key = question.untranslatedOptOutText ?? question.optOutText
           }
 

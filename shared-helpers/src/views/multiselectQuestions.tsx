@@ -37,8 +37,8 @@ export const fieldName = (
   applicationSection: ApplicationSection,
   optionName?: string
 ) => {
-  return `application.${applicationSection}.${questionName?.replace(/'/g, "")}${
-    optionName ? `.${optionName?.replace(/'/g, "")}` : ""
+  return `application.${applicationSection}.${questionName?.replace(/\.|,|'/g, "")}${
+    optionName ? `.${optionName?.replace(/\.|,|'/g, "")}` : ""
   }`
 }
 
@@ -343,7 +343,7 @@ export const mapCheckboxesToApi = (
   question: MultiselectQuestion,
   applicationSection: ApplicationSection
 ): ApplicationMultiselectQuestion => {
-  const data = formData["application"][applicationSection][question.text.replace(/'/g, "")]
+  const data = formData["application"][applicationSection][question.text.replace(/\.|,|'/g, "")]
   const claimed = !!Object.keys(data).filter((key) => data[key] === true).length
 
   const addressFields = Object.keys(data).filter((option) => Object.keys(data[option]))
@@ -378,8 +378,17 @@ export const mapCheckboxesToApi = (
         }
       }
 
+      const getFinalKey = () => {
+        const optionKey = question?.options?.find(
+          (elem) => elem.text.replace(/\.|,|'/g, "") === key
+        )?.text
+        const cleanOptOutKey = question?.optOutText?.replace(/\.|,|'/g, "")
+        if (cleanOptOutKey === key) return question?.optOutText || key
+        return optionKey || key
+      }
+
       return {
-        key,
+        key: getFinalKey(),
         mapPinPosition: data?.[`${key}-mapPinPosition`],
         checked: data[key] === true,
         extraData: extraData,

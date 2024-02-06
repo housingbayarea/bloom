@@ -41,7 +41,11 @@ const FormMultiselectQuestions = ({
     questions?.forEach((listingQuestion) =>
       listingQuestion?.multiselectQuestion.options.forEach((option) =>
         keys.push(
-          fieldName(listingQuestion?.multiselectQuestion.text, applicationSection, option.text)
+          fieldName(
+            listingQuestion?.multiselectQuestion.text,
+            applicationSection,
+            option.text.replace(/\.|,|'/g, "")
+          )
         )
       )
     )
@@ -68,7 +72,11 @@ const FormMultiselectQuestions = ({
   const watchQuestions = watch(allOptionFieldNames)
 
   const getCheckboxOption = (option: MultiselectOption, question: MultiselectQuestion) => {
-    const optionFieldName = fieldName(question.text, applicationSection, option.text)
+    const optionFieldName = fieldName(
+      question.text,
+      applicationSection,
+      option.text.replace(/\.|,|'/g, "")
+    )
     return (
       <React.Fragment key={option.text}>
         <Field
