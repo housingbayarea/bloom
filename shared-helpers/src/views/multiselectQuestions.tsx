@@ -21,6 +21,7 @@ import { stateKeys } from "../utilities/formKeys"
 import { AddressHolder } from "../utilities/constants"
 import { FormAddressAlternate } from "./address/FormAddressAlternate"
 
+// Removes periods, commas, and apostrophes
 export const cleanMultiselectString = (name: string | undefined) => {
   return name?.replace(/\.|,|'/g, "")
 }
