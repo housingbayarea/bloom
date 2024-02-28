@@ -24,6 +24,7 @@ import Listing from '../dtos/listings/listing.dto';
 import { User } from '../dtos/users/user.dto';
 import { permissionActions } from '../enums/permissions/permission-actions-enum';
 import { GeocodingService } from './geocoding.service';
+import { MostRecentApplicationQueryParams } from '../dtos/applications/most-recent-application-query-params.dto';
 
 export const view: Partial<
   Record<ApplicationViews, Prisma.ApplicationsInclude>
@@ -124,22 +125,20 @@ export class ApplicationService {
     this will the most recent application the user has submitted
   */
   async mostRecentlyCreated(
-    params: ApplicationQueryParams,
+    params: MostRecentApplicationQueryParams,
   ): Promise<Application> {
-    const rawApplications = await this.prisma.applications.findMany({
-      skip: 0,
-      take: 1,
+    const rawApplication = await this.prisma.applications.findFirst({
       orderBy: { createdAt: 'desc' },
       where: {
         userId: params.userId,
       },
     });
 
-    if (!rawApplications.length) {
+    if (!rawApplication) {
       return null;
     }
 
-    return await this.findOne(rawApplications[0].id);
+    return await this.findOne(rawApplication.id);
   }
 
   /*
