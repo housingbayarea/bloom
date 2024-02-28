@@ -121,6 +121,28 @@ export class ApplicationService {
   }
 
   /*
+    this will the most recent application the user has submitted
+  */
+  async mostRecentlyCreated(
+    params: ApplicationQueryParams,
+  ): Promise<Application> {
+    const rawApplications = await this.prisma.applications.findMany({
+      skip: 0,
+      take: 1,
+      orderBy: { createdAt: 'desc' },
+      where: {
+        userId: params.userId,
+      },
+    });
+
+    if (!rawApplications.length) {
+      return null;
+    }
+
+    return await this.findOne(rawApplications[0].id);
+  }
+
+  /*
     this builds the where clause for list()
   */
   buildWhereClause(
