@@ -631,7 +631,7 @@ export class ListingService implements OnModuleInit {
     const jurisdiction = await this.prisma.jurisdictions.findFirst({
       where: { id: listing.jurisdictions.id },
     });
-    return JSON.stringify({ ...listing, jurisdictions: jurisdiction });
+    return JSON.stringify({ ...listing, jurisdiction: jurisdiction });
   }
 
   /*
