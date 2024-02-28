@@ -1601,6 +1601,9 @@ describe('Testing application service', () => {
       mockedValue,
     );
     expect(prisma.applications.findFirst).toHaveBeenCalledWith({
+      select: {
+        id: true,
+      },
       orderBy: { createdAt: 'desc' },
       where: {
         userId: 'example Id',

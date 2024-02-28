@@ -128,6 +128,9 @@ export class ApplicationService {
     params: MostRecentApplicationQueryParams,
   ): Promise<Application> {
     const rawApplication = await this.prisma.applications.findFirst({
+      select: {
+        id: true,
+      },
       orderBy: { createdAt: 'desc' },
       where: {
         userId: params.userId,
