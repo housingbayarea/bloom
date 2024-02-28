@@ -1370,7 +1370,7 @@ export class ApplicationsService {
   mostRecentlyCreated(
     params: {
       /**  */
-      userId?: string
+      userId: string
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<Application> {
