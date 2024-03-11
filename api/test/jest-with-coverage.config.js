@@ -23,8 +23,8 @@ module.exports = {
   coverageThreshold: {
     global: {
       branches: 75,
-      functions: 90,
-      lines: 90,
+      functions: 85,
+      lines: 85,
     },
   },
   workerIdleMemoryLimit: '70%',

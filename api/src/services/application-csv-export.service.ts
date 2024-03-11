@@ -522,7 +522,15 @@ export class ApplicationCsvExporterService
         headers.push({
           path: `preferences.${question.id}.claimed`,
           label: `Preference ${question.text}`,
-          format: (val: boolean): string => (val ? 'claimed' : ''),
+          format: (val: any): string => {
+            const claimedString: string[] = [];
+            val?.options?.forEach((option) => {
+              if (option.checked) {
+                claimedString.push(option.key);
+              }
+            });
+            return claimedString.length ? claimedString.join(', ') : '';
+          },
         });
         /**
          * there are other input types for extra data besides address
@@ -663,25 +671,6 @@ export class ApplicationCsvExporterService
     }
     return extraData.value as string;
   }
-
-  // multiselectQuestionGeocodingVerifiedFormat(
-  //   question: ApplicationMultiselectQuestion,
-  //   optionText: string,
-  // ): string {
-  //   if (!question) return '';
-  //   const selectedOption = question.options.find(
-  //     (option) => option.key === optionText,
-  //   );
-  //   const extraData = selectedOption.extraData.find(
-  //     (data) => data.key === 'geocodingVerified',
-  //   );
-  //   if (extraData) {
-  //     return extraData.value === 'unknown'
-  //       ? 'Needs Manual Verification'
-  //       : extraData.value.toString();
-  //   }
-  //   return '';
-  // }
 
   convertDemographicRaceToReadable(type: string): string {
     const [rootKey, customValue = ''] = type.split(':');
