@@ -261,6 +261,8 @@ export const AuthProvider: FunctionComponent<React.PropsWithChildren> = ({ child
           if (profile) {
             dispatch(saveProfile(profile))
             return profile
+          } else {
+            throw Error("User cannot log in")
           }
         }
         return undefined
