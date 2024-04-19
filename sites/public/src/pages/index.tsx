@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import Head from "next/head"
-import { AlertBox, t, SiteAlert, ActionBlock, Icon, LinkButton } from "@bloom-housing/ui-components"
+import { t, ActionBlock, Icon } from "@bloom-housing/ui-components"
 import { Button, Heading } from "@bloom-housing/ui-seeds"
 import { PageView, pushGtmEvent, AuthContext } from "@bloom-housing/shared-helpers"
 import { UserStatus } from "../lib/constants"
@@ -31,7 +31,6 @@ export default function Home(props: IndexProps) {
     alertType: null,
   }
   const { profile } = useContext(AuthContext)
-  const [alertInfo, setAlertInfo] = useState(blankAlertInfo)
   const [howItWorksContent, setHowItWorksContent] = useState("")
 
   useEffect(() => {
@@ -60,26 +59,13 @@ export default function Home(props: IndexProps) {
 
   const metaDescription = t("pageDescription.welcome", { regionName: t("region.name") })
   const metaImage = "" // TODO: replace with hero image
-  const alertClasses = "flex-grow mt-6 max-w-6xl w-full"
+
   return (
     <Layout>
       <Head>
         <title>{t("nav.siteTitle")}</title>
       </Head>
       <MetaTags title={t("nav.siteTitle")} image={metaImage} description={metaDescription} />
-      <div className="flex absolute w-full flex-col items-center">
-        <SiteAlert type="alert" className={alertClasses} />
-        <SiteAlert type="success" className={alertClasses} timeout={30000} />
-      </div>
-      {alertInfo.alertMessage && (
-        <AlertBox
-          className=""
-          onClose={() => setAlertInfo(blankAlertInfo)}
-          type={alertInfo.alertType}
-        >
-          {alertInfo.alertMessage}
-        </AlertBox>
-      )}
       <PageHero>
         <PageHero.Header>
           <Heading>{heroTitle}</Heading>
@@ -180,11 +166,9 @@ export default function Home(props: IndexProps) {
           </Markdown>
         </div>
 
-        <LinkButton href="/how-it-works">{t("welcome.readAboutHowItWorks")}</LinkButton>
+        <Button href="/how-it-works" variant="primary-outlined">{t("welcome.readAboutHowItWorks")}</Button>
       </div>
-      <ConfirmationModal
-        setSiteAlertMessage={(alertMessage, alertType) => setAlertInfo({ alertMessage, alertType })}
-      />
+      <ConfirmationModal />
     </Layout>
   )
 }
