@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import Head from "next/head"
-import { AlertBox, t, SiteAlert, ActionBlock, Icon, LinkButton } from "@bloom-housing/ui-components"
-import { Button, Heading } from "@bloom-housing/ui-seeds"
-import { PageView, pushGtmEvent, AuthContext } from "@bloom-housing/shared-helpers"
+import { t, ActionBlock } from "@bloom-housing/ui-components"
+import { Button, Heading, Icon } from "@bloom-housing/ui-seeds"
+import { PageView, pushGtmEvent, AuthContext, CustomIconMap } from "@bloom-housing/shared-helpers"
 import { UserStatus } from "../lib/constants"
 import Layout from "../layouts/application"
 import { ConfirmationModal } from "../components/account/ConfirmationModal"
@@ -31,9 +31,7 @@ export default function Home(props: IndexProps) {
     alertType: null,
   }
   const { profile } = useContext(AuthContext)
-  const [alertInfo, setAlertInfo] = useState(blankAlertInfo)
   const [howItWorksContent, setHowItWorksContent] = useState("")
-
   useEffect(() => {
     pushGtmEvent<PageView>({
       event: "pageView",
@@ -60,26 +58,13 @@ export default function Home(props: IndexProps) {
 
   const metaDescription = t("pageDescription.welcome", { regionName: t("region.name") })
   const metaImage = "" // TODO: replace with hero image
-  const alertClasses = "flex-grow mt-6 max-w-6xl w-full"
+
   return (
     <Layout>
       <Head>
         <title>{t("nav.siteTitle")}</title>
       </Head>
       <MetaTags title={t("nav.siteTitle")} image={metaImage} description={metaDescription} />
-      <div className="flex absolute w-full flex-col items-center">
-        <SiteAlert type="alert" className={alertClasses} />
-        <SiteAlert type="success" className={alertClasses} timeout={30000} />
-      </div>
-      {alertInfo.alertMessage && (
-        <AlertBox
-          className=""
-          onClose={() => setAlertInfo(blankAlertInfo)}
-          type={alertInfo.alertType}
-        >
-          {alertInfo.alertMessage}
-        </AlertBox>
-      )}
       <PageHero>
         <PageHero.Header>
           <Heading>{heroTitle}</Heading>
@@ -100,7 +85,11 @@ export default function Home(props: IndexProps) {
                   {t("welcome.signUp")}
                 </Heading>
               }
-              icon={<Icon size="3xl" symbol="mailThin" />}
+              icon={
+                <Icon size="2xl" outlined>
+                  {CustomIconMap.envelope}
+                </Icon>
+              }
               actions={[
                 <Button
                   key={"sign-up"}
@@ -121,7 +110,11 @@ export default function Home(props: IndexProps) {
                 {t("welcome.seeMoreOpportunitiesTruncated")}
               </Heading>
             }
-            icon={<Icon size="3xl" symbol="building" />}
+            icon={
+              <Icon size="2xl" outlined>
+                {CustomIconMap.home}
+              </Icon>
+            }
             actions={[
               <Button
                 key={"additional-resources"}
@@ -136,55 +129,7 @@ export default function Home(props: IndexProps) {
           />
         </div>
       </div>
-      <div className="homepage-extra bg-gray-100 px-4 pb-16">
-        <ActionBlock
-          className="pb-0 -mb-1"
-          header={t("welcome.howDoesItWork")}
-          icon={<Icon size="3xl" symbol="frontDoor" />}
-          actions={[]}
-        />
-
-        <p className="text-center">{t("welcome.learnHowToApply")}</p>
-
-        <div className="markdown max-w-7xl">
-          <Markdown
-            options={{
-              overrides: {
-                RenderIf,
-                ol: {
-                  component: ({ ...props }) => (
-                    <ol {...props} className="process-list has-horizontal-layout" />
-                  ),
-                },
-                h4: {
-                  component: ({ children, ...props }) => (
-                    <h4
-                      {...props}
-                      className="font-alt-sans font-semibold text-base text-black mb-1 mt-0"
-                    >
-                      {children}
-                    </h4>
-                  ),
-                },
-                p: {
-                  component: ({ children, ...props }) => (
-                    <p {...props} className="text-gray-700 text-sm mt-3 mb-2">
-                      {children}
-                    </p>
-                  ),
-                },
-              },
-            }}
-          >
-            {howItWorksContent}
-          </Markdown>
-        </div>
-
-        <LinkButton href="/how-it-works">{t("welcome.readAboutHowItWorks")}</LinkButton>
-      </div>
-      <ConfirmationModal
-        setSiteAlertMessage={(alertMessage, alertType) => setAlertInfo({ alertMessage, alertType })}
-      />
+      <ConfirmationModal />
     </Layout>
   )
 }
