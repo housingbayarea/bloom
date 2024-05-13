@@ -126,7 +126,6 @@ We are using [lerna](https://lerna.js.org/) as a monorepo management tool. It au
 
 On commit, two steps automatically run: (1) linting and (2) a verification of the conventional commit standard. We recommend not running `git commit` and instead globally installing commitizen (`npm install -g commitizen`) and then committing with `git cz` which will run a commit message CLI. The CLI asks a series of questions about your changeset and builds the commit message for you in the conventional commit format. You can also `git commit` with your own message if you are confident it follows the conventional standard.
 
-In addition to commits needing to be formatted as conventional commits, if you are making different levels of version change across multiple packages, your commits must also be separated by package in order to avoid improperly versioning a package.
 
 On every merge to `main`, our Netlify and Heroku environment automatically deploys.
 
