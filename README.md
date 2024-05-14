@@ -75,42 +75,52 @@ yarn dev
 ```
 
 ### Bloom's UI-Component Development
+
 - Because Bloom's ui-components package is a separate open source repository, developing within both repos locally requires linking the folders with the following steps:
+
 ### Directory Setup
-1. Clone both Bloom and the [ui-components repository](https://github.com/bloom-housing/ui-components) on the same directory level. 
+
+1. Clone both Bloom and the [ui-components repository](https://github.com/bloom-housing/ui-components) on the same directory level.
+
 ### Symlinking UI-C
+
 1. In the Bloom directory, run `yarn link:uic`.
 2. Open the next.config.js file in the public and partner's directory.
 3. Uncomment the experimental property at the bottom of each file.
 4. Follow the directions above to run Bloom locally.
-These steps allow for two development patterns. You can edit ui-components within the node_modules of Bloom and the changes will be reflected in your local version of ui-components. Alternatively, you can edit the local version of ui-components and the changes will be reflected in the node_modules in Bloom. Both patterns will display up-to-date changes on the local server.
+   These steps allow for two development patterns. You can edit ui-components within the node_modules of Bloom and the changes will be reflected in your local version of ui-components. Alternatively, you can edit the local version of ui-components and the changes will be reflected in the node_modules in Bloom. Both patterns will display up-to-date changes on the local server.
 
 ### Unlinking UI-C
+
 1. In the Bloom directory, run `yarn unlink:uic`.
 2. Open the next.config.js file in the public and partner's directory.
 3. Comment out the experimental property at the bottom of each file.
 4. Follow the directions above to run Bloom locally.
-Bloom will now be consuming the published version of @bloom-housing/ui-components specified in package.json and no local ui-component changes will be reflected.
-
+   Bloom will now be consuming the published version of @bloom-housing/ui-components specified in package.json and no local ui-component changes will be reflected.
 
 ### Bloom's UI-Component Development
+
 - Because Bloom's ui-components package is a separate open source repository, developing within both repos locally requires linking the folders with the following steps:
+
 ### Directory Setup
-1. Clone both Bloom and the [ui-components repository](https://github.com/bloom-housing/ui-components) on the same directory level. 
+
+1. Clone both Bloom and the [ui-components repository](https://github.com/bloom-housing/ui-components) on the same directory level.
+
 ### Symlinking UI-C
+
 1. In the Bloom directory, run `yarn link:uic`.
 2. Open the next.config.js file in the public and partner's directory.
 3. Uncomment the experimental property at the bottom of each file.
 4. Follow the directions above to run Bloom locally.
-These steps allow for two development patterns. You can edit ui-components within the node_modules of Bloom and the changes will be reflected in your local version of ui-components. Alternatively, you can edit the local version of ui-components and the changes will be reflected in the node_modules in Bloom. Both patterns will display up-to-date changes on the local server.
+   These steps allow for two development patterns. You can edit ui-components within the node_modules of Bloom and the changes will be reflected in your local version of ui-components. Alternatively, you can edit the local version of ui-components and the changes will be reflected in the node_modules in Bloom. Both patterns will display up-to-date changes on the local server.
 
 ### Unlinking UI-C
+
 1. In the Bloom directory, run `yarn unlink:uic`.
 2. Open the next.config.js file in the public and partner's directory.
 3. Comment out the experimental property at the bottom of each file.
 4. Follow the directions above to run Bloom locally.
-Bloom will now be consuming the published version of @bloom-housing/ui-components specified in package.json and no local ui-component changes will be reflected.
-
+   Bloom will now be consuming the published version of @bloom-housing/ui-components specified in package.json and no local ui-component changes will be reflected.
 
 ## Contributing
 
@@ -126,6 +136,7 @@ We are using [lerna](https://lerna.js.org/) as a monorepo management tool. It au
 
 On commit, two steps automatically run: (1) linting and (2) a verification of the conventional commit standard. We recommend not running `git commit` and instead globally installing commitizen (`npm install -g commitizen`) and then committing with `git cz` which will run a commit message CLI. The CLI asks a series of questions about your changeset and builds the commit message for you in the conventional commit format. You can also `git commit` with your own message if you are confident it follows the conventional standard.
 
+In addition to commits needing to be formatted as conventional commits, if you are making different levels of version change across multiple packages, your commits must also be separated by package in order to avoid improperly versioning a package.
 
 On every merge to `main`, our Netlify and Heroku environment automatically deploys.
 
