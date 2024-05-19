@@ -2,9 +2,10 @@ import React, { useEffect, useContext, useState } from "react"
 import Head from "next/head"
 import Markdown from "markdown-to-jsx"
 import Layout from "../layouts/application"
-import { t, Icon, PageHeader, MarkdownSection } from "@bloom-housing/ui-components"
+import { t, PageHeader, MarkdownSection } from "@bloom-housing/ui-components"
+import { Icon } from "@bloom-housing/ui-seeds"
 import { UserStatus } from "../lib/constants"
-import { AuthContext, PageView, pushGtmEvent } from "@bloom-housing/shared-helpers"
+import { AuthContext, PageView, pushGtmEvent, CustomIconMap } from "@bloom-housing/shared-helpers"
 import RenderIf from "../RenderIf"
 
 const getGetAssistanceSection = async (jurisdiction: string) => {
@@ -87,6 +88,7 @@ const GetAssistance = () => {
                     },
                     Icon,
                     RenderIf,
+                    CustomIconMap,
                   },
                 }}
               >
