@@ -174,7 +174,9 @@ export default function Home(props: IndexProps) {
           </Markdown>
         </div>
 
-        <Button href="/how-it-works" variant="primary-outlined">{t("welcome.readAboutHowItWorks")}</Button>
+        <Button href="/how-it-works" variant="primary-outlined">
+          {t("welcome.readAboutHowItWorks")}
+        </Button>
       </div>
       <ConfirmationModal />
     </Layout>
