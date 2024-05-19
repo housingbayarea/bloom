@@ -14,7 +14,7 @@ export const CustomIconMap = {
   clock: <Clock />,
   home: <HomeModernIcon />,
   envelope: <EnvelopeIcon />,
-  frontDoor: <FrontDoorIcon />,
+  frontDoor: FrontDoorIcon,
 }
 
 export type CustomIconType = keyof typeof CustomIconMap
