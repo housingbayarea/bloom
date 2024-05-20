@@ -134,7 +134,7 @@ export default function Home(props: IndexProps) {
         <ActionBlock
           className="pb-0 -mb-1"
           header={t("welcome.howDoesItWork")}
-          icon={<Icon size="3xl">{CustomIconMap.frontDoor}</Icon>}
+          icon={<Icon size="2xl">{CustomIconMap.frontDoor}</Icon>}
           actions={[]}
         />
 
