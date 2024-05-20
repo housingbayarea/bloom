@@ -12,7 +12,6 @@ import { JursidictionSiteNotice as SanMateoNotice } from "../page_content/jurisd
 import { Message, Toast } from "@bloom-housing/ui-seeds"
 import { SiteHeader, MenuLink, t } from "@bloom-housing/ui-components"
 import { AuthContext, MessageContext } from "@bloom-housing/shared-helpers"
-import { SiteHeader, MenuLink, t } from "@bloom-housing/ui-components"
 import styles from "./application.module.scss"
 
 const Layout = (props) => {
