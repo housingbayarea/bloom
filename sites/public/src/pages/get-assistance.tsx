@@ -24,6 +24,12 @@ const getSidebarSection = async (jurisdiction: string) => {
   )
 }
 
+const ContentIcon = (props: { name: string; outlined?: boolean }) => (
+  <Icon size="2xl" className="mb-2" outlined={props.outlined}>
+    {CustomIconMap[props.name]}
+  </Icon>
+)
+
 const GetAssistance = () => {
   const pageTitle = t("pageTitle.getAssistance")
   const subTitle = t("pageDescription.getAssistance")
@@ -86,9 +92,8 @@ const GetAssistance = () => {
                     hr: {
                       component: ({ ...props }) => <hr {...props} className="border-t-0" />,
                     },
-                    Icon,
+                    ContentIcon,
                     RenderIf,
-                    CustomIconMap,
                   },
                 }}
               >
