@@ -126,7 +126,6 @@ const FormSummaryDetails = ({
     return initialOption?.text || optOutOption || option.key
   }
 
-  console.log(application)
   const multiselectQuestionSection = (
     applicationSection: MultiselectQuestionsApplicationSectionEnum,
     appLink: string,
