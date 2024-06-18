@@ -156,7 +156,7 @@ export class ScriptRunnerService {
     await this.prisma.reservedCommunityTypes.create({
       data: {
         name: 'housingVoucher',
-        description: 'Reserved for HCV/Section 8 Voucher Holder.',
+        description: 'Reserved for HCV/Section 8 Voucher Holder',
         jurisdictions: {
           connect: {
             id: jurisdictionIdDTO.id,
