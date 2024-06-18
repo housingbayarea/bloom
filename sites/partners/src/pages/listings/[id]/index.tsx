@@ -5,6 +5,7 @@ import { t, AlertBox, SiteAlert, Breadcrumbs, BreadcrumbLink } from "@bloom-hous
 import {
   Listing,
   ListingsStatusEnum,
+  ReviewOrderTypeEnum,
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import { ListingStatusBar } from "../../../components/listings/ListingStatusBar"
 import ListingGuard from "../../../components/shared/ListingGuard"
@@ -64,6 +65,11 @@ export default function ListingDetail(props: ListingProps) {
                 show: listing.status !== ListingsStatusEnum.pending,
                 listingLabel: t("t.listingSingle"),
                 applicationsLabel: t("nav.applications"),
+                lotteryLabel:
+                  listing.status === ListingsStatusEnum.closed &&
+                  listing.reviewOrderType === ReviewOrderTypeEnum.lottery
+                    ? t("listings.lotteryTitle")
+                    : undefined,
               }}
               breadcrumbs={
                 <Breadcrumbs>
