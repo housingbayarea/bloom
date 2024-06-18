@@ -148,7 +148,7 @@ export class ScriptRunnerService {
     // script runner standard start up
     const requestingUser = mapTo(User, req['user']);
     await this.markScriptAsRunStart(
-      'Senior Veterans Community Type',
+      'Housing Voucher Community Type',
       requestingUser,
     );
 

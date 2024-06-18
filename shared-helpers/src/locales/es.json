@@ -559,7 +559,7 @@
   "listings.rentalHistory": "Historial de alquiler",
   "listings.requiredDocuments": "Documentos requeridos",
   "listings.reservedCommunityBuilding": "Edificación %{type}",
-  "listings.reservedCommunityTypeDescriptions.housingVoucher": "Reservado para el titular del vale de HCV / Sección 8",
+  "listings.reservedCommunityTypeDescriptions.housingVoucher": "el titular del vale de HCV / Sección 8",
   "listings.reservedCommunityTypes.housingVoucher": "Vale HCV/Sección 8",
   "listings.reservedFor": "Reservada para %{type}",
   "listings.reservedTypePlural.family": "familias",
