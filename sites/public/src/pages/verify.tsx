@@ -31,18 +31,25 @@ const Verify = () => {
   const { requestSingleUseCode, loginViaSingleUseCode } = useContext(AuthContext)
   const redirectToPage = useRedirectToPrevPage("/account/dashboard")
 
-  type FlowType = "create" | "login"
+  type FlowType = "create" | "login" | "loginReCaptcha"
   const email = router.query?.email as string
   const flowType = router.query?.flowType as FlowType
+
+  const getAlertMessage = () => {
+    switch (flowType) {
+      case "create":
+        return t("account.pwdless.createMessage", { email })
+      case "login":
+        return t("account.pwdless.loginMessage", { email })
+      case "loginReCaptcha":
+        return t("account.pwdless.loginReCaptchaMessage", { email })
+    }
+  }
 
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [isResendLoading, setIsResendLoading] = useState(false)
   const [isLoginLoading, setIsLoginLoading] = useState(false)
-  const [alertMessage, setAlertMessage] = useState(
-    flowType === "create"
-      ? t("account.pwdless.createMessage", { email })
-      : t("account.pwdless.loginMessage", { email })
-  )
+  const [alertMessage, setAlertMessage] = useState(getAlertMessage())
 
   useEffect(() => {
     pushGtmEvent<PageView>({
@@ -59,7 +66,7 @@ const Verify = () => {
       setIsLoginLoading(true)
       const user = await loginViaSingleUseCode(email, code)
       setIsLoginLoading(false)
-      if (flowType === "login") {
+      if (flowType === "login" || flowType === "loginReCaptcha") {
         setSiteAlertMessage(t(`authentication.signIn.success`, { name: user.firstName }), "success")
       } else {
         setSiteAlertMessage(t("authentication.createAccount.accountConfirmed"), "success")
