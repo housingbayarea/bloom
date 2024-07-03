@@ -29,7 +29,6 @@ executors:
       GOOGLE_API_ID: "secret-key"
       GOOGLE_API_KEY: "secret-key"
       GOOGLE_CLOUD_PROJECT_ID: "secret-key"
-
   standard-node:
     docker:
       - image: "cimg/node:18.14.2"
