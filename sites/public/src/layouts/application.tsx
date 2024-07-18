@@ -87,6 +87,7 @@ const Layout = (props) => {
   }
 
   let siteNotice = <div></div>
+  let transitionMessage = null
   if (process.env.jurisdictionName === "Alameda") {
     siteNotice = <AlamedaNotice />
   }
@@ -95,6 +96,7 @@ const Layout = (props) => {
   }
   if (process.env.jurisdictionName === "San Mateo") {
     siteNotice = <SanMateoNotice />
+    transitionMessage = t("alert.transition")
   }
 
   return (
@@ -103,6 +105,13 @@ const Layout = (props) => {
         <Head>
           <title>{t("nav.siteTitle")}</title>
         </Head>
+        {transitionMessage && (
+          <div className={styles["site-alert-banner-container"]}>
+            <Message className={styles["site-alert-banner-content"]} variant={"primary"}>
+              <Markdown>{transitionMessage}</Markdown>
+            </Message>
+          </div>
+        )}
         {getInMaintenance() && (
           <div className={styles["site-alert-banner-container"]}>
             <Message className={styles["site-alert-banner-content"]} variant={"primary"}>
