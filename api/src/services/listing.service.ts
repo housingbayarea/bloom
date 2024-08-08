@@ -288,6 +288,53 @@ export class ListingService implements OnModuleInit {
     return { emails: userEmails, publicUrl };
   }
 
+  public async getPublicUserEmailInfo(
+    listingId?: string,
+  ): Promise<{ [key: string]: string[] }> {
+    const userResults = await this.prisma.applications.findMany({
+      select: {
+        language: true,
+        applicant: {
+          select: {
+            emailAddress: true,
+          },
+        },
+      },
+      where: {
+        listingId,
+        applicant: {
+          emailAddress: {
+            not: null,
+          },
+        },
+      },
+    });
+
+    const result = {};
+    Object.keys(LanguagesEnum).forEach((languageKey) => {
+      const applications = userResults
+        .filter((user) => user.language === languageKey)
+        .map((userObj) => userObj.applicant.emailAddress);
+      if (applications.length) {
+        result[languageKey] = applications;
+      }
+    });
+
+    const noLanguageIndicated = userResults
+      .filter((user) => !user.language)
+      .map((userObj) => userObj.applicant.emailAddress);
+
+    if (!result[LanguagesEnum.en])
+      result[LanguagesEnum.en] = noLanguageIndicated;
+    else
+      result[LanguagesEnum.en] = [
+        ...result[LanguagesEnum.en],
+        ...noLanguageIndicated,
+      ];
+
+    return result;
+  }
+
   public async listingApprovalNotify(params: {
     user: User;
     listingInfo: IdDTO;
@@ -1659,11 +1706,27 @@ export class ListingService implements OnModuleInit {
     }
 
     const isAdmin = requestingUser.userRoles?.isAdmin;
+    const isJurisdictionalAdmin =
+      requestingUser.userRoles?.isJurisdictionalAdmin;
     const isPartner = requestingUser.userRoles?.isPartner;
     const currentStatus = storedListing.lotteryStatus;
 
     // TODO: remove when all status logic has been implemented
     let res;
+
+    const partnerUserEmailInfo = await this.getUserEmailInfo(
+      [
+        UserRoleEnum.admin,
+        UserRoleEnum.jurisdictionAdmin,
+        UserRoleEnum.partner,
+      ],
+      storedListing.id,
+      storedListing.jurisdictionId,
+    );
+
+    const publicUserEmailInfo = await this.getPublicUserEmailInfo(
+      storedListing.id,
+    );
 
     switch (dto?.lotteryStatus) {
       case LotteryStatusEnum.ran: {
@@ -1703,6 +1766,13 @@ export class ListingService implements OnModuleInit {
             'Lottery cannot be released to partners without being in run state.',
           );
         }
+        if (
+          storedListing.lotteryLastRunAt < storedListing.lastApplicationUpdateAt
+        ) {
+          throw new BadRequestException(
+            'Lottery cannot be released due to paper applications that are not included in the last run.',
+          );
+        }
         // TODO: add released to partners to history
         // TODO: remove when all status logic has been implemented
         res = await this.prisma.listings.update({
@@ -1713,10 +1783,22 @@ export class ListingService implements OnModuleInit {
             id: dto.listingId,
           },
         });
+
+        await this.emailService.lotteryReleased(
+          requestingUser,
+          {
+            id: storedListing.id,
+            name: storedListing.name,
+            juris: storedListing.jurisdictionId,
+          },
+          partnerUserEmailInfo.emails,
+          this.configService.get('PARTNERS_PORTAL_URL'),
+        );
+
         break;
       }
       case LotteryStatusEnum.publishedToPublic: {
-        if (!isPartner && !isAdmin) {
+        if (!isPartner && !isAdmin && !isJurisdictionalAdmin) {
           throw new ForbiddenException();
         }
         if (currentStatus !== LotteryStatusEnum.releasedToPartners) {
@@ -1734,6 +1816,26 @@ export class ListingService implements OnModuleInit {
             id: dto.listingId,
           },
         });
+
+        await this.emailService.lotteryPublishedAdmin(
+          requestingUser,
+          {
+            id: storedListing.id,
+            name: storedListing.name,
+            juris: storedListing.jurisdictionId,
+          },
+          partnerUserEmailInfo.emails,
+          this.configService.get('PARTNERS_PORTAL_URL'),
+        );
+
+        await this.emailService.lotteryPublishedApplicant(
+          {
+            id: storedListing.id,
+            name: storedListing.name,
+            juris: storedListing.jurisdictionId,
+          },
+          publicUserEmailInfo,
+        );
         break;
       }
       default: {
