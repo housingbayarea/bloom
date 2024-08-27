@@ -145,13 +145,13 @@ const ApplicationDates = ({
               defaultValues={{
                 hours: listing?.applicationDueDate
                   ? dayjs(new Date(listing?.applicationDueDate)).format("hh")
-                  : "05",
+                  : null,
                 minutes: listing?.applicationDueDate
                   ? dayjs(new Date(listing?.applicationDueDate)).format("mm")
-                  : "00",
+                  : null,
                 seconds: listing?.applicationDueDate
                   ? dayjs(new Date(listing?.applicationDueDate)).format("ss")
-                  : "00",
+                  : null,
                 period: listing?.applicationDueDate
                   ? new Date(listing?.applicationDueDate).getHours() >= 12
                     ? "pm"
