@@ -5698,6 +5698,7 @@ export enum HouseholdMemberRelationship {
   "greatGrandparent" = "greatGrandparent",
   "inLaw" = "inLaw",
   "friend" = "friend",
+  "liveInAid" = "liveInAid",
   "other" = "other",
 }
 export type AllExtraDataTypes = BooleanInput | TextInput | AddressInput
