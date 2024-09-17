@@ -1,6 +1,14 @@
-import { Injectable, BadRequestException } from '@nestjs/common';
+import {
+  Injectable,
+  BadRequestException,
+  StreamableFile,
+} from '@nestjs/common';
+import axios from 'axios';
+import { Method } from 'axios';
 import { LanguagesEnum, Prisma, PrismaClient } from '@prisma/client';
 import { Request as ExpressRequest } from 'express';
+import fs, { createReadStream } from 'fs';
+import { parse } from 'csv-parse/sync';
 import { PrismaService } from './prisma.service';
 import { SuccessDTO } from '../dtos/shared/success.dto';
 import { User } from '../dtos/users/user.dto';
@@ -13,6 +21,12 @@ import { IdDTO } from '../dtos/shared/id.dto';
 import { AmiChartImportDTO } from '../dtos/script-runner/ami-chart-import.dto';
 import { AmiChartCreate } from '../dtos/ami-charts/ami-chart-create.dto';
 import { AmiChartService } from './ami-chart.service';
+import { firstValueFrom } from 'rxjs';
+import { HttpService } from '@nestjs/axios';
+import FormData from 'form-data';
+import { basename, join } from 'path';
+import { convertDemographicRaceToReadable } from 'src/utilities/application-export-helpers';
+import { formatLocalDate } from 'src/utilities/format-local-date';
 
 /**
   this is the service for running scripts
@@ -24,6 +38,7 @@ export class ScriptRunnerService {
     private prisma: PrismaService,
     private emailService: EmailService,
     private amiChartService: AmiChartService,
+    private httpService: HttpService,
   ) {}
 
   /**
@@ -379,6 +394,458 @@ export class ScriptRunnerService {
     await this.markScriptAsComplete('add lottery translations', requestingUser);
 
     return { success: true };
+  }
+
+  async anonymizedData(req: ExpressRequest) {
+    const page = 1;
+    const limit = 500;
+    const offset = page * limit - limit;
+    const rows: any[] = await this.prisma.$queryRawUnsafe(`select
+    a.id,
+    a.listing_id,
+    a.confirmation_code,
+    a.submission_date,
+    a.contact_preferences,
+    date_part(
+        'year',
+        age(
+            make_date(app.birth_year, app.birth_month, app.birth_day)
+        )
+    ) as age,
+    ad.street,
+    ad.city,
+    ad.state,
+    ad.zip_code,
+    a.income,
+    a.income_period,
+    acc.mobility,
+    acc.vision,
+    acc.hearing,
+    a.household_expecting_changes,
+    a.household_student,
+    ac.type,
+    ac.agency,
+    a.income_vouchers,
+    d.ethnicity,
+    d.race,
+    d.how_did_you_hear,
+    a.marked_as_duplicate,
+    a.preferences,
+    a.household_size
+from
+    applications a,
+    applicant app,
+    accessibility acc,
+    address ad,
+    alternate_contact ac,
+    demographics d,
+    listings l
+where
+    a.listing_id = l.id
+    and l.jurisdiction_id = '3328e8df-e064-4d9c-99cc-467ba43dd2de'
+    and a.applicant_id = app.id
+    and a.accessibility_id = acc.id
+    and app.address_id = ad.id
+    and ac.id = a.alternate_contact_id
+    and a.demographics_id = d.id
+    ORDER BY a.id
+    OFFSET ${offset}
+    limit ${limit};`);
+
+    const mailingAddresses: any[] = await this.prisma.$queryRaw`select
+    a.id,
+    a.listing_id,
+    a.confirmation_code,
+    ad.street,
+    ad.city,
+    ad.state,
+    ad.zip_code
+from
+    applications a,
+    address ad,
+    listings l
+where
+    a.listing_id = l.id
+    and l.jurisdiction_id = '3328e8df-e064-4d9c-99cc-467ba43dd2de'
+    and ad.id = a.mailing_address_id
+    and ad.zip_code != ''
+ORDER BY a.id `;
+
+    const uniqueListingIds = [
+      ...new Set(rows.map((application) => application.listing_id)),
+    ];
+
+    const unitPreferences: { id: string; units: string[] }[] = await this.prisma
+      .$queryRawUnsafe(`select
+      a.id,
+      array_agg(ut.name :: TEXT) as units
+  from
+      applications a,
+      "_ApplicationsToUnitTypes" atut,
+      unit_types ut
+  where
+      a.listing_id in (${uniqueListingIds.map((id) => `'${id}'`)})
+      and atut."A" = a.id
+      and ut.id = atut."B"
+  GROUP BY
+      a.id;`);
+
+    console.log(uniqueListingIds);
+    const householdMembers: any[] = await this.prisma.$queryRawUnsafe(`select
+    a.id,
+    json_agg(
+        JSON_BUILD_OBJECT(
+            'relationship',
+            hm.relationship,
+            'work_in_region',
+            hm.work_in_region,
+            'age',
+            date_part(
+                'year',
+                age(
+                    make_date(hm.birth_year, hm.birth_month, 28)
+                )
+            ),
+            'same_address',
+            hm.same_address,
+            'street',
+            ad.street,
+            'city',
+            ad.city,
+            'state',
+            ad.state,
+            'zip_code',
+            ad.zip_code
+        ) 
+    ) as household_members
+from
+    household_member hm,
+    applications a,
+    address ad
+where
+    a.id = hm.application_id
+    and a.listing_id in (${uniqueListingIds.map((id) => `'${id}'`)})
+    and ad.id = hm.address_id
+GROUP BY
+    a.id`);
+
+    const multiselectQuestions: any[] = await this.prisma.$queryRaw`select
+    distinct mq.text,
+    mq.id,
+    mq.options
+from
+    multiselect_questions mq,
+    listing_multiselect_questions lmq,
+    "_JurisdictionsToMultiselectQuestions" jmq,
+    applications a
+where
+    jmq."A" = '3328e8df-e064-4d9c-99cc-467ba43dd2de'
+    and jmq."B" = mq.id
+    and mq.id = lmq.multiselect_question_id
+    and a.listing_id = lmq.listing_id;`;
+
+    const now = new Date().getTime();
+
+    const filename = join(
+      process.cwd(),
+      `src/temp/addresses-${now}-${page}.csv`,
+    );
+
+    console.log('file name', filename);
+    const fileCreation = await new Promise<void>(async (resolve, reject) => {
+      const writableStream = fs.createWriteStream(filename);
+      writableStream
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', async () => {
+          rows.forEach((row, index) => {
+            writableStream.write(
+              `${index + 1},"${row.street.replace(/"/g, `""`)}",${row.city},${
+                row.state
+              },${row.zip_code},${row.id}\n`,
+            );
+          });
+          writableStream.end();
+        });
+    });
+
+    const censusData = fs.readFileSync(
+      '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/addresses-1726151307248-1-results.csv',
+    );
+    const mailingAddressesData = fs.readFileSync(
+      '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/mailing_addresses.csv',
+    );
+    const csvData = parse(censusData, {
+      skip_empty_lines: true,
+      relaxColumnCount: true,
+    });
+    const mailingAddressData = parse(mailingAddressesData, {
+      skip_empty_lines: true,
+      relaxColumnCount: true,
+    });
+
+    const filename2 = join(
+      process.cwd(),
+      `src/temp/addresses-results-${now}-${page}.csv`,
+    );
+
+    const headers = [
+      'id',
+      'confirmation code',
+      'submission date',
+      'contact preferences',
+      'primary census tract',
+      'mailing census tract',
+      'work census tract',
+      'age',
+      'household student',
+      'income',
+      'income period',
+      'mobility',
+      'vision',
+      'hearing',
+      'expecting changes',
+      'alternate contact type',
+      'alternate contact agency',
+      'income vouchers',
+      'requested unit types',
+      'marked as duplicate',
+      'ethnicity,race',
+      'how did you hear?',
+    ];
+
+    multiselectQuestions.forEach((question) => {
+      headers.push(`preference ${question.text}`);
+      question.options.forEach((option) => {
+        if (option.collectAddress) {
+          headers.push(
+            `preference ${question.text} - ${option.text} - Address`,
+          );
+        }
+        if (option.collectName) {
+          headers.push(`preference ${question.text} - ${option.text} - Name`);
+        }
+        if (option.collectRelationship) {
+          headers.push(
+            `preference ${question.text} - ${option.text} - Relationship`,
+          );
+        }
+      });
+    });
+
+    const maxHouseholdSize = householdMembers.reduce(
+      (maxSize, applicationGroup) => {
+        if (maxSize < applicationGroup.household_members.length) {
+          return applicationGroup.household_members.length;
+        }
+        return maxSize;
+      },
+      0,
+    );
+
+    for (let currentSize = 1; currentSize <= maxHouseholdSize; currentSize++) {
+      headers.push(`household member (${currentSize}) age`);
+      headers.push(
+        `household member (${currentSize}) same as primary applicant`,
+      );
+      headers.push(`household member (${currentSize}) relationship`);
+      headers.push(`household member (${currentSize}) work in region`);
+      headers.push(`household member (${currentSize}) census tract`);
+    }
+
+    const fileCreation2 = await new Promise<void>(async (resolve, reject) => {
+      const writableStream = fs.createWriteStream(filename2);
+      writableStream
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', async () => {
+          writableStream.write(`${headers.join(',')}\n`);
+          rows?.forEach((row, index) => {
+            const unitType = unitPreferences.find(
+              (value) => value.id === row.id,
+            );
+            const censusRow = csvData?.find((cRow) => {
+              return Number(cRow[0]) === index + 1;
+            });
+            const applicationHouseholdMembers = householdMembers.find(
+              (member) => member.id === row.id,
+            );
+            const foundMailingAddressId = mailingAddresses.findIndex(
+              (address) => address.id === row.id,
+            );
+            let mailingAddressCensusTract = '';
+            if (foundMailingAddressId >= 0) {
+              console.log('index', foundMailingAddressId);
+              const foundMailingData = mailingAddressData.find(
+                (address) => Number(address[0]) === foundMailingAddressId + 1,
+              );
+              mailingAddressCensusTract =
+                foundMailingData?.length >= 10
+                  ? foundMailingData[10]
+                  : 'unknown';
+            }
+            const columnData = [
+              `${row.id}`,
+              `${row.confirmation_code}`,
+              `${
+                row.submission_date
+                  ? formatLocalDate(
+                      row.submission_date,
+                      'MM-DD-YYYY hh:mm:ssA z',
+                      process.env.TIME_ZONE,
+                    )
+                  : ''
+              }`,
+              `"${row.contact_preferences.join(',').replace(/"/g, `""`)}"`,
+              `${censusRow?.length >= 10 ? censusRow[10] : 'unknown'}`,
+              mailingAddressCensusTract,
+              'TBD', // TODO: work address census
+              `${row.age}`,
+              `${row.household_student}`,
+              `${row.income}`,
+              `${row.income_period}`,
+              `${row.mobility}`,
+              `${row.vision}`,
+              `${row.hearing}`,
+              `${row.household_expecting_changes}`,
+              `${row.type}`,
+              `${row.agency}`,
+              `${row.income_vouchers}`,
+              `${unitType ? unitType.units.join(';') : ' '}`,
+              `${row.marked_as_duplicate || ''}`,
+              `${row.ethnicity}`,
+              `"${row.race
+                .map((r) => convertDemographicRaceToReadable(r))
+                .join(';')
+                .replace(/"/g, `""`)}"`,
+              `"${row.how_did_you_hear.join(',').replace(/"/g, `""`)}"`,
+            ];
+            multiselectQuestions.forEach((question) => {
+              const foundPreference = row.preferences.find(
+                (pref) => pref.key === question.text,
+              );
+              if (foundPreference && foundPreference.claimed) {
+                let constructedClaimedString = [];
+                foundPreference.options.forEach((option) => {
+                  if (option.checked) {
+                    constructedClaimedString.push(option.key);
+                  }
+                });
+                columnData.push(
+                  `"${constructedClaimedString.join(',').replace(/"/g, `""`)}"`,
+                );
+                question.options.forEach((option) => {
+                  const foundOption = foundPreference.options.find(
+                    (opt) => opt.key === option.text,
+                  );
+                  if (option.collectAddress) {
+                    const foundExtraData = foundOption.extraData.find(
+                      (extraData) => extraData.key === 'address',
+                    );
+                    columnData.push(
+                      foundExtraData ? 'TBD' : '', // TODO: convert to census tract
+                    );
+                  }
+                  if (option.collectName) {
+                    const foundExtraData = foundOption.extraData.find(
+                      (extraData) => extraData.key === 'addressHolderName',
+                    );
+                    columnData.push(foundExtraData ? foundExtraData.value : '');
+                  }
+                  if (option.collectRelationship) {
+                    const foundExtraData = foundOption.extraData.find(
+                      (extraData) =>
+                        extraData.key === 'addressHolderRelationship',
+                    );
+                    columnData.push(foundExtraData ? foundExtraData.value : '');
+                  }
+                });
+              } else {
+                columnData.push('');
+                question.options.forEach((option) => {
+                  if (option.collectAddress) {
+                    columnData.push('');
+                  }
+                  if (option.collectName) {
+                    columnData.push('');
+                  }
+                  if (option.collectRelationship) {
+                    columnData.push('');
+                  }
+                });
+              }
+            });
+            for (
+              let currentSize = 1;
+              currentSize <= maxHouseholdSize;
+              currentSize++
+            ) {
+              if (
+                applicationHouseholdMembers?.household_members &&
+                applicationHouseholdMembers.household_members[currentSize - 1]
+              ) {
+                columnData.push(
+                  applicationHouseholdMembers.household_members[currentSize - 1]
+                    .age,
+                );
+                columnData.push(
+                  applicationHouseholdMembers.household_members[currentSize - 1]
+                    .same_address,
+                );
+                columnData.push(
+                  applicationHouseholdMembers.household_members[currentSize - 1]
+                    .relationship,
+                );
+                columnData.push(
+                  applicationHouseholdMembers.household_members[currentSize - 1]
+                    .work_in_region,
+                );
+                columnData.push(
+                  applicationHouseholdMembers.household_members[currentSize - 1]
+                    .same_address === 'no'
+                    ? 'TBD'
+                    : '',
+                ); // TODO: census tract
+              } else {
+                columnData.push('');
+                columnData.push('');
+                columnData.push('');
+                columnData.push('');
+                columnData.push('');
+              }
+            }
+            writableStream.write(`${columnData.join(',')}\n`);
+          });
+          writableStream.end();
+        });
+    });
+
+    // console.log('filename', basename(filename));
+    // const formData = new FormData();
+    // formData.append('vintage', '4');
+    // formData.append('benchmark', '4');
+    // formData.append('addressFile', fs.readFileSync(filename), {
+    //   filename: basename(filename),
+    //   filepath: filename,
+    // });
+    // // formData.
+    // const geoInfo = await firstValueFrom(
+    //   this.httpService.post(
+    //     'https://geocoding.geo.census.gov/geocoder/geographies/addressbatch',
+    //     {
+    //       // url: 'https://geocoding.geo.census.gov/geocoder/geographies/addressbatch',
+    //       method: 'POST' as Method,
+    //       // headers: { Accept: '*/*' },
+    //       data: formData,
+    //     },
+    //   ),
+    // );
+
+    // console.log(geoInfo);
+
+    return { success: 'true' };
   }
 
   /**

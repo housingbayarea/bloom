@@ -110,4 +110,14 @@ export class ScirptRunnerController {
   ): Promise<SuccessDTO> {
     return await this.scriptRunnerService.addLotteryTranslations(req);
   }
+
+  @Put('anonymizedData')
+  @ApiOperation({
+    summary: 'Get anonymized data',
+    operationId: 'anonymizedData',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async anonymizedData(@Request() req: ExpressRequest) {
+    return await this.scriptRunnerService.anonymizedData(req);
+  }
 }

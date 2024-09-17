@@ -5,9 +5,16 @@ import { PrismaModule } from './prisma.module';
 import { PermissionModule } from './permission.module';
 import { EmailModule } from './email.module';
 import { AmiChartModule } from './ami-chart.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
-  imports: [PrismaModule, PermissionModule, EmailModule, AmiChartModule],
+  imports: [
+    PrismaModule,
+    PermissionModule,
+    EmailModule,
+    AmiChartModule,
+    HttpModule,
+  ],
   controllers: [ScirptRunnerController],
   providers: [ScriptRunnerService],
   exports: [ScriptRunnerService],

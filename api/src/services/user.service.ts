@@ -423,7 +423,6 @@ export class UserService {
     };
     // user on wrong site, return neutral message and don't send email
     if (!(await isUserSiteMatch())) return { success: true };
-
     const payload = {
       id: storedUser.id,
       exp: Number.parseInt(dayjs().add(1, 'hour').format('X')),
