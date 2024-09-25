@@ -515,7 +515,9 @@ ORDER BY a.id `;
             'state',
             ad.state,
             'zip_code',
-            ad.zip_code
+            ad.zip_code,
+            'id',
+            hm.id
         ) 
     ) as household_members
 from
@@ -571,16 +573,30 @@ where
     });
 
     const censusData = fs.readFileSync(
-      '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/addresses-1726151307248-1-results.csv',
+      `/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/census-${limit}-${page}.csv`,
     );
     const mailingAddressesData = fs.readFileSync(
       '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/mailing_addresses.csv',
+    );
+    const householdMemberBefore = fs.readFileSync(
+      '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/household_addresses.csv',
+    );
+    const householdMemberResults = fs.readFileSync(
+      '/Users/morganludtke/Projects/bay-area/bloom/api/src/temp/household_addresses_results.csv',
     );
     const csvData = parse(censusData, {
       skip_empty_lines: true,
       relaxColumnCount: true,
     });
     const mailingAddressData = parse(mailingAddressesData, {
+      skip_empty_lines: true,
+      relaxColumnCount: true,
+    });
+    const householdMemberBeforeParsed = parse(householdMemberBefore, {
+      skip_empty_lines: true,
+      relaxColumnCount: true,
+    });
+    const householdMemberResultsParsed = parse(householdMemberResults, {
       skip_empty_lines: true,
       relaxColumnCount: true,
     });
@@ -596,7 +612,13 @@ where
       'submission date',
       'contact preferences',
       'primary census tract',
+      'primary city',
+      'primary state',
+      'primary zip code',
       'mailing census tract',
+      'mailing city',
+      'mailing state',
+      'mailing zip code',
       'work census tract',
       'age',
       'household student',
@@ -652,7 +674,20 @@ where
       headers.push(`household member (${currentSize}) relationship`);
       headers.push(`household member (${currentSize}) work in region`);
       headers.push(`household member (${currentSize}) census tract`);
+      headers.push(`household member (${currentSize}) city`);
+      headers.push(`household member (${currentSize}) state`);
+      headers.push(`household member (${currentSize}) zip code`);
     }
+
+    const calculateCensusTract = (censusInfo: string[]) => {
+      if (censusInfo?.length >= 10) {
+        const stateCode = censusInfo[8].padStart(2, '0');
+        const countyCode = censusInfo[9].padStart(3, '0');
+        const censusCode = censusInfo[10].padStart(6, '0');
+        return `${stateCode}${countyCode}${censusCode}`;
+      }
+      return 'unknown';
+    };
 
     const fileCreation2 = await new Promise<void>(async (resolve, reject) => {
       const writableStream = fs.createWriteStream(filename2);
@@ -675,16 +710,14 @@ where
             const foundMailingAddressId = mailingAddresses.findIndex(
               (address) => address.id === row.id,
             );
+            const mailingAddress = mailingAddresses[foundMailingAddressId];
             let mailingAddressCensusTract = '';
             if (foundMailingAddressId >= 0) {
-              console.log('index', foundMailingAddressId);
               const foundMailingData = mailingAddressData.find(
                 (address) => Number(address[0]) === foundMailingAddressId + 1,
               );
               mailingAddressCensusTract =
-                foundMailingData?.length >= 10
-                  ? foundMailingData[10]
-                  : 'unknown';
+                calculateCensusTract(foundMailingData);
             }
             const columnData = [
               `${row.id}`,
@@ -699,8 +732,14 @@ where
                   : ''
               }`,
               `"${row.contact_preferences.join(',').replace(/"/g, `""`)}"`,
-              `${censusRow?.length >= 10 ? censusRow[10] : 'unknown'}`,
+              `${calculateCensusTract(censusRow)}`,
+              `${row.city}`,
+              `${row.state}`,
+              `${row.zip_code}`,
               mailingAddressCensusTract,
+              `${mailingAddress?.city || ''}`,
+              `${mailingAddress?.state || ''}`,
+              `${mailingAddress?.zip_code || ''}`,
               'TBD', // TODO: work address census
               `${row.age}`,
               `${row.household_student}`,
@@ -786,28 +825,42 @@ where
                 applicationHouseholdMembers?.household_members &&
                 applicationHouseholdMembers.household_members[currentSize - 1]
               ) {
+                const currentHouseholdMember =
+                  applicationHouseholdMembers.household_members[
+                    currentSize - 1
+                  ];
+                const beforeFoundMemberIndex =
+                  householdMemberBeforeParsed.findIndex(
+                    (member) => member[5] === currentHouseholdMember.id,
+                  );
+                const resultsFoundMember = householdMemberResultsParsed.find(
+                  (address) =>
+                    Number(address[0]) === beforeFoundMemberIndex + 1,
+                ) as string[];
+                columnData.push(currentHouseholdMember.age);
+                columnData.push(currentHouseholdMember.same_address);
+                columnData.push(currentHouseholdMember.relationship);
+                columnData.push(currentHouseholdMember.work_in_region);
                 columnData.push(
-                  applicationHouseholdMembers.household_members[currentSize - 1]
-                    .age,
-                );
-                columnData.push(
-                  applicationHouseholdMembers.household_members[currentSize - 1]
-                    .same_address,
-                );
-                columnData.push(
-                  applicationHouseholdMembers.household_members[currentSize - 1]
-                    .relationship,
-                );
-                columnData.push(
-                  applicationHouseholdMembers.household_members[currentSize - 1]
-                    .work_in_region,
-                );
-                columnData.push(
-                  applicationHouseholdMembers.household_members[currentSize - 1]
-                    .same_address === 'no'
-                    ? 'TBD'
+                  currentHouseholdMember.same_address === 'no'
+                    ? calculateCensusTract(resultsFoundMember)
                     : '',
-                ); // TODO: census tract
+                );
+                columnData.push(
+                  currentHouseholdMember.same_address === 'no'
+                    ? currentHouseholdMember.city
+                    : '',
+                );
+                columnData.push(
+                  currentHouseholdMember.same_address === 'no'
+                    ? currentHouseholdMember.state
+                    : '',
+                );
+                columnData.push(
+                  currentHouseholdMember.same_address === 'no'
+                    ? currentHouseholdMember.zip_code
+                    : '',
+                );
               } else {
                 columnData.push('');
                 columnData.push('');
