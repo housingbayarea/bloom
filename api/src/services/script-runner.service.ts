@@ -397,8 +397,8 @@ export class ScriptRunnerService {
   }
 
   async anonymizedData(req: ExpressRequest) {
-    const page = 1;
-    const limit = 500;
+    const page = 4;
+    const limit = 4000;
     const offset = page * limit - limit;
     const rows: any[] = await this.prisma.$queryRawUnsafe(`select
     a.id,
@@ -416,6 +416,10 @@ export class ScriptRunnerService {
     ad.city,
     ad.state,
     ad.zip_code,
+    wad.street as work_street,
+    wad.city as work_city,
+    wad.state as work_state,
+    wad.zip_code as work_zip,
     a.income,
     a.income_period,
     acc.mobility,
@@ -437,6 +441,7 @@ from
     applicant app,
     accessibility acc,
     address ad,
+    address wad,
     alternate_contact ac,
     demographics d,
     listings l
@@ -446,6 +451,7 @@ where
     and a.applicant_id = app.id
     and a.accessibility_id = acc.id
     and app.address_id = ad.id
+    and app.work_address_id = wad.id
     and ac.id = a.alternate_contact_id
     and a.demographics_id = d.id
     ORDER BY a.id
@@ -619,7 +625,7 @@ where
       'mailing city',
       'mailing state',
       'mailing zip code',
-      'work census tract',
+      'work address',
       'age',
       'household student',
       'income',
@@ -645,9 +651,9 @@ where
             `preference ${question.text} - ${option.text} - Address`,
           );
         }
-        if (option.collectName) {
-          headers.push(`preference ${question.text} - ${option.text} - Name`);
-        }
+        // if (option.collectName) {
+        //   headers.push(`preference ${question.text} - ${option.text} - Name`);
+        // }
         if (option.collectRelationship) {
           headers.push(
             `preference ${question.text} - ${option.text} - Relationship`,
@@ -697,7 +703,9 @@ where
         })
         .on('open', async () => {
           writableStream.write(`${headers.join(',')}\n`);
-          rows?.forEach((row, index) => {
+          for (let index = 0; index < rows.length; index++) {
+            const row = rows[index];
+            // rows?.forEach(async (row, index) => {
             const unitType = unitPreferences.find(
               (value) => value.id === row.id,
             );
@@ -719,6 +727,7 @@ where
               mailingAddressCensusTract =
                 calculateCensusTract(foundMailingData);
             }
+            const workAddress = `${row.work_city}, ${row.work_state}, ${row.work_zip}`;
             const columnData = [
               `${row.id}`,
               `${row.confirmation_code}`,
@@ -740,7 +749,7 @@ where
               `${mailingAddress?.city || ''}`,
               `${mailingAddress?.state || ''}`,
               `${mailingAddress?.zip_code || ''}`,
-              'TBD', // TODO: work address census
+              row.work_city ? `"${workAddress.replace(/"/g, `""`)}"` : '', // TODO: work address census
               `${row.age}`,
               `${row.household_student}`,
               `${row.income}`,
@@ -761,12 +770,13 @@ where
                 .replace(/"/g, `""`)}"`,
               `"${row.how_did_you_hear.join(',').replace(/"/g, `""`)}"`,
             ];
-            multiselectQuestions.forEach((question) => {
+            for (const question of multiselectQuestions) {
+              // multiselectQuestions.forEach(async (question) => {
               const foundPreference = row.preferences.find(
                 (pref) => pref.key === question.text,
               );
               if (foundPreference && foundPreference.claimed) {
-                let constructedClaimedString = [];
+                const constructedClaimedString = [];
                 foundPreference.options.forEach((option) => {
                   if (option.checked) {
                     constructedClaimedString.push(option.key);
@@ -775,7 +785,8 @@ where
                 columnData.push(
                   `"${constructedClaimedString.join(',').replace(/"/g, `""`)}"`,
                 );
-                question.options.forEach((option) => {
+                for (const option of question.options) {
+                  // question.options.forEach(async (option) => {
                   const foundOption = foundPreference.options.find(
                     (opt) => opt.key === option.text,
                   );
@@ -783,16 +794,52 @@ where
                     const foundExtraData = foundOption.extraData.find(
                       (extraData) => extraData.key === 'address',
                     );
-                    columnData.push(
-                      foundExtraData ? 'TBD' : '', // TODO: convert to census tract
-                    );
+                    if (foundExtraData && foundOption.checked) {
+                      const url = `https://geocoding.geo.census.gov/geocoder/geographies/address?street=${foundExtraData.value?.street}&benchmark=4&format=json&vintage=4&city=${foundExtraData.value?.city}&state=${foundExtraData.value?.state}&zip=${foundExtraData.value?.zipCode}`;
+
+                      const options = {
+                        method: 'GET',
+                        headers: {
+                          Accept: '*/*',
+                          'User-Agent':
+                            'Thunder Client (https://www.thunderclient.com)',
+                        },
+                      };
+
+                      let censusTractForPreference = 'unknown';
+                      try {
+                        const jsonResponse = await (
+                          await fetch(url, options)
+                        ).json();
+                        if (jsonResponse) {
+                          if (jsonResponse.result?.addressMatches?.length) {
+                            const geographies =
+                              jsonResponse.result.addressMatches[0].geographies[
+                                'Census Tracts'
+                              ];
+                            censusTractForPreference =
+                              geographies[0].STATE +
+                              geographies[0].COUNTY +
+                              geographies[0].TRACT;
+                          }
+                        }
+                      } catch (e) {
+                        console.log(e);
+                        console.log(url);
+                      }
+                      columnData.push(
+                        censusTractForPreference, // TODO: convert to census tract
+                      );
+                    } else {
+                      columnData.push('');
+                    }
                   }
-                  if (option.collectName) {
-                    const foundExtraData = foundOption.extraData.find(
-                      (extraData) => extraData.key === 'addressHolderName',
-                    );
-                    columnData.push(foundExtraData ? foundExtraData.value : '');
-                  }
+                  // if (option.collectName) {
+                  //   const foundExtraData = foundOption.extraData.find(
+                  //     (extraData) => extraData.key === 'addressHolderName',
+                  //   );
+                  //   columnData.push(foundExtraData ? foundExtraData.value : '');
+                  // }
                   if (option.collectRelationship) {
                     const foundExtraData = foundOption.extraData.find(
                       (extraData) =>
@@ -800,14 +847,11 @@ where
                     );
                     columnData.push(foundExtraData ? foundExtraData.value : '');
                   }
-                });
+                }
               } else {
                 columnData.push('');
                 question.options.forEach((option) => {
                   if (option.collectAddress) {
-                    columnData.push('');
-                  }
-                  if (option.collectName) {
                     columnData.push('');
                   }
                   if (option.collectRelationship) {
@@ -815,7 +859,7 @@ where
                   }
                 });
               }
-            });
+            }
             for (
               let currentSize = 1;
               currentSize <= maxHouseholdSize;
@@ -870,7 +914,7 @@ where
               }
             }
             writableStream.write(`${columnData.join(',')}\n`);
-          });
+          }
           writableStream.end();
         });
     });
