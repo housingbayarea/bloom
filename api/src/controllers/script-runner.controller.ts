@@ -140,6 +140,7 @@ export class ScirptRunnerController {
       body.description,
     );
   }
+  
   @Put('updateCodeExpirationTranslations')
   @ApiOperation({
     summary:
@@ -151,5 +152,18 @@ export class ScirptRunnerController {
     @Request() req: ExpressRequest,
   ): Promise<SuccessDTO> {
     return await this.scriptRunnerService.updateCodeExpirationTranslations(req);
+  }
+
+  @Put('insertSanJoseMapLayers')
+  @ApiOperation({
+    summary: 'A script that adds map layers for San Jose',
+    operationId: 'insertSanJoseMapLayers',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async insertSanJoseMapLayers(
+    @Request() req: ExpressRequest,
+  ): Promise<SuccessDTO> {
+    return await this.scriptRunnerService.insertSanJoseMapLayers(req);
+>>>>>>> d9a275f31 (fix: new script to add san jose map layers)
   }
 }
