@@ -60,7 +60,11 @@ export const stagingSeed = async (
       roles: { isAdmin: true },
       email: 'admin@example.com',
       confirmedAt: new Date(),
-      jurisdictionIds: [jurisdiction.id, sanMateoJurisdiction.id, sanJoseJurisdiction.id],
+      jurisdictionIds: [
+        jurisdiction.id,
+        sanMateoJurisdiction.id,
+        sanJoseJurisdiction.id,
+      ],
       acceptedTerms: true,
       password: 'abcdef',
     }),
@@ -128,7 +132,7 @@ export const stagingSeed = async (
     data: amiChartFactory(10, jurisdiction.id),
   });
   await prismaClient.amiChart.create({
-    data: amiChartFactory(8, additionalJurisdiction.id),
+    data: amiChartFactory(8, sanJoseJurisdiction.id),
   });
   // Create map layers
   await prismaClient.mapLayers.create({
