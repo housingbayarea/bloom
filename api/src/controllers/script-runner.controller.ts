@@ -137,4 +137,16 @@ export class ScirptRunnerController {
   ): Promise<SuccessDTO> {
     return await this.scriptRunnerService.optOutExistingLotteries(req);
   }
+
+  @Put('insertSanJoseMapLayers')
+  @ApiOperation({
+    summary: 'A script that adds map layers for San Jose',
+    operationId: 'insertSanJoseMapLayers',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async insertSanJoseMapLayers(
+    @Request() req: ExpressRequest,
+  ): Promise<SuccessDTO> {
+    return await this.scriptRunnerService.insertSanJoseMapLayers(req);
+  }
 }
