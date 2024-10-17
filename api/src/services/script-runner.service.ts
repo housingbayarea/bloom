@@ -18,6 +18,7 @@ import { IdDTO } from '../dtos/shared/id.dto';
 import { AmiChartImportDTO } from '../dtos/script-runner/ami-chart-import.dto';
 import { AmiChartCreate } from '../dtos/ami-charts/ami-chart-create.dto';
 import { AmiChartService } from './ami-chart.service';
+import { IdDTO } from '../dtos/shared/id.dto';
 
 /**
   this is the service for running scripts
@@ -146,32 +147,37 @@ export class ScriptRunnerService {
     await this.markScriptAsComplete('bulk application resend', requestingUser);
     return { success: true };
   }
+
   /**
    *
    * @param req incoming request object
    * @param jurisdictionIdDTO id containing the jurisdiction id we are creating the new community type for
+   * @param name name of the community type
+   * @param description description of the community type
    * @returns successDTO
    * @description creates a new reserved community type. Reserved community types also need translations added
    */
   async createNewReservedCommunityType(
     req: ExpressRequest,
-    jurisdictionIdDTO: IdDTO,
+    jurisdictionId: string,
+    name: string,
+    description?: string,
   ): Promise<SuccessDTO> {
     // script runner standard start up
     const requestingUser = mapTo(User, req['user']);
     await this.markScriptAsRunStart(
-      'Housing Voucher Community Type',
+      `${name} Type - ${jurisdictionId}`,
       requestingUser,
     );
 
-    // create new housing voucher community type
+    // create new reserved community type using the passed in params
     await this.prisma.reservedCommunityTypes.create({
       data: {
-        name: 'housingVoucher',
-        description: 'Reserved for HCV/Section 8 Voucher Holder',
+        name: name,
+        description: description,
         jurisdictions: {
           connect: {
-            id: jurisdictionIdDTO.id,
+            id: jurisdictionId,
           },
         },
       },
@@ -179,7 +185,7 @@ export class ScriptRunnerService {
 
     // script runner standard spin down
     await this.markScriptAsComplete(
-      'Housing Voucher Community Type',
+      `${name} Type - ${jurisdictionId}`,
       requestingUser,
     );
     return { success: true };
