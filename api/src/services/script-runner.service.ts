@@ -165,7 +165,10 @@ export class ScriptRunnerService {
   ): Promise<SuccessDTO> {
     // script runner standard start up
     const requestingUser = mapTo(User, req['user']);
-    await this.markScriptAsRunStart(`${name} Type`, requestingUser);
+    await this.markScriptAsRunStart(
+      `${name} Type - ${jurisdictionId}`,
+      requestingUser,
+    );
 
     // create new reserved community type using the passed in params
     await this.prisma.reservedCommunityTypes.create({
@@ -181,7 +184,10 @@ export class ScriptRunnerService {
     });
 
     // script runner standard spin down
-    await this.markScriptAsComplete(`${name} Type`, requestingUser);
+    await this.markScriptAsComplete(
+      `${name} Type - ${jurisdictionId}`,
+      requestingUser,
+    );
     return { success: true };
   }
 
