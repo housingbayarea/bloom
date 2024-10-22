@@ -140,7 +140,7 @@ export class ScirptRunnerController {
       body.description,
     );
   }
-  
+
   @Put('updateCodeExpirationTranslations')
   @ApiOperation({
     summary:
@@ -164,6 +164,5 @@ export class ScirptRunnerController {
     @Request() req: ExpressRequest,
   ): Promise<SuccessDTO> {
     return await this.scriptRunnerService.insertSanJoseMapLayers(req);
->>>>>>> d9a275f31 (fix: new script to add san jose map layers)
   }
 }
