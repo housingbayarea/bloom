@@ -2212,6 +2212,28 @@ export class ScriptRunnerService {
     })
   }
   /**
+   * A script that takes in a standardized string and outputs the input for the ami chart update endpoint
+   */
+  amiChartUpdateImport(
+    params: {
+      /** requestBody */
+      body?: AmiChartUpdateImportDTO
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<SuccessDTO> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/scriptRunner/amiChartUpdateImport"
+
+      const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
+
+      let data = params.body
+
+      configs.data = data
+
+      axios(configs, resolve, reject)
+    })
+  }
+  /**
    * A script that adds lottery translations to the db
    */
   lotteryTranslations(options: IRequestOptions = {}): Promise<SuccessDTO> {
@@ -5855,6 +5877,25 @@ export interface AmiChartImportDTO {
 
   /**  */
   jurisdictionId: string
+}
+
+export interface AmiChartUpdateImportDTO {
+  /**  */
+  values: string
+
+  /**  */
+  amiId: string
+}
+
+export interface CommunityTypeDTO {
+  /**  */
+  id: string
+
+  /**  */
+  name: string
+
+  /**  */
+  description?: string
 }
 
 export interface ApplicationCsvQueryParams {
