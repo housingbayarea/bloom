@@ -4832,7 +4832,10 @@ export interface JurisdictionCreate {
   allowSingleUseCodeLogin: boolean
 
   /**  */
-  listingApprovalPermissions: EnumJurisdictionCreateListingApprovalPermissions[]
+  listingApprovalPermissions: UserRoleEnum[]
+
+  /**  */
+  duplicateListingPermissions: UserRoleEnum[]
 }
 
 export interface JurisdictionUpdate {
@@ -4882,7 +4885,10 @@ export interface JurisdictionUpdate {
   allowSingleUseCodeLogin: boolean
 
   /**  */
-  listingApprovalPermissions: EnumJurisdictionUpdateListingApprovalPermissions[]
+  listingApprovalPermissions: UserRoleEnum[]
+
+  /**  */
+  duplicateListingPermissions: UserRoleEnum[]
 }
 
 export interface Jurisdiction {
@@ -4941,7 +4947,10 @@ export interface Jurisdiction {
   allowSingleUseCodeLogin: boolean
 
   /**  */
-  listingApprovalPermissions: EnumJurisdictionListingApprovalPermissions[]
+  listingApprovalPermissions: UserRoleEnum[]
+
+  /**  */
+  duplicateListingPermissions: UserRoleEnum[]
 }
 
 export interface MultiselectQuestionCreate {
@@ -6131,19 +6140,7 @@ export enum HouseholdMemberRelationship {
   "other" = "other",
 }
 export type AllExtraDataTypes = BooleanInput | TextInput | AddressInput
-export enum EnumJurisdictionCreateListingApprovalPermissions {
-  "user" = "user",
-  "partner" = "partner",
-  "admin" = "admin",
-  "jurisdictionAdmin" = "jurisdictionAdmin",
-}
-export enum EnumJurisdictionUpdateListingApprovalPermissions {
-  "user" = "user",
-  "partner" = "partner",
-  "admin" = "admin",
-  "jurisdictionAdmin" = "jurisdictionAdmin",
-}
-export enum EnumJurisdictionListingApprovalPermissions {
+export enum UserRoleEnum {
   "user" = "user",
   "partner" = "partner",
   "admin" = "admin",
