@@ -17,7 +17,6 @@ import { Application } from '../dtos/applications/application.dto';
 import { AmiChartImportDTO } from '../dtos/script-runner/ami-chart-import.dto';
 import { AmiChartCreate } from '../dtos/ami-charts/ami-chart-create.dto';
 import { AmiChartService } from './ami-chart.service';
-import { ApplicationService } from './application.service';
 
 /**
   this is the service for running scripts
@@ -29,7 +28,6 @@ export class ScriptRunnerService {
     private prisma: PrismaService,
     private emailService: EmailService,
     private amiChartService: AmiChartService,
-    private applicationService: ApplicationService,
   ) {}
 
   /**
@@ -519,10 +517,13 @@ export class ScriptRunnerService {
       requestingUser,
     );
 
-    const applications = await this.applicationService.list(
-      { listingId: 'a055ce66-a074-4f3a-b67b-6776bec9926e' },
-      req,
-    );
+    const applications = await this.prisma.applications.findMany({
+      select: {
+        id: true,
+        preferences: true,
+      },
+      where: { listingId: 'a055ce66-a074-4f3a-b67b-6776bec9926e' },
+    });
 
     const options = [
       {
@@ -535,7 +536,8 @@ export class ScriptRunnerService {
       },
     ];
 
-    applications.items.forEach(async (applicaiton) => {
+    console.log(`Updating ${applications.length} applications`);
+    for (const applicaiton of applications) {
       const blob = applicaiton.preferences;
 
       const preference = blob[0];
@@ -562,7 +564,7 @@ export class ScriptRunnerService {
           id: applicaiton.id,
         },
       });
-    });
+    }
 
     await this.markScriptAsComplete(
       'Correct application preference data for Sparks Homes',

@@ -5,16 +5,9 @@ import { PrismaModule } from './prisma.module';
 import { PermissionModule } from './permission.module';
 import { EmailModule } from './email.module';
 import { AmiChartModule } from './ami-chart.module';
-import { ApplicationModule } from './application.module';
 
 @Module({
-  imports: [
-    PrismaModule,
-    PermissionModule,
-    EmailModule,
-    AmiChartModule,
-    ApplicationModule,
-  ],
+  imports: [PrismaModule, PermissionModule, EmailModule, AmiChartModule],
   controllers: [ScirptRunnerController],
   providers: [ScriptRunnerService],
   exports: [ScriptRunnerService],

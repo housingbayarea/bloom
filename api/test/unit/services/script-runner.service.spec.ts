@@ -12,9 +12,6 @@ import { PrismaService } from '../../../src/services/prisma.service';
 import { User } from '../../../src/dtos/users/user.dto';
 import { EmailService } from '../../../src/services/email.service';
 import { AmiChartService } from '../../../src/services/ami-chart.service';
-import { ApplicationService } from '../../../src/services/application.service';
-import { GeocodingService } from '../../../src/services/geocoding.service';
-import { PermissionService } from '../../../src/services/permission.service';
 
 const externalPrismaClient = mockDeep<PrismaClient>();
 
@@ -35,9 +32,6 @@ describe('Testing script runner service', () => {
           },
         },
         AmiChartService,
-        ApplicationService,
-        GeocodingService,
-        PermissionService,
       ],
     }).compile();
 
