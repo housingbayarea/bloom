@@ -2168,28 +2168,6 @@ export class ScriptRunnerService {
     })
   }
   /**
-   * A script that creates a new reserved community type
-   */
-  createNewReservedCommunityType(
-    params: {
-      /** requestBody */
-      body?: IdDTO
-    } = {} as any,
-    options: IRequestOptions = {}
-  ): Promise<SuccessDTO> {
-    return new Promise((resolve, reject) => {
-      let url = basePath + "/scriptRunner/createNewReservedCommunityType"
-
-      const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = params.body
-
-      configs.data = data
-
-      axios(configs, resolve, reject)
-    })
-  }
-  /**
    * A script that takes in a standardized string and outputs the input for the ami chart create endpoint
    */
   amiChartImport(
@@ -2287,6 +2265,25 @@ export class ScriptRunnerService {
   updateCodeExpirationTranslations(options: IRequestOptions = {}): Promise<SuccessDTO> {
     return new Promise((resolve, reject) => {
       let url = basePath + "/scriptRunner/updateCodeExpirationTranslations"
+
+      const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
+
+      let data = null
+
+      configs.data = data
+
+      axios(configs, resolve, reject)
+    })
+  }
+
+  /**
+   * A script that updates the preference keys for applications on Spark Homes
+   */
+  correctApplicationPreferenceDataForSparksHomes(
+    options: IRequestOptions = {}
+  ): Promise<SuccessDTO> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/scriptRunner/correctApplicationPreferenceDataForSparksHomes"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
