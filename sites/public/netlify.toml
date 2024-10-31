@@ -23,5 +23,5 @@ GTM_KEY = "GTM-KF22FJP"
 [[redirects]]
   from = "/"
   to = "https://housingbayarea.mtc.ca.gov/"
-  status = 200
+  status = 301
   force = true # COMMENT: ensure that we always redirect
