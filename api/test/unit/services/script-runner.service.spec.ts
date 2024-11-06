@@ -12,7 +12,6 @@ import { PrismaService } from '../../../src/services/prisma.service';
 import { User } from '../../../src/dtos/users/user.dto';
 import { EmailService } from '../../../src/services/email.service';
 import { AmiChartService } from '../../../src/services/ami-chart.service';
-import { featureCollection } from '@turf/helpers';
 
 const externalPrismaClient = mockDeep<PrismaClient>();
 
