@@ -34,6 +34,7 @@ import Unit from '../dtos/units/unit.dto';
 import Listing from '../dtos/listings/listing.dto';
 import { mapTo } from '../utilities/mapTo';
 import { ListingMultiselectQuestion } from '../dtos/listings/listing-multiselect-question.dto';
+import { AmiChart } from '../dtos/ami-charts/ami-chart.dto';
 
 views.csv = {
   ...views.details,
@@ -872,5 +873,180 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     } else {
       throw new ForbiddenException();
     }
+  }
+
+  // GEN AI EXPORT STUFF
+  getAmiChartCsvHeaders(): CsvHeader[] {
+    return [
+      {
+        path: 'id',
+        label: 'AMI Chart Id',
+      },
+      {
+        path: 'name',
+        label: 'AMI Chart Name',
+      },
+      {
+        path: 'income',
+        label: 'Income',
+      },
+      {
+        path: 'householdSize',
+        label: 'Household Size',
+      },
+      {
+        path: 'percentOfAmi',
+        label: 'Percent of AMI',
+      },
+    ];
+  }
+
+  async createAMIChartCsv(
+    filename: string,
+    jurisdictionId: string,
+  ): Promise<void> {
+    const csvHeaders = this.getAmiChartCsvHeaders();
+    const rawAmiCharts = await this.prisma.amiChart.findMany({
+      select: {
+        id: true,
+        items: true,
+        name: true,
+      },
+      where: {
+        jurisdictionId,
+      },
+    });
+    const amiCharts = mapTo(AmiChart, rawAmiCharts);
+    return new Promise((resolve, reject) => {
+      const writableStream = fs.createWriteStream(`${filename}`);
+      writableStream
+        .on('error', (err) => {
+          console.log('csv writestream error');
+          console.log(err);
+          reject(err);
+        })
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', () => {
+          writableStream.write(
+            csvHeaders.map((header) => header.label).join(',') + '\n',
+          );
+          amiCharts.forEach((chart) => {
+            for (const item of chart.items) {
+              const flatChart = { id: chart.id, name: chart.name, ...item };
+
+              let row = '';
+              csvHeaders.forEach((header, index) => {
+                let value = header.path.split('.').reduce((acc, curr) => {
+                  if (acc === null || acc === undefined) {
+                    return '';
+                  }
+                  return acc[curr];
+                }, flatChart);
+                value = value === undefined ? '' : value === null ? '' : value;
+                if (header.format) {
+                  value = header.format(value);
+                }
+
+                row += value;
+                if (index < csvHeaders.length - 1) {
+                  row += ',';
+                }
+              });
+
+              try {
+                writableStream.write(row + '\n');
+              } catch (e) {
+                console.log('writeStream write error = ', e);
+                writableStream.once('drain', () => {
+                  writableStream.write(row + '\n');
+                });
+              }
+            }
+          });
+
+          writableStream.end();
+        });
+    });
+  }
+
+  /**
+   *
+   * @param queryParams
+   * @param req
+   * @returns a promise containing a streamable file
+   */
+  async genAIExport<QueryParams extends ListingCsvQueryParams>(
+    req: ExpressRequest,
+    res: ExpressResponse,
+    queryParams: QueryParams,
+  ): Promise<StreamableFile> {
+    this.logger.warn('Generating Listing-Unit Zip');
+    const user = mapTo(User, req['user']);
+    await this.authorizeCSVExport(mapTo(User, req['user']));
+
+    const zipFileName = `listings-units-${user.id}-${new Date().getTime()}.zip`;
+    const zipFilePath = join(process.cwd(), `src/temp/${zipFileName}`);
+    res.set({
+      'Content-Type': 'application/zip',
+      'Content-Disposition': `attachment; filename: ${zipFileName}`,
+    });
+
+    const listingFilePath = join(
+      process.cwd(),
+      `src/temp/listings-${user.id}-${new Date().getTime()}.csv`,
+    );
+    const unitFilePath = join(
+      process.cwd(),
+      `src/temp/units-${user.id}-${new Date().getTime()}.csv`,
+    );
+    const amiChartFilePath = join(
+      process.cwd(),
+      `src/temp/ami-chart-${user.id}-${new Date().getTime()}.csv`,
+    );
+
+    if (queryParams.timeZone) {
+      this.timeZone = queryParams.timeZone;
+    }
+
+    const whereClause = {
+      jurisdictions: {
+        id: queryParams.jurisdictionId,
+      },
+    };
+
+    const listings = await this.prisma.listings.findMany({
+      include: views.csv,
+      where: whereClause,
+    });
+
+    await this.createCsv(listingFilePath, queryParams, {
+      listings: listings as unknown as Listing[],
+    });
+    const listingCsv = createReadStream(listingFilePath);
+
+    await this.createUnitCsv(unitFilePath, listings as unknown as Listing[]);
+
+    await this.createAMIChartCsv(amiChartFilePath, queryParams.jurisdictionId);
+    const unitCsv = createReadStream(unitFilePath);
+    const amiChartCsv = createReadStream(amiChartFilePath);
+    return new Promise((resolve) => {
+      // Create a writable stream to the zip file
+      const output = fs.createWriteStream(zipFilePath);
+      const archive = archiver('zip', {
+        zlib: { level: 9 },
+      });
+      output.on('close', () => {
+        const zipFile = createReadStream(zipFilePath);
+        resolve(new StreamableFile(zipFile));
+      });
+
+      archive.pipe(output);
+      archive.append(listingCsv, { name: 'listings.csv' });
+      archive.append(unitCsv, { name: 'units.csv' });
+      archive.append(amiChartCsv, { name: 'ami-chart.csv' });
+      archive.finalize();
+    });
   }
 }
