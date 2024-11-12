@@ -242,6 +242,8 @@ export class ListingsService {
     params: {
       /**  */
       timeZone?: string
+      /**  */
+      jurisdictionId?: string
     } = {} as any,
     options: IRequestOptions = {}
   ): Promise<any> {
@@ -249,7 +251,30 @@ export class ListingsService {
       let url = basePath + "/listings/csv"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-      configs.params = { timeZone: params["timeZone"] }
+      configs.params = { timeZone: params["timeZone"], jurisdictionId: params["jurisdictionId"] }
+
+      /** 适配ios13，get请求不允许带body */
+
+      axios(configs, resolve, reject)
+    })
+  }
+  /**
+   * Listing export for gen-ai
+   */
+  genAiExport(
+    params: {
+      /**  */
+      timeZone?: string
+      /**  */
+      jurisdictionId?: string
+    } = {} as any,
+    options: IRequestOptions = {}
+  ): Promise<any> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/listings/gen-ai-export"
+
+      const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
+      configs.params = { timeZone: params["timeZone"], jurisdictionId: params["jurisdictionId"] }
 
       /** 适配ios13，get请求不允许带body */
 
@@ -2311,7 +2336,6 @@ export class ScriptRunnerService {
       axios(configs, resolve, reject)
     })
   }
-
   /**
    * A script that updates the preference keys for applications on Spark Homes
    */
@@ -5938,7 +5962,6 @@ export interface AmiChartImportDTO {
   /**  */
   jurisdictionId: string
 }
-
 
 export interface AmiChartUpdateImportDTO {
   /**  */

@@ -105,6 +105,26 @@ export class ListingController {
     return await this.listingCsvExportService.exportFile(req, res, queryParams);
   }
 
+  @Get(`gen-ai-export`)
+  @ApiOperation({
+    summary: 'Listing export for gen-ai',
+    operationId: 'genAIExport',
+  })
+  @Header('Content-Type', 'application/zip')
+  @UseGuards(ApiKeyGuard, OptionalAuthGuard, PermissionGuard)
+  async genAIExport(
+    @Request() req: ExpressRequest,
+    @Res({ passthrough: true }) res: Response,
+    @Query(new ValidationPipe(defaultValidationPipeOptions))
+    queryParams: ListingCsvQueryParams,
+  ): Promise<StreamableFile> {
+    return await this.listingCsvExportService.genAIExport(
+      req,
+      res,
+      queryParams,
+    );
+  }
+
   @Get('mapMarkers')
   @ApiOperation({
     summary: 'Get listing map markers',
