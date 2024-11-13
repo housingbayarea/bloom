@@ -35,6 +35,7 @@ import Listing from '../dtos/listings/listing.dto';
 import { mapTo } from '../utilities/mapTo';
 import { ListingMultiselectQuestion } from '../dtos/listings/listing-multiselect-question.dto';
 import { AmiChart } from '../dtos/ami-charts/ami-chart.dto';
+import { UnitAmiChartOverride } from '../dtos/units/ami-chart-override.dto';
 
 views.csv = {
   ...views.details,
@@ -971,6 +972,257 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     });
   }
 
+  async createAMICharOverrideCsv(
+    filename: string,
+    jurisdictionId: string,
+  ): Promise<void> {
+    const csvHeaders = this.getAmiChartCsvHeaders();
+    const rawAmiCharts = await this.prisma.unitAmiChartOverrides.findMany({
+      select: {
+        id: true,
+        items: true,
+      },
+      where: {
+        units: {
+          listings: {
+            jurisdictionId,
+          },
+        },
+      },
+    });
+    const amiCharts = mapTo(UnitAmiChartOverride, rawAmiCharts);
+    return new Promise((resolve, reject) => {
+      const writableStream = fs.createWriteStream(`${filename}`);
+      writableStream
+        .on('error', (err) => {
+          console.log('csv writestream error');
+          console.log(err);
+          reject(err);
+        })
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', () => {
+          writableStream.write(
+            csvHeaders.map((header) => header.label).join(',') + '\n',
+          );
+          amiCharts.forEach((chart) => {
+            for (const item of chart.items) {
+              const flatChart = { id: chart.id, ...item };
+
+              let row = '';
+              csvHeaders.forEach((header, index) => {
+                let value = header.path.split('.').reduce((acc, curr) => {
+                  if (acc === null || acc === undefined) {
+                    return '';
+                  }
+                  return acc[curr];
+                }, flatChart);
+                value = value === undefined ? '' : value === null ? '' : value;
+                if (header.format) {
+                  value = header.format(value);
+                }
+
+                row += value;
+                if (index < csvHeaders.length - 1) {
+                  row += ',';
+                }
+              });
+
+              try {
+                writableStream.write(row + '\n');
+              } catch (e) {
+                console.log('writeStream write error = ', e);
+                writableStream.once('drain', () => {
+                  writableStream.write(row + '\n');
+                });
+              }
+            }
+          });
+
+          writableStream.end();
+        });
+    });
+  }
+
+  async genAIUnitCsv(filename: string, jurisdictionId: string): Promise<void> {
+    const csvHeaders: CsvHeader[] = [
+      {
+        path: 'amiPercentage',
+        label: 'AMI Percentage',
+      },
+      {
+        path: 'annualIncomeMin',
+        label: 'Annual Income Min',
+      },
+      {
+        path: 'monthlyIncomeMin',
+        label: 'Monthly Income Min',
+      },
+      {
+        path: 'floor',
+        label: 'Floor',
+      },
+      {
+        path: 'annualIncomeMax',
+        label: 'Annual Income Max',
+      },
+      {
+        path: 'maxOccupancy',
+        label: 'Max Occupancy',
+      },
+      {
+        path: 'minOccupancy',
+        label: 'Min Occupancy',
+      },
+      {
+        path: 'monthlyRent',
+        label: 'Monthly Rent',
+      },
+      {
+        path: 'numBathrooms',
+        label: 'Number of Bathrooms',
+      },
+      {
+        path: 'numBedrooms',
+        label: 'Number of Bedrooms',
+      },
+      {
+        path: 'sqFeet',
+        label: 'square Feet',
+      },
+      {
+        path: 'bmrProgramChart',
+        label: 'BMR Program Chart',
+      },
+      {
+        path: 'amiChartId',
+        label: 'AMI Chart Id',
+      },
+      {
+        path: 'listingId',
+        label: 'Listing Id',
+      },
+      {
+        path: 'amiChartOverrideId',
+        label: 'AMI Chart Overide Id',
+      },
+      {
+        path: 'monthlyRentAsPercentOfIncome',
+        label: 'Monthly Rent as Percent of Income',
+      },
+      {
+        path: 'unitTypes.name',
+        label: 'Unit Type Name',
+      },
+      {
+        path: 'unitTypes.numBedrooms',
+        label: 'Unit Type number of Bedrooms',
+      },
+      {
+        path: 'unitAccessibilityPriorityTypes.name',
+        label: 'Priority Type',
+      },
+      {
+        path: 'unitRentTypes.name',
+        label: 'Rent Type',
+      },
+    ];
+    const units = await this.prisma.units.findMany({
+      select: {
+        amiPercentage: true,
+        annualIncomeMin: true,
+        monthlyIncomeMin: true,
+        floor: true,
+        annualIncomeMax: true,
+        maxOccupancy: true,
+        minOccupancy: true,
+        monthlyRent: true,
+        numBathrooms: true,
+        numBedrooms: true,
+        sqFeet: true,
+        bmrProgramChart: true,
+        amiChartId: true,
+        listingId: true,
+        amiChartOverrideId: true,
+        monthlyRentAsPercentOfIncome: true,
+        unitTypes: {
+          select: {
+            id: true,
+            name: true,
+            numBedrooms: true,
+          },
+        },
+        unitAccessibilityPriorityTypes: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        unitRentTypes: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      where: {
+        listings: {
+          jurisdictionId,
+        },
+      },
+    });
+
+    return new Promise((resolve, reject) => {
+      const writableStream = fs.createWriteStream(`${filename}`);
+      writableStream
+        .on('error', (err) => {
+          console.log('csv writestream error');
+          console.log(err);
+          reject(err);
+        })
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', () => {
+          writableStream.write(
+            csvHeaders.map((header) => header.label).join(',') + '\n',
+          );
+          units.forEach((unit) => {
+            let row = '';
+            csvHeaders.forEach((header, index) => {
+              let value = header.path.split('.').reduce((acc, curr) => {
+                if (acc === null || acc === undefined) {
+                  return '';
+                }
+                return acc[curr];
+              }, unit);
+              value = value === undefined ? '' : value === null ? '' : value;
+              if (header.format) {
+                value = header.format(value);
+              }
+
+              row += value;
+              if (index < csvHeaders.length - 1) {
+                row += ',';
+              }
+            });
+
+            try {
+              writableStream.write(row + '\n');
+            } catch (e) {
+              console.log('writeStream write error = ', e);
+              writableStream.once('drain', () => {
+                writableStream.write(row + '\n');
+              });
+            }
+          });
+
+          writableStream.end();
+        });
+    });
+  }
+
   /**
    *
    * @param queryParams
@@ -1005,6 +1257,10 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       process.cwd(),
       `src/temp/ami-chart-${user.id}-${new Date().getTime()}.csv`,
     );
+    const amiChartOverrideFilePath = join(
+      process.cwd(),
+      `src/temp/ami-chart-override-${user.id}-${new Date().getTime()}.csv`,
+    );
 
     if (queryParams.timeZone) {
       this.timeZone = queryParams.timeZone;
@@ -1026,11 +1282,16 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     });
     const listingCsv = createReadStream(listingFilePath);
 
-    await this.createUnitCsv(unitFilePath, listings as unknown as Listing[]);
+    await this.genAIUnitCsv(unitFilePath, queryParams.jurisdictionId);
 
     await this.createAMIChartCsv(amiChartFilePath, queryParams.jurisdictionId);
+    await this.createAMICharOverrideCsv(
+      amiChartOverrideFilePath,
+      queryParams.jurisdictionId,
+    );
     const unitCsv = createReadStream(unitFilePath);
     const amiChartCsv = createReadStream(amiChartFilePath);
+    const amiChartOverrideCsv = createReadStream(amiChartOverrideFilePath);
     return new Promise((resolve) => {
       // Create a writable stream to the zip file
       const output = fs.createWriteStream(zipFilePath);
@@ -1046,6 +1307,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       archive.append(listingCsv, { name: 'listings.csv' });
       archive.append(unitCsv, { name: 'units.csv' });
       archive.append(amiChartCsv, { name: 'ami-chart.csv' });
+      archive.append(amiChartOverrideCsv, { name: 'ami-chart-override.csv' });
       archive.finalize();
     });
   }
