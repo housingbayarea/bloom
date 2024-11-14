@@ -200,7 +200,12 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
                 value = header.format(value, listing);
               }
 
-              row += value ? `"${value.toString().replace(/"/g, `""`)}"` : '';
+              row += value
+                ? `"${value
+                    .toString()
+                    .replace(/"/g, `""`)
+                    .replace(/\n/g, ' ')}"`
+                : '';
               if (index < csvHeaders.length - 1) {
                 row += ',';
               }
@@ -592,66 +597,6 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
         format: this.formatYesNo,
       },
       {
-        path: 'leasingAgentName',
-        label: 'Leasing Agent Name',
-      },
-      {
-        path: 'leasingAgentEmail',
-        label: 'Leasing Agent Email',
-      },
-      {
-        path: 'leasingAgentPhone',
-        label: 'Leasing Agent Phone',
-      },
-      {
-        path: 'leasingAgentTitle',
-        label: 'Leasing Agent Title',
-      },
-      {
-        path: 'leasingAgentOfficeHours',
-        label: 'Leasing Agent Office Hours',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street',
-        label: 'Leasing Agent Street Address',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street2',
-        label: 'Leasing Agent Apt/Unit #',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.city',
-        label: 'Leasing Agent City',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.state',
-        label: 'Leasing Agent State',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.zipCode',
-        label: 'Leasing Agent Zip',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street',
-        label: 'Leasing Agency Mailing Address',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street2',
-        label: 'Leasing Agency Mailing Address Street 2',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.city',
-        label: 'Leasing Agency Mailing Address City',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.state',
-        label: 'Leasing Agency Mailing Address State',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.zipCode',
-        label: 'Leasing Agency Mailing Address Zip',
-      },
-      {
         path: 'listingsApplicationPickUpAddress.street',
         label: 'Leasing Agency Pickup Address',
       },
@@ -789,12 +734,6 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
             .filter((str) => str.length)
             .join(', ');
         },
-      },
-      {
-        path: 'userAccounts',
-        label: 'Partners Who Have Access',
-        format: (val: User[]): string =>
-          val.map((user) => `${user.firstName} ${user.lastName}`).join(', '),
       },
     ];
 
