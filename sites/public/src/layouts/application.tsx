@@ -4,14 +4,15 @@ import { useRouter } from "next/router"
 import Head from "next/head"
 import Markdown from "markdown-to-jsx"
 import { JurisdictionFooterSection as SanMateoFooter } from "../page_content/jurisdiction_overrides/san_mateo/jurisdiction-footer-section"
-import { JurisdictionFooterSection as SanJoseFooter } from "../page_content/jurisdiction_overrides/san_jose/jurisdiction-footer-section"
-import { JurisdictionFooterSection as AlamedaFooter } from "../page_content/jurisdiction_overrides/alameda/jurisdiction-footer-section"
+import { JurisdictionFooterSection as SanJoseFooter } from "../page_content/jurisdiction_overrides/san_jose/JurisdictionFooterSection"
+import { JurisdictionFooterSection as AlamedaFooter } from "../page_content/jurisdiction_overrides/alameda/JurisdictionFooterSection"
 import { JursidictionSiteNotice as SanJoseNotice } from "../page_content/jurisdiction_overrides/san_jose/jurisdiction-site-notice"
 import { JursidictionSiteNotice as AlamedaNotice } from "../page_content/jurisdiction_overrides/alameda/jurisdiction-site-notice"
 import { Message, Toast } from "@bloom-housing/ui-seeds"
 import { SiteHeader, MenuLink, t } from "@bloom-housing/ui-components"
 import { AuthContext, MessageContext } from "@bloom-housing/shared-helpers"
 import styles from "./application.module.scss"
+import CustomSiteFooter from "../components/shared/CustomSiteFooter"
 
 const Layout = (props) => {
   const { profile, signOut } = useContext(AuthContext)
