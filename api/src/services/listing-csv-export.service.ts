@@ -200,12 +200,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
                 value = header.format(value, listing);
               }
 
-              row += value
-                ? `"${value
-                    .toString()
-                    .replace(/"/g, `""`)
-                    .replace(/\n/g, ' ')}"`
-                : '';
+              row += value ? `"${value.toString().replace(/"/g, `""`)}"` : '';
               if (index < csvHeaders.length - 1) {
                 row += ',';
               }
@@ -597,6 +592,66 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
         format: this.formatYesNo,
       },
       {
+        path: 'leasingAgentName',
+        label: 'Leasing Agent Name',
+      },
+      {
+        path: 'leasingAgentEmail',
+        label: 'Leasing Agent Email',
+      },
+      {
+        path: 'leasingAgentPhone',
+        label: 'Leasing Agent Phone',
+      },
+      {
+        path: 'leasingAgentTitle',
+        label: 'Leasing Agent Title',
+      },
+      {
+        path: 'leasingAgentOfficeHours',
+        label: 'Leasing Agent Office Hours',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.street',
+        label: 'Leasing Agent Street Address',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.street2',
+        label: 'Leasing Agent Apt/Unit #',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.city',
+        label: 'Leasing Agent City',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.state',
+        label: 'Leasing Agent State',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.zipCode',
+        label: 'Leasing Agent Zip',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.street',
+        label: 'Leasing Agency Mailing Address',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.street2',
+        label: 'Leasing Agency Mailing Address Street 2',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.city',
+        label: 'Leasing Agency Mailing Address City',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.state',
+        label: 'Leasing Agency Mailing Address State',
+      },
+      {
+        path: 'listingsLeasingAgentAddress.zipCode',
+        label: 'Leasing Agency Mailing Address Zip',
+      },
+      {
         path: 'listingsApplicationPickUpAddress.street',
         label: 'Leasing Agency Pickup Address',
       },
@@ -735,6 +790,12 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
             .join(', ');
         },
       },
+      {
+        path: 'userAccounts',
+        label: 'Partners Who Have Access',
+        format: (val: User[]): string =>
+          val.map((user) => `${user.firstName} ${user.lastName}`).join(', '),
+      },
     ];
 
     return headers;
@@ -816,36 +877,32 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
   }
 
   // GEN AI EXPORT STUFF
-  getAmiChartCsvHeaders(): CsvHeader[] {
-    return [
-      {
-        path: 'id',
-        label: 'AMI Chart Id',
-      },
-      {
-        path: 'name',
-        label: 'AMI Chart Name',
-      },
-      {
-        path: 'income',
-        label: 'Income',
-      },
-      {
-        path: 'householdSize',
-        label: 'Household Size',
-      },
-      {
-        path: 'percentOfAmi',
-        label: 'Percent of AMI',
-      },
-    ];
-  }
-
   async createAMIChartCsv(
     filename: string,
     jurisdictionId: string,
   ): Promise<void> {
-    const csvHeaders = this.getAmiChartCsvHeaders();
+    const csvHeaders = [
+      {
+        path: 'id',
+        label: 'ami_chart_id',
+      },
+      {
+        path: 'name',
+        label: 'ami_chart_name',
+      },
+      {
+        path: 'income',
+        label: 'income',
+      },
+      {
+        path: 'householdSize',
+        label: 'household_size',
+      },
+      {
+        path: 'percentOfAmi',
+        label: 'percent_of_ami',
+      },
+    ];
     const rawAmiCharts = await this.prisma.amiChart.findMany({
       select: {
         id: true,
@@ -885,9 +942,6 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
                   return acc[curr];
                 }, flatChart);
                 value = value === undefined ? '' : value === null ? '' : value;
-                if (header.format) {
-                  value = header.format(value);
-                }
 
                 row += value;
                 if (index < csvHeaders.length - 1) {
@@ -915,7 +969,24 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     filename: string,
     jurisdictionId: string,
   ): Promise<void> {
-    const csvHeaders = this.getAmiChartCsvHeaders();
+    const csvHeaders = [
+      {
+        path: 'id',
+        label: 'ami_chart_override_id',
+      },
+      {
+        path: 'income',
+        label: 'income',
+      },
+      {
+        path: 'householdSize',
+        label: 'household_size',
+      },
+      {
+        path: 'percentOfAmi',
+        label: 'percent_of_ami',
+      },
+    ];
     const rawAmiCharts = await this.prisma.unitAmiChartOverrides.findMany({
       select: {
         id: true,
@@ -958,9 +1029,6 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
                   return acc[curr];
                 }, flatChart);
                 value = value === undefined ? '' : value === null ? '' : value;
-                if (header.format) {
-                  value = header.format(value);
-                }
 
                 row += value;
                 if (index < csvHeaders.length - 1) {
@@ -988,83 +1056,83 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     const csvHeaders: CsvHeader[] = [
       {
         path: 'amiPercentage',
-        label: 'AMI Percentage',
+        label: 'ami_percentage',
       },
       {
         path: 'annualIncomeMin',
-        label: 'Annual Income Min',
+        label: 'annual_income_min',
       },
       {
         path: 'monthlyIncomeMin',
-        label: 'Monthly Income Min',
+        label: 'monthly_income_min',
       },
       {
         path: 'floor',
-        label: 'Floor',
+        label: 'floor',
       },
       {
         path: 'annualIncomeMax',
-        label: 'Annual Income Max',
+        label: 'annual_income_max',
       },
       {
         path: 'maxOccupancy',
-        label: 'Max Occupancy',
+        label: 'max_occupancy',
       },
       {
         path: 'minOccupancy',
-        label: 'Min Occupancy',
+        label: 'min_occupancy',
       },
       {
         path: 'monthlyRent',
-        label: 'Monthly Rent',
+        label: 'monthly_rent',
       },
       {
         path: 'numBathrooms',
-        label: 'Number of Bathrooms',
+        label: 'number_of_bathrooms',
       },
       {
         path: 'numBedrooms',
-        label: 'Number of Bedrooms',
+        label: 'number_of_bedrooms',
       },
       {
         path: 'sqFeet',
-        label: 'square Feet',
+        label: 'square_feet',
       },
       {
         path: 'bmrProgramChart',
-        label: 'BMR Program Chart',
+        label: 'bmr_program_chart',
       },
       {
         path: 'amiChartId',
-        label: 'AMI Chart Id',
+        label: 'ami_chart_id',
       },
       {
         path: 'listingId',
-        label: 'Listing Id',
+        label: 'listing_id',
       },
       {
         path: 'amiChartOverrideId',
-        label: 'AMI Chart Overide Id',
+        label: 'ami_chart_override_id',
       },
       {
         path: 'monthlyRentAsPercentOfIncome',
-        label: 'Monthly Rent as Percent of Income',
+        label: 'monthly_rent_as_percent_of_income',
       },
       {
         path: 'unitTypes.name',
-        label: 'Unit Type Name',
+        label: 'unit_type_name',
       },
       {
         path: 'unitTypes.numBedrooms',
-        label: 'Unit Type number of Bedrooms',
+        label: 'unit_type_number_of_bedrooms',
       },
       {
         path: 'unitAccessibilityPriorityTypes.name',
-        label: 'Priority Type',
+        label: 'priority_type',
       },
       {
         path: 'unitRentTypes.name',
-        label: 'Rent Type',
+        label: 'rent_type',
       },
     ];
     const units = await this.prisma.units.findMany({
@@ -1162,6 +1230,372 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     });
   }
 
+  async createMultiselectQuestionCsv(
+    filename: string,
+    jurisdictionId: string,
+  ): Promise<void> {
+    const csvHeaders = [
+      {
+        path: 'id',
+        label: 'multiselect_question_id',
+      },
+      {
+        path: 'text',
+        label: 'multiselection_question_title',
+      },
+      {
+        path: 'applicationSection',
+        label: 'program_or_preference',
+      },
+      {
+        path: 'listingId',
+        label: 'listing_id',
+      },
+    ];
+    const multiselectQuestions =
+      await this.prisma.multiselectQuestions.findMany({
+        select: {
+          id: true,
+          text: true,
+          applicationSection: true,
+          listings: {
+            select: {
+              listingId: true,
+            },
+          },
+        },
+        where: {
+          jurisdictions: {
+            some: {
+              id: jurisdictionId,
+            },
+          },
+        },
+      });
+
+    return new Promise((resolve, reject) => {
+      const writableStream = fs.createWriteStream(`${filename}`);
+      writableStream
+        .on('error', (err) => {
+          console.log('csv writestream error');
+          console.log(err);
+          reject(err);
+        })
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', () => {
+          writableStream.write(
+            csvHeaders.map((header) => header.label).join(',') + '\n',
+          );
+          multiselectQuestions.forEach((msq) => {
+            if (!msq.listings || !msq.listings.length) {
+              let row = '';
+              csvHeaders.forEach((header, index) => {
+                let value = header.path.split('.').reduce((acc, curr) => {
+                  if (acc === null || acc === undefined) {
+                    return '';
+                  }
+                  return acc[curr];
+                }, msq);
+                value = value === undefined ? '' : value === null ? '' : value;
+
+                row += value;
+                if (index < csvHeaders.length - 1) {
+                  row += ',';
+                }
+              });
+
+              try {
+                writableStream.write(row + '\n');
+              } catch (e) {
+                console.log('writeStream write error = ', e);
+                writableStream.once('drain', () => {
+                  writableStream.write(row + '\n');
+                });
+              }
+            } else {
+              msq.listings.forEach((listing) => {
+                const flatMsq = { ...msq, listingId: listing.listingId };
+                let row = '';
+                csvHeaders.forEach((header, index) => {
+                  let value = header.path.split('.').reduce((acc, curr) => {
+                    if (acc === null || acc === undefined) {
+                      return '';
+                    }
+                    return acc[curr];
+                  }, flatMsq);
+                  value =
+                    value === undefined ? '' : value === null ? '' : value;
+
+                  row += value;
+                  if (index < csvHeaders.length - 1) {
+                    row += ',';
+                  }
+                });
+
+                try {
+                  writableStream.write(row + '\n');
+                } catch (e) {
+                  console.log('writeStream write error = ', e);
+                  writableStream.once('drain', () => {
+                    writableStream.write(row + '\n');
+                  });
+                }
+              });
+            }
+          });
+
+          writableStream.end();
+        });
+    });
+  }
+
+  async genAIListingsCsv(
+    filename: string,
+    jurisdictionId: string,
+  ): Promise<void> {
+    const csvHeaders: CsvHeader[] = [
+      { path: 'id', label: 'listing_id' },
+      { path: 'accessibility', label: 'accessibility' },
+      { path: 'amenities', label: 'amenities' },
+      { path: 'amiPercentageMax', label: 'ami_percentage_max' },
+      { path: 'amiPercentageMin', label: 'ami_percentage_min' },
+      {
+        path: 'applicationDropOffAddressId',
+        label: 'drop_off_address_present',
+        format: (val) => {
+          !!val;
+        },
+      },
+      { path: 'applicationFee', label: 'application_fee' },
+      {
+        path: 'applicationMailingAddressId',
+        label: 'mailing_address_present',
+        format: (val) => {
+          !!val;
+        },
+      },
+      {
+        path: 'applicationPickUpAddressId',
+        label: 'pick_up_address_present',
+        format: (val) => {
+          !!val;
+        },
+      },
+      {
+        path: 'buildingSelectionCriteria',
+        label: 'building_selection_criteria',
+      },
+      { path: 'commonDigitalApplication', label: 'common_digital_application' },
+      { path: 'costsNotIncluded', label: 'costs_not_included' },
+      { path: 'creditHistory', label: 'credit_history' },
+      { path: 'criminalBackground', label: 'criminal_background' },
+      { path: 'depositHelperText', label: 'deposit_helper_text' },
+      { path: 'depositMax', label: 'deposit_max' },
+      { path: 'depositMin', label: 'deposit_min' },
+      { path: 'digitalApplication', label: 'digital_application' },
+      { path: 'neighborhood', label: 'neighborhood' },
+      { path: 'paperApplication', label: 'paper_application' },
+      { path: 'petPolicy', label: 'pet_policy' },
+      { path: 'programRules', label: 'program_rules' },
+      { path: 'rentalAssistance', label: 'rental_assistance' },
+      { path: 'rentalHistory', label: 'rental_history' },
+      { path: 'requiredDocuments', label: 'required_documentation' },
+      {
+        path: 'reservedCommunityDescription',
+        label: 'reserved_community_description',
+      },
+      { path: 'reservedCommunityMinAge', label: 'reserved_community_min_age' },
+      { path: 'reviewOrderType', label: 'review_order_type' },
+      { path: 'servicesOffered', label: 'services_offered' },
+      { path: 'smokingPolicy', label: 'smoking_policy' },
+      { path: 'specialNotes', label: 'special_notes' },
+      { path: 'status', label: 'status' },
+      { path: 'unitAmenities', label: 'unit_amenities' },
+      { path: 'unitsAvailable', label: 'units_available' },
+      { path: 'whatToExpect', label: 'what_to_expect' },
+      { path: 'yearBuilt', label: 'year_built' },
+      { path: 'listingsBuildingAddress.id', label: 'id' },
+      { path: 'listingsBuildingAddress.city', label: 'city' },
+      { path: 'listingsBuildingAddress.county', label: 'county' },
+      { path: 'listingsBuildingAddress.latitude', label: 'latitude' },
+      { path: 'listingsBuildingAddress.longitude', label: 'longitude' },
+      { path: 'listingsBuildingAddress.zipCode', label: 'zipCode' },
+      { path: 'jurisdictions.id', label: 'jurisdiction_id' },
+      { path: 'jurisdictions.name', label: 'jurisdiction_name' },
+      {
+        path: 'reservedCommunityTypes.id',
+        label: 'reserved_community_type_id',
+      },
+      {
+        path: 'reservedCommunityTypes.name',
+        label: 'reserved_community_type_name',
+      },
+      {
+        path: 'listingEvents',
+        label: 'number_of_listing_events',
+        format: (val: unknown[]) => val?.length ?? '',
+      },
+      {
+        path: 'applicationMethods',
+        label: 'number_of_paper_applications',
+        format: (val: ApplicationMethod[]) => {
+          if (val?.length) {
+            let count = 0;
+            val.forEach((elem) => {
+              if (elem?.paperApplications) {
+                count += elem.paperApplications.length;
+              }
+            });
+            return count;
+          }
+          return '';
+        },
+      },
+    ];
+    const rawListings = await this.prisma.listings.findMany({
+      select: {
+        id: true,
+        accessibility: true,
+        amenities: true,
+        amiPercentageMax: true,
+        amiPercentageMin: true,
+        applicationDropOffAddressId: true,
+        applicationFee: true,
+        applicationMailingAddressId: true,
+        applicationPickUpAddressId: true,
+        buildingSelectionCriteria: true,
+        commonDigitalApplication: true,
+        costsNotIncluded: true,
+        creditHistory: true,
+        criminalBackground: true,
+        depositHelperText: true,
+        depositMax: true,
+        depositMin: true,
+        digitalApplication: true,
+        neighborhood: true,
+        paperApplication: true,
+        petPolicy: true,
+        programRules: true,
+        rentalAssistance: true,
+        rentalHistory: true,
+        requiredDocuments: true,
+        reservedCommunityDescription: true,
+        reservedCommunityMinAge: true,
+        reviewOrderType: true,
+        servicesOffered: true,
+        smokingPolicy: true,
+        specialNotes: true,
+        status: true,
+        unitAmenities: true,
+        unitsAvailable: true,
+        whatToExpect: true,
+        yearBuilt: true,
+        listingsBuildingAddress: {
+          select: {
+            id: true,
+            city: true,
+            county: true,
+            latitude: true,
+            longitude: true,
+            zipCode: true,
+          },
+        },
+        jurisdictions: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+        listingEvents: {
+          select: {
+            id: true,
+            type: true,
+          },
+        },
+        applicationMethods: {
+          select: {
+            paperApplications: {
+              select: { id: true, language: true },
+            },
+          },
+        },
+        reservedCommunityTypes: {
+          select: {
+            id: true,
+            name: true,
+          },
+        },
+      },
+      where: {
+        jurisdictionId,
+      },
+    });
+    const listings = mapTo(Listing, rawListings);
+    return new Promise((resolve, reject) => {
+      // create stream
+      const writableStream = fs.createWriteStream(`${filename}`);
+      writableStream
+        .on('error', (err) => {
+          console.log('csv writestream error');
+          console.log(err);
+          reject(err);
+        })
+        .on('close', () => {
+          resolve();
+        })
+        .on('open', () => {
+          writableStream.write(
+            csvHeaders.map((header) => header.label).join(',') + '\n',
+          );
+
+          // now loop over listings and write them to file
+          listings.forEach((listing) => {
+            let row = '';
+            csvHeaders.forEach((header, index) => {
+              let value = header.path.split('.').reduce((acc, curr) => {
+                // handles working with arrays, e.g. householdMember.0.firstName
+                if (!isNaN(Number(curr))) {
+                  const index = Number(curr);
+                  return acc[index];
+                }
+
+                if (acc === null || acc === undefined) {
+                  return '';
+                }
+                return acc[curr];
+              }, listing);
+              value = value === undefined ? '' : value === null ? '' : value;
+              if (header.format) {
+                value = header.format(value, listing);
+              }
+              row += value
+                ? `"${value
+                    .toString()
+                    .replace(/"/g, `""`)
+                    .replace(/\n/g, ' ')}"`
+                : '';
+              if (index < csvHeaders.length - 1) {
+                row += ',';
+              }
+            });
+
+            try {
+              writableStream.write(row + '\n');
+            } catch (e) {
+              console.log('writeStream write error = ', e);
+              writableStream.once('drain', () => {
+                writableStream.write(row + '\n');
+              });
+            }
+          });
+
+          writableStream.end();
+        });
+    });
+  }
+
   /**
    *
    * @param queryParams
@@ -1200,25 +1634,16 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       process.cwd(),
       `src/temp/ami-chart-override-${user.id}-${new Date().getTime()}.csv`,
     );
+    const multiselectQuestionFilePath = join(
+      process.cwd(),
+      `src/temp/multiselect-questions-${user.id}-${new Date().getTime()}.csv`,
+    );
 
     if (queryParams.timeZone) {
       this.timeZone = queryParams.timeZone;
     }
 
-    const whereClause = {
-      jurisdictions: {
-        id: queryParams.jurisdictionId,
-      },
-    };
-
-    const listings = await this.prisma.listings.findMany({
-      include: views.csv,
-      where: whereClause,
-    });
-
-    await this.createCsv(listingFilePath, queryParams, {
-      listings: listings as unknown as Listing[],
-    });
+    await this.genAIListingsCsv(listingFilePath, queryParams.jurisdictionId);
     const listingCsv = createReadStream(listingFilePath);
 
     await this.genAIUnitCsv(unitFilePath, queryParams.jurisdictionId);
@@ -1228,9 +1653,16 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       amiChartOverrideFilePath,
       queryParams.jurisdictionId,
     );
+    await this.createMultiselectQuestionCsv(
+      multiselectQuestionFilePath,
+      queryParams.jurisdictionId,
+    );
     const unitCsv = createReadStream(unitFilePath);
     const amiChartCsv = createReadStream(amiChartFilePath);
     const amiChartOverrideCsv = createReadStream(amiChartOverrideFilePath);
+    const multiselectQuestionCsv = createReadStream(
+      multiselectQuestionFilePath,
+    );
     return new Promise((resolve) => {
       // Create a writable stream to the zip file
       const output = fs.createWriteStream(zipFilePath);
@@ -1247,6 +1679,9 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       archive.append(unitCsv, { name: 'units.csv' });
       archive.append(amiChartCsv, { name: 'ami-chart.csv' });
       archive.append(amiChartOverrideCsv, { name: 'ami-chart-override.csv' });
+      archive.append(multiselectQuestionCsv, {
+        name: 'multiselect-question.csv',
+      });
       archive.finalize();
     });
   }
