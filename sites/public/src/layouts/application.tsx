@@ -12,7 +12,6 @@ import { Message, Toast } from "@bloom-housing/ui-seeds"
 import { SiteHeader, MenuLink, t } from "@bloom-housing/ui-components"
 import { AuthContext, MessageContext } from "@bloom-housing/shared-helpers"
 import styles from "./application.module.scss"
-import CustomSiteFooter from "../components/shared/CustomSiteFooter"
 
 const Layout = (props) => {
   const { profile, signOut } = useContext(AuthContext)
