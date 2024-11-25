@@ -3653,6 +3653,15 @@ export interface Listing {
 
   /**  */
   applicationLotteryTotals: ApplicationLotteryTotal[]
+
+  /**  */
+  includeCommunityDisclaimer?: boolean
+
+  /**  */
+  communityDisclaimerTitle?: string
+
+  /**  */
+  communityDisclaimerDescription?: string
 }
 
 export interface PaginationMeta {
@@ -4116,6 +4125,15 @@ export interface ListingCreate {
   lotteryOptIn?: boolean
 
   /**  */
+  includeCommunityDisclaimer?: boolean
+
+  /**  */
+  communityDisclaimerTitle?: string
+
+  /**  */
+  communityDisclaimerDescription?: string
+
+  /**  */
   listingMultiselectQuestions?: IdDTO[]
 
   /**  */
@@ -4388,6 +4406,15 @@ export interface ListingUpdate {
 
   /**  */
   lotteryOptIn?: boolean
+
+  /**  */
+  includeCommunityDisclaimer?: boolean
+
+  /**  */
+  communityDisclaimerTitle?: string
+
+  /**  */
+  communityDisclaimerDescription?: string
 
   /**  */
   listingMultiselectQuestions?: IdDTO[]
@@ -6318,6 +6345,8 @@ export enum LanguagesEnum {
   "vi" = "vi",
   "zh" = "zh",
   "tl" = "tl",
+  "bn" = "bn",
+  "ar" = "ar",
 }
 
 export enum ListingEventsTypeEnum {
