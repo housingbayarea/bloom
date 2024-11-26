@@ -48,7 +48,7 @@ export const JurisdictionFooterSection = () => {
           alt="Equal Housing Opportunity Logo"
         />
       </FooterSection>
-      <FooterNav copyright={t("footer.copyRight")}>
+      <FooterNav copyright={t("footer.copyright")}>
         <a href="https://www.surveymonkey.com/r/2QLBYML" target="_blank" rel="noreferrer">
           {t("footer.giveFeedback")}
         </a>

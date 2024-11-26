@@ -42,7 +42,7 @@ export const JurisdictionFooterSection = () => {
           alt="Equal Housing Opportunity Logo"
         />
       </FooterSection>
-      <FooterNav copyright={t("footer.copyRight")}>
+      <FooterNav copyright={t("footer.copyright")}>
         <a
           href="https://docs.google.com/forms/d/e/1FAIpQLScr7JuVwiNW8q-ifFUWTFSWqEyV5ndA08jAhJQSlQ4ETrnl9w/viewform?usp=sf_link"
           target="_blank"
