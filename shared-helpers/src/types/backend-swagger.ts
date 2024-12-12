@@ -6345,8 +6345,6 @@ export enum LanguagesEnum {
   "vi" = "vi",
   "zh" = "zh",
   "tl" = "tl",
-  "bn" = "bn",
-  "ar" = "ar",
 }
 
 export enum ListingEventsTypeEnum {
