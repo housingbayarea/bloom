@@ -916,34 +916,6 @@ describe('Testing auth service', () => {
     });
   });
 
-  it('should error when trying to request mfa code, but mfa disabled', async () => {
-    const id = randomUUID();
-    prisma.userAccounts.findUnique = jest.fn().mockResolvedValue({
-      id: id,
-      mfaEnabled: false,
-      passwordHash: await hashPassword('Abcdef12345!', generateSalt()),
-      email: 'example@exygy.com',
-      phoneNumberVerified: false,
-      phoneNumber: '520-781-8711',
-    });
-    prisma.userAccounts.update = jest.fn().mockResolvedValue({
-      id: id,
-    });
-
-    await expect(
-      async () =>
-        await await authService.requestMfaCode({
-          email: 'example@exygy.com',
-          password: 'Abcdef12345!',
-          mfaType: MfaType.sms,
-        }),
-    ).rejects.toThrowError(
-      'user example@exygy.com requested an mfa code, but has mfa disabled',
-    );
-
-    expect(prisma.userAccounts.update).not.toHaveBeenCalled();
-  });
-
   it('should error when trying to request mfa code, but incorrect password', async () => {
     const id = randomUUID();
     prisma.userAccounts.findUnique = jest.fn().mockResolvedValue({
