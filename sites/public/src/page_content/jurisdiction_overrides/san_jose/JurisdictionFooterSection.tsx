@@ -45,7 +45,12 @@ export const JurisdictionFooterSection = () => {
           <div className={styles["text-container"]}>
             <div>{t("footer.forAdditionalOpportunities")}</div>
             <div>
-              <Link href={process.env.doorwayUrl}>{t("footer.DoorwayHousingPortal")}</Link> |{"  "}
+              {process.env.doorwayUrl && (
+                <>
+                  <Link href={process.env.doorwayUrl}>{t("footer.DoorwayHousingPortal")}</Link> |
+                  {"  "}
+                </>
+              )}
               <Link href={t("footer.SFHousingUrl")}>{t("footer.SFHousingPortal")}</Link> |{"  "}
               <Link href={"https://housing.acgov.org/"}>{t("footer.ACPortal")}</Link>
             </div>
