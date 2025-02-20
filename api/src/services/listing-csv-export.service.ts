@@ -496,6 +496,18 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     if (
       doAnyJurisdictionHaveFeatureFlagSet(
         user.jurisdictions,
+        FeatureFlagEnum.enableSection8Question,
+      )
+    ) {
+      headers.push({
+        path: 'section8Acceptance',
+        label: 'Accept Section 8',
+        format: this.formatYesNo,
+      });
+    }
+    if (
+      this.doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
         FeatureFlagEnum.enableUtilitiesIncluded,
       )
     ) {
