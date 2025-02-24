@@ -97,6 +97,15 @@ export const devSeeding = async (
 
   await reservedCommunityTypeFactoryAll(jurisdiction.id, prismaClient);
 
+  await prismaClient.featureFlags.create({
+    data: featureFlagFactory(
+      'enableIsVerified',
+      false,
+      'When true, the listing can ba have its contents manually verified by a user',
+      [jurisdiction.id],
+    ),
+  });
+
   for (let index = 0; index < LISTINGS_TO_SEED; index++) {
     const applications = [];
 
