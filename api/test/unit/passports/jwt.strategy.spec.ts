@@ -10,6 +10,7 @@ describe('Testing jwt strategy', () => {
   let strategy: JwtStrategy;
   let prisma: PrismaService;
   beforeAll(async () => {
+    process.env.APP_SECRET = 'SOME-LONG-SECRET-KEY';
     const module: TestingModule = await Test.createTestingModule({
       providers: [JwtStrategy, PrismaService],
     }).compile();
@@ -43,7 +44,16 @@ describe('Testing jwt strategy', () => {
       include: {
         userRoles: true,
         listings: true,
-        jurisdictions: true,
+        jurisdictions: {
+          include: {
+            featureFlags: {
+              select: {
+                active: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
       where: {
         id,
@@ -82,7 +92,16 @@ describe('Testing jwt strategy', () => {
       include: {
         userRoles: true,
         listings: true,
-        jurisdictions: true,
+        jurisdictions: {
+          include: {
+            featureFlags: {
+              select: {
+                active: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
       where: {
         id,
@@ -125,7 +144,16 @@ describe('Testing jwt strategy', () => {
       include: {
         userRoles: true,
         listings: true,
-        jurisdictions: true,
+        jurisdictions: {
+          include: {
+            featureFlags: {
+              select: {
+                active: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
       where: {
         id,
@@ -174,7 +202,16 @@ describe('Testing jwt strategy', () => {
       include: {
         userRoles: true,
         listings: true,
-        jurisdictions: true,
+        jurisdictions: {
+          include: {
+            featureFlags: {
+              select: {
+                active: true,
+                name: true,
+              },
+            },
+          },
+        },
       },
       where: {
         id,

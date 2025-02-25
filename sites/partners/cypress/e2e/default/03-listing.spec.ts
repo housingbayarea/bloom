@@ -27,6 +27,8 @@ describe("Listing Management Tests", () => {
     cy.contains("Listing Data")
     // Try to publish a listing and should show errors for appropriate fields
     cy.getByID("listingEditButton").contains("Edit").click()
+    cy.getByID("reservedCommunityTypes.id").select(1)
+    cy.getByID("includeCommunityDisclaimerYes").check()
     cy.getByID("publishButton").contains("Publish").click()
     cy.getByID("publishButtonConfirm").contains("Publish").click()
     cy.contains("Please resolve any errors before saving or publishing your listing.")
@@ -42,6 +44,8 @@ describe("Listing Management Tests", () => {
       expect($alertButtons[1]).to.have.id("addUnitsButton")
     })
     cy.getByID("units-error").contains("This field is required")
+    cy.getByID("communityDisclaimerTitle-error").contains("Enter title")
+    cy.get(".textarea-error-message").contains("Enter description")
     cy.getByID("applicationProcessButton").contains("Application Process").click()
     cy.getByID("leasingAgentName-error").contains("This field is required")
     cy.getByID("leasingAgentEmail-error").contains("This field is required")
@@ -84,6 +88,17 @@ describe("Listing Management Tests", () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function fillOutListing(cy: Cypress.cy, listing: any): void {
+    cy.intercept("GET", "/geocoding/v5/**", { fixture: "address" })
+    cy.intercept("POST", "https://api.cloudinary.com/v1_1/exygy/upload", {
+      fixture: "cypressUpload",
+    })
+    cy.intercept(
+      "GET",
+      "https://res.cloudinary.com/exygy/image/upload/w_400,c_limit,q_65/dev/cypress-automated-image-upload-071e2ab9-5a52-4f34-85f0-e41f696f4b96.jpg",
+      {
+        fixture: "cypress-automated-image-upload-071e2ab9-5a52-4f34-85f0-e41f696f4b96.jpeg",
+      }
+    )
     cy.getByID("jurisdictions.id").select(listing["jurisdiction.id"])
     cy.getByID("name").type(listing["name"])
     cy.getByID("developer").type(listing["developer"])
@@ -105,6 +120,16 @@ describe("Listing Management Tests", () => {
       .should("have.attr", "src")
       .should("include", "cypress-automated-image-upload-071e2ab9-5a52-4f34-85f0-e41f696f4b96")
 
+    cy.intercept("POST", "https://api.cloudinary.com/v1_1/exygy/upload", {
+      public_id: "dev/cypress-automated-image-upload-46806882-b98d-49d7-ac83-8016ab4b2f08",
+    })
+    cy.intercept(
+      "GET",
+      "https://res.cloudinary.com/exygy/image/upload/w_400,c_limit,q_65/dev/cypress-automated-image-upload-46806882-b98d-49d7-ac83-8016ab4b2f08.jpg",
+      {
+        fixture: "cypress-automated-image-upload-46806882-b98d-49d7-ac83-8016ab4b2f08.jpg",
+      }
+    )
     cy.getByID("add-photos-button").contains("Edit Photos").click()
     cy.getByTestId("dropzone-input").attachFile(
       "cypress-automated-image-upload-46806882-b98d-49d7-ac83-8016ab4b2f08.jpg",
@@ -136,8 +161,14 @@ describe("Listing Management Tests", () => {
     cy.get(".addressPopup").contains(listing["buildingAddress.street"])
     cy.getByID("reservedCommunityTypes.id").select(listing["reservedCommunityType.id"])
     cy.getByID("reservedCommunityDescription").type(listing["reservedCommunityDescription"])
+    cy.getByID("includeCommunityDisclaimerYes").check()
+    cy.getByID("communityDisclaimerTitle").type(listing["communityDisclaimerTitle"])
+    cy.getByID("communityDisclaimerDescription").type(listing["communityDisclaimerDescription"])
     cy.getByTestId("unit-types").check()
     cy.getByTestId("listingAvailability.availableUnits").check()
+    if (listing["homeType"]) {
+      cy.getByID("homeType").select(listing["homeType"])
+    }
     cy.getByID("addUnitsButton").contains("Add Unit").click()
     cy.getByID("number").type(listing["number"])
     cy.getByID("unitTypes.id").select(listing["unitType.id"])
@@ -271,6 +302,12 @@ describe("Listing Management Tests", () => {
     cy.getByID("latitude").should("include.text", "37.7")
     cy.getByID("reservedCommunityType").contains(listing["reservedCommunityType.id"])
     cy.getByID("reservedCommunityDescription").contains(listing["reservedCommunityDescription"])
+    cy.getByID("includeCommunityDisclaimer").contains("Yes")
+    cy.getByID("communityDisclaimerTitle").contains(listing["communityDisclaimerTitle"])
+    cy.getByID("communityDisclaimerDescription").contains(listing["communityDisclaimerDescription"])
+    if (listing["homeType"]) {
+      cy.getByID("homeType").contains(listing["homeType"])
+    }
     cy.getByTestId("unit-types-or-individual").contains("Unit Types")
     cy.getByTestId("listing-availability-question").contains("Available Units")
     cy.getByID("unitTable").contains(listing["number"])
