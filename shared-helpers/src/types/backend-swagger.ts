@@ -6178,6 +6178,9 @@ export interface Login {
 
   /**  */
   mfaType?: MfaType
+
+  /**  */
+  reCaptchaToken?: string
 }
 
 export interface LoginViaSingleUseCode {
