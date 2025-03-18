@@ -342,8 +342,6 @@ model Jurisdictions {
   rentalAssistanceDefault     String                   @map("rental_assistance_default")
   enablePartnerSettings       Boolean                  @default(false) @map("enable_partner_settings")
   enablePartnerDemographics   Boolean                  @default(false) @map("enable_partner_demographics")
-  enableAccessibilityFeatures Boolean                  @default(false) @map("enable_accessibility_features")
-  enableUtilitiesIncluded     Boolean                  @default(false) @map("enable_utilities_included")
   enableGeocodingPreferences  Boolean                  @default(false) @map("enable_geocoding_preferences")
   enableGeocodingRadiusMethod Boolean                  @default(false) @map("enable_geocoding_radius_method")
   allowSingleUseCodeLogin     Boolean                  @default(false) @map("allow_single_use_code_login")
@@ -614,6 +612,7 @@ model Listings {
   listingsApplicationPickUpAddress      Address?                      @relation("application_pick_up_address", fields: [applicationPickUpAddressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   listingsBuildingAddress               Address?                      @relation("building_address", fields: [buildingAddressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userAccounts                          UserAccounts[]
+  userAccountFavorites                  UserAccounts[]                @relation("favorite_listings")
   units                                 Units[]
   unitGroups                            UnitGroup[]
   userPreferences                       UserPreferences[]
@@ -859,6 +858,7 @@ model UserAccounts {
   userPreferences          UserPreferences?
   userRoles                UserRoles?
   requestedChangesListings Listings[]              @relation("requested_changes_user")
+  favoriteListings         Listings[]              @relation("favorite_listings")
 
   @@map("user_accounts")
 }
