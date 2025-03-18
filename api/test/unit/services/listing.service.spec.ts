@@ -3827,7 +3827,7 @@ describe('Testing listing service', () => {
               },
               unitGroupAmiLevels: [
                 {
-                  amiPercentage: 0,
+                  amiPercentage: 80,
                   monthlyRentDeterminationType:
                     MonthlyRentDeterminationTypeEnum.flatRent,
                   percentageOfIncomeValue: null,
@@ -3893,7 +3893,7 @@ describe('Testing listing service', () => {
                 unitGroupAmiLevels: {
                   create: [
                     {
-                      amiPercentage: 0,
+                      amiPercentage: 80,
                       monthlyRentDeterminationType:
                         MonthlyRentDeterminationTypeEnum.flatRent,
                       percentageOfIncomeValue: null,
