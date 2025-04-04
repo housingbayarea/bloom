@@ -477,7 +477,7 @@ describe("listing data", () => {
 
     it("should display missing Housing Preferences section", () => {
       const { getByText, queryByText } = render(
-        <ListingContext.Provider value={listing}>
+        <ListingContext.Provider value={{ ...listing, listingMultiselectQuestions: [] }}>
           <DetailPreferences />
         </ListingContext.Provider>
       )
@@ -812,7 +812,7 @@ describe("listing data", () => {
         )
       ).toBeInTheDocument()
       expect(getByText("Special Notes")).toBeInTheDocument()
-      expect(getByText("None")).toBeInTheDocument()
+      expect(getByText("Special notes description")).toBeInTheDocument()
     })
 
     describe("should display Rankings & Results section", () => {
@@ -857,7 +857,7 @@ describe("listing data", () => {
       })
 
       it("should display data for first come first serve review order typy without lottery event", () => {
-        const { getByText, queryByText } = render(
+        const { getByText, getAllByText, queryByText } = render(
           <ListingContext.Provider
             value={{
               ...listing,
@@ -874,6 +874,7 @@ describe("listing data", () => {
         expect(getByText("Rankings & Results")).toBeInTheDocument()
         expect(getByText("How is the application review order determined?")).toBeInTheDocument()
         expect(getByText("First come first serve")).toBeInTheDocument()
+        expect(getAllByText("Yes")).toHaveLength(1)
         expect(getByText("Tell the applicant what to expect from the process")).toBeInTheDocument()
         expect(
           getByText(
@@ -882,7 +883,6 @@ describe("listing data", () => {
         ).toBeInTheDocument()
 
         expect(queryByText("Do you want to show a waitlist size?")).not.toBeInTheDocument()
-        expect(queryByText("Yes")).not.toBeInTheDocument()
         expect(queryByText("Number of Openings")).not.toBeInTheDocument()
         expect(queryByText("Lottery")).not.toBeInTheDocument()
         expect(
