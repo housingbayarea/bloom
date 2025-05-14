@@ -155,7 +155,7 @@ export class ListingPublishedUpdate extends OmitType(ListingUpdate, [
   @ValidateUnitsRequired({ groups: [ValidationsGroupsEnum.default] })
   @ArrayMaxSize(256, { groups: [ValidationsGroupsEnum.default] })
   @Type(() => UnitCreate)
-  units: UnitCreate[];
+  units?: UnitCreate[];
 
   @Expose()
   @IsDate({ groups: [ValidationsGroupsEnum.default] })
