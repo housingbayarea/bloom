@@ -15,6 +15,7 @@ import ListBulletIcon from "@heroicons/react/24/outline/ListBulletIcon"
 export const CustomIconMap = {
   application: Application,
   profile: Profile,
+  door: Door,
   lockClosed: <LockClosedIcon />,
   chevronLeft: <ChevronLeftIcon />,
   clock: <Clock />,
