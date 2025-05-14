@@ -8,7 +8,6 @@ import {
   Logger,
   StreamableFile,
 } from '@nestjs/common';
-import { SchedulerRegistry } from '@nestjs/schedule';
 import {
   Request as ExpressRequest,
   Response as ExpressResponse,
@@ -16,6 +15,7 @@ import {
 import {
   ApplicationMethodsTypeEnum,
   ListingEventsTypeEnum,
+  MarketingTypeEnum,
 } from '@prisma/client';
 import { views } from './listing.service';
 import { PrismaService } from './prisma.service';
@@ -26,6 +26,7 @@ import {
 import { ListingCsvQueryParams } from '../dtos/listings/listing-csv-query-params.dto';
 import { User } from '../dtos/users/user.dto';
 import { formatLocalDate } from '../utilities/format-local-date';
+import { FeatureFlagEnum } from '../enums/feature-flags/feature-flags-enum';
 import { ListingReviewOrder } from '../enums/listings/review-order-enum';
 import { isEmpty } from '../utilities/is-empty';
 import { ListingEvent } from '../dtos/listings/listing-event.dto';
@@ -34,6 +35,22 @@ import Unit from '../dtos/units/unit.dto';
 import Listing from '../dtos/listings/listing.dto';
 import { mapTo } from '../utilities/mapTo';
 import { ListingMultiselectQuestion } from '../dtos/listings/listing-multiselect-question.dto';
+import { ListingUtilities } from '../dtos/listings/listing-utility.dto';
+import { ListingFeatures } from '../dtos/listings/listing-feature.dto';
+import { UnitType } from '../dtos/unit-types/unit-type.dto';
+import { UnitGroupAmiLevel } from '../dtos/unit-groups/unit-group-ami-level.dto';
+import {
+  formatRange,
+  formatRentRange,
+  getRentTypes,
+} from '../utilities/unit-utilities';
+import { unitTypeToReadable } from '../utilities/application-export-helpers';
+import {
+  doAnyJurisdictionHaveFalsyFeatureFlagValue,
+  doAnyJurisdictionHaveFeatureFlagSet,
+} from '../utilities/feature-flag-utilities';
+import { UnitGroupSummary } from '../dtos/unit-groups/unit-group-summary.dto';
+import { addUnitGroupsSummarized } from '../utilities/unit-groups-transformations';
 
 views.csv = {
   ...views.details,
@@ -67,7 +84,6 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     private prisma: PrismaService,
     @Inject(Logger)
     private logger = new Logger(ListingCsvExporterService.name),
-    private schedulerRegistry: SchedulerRegistry,
   ) {}
 
   /**
@@ -83,7 +99,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
   ): Promise<StreamableFile> {
     this.logger.warn('Generating Listing-Unit Zip');
     const user = mapTo(User, req['user']);
-    await this.authorizeCSVExport(mapTo(User, req['user']));
+    await this.authorizeCSVExport(user);
 
     const zipFileName = `listings-units-${user.id}-${new Date().getTime()}.zip`;
     const zipFilePath = join(process.cwd(), `src/temp/${zipFileName}`);
@@ -99,6 +115,10 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     const unitFilePath = join(
       process.cwd(),
       `src/temp/units-${user.id}-${new Date().getTime()}.csv`,
+    );
+    const unitGroupsFilePath = join(
+      process.cwd(),
+      `src/temp/unit-groups-${user.id}-${new Date().getTime()}.csv`,
     );
 
     if (queryParams.timeZone) {
@@ -117,24 +137,54 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
       });
     });
 
+    const enableUnitGroups = doAnyJurisdictionHaveFeatureFlagSet(
+      user.jurisdictions,
+      FeatureFlagEnum.enableUnitGroups,
+    );
+
+    const hasUnits =
+      !enableUnitGroups ||
+      doAnyJurisdictionHaveFalsyFeatureFlagValue(
+        user.jurisdictions,
+        FeatureFlagEnum.enableUnitGroups,
+      );
+
     const listings = await this.prisma.listings.findMany({
       include: views.csv,
       where: whereClause,
     });
 
+    // Add unit groups summarized to listings
+    // should be removed when unit summarized stored in db
+    await addUnitGroupsSummarized(listings as unknown as Listing[]);
+
     await this.createCsv(listingFilePath, queryParams, {
       listings: listings as unknown as Listing[],
+      user,
     });
+
     const listingCsv = createReadStream(listingFilePath);
 
-    await this.createUnitCsv(unitFilePath, listings as unknown as Listing[]);
-    const unitCsv = createReadStream(unitFilePath);
+    if (enableUnitGroups) {
+      await this.createUnitCsv(
+        unitGroupsFilePath,
+        listings as unknown as Listing[],
+        true,
+      );
+    }
+
+    if (hasUnits) {
+      await this.createUnitCsv(
+        unitFilePath,
+        listings as unknown as Listing[],
+        false,
+      );
+    }
+
     return new Promise((resolve) => {
-      // Create a writable stream to the zip file
       const output = fs.createWriteStream(zipFilePath);
-      const archive = archiver('zip', {
-        zlib: { level: 9 },
-      });
+      const archive = archiver('zip', { zlib: { level: 9 } });
+
       output.on('close', () => {
         const zipFile = createReadStream(zipFilePath);
         resolve(new StreamableFile(zipFile));
@@ -142,7 +192,14 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
 
       archive.pipe(output);
       archive.append(listingCsv, { name: 'listings.csv' });
-      archive.append(unitCsv, { name: 'units.csv' });
+      if (hasUnits) {
+        const unitCsv = createReadStream(unitFilePath);
+        archive.append(unitCsv, { name: 'units.csv' });
+      }
+      if (enableUnitGroups) {
+        const unitGroupsCsv = createReadStream(unitGroupsFilePath);
+        archive.append(unitGroupsCsv, { name: 'unitGroups.csv' });
+      }
       archive.finalize();
     });
   }
@@ -156,9 +213,9 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
   async createCsv<QueryParams extends ListingCsvQueryParams>(
     filename: string,
     queryParams: QueryParams,
-    optionParams: { listings: Listing[] },
+    optionParams: { listings: Listing[]; user: User },
   ): Promise<void> {
-    const csvHeaders = await this.getCsvHeaders();
+    const csvHeaders = await this.getCsvHeaders(optionParams.user);
 
     return new Promise((resolve, reject) => {
       // create stream
@@ -219,19 +276,32 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     });
   }
 
-  async createUnitCsv(filename: string, listings: Listing[]): Promise<void> {
-    const csvHeaders = this.getUnitCsvHeaders();
-    // flatten those listings
-    const units = listings.flatMap((listing) =>
-      listing.units.map((unit) => ({
-        listing: {
-          id: listing.id,
-          name: listing.name,
-        },
-        unit,
-      })),
-    );
-    // TODO: the below is essentially the same as above in this.createCsv
+  async createUnitCsv(
+    filename: string,
+    listings: Listing[],
+    enableUnitGroups?: boolean,
+  ): Promise<void> {
+    const csvHeaders = enableUnitGroups
+      ? this.getUnitGroupCsvHeaders()
+      : this.getUnitCsvHeaders();
+
+    const data = enableUnitGroups
+      ? listings.flatMap(
+          (listing) =>
+            listing.unitGroups?.map((unitGroup, index) => ({
+              listing: { id: listing.id, name: listing.name },
+              unitGroup,
+              unitGroupSummary:
+                listing.unitGroupsSummarized?.unitGroupSummary?.[index],
+            })) || [],
+        )
+      : listings.flatMap((listing) =>
+          (listing.units || []).map((unit) => ({
+            listing: { id: listing.id, name: listing.name },
+            unit,
+          })),
+        );
+
     return new Promise((resolve, reject) => {
       const writableStream = fs.createWriteStream(`${filename}`);
       writableStream
@@ -247,7 +317,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
           writableStream.write(
             csvHeaders.map((header) => header.label).join(',') + '\n',
           );
-          units.forEach((unit) => {
+          data.forEach((item) => {
             let row = '';
             csvHeaders.forEach((header, index) => {
               let value = header.path.split('.').reduce((acc, curr) => {
@@ -261,13 +331,13 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
                   return '';
                 }
                 return acc[curr];
-              }, unit);
+              }, item);
               value = value === undefined ? '' : value === null ? '' : value;
               if (header.format) {
                 value = header.format(value);
               }
 
-              row += value;
+              row += value ? `"${value.toString().replace(/"/g, `""`)}"` : '';
               if (index < csvHeaders.length - 1) {
                 row += ',';
               }
@@ -316,7 +386,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
     return fieldValue;
   };
 
-  async getCsvHeaders(): Promise<CsvHeader[]> {
+  async getCsvHeaders(user: User): Promise<CsvHeader[]> {
     const headers: CsvHeader[] = [
       {
         path: 'id',
@@ -387,6 +457,17 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
         path: 'neighborhood',
         label: 'Building Neighborhood',
       },
+      ...(doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableRegions,
+      )
+        ? [
+            {
+              path: 'region',
+              label: 'Building Region',
+            },
+          ]
+        : []),
       {
         path: 'yearBuilt',
         label: 'Building Year Built',
@@ -404,397 +485,650 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
         path: 'listingsBuildingAddress.longitude',
         label: 'Longitude',
       },
-      {
+    ];
+
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableHomeType,
+      )
+    ) {
+      headers.push({
+        path: 'homeType',
+        label: 'Home Type',
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableSection8Question,
+      )
+    ) {
+      headers.push({
+        path: 'section8Acceptance',
+        label: 'Accept Section 8',
+        format: this.formatYesNo,
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableUtilitiesIncluded,
+      )
+    ) {
+      headers.push({
+        path: 'listingUtilities',
+        label: 'Utilities Included',
+        format: (val: ListingUtilities): string => {
+          if (!val) return '';
+          const selectedValues = Object.entries(val).reduce(
+            (combined, entry) => {
+              if (entry[1] === true) {
+                combined.push(entry[0]);
+              }
+              return combined;
+            },
+            [],
+          );
+          return selectedValues.join(', ');
+        },
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableAccessibilityFeatures,
+      )
+    ) {
+      headers.push({
+        path: 'listingFeatures',
+        label: 'Property Amenities',
+        format: (val: ListingFeatures): string => {
+          if (!val) return '';
+          const selectedValues = Object.entries(val).reduce(
+            (combined, entry) => {
+              if (entry[1] === true) {
+                combined.push(entry[0]);
+              }
+              return combined;
+            },
+            [],
+          );
+          return selectedValues.join(', ');
+        },
+      });
+    }
+
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableUnitGroups,
+      )
+    ) {
+      headers.push({
+        path: 'unitGroups.length',
+        label: 'Number of Unit Groups',
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFalsyFeatureFlagValue(
+        user.jurisdictions,
+        FeatureFlagEnum.enableUnitGroups,
+      )
+    ) {
+      headers.push({
         path: 'units.length',
         label: 'Number of Units',
-      },
-      {
-        path: 'reviewOrderType',
-        label: 'Listing Availability',
-        format: (val: string): string =>
-          val === ListingReviewOrder.waitlist
-            ? 'Open Waitlist'
-            : 'Available Units',
-      },
-      {
-        path: 'reviewOrderType',
-        label: 'Review Order',
-        format: (val: string): string => {
+      });
+    }
+
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableSection8Question,
+      )
+    ) {
+      headers.push({
+        path: 'section8Acceptance',
+        label: 'Accept Section 8',
+        format: this.formatYesNo,
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableUtilitiesIncluded,
+      )
+    ) {
+      headers.push({
+        path: 'listingUtilities',
+        label: 'Utilities Included',
+        format: (val: ListingUtilities): string => {
           if (!val) return '';
-          const spacedValue = val.replace(/([A-Z])/g, (match) => ` ${match}`);
-          const result =
-            spacedValue.charAt(0).toUpperCase() + spacedValue.slice(1);
-          return result;
-        },
-      },
-      {
-        path: 'listingEvents',
-        label: 'Lottery Date',
-        format: (val: ListingEvent[]): string => {
-          if (!val) return '';
-          const lottery = val.filter(
-            (event) => event.type === ListingEventsTypeEnum.publicLottery,
+          const selectedValues = Object.entries(val).reduce(
+            (combined, entry) => {
+              if (entry[1] === true) {
+                combined.push(entry[0]);
+              }
+              return combined;
+            },
+            [],
           );
-          return lottery.length
-            ? formatLocalDate(lottery[0].startTime, 'MM-DD-YYYY', this.timeZone)
-            : '';
+          return selectedValues.join(', ');
         },
-      },
-      {
-        path: 'listingEvents',
-        label: 'Lottery Start',
-        format: (val: ListingEvent[]): string => {
-          if (!val) return '';
-          const lottery = val.filter(
-            (event) => event.type === ListingEventsTypeEnum.publicLottery,
-          );
-          return lottery.length
-            ? formatLocalDate(lottery[0].startTime, 'hh:mmA z', this.timeZone)
-            : '';
-        },
-      },
-      {
-        path: 'listingEvents',
-        label: 'Lottery End',
-        format: (val: ListingEvent[]): string => {
-          if (!val) return '';
-          const lottery = val.filter(
-            (event) => event.type === ListingEventsTypeEnum.publicLottery,
-          );
-          return lottery.length
-            ? formatLocalDate(lottery[0].endTime, 'hh:mmA z', this.timeZone)
-            : '';
-        },
-      },
-      {
-        path: 'listingEvents',
-        label: 'Lottery Notes',
-        format: (val: ListingEvent[]): string => {
-          if (!val) return '';
-          const lottery = val.filter(
-            (event) => event.type === ListingEventsTypeEnum.publicLottery,
-          );
-          return lottery.length ? lottery[0].note : '';
-        },
-      },
-      {
-        path: 'listingMultiselectQuestions',
-        label: 'Housing Preferences',
-        format: (val: ListingMultiselectQuestion[]): string => {
-          return val
-            .filter(
-              (question) =>
-                question.multiselectQuestions.applicationSection ===
-                'preferences',
-            )
-            .map((question) => question.multiselectQuestions.text)
-            .join(',');
-        },
-      },
-      {
-        path: 'listingMultiselectQuestions',
-        label: 'Housing Programs',
-        format: (val: ListingMultiselectQuestion[]): string => {
-          return val
-            .filter(
-              (question) =>
-                question.multiselectQuestions.applicationSection === 'programs',
-            )
-            .map((question) => question.multiselectQuestions.text)
-            .join(',');
-        },
-      },
-      {
-        path: 'applicationFee',
-        label: 'Application Fee',
-        format: this.formatCurrency,
-      },
-      {
-        path: 'depositHelperText',
-        label: 'Deposit Helper Text',
-      },
-      {
-        path: 'depositMin',
-        label: 'Deposit Min',
-        format: this.formatCurrency,
-      },
-      {
-        path: 'depositMax',
-        label: 'Deposit Max',
-        format: this.formatCurrency,
-      },
-      {
-        path: 'costsNotIncluded',
-        label: 'Costs Not Included',
-      },
-      {
-        path: 'amenities',
+      });
+    }
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableAccessibilityFeatures,
+      )
+    ) {
+      headers.push({
+        path: 'listingFeatures',
         label: 'Property Amenities',
-      },
-      {
-        path: 'accessibility',
-        label: 'Additional Accessibility',
-      },
-      {
-        path: 'unitAmenities',
-        label: 'Unit Amenities',
-      },
-      {
-        path: 'smokingPolicy',
-        label: 'Smoking Policy',
-      },
-      {
-        path: 'petPolicy',
-        label: 'Pets Policy',
-      },
-      {
-        path: 'servicesOffered',
-        label: 'Services Offered',
-      },
-      {
-        path: 'creditHistory',
-        label: 'Eligibility Rules - Credit History',
-      },
-      {
-        path: 'rentalHistory',
-        label: 'Eligibility Rules - Rental History',
-      },
-      {
-        path: 'criminalBackground',
-        label: 'Eligibility Rules - Criminal Background',
-      },
-      {
-        path: 'rentalAssistance',
-        label: 'Eligibility Rules - Rental Assistance',
-      },
-      {
-        path: 'buildingSelectionCriteriaFileId',
-        label: 'Building Selection Criteria',
-        format: this.cloudinaryPdfFromId,
-      },
-      {
-        path: 'programRules',
-        label: 'Important Program Rules',
-      },
-      {
-        path: 'requiredDocuments',
-        label: 'Required Documents',
-      },
-      {
-        path: 'specialNotes',
-        label: 'Special Notes',
-      },
-      {
-        path: 'isWaitlistOpen',
-        label: 'Waitlist',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'leasingAgentName',
-        label: 'Leasing Agent Name',
-      },
-      {
-        path: 'leasingAgentEmail',
-        label: 'Leasing Agent Email',
-      },
-      {
-        path: 'leasingAgentPhone',
-        label: 'Leasing Agent Phone',
-      },
-      {
-        path: 'leasingAgentTitle',
-        label: 'Leasing Agent Title',
-      },
-      {
-        path: 'leasingAgentOfficeHours',
-        label: 'Leasing Agent Office Hours',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street',
-        label: 'Leasing Agent Street Address',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street2',
-        label: 'Leasing Agent Apt/Unit #',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.city',
-        label: 'Leasing Agent City',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.state',
-        label: 'Leasing Agent State',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.zipCode',
-        label: 'Leasing Agent Zip',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street',
-        label: 'Leasing Agency Mailing Address',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.street2',
-        label: 'Leasing Agency Mailing Address Street 2',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.city',
-        label: 'Leasing Agency Mailing Address City',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.state',
-        label: 'Leasing Agency Mailing Address State',
-      },
-      {
-        path: 'listingsLeasingAgentAddress.zipCode',
-        label: 'Leasing Agency Mailing Address Zip',
-      },
-      {
-        path: 'listingsApplicationPickUpAddress.street',
-        label: 'Leasing Agency Pickup Address',
-      },
-      {
-        path: 'listingsApplicationPickUpAddress.street2',
-        label: 'Leasing Agency Pickup Address Street 2',
-      },
-      {
-        path: 'listingsApplicationPickUpAddress.city',
-        label: 'Leasing Agency Pickup Address City',
-      },
-      {
-        path: 'listingsApplicationPickUpAddress.state',
-        label: 'Leasing Agency Pickup Address State',
-      },
-      {
-        path: 'listingsApplicationPickUpAddress.zipCode',
-        label: 'Leasing Agency Pickup Address Zip',
-      },
-      {
-        path: 'applicationPickUpAddressOfficeHours',
-        label: 'Leasing Pick Up Office Hours',
-      },
-      {
-        path: 'digitalApplication',
-        label: 'Digital Application',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'applicationMethods',
-        label: 'Digital Application URL',
-        format: (val: ApplicationMethod[]): string => {
-          const method = val.filter(
-            (appMethod) =>
-              appMethod.type === ApplicationMethodsTypeEnum.ExternalLink,
-          );
-          return method.length ? method[0].externalReference : '';
-        },
-      },
-      {
-        path: 'paperApplication',
-        label: 'Paper Application',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'applicationMethods',
-        label: 'Paper Application URL',
-        format: (val: ApplicationMethod[]): string => {
-          const method = val.filter(
-            (appMethod) => appMethod.paperApplications.length > 0,
-          );
-          const paperApps = method.length ? method[0].paperApplications : [];
-          return paperApps.length
-            ? paperApps
-                .map((app) => this.cloudinaryPdfFromId(app.assets.fileId))
-                .join(', ')
-            : '';
-        },
-      },
-      {
-        path: 'referralOpportunity',
-        label: 'Referral Opportunity',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'applicationMailingAddressId',
-        label: 'Can applications be mailed in?',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'applicationPickUpAddressId',
-        label: 'Can applications be picked up?',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'applicationPickUpAddressId',
-        label: 'Can applications be dropped off?',
-        format: this.formatYesNo,
-      },
-      {
-        path: 'postmarkedApplicationsReceivedByDate',
-        label: 'Postmark',
-        format: (val: string): string =>
-          formatLocalDate(val, this.dateFormat, this.timeZone),
-      },
-      {
-        path: 'additionalApplicationSubmissionNotes',
-        label: 'Additional Application Submission Notes',
-      },
-      {
-        path: 'applicationDueDate',
-        label: 'Application Due Date',
-        format: (val: string): string =>
-          formatLocalDate(val, 'MM-DD-YYYY', this.timeZone),
-      },
-      {
-        path: 'applicationDueDate',
-        label: 'Application Due Time',
-        format: (val: string): string =>
-          formatLocalDate(val, 'hh:mmA z', this.timeZone),
-      },
-      {
-        path: 'listingEvents',
-        label: 'Open House',
-        format: (val: ListingEvent[]): string => {
+        format: (val: ListingFeatures): string => {
           if (!val) return '';
-          return val
-            .filter((event) => event.type === ListingEventsTypeEnum.openHouse)
-            .map((event) => {
-              let openHouseStr = '';
-              if (event.label) openHouseStr += `${event.label}`;
-              if (event.startTime) {
-                const date = formatLocalDate(
-                  event.startTime,
+          const selectedValues = Object.entries(val).reduce(
+            (combined, entry) => {
+              if (entry[1] === true) {
+                combined.push(entry[0]);
+              }
+              return combined;
+            },
+            [],
+          );
+          return selectedValues.join(', ');
+        },
+      });
+    }
+
+    headers.push(
+      ...[
+        {
+          path: 'reviewOrderType',
+          label: 'Listing Availability',
+          format: (val: string): string =>
+            val === ListingReviewOrder.waitlist
+              ? 'Open Waitlist'
+              : 'Available Units',
+        },
+        {
+          path: 'reviewOrderType',
+          label: 'Review Order',
+          format: (val: string): string => {
+            if (!val) return '';
+            const spacedValue = val.replace(/([A-Z])/g, (match) => ` ${match}`);
+            const result =
+              spacedValue.charAt(0).toUpperCase() + spacedValue.slice(1);
+            return result;
+          },
+        },
+        {
+          path: 'listingEvents',
+          label: 'Lottery Date',
+          format: (val: ListingEvent[]): string => {
+            if (!val) return '';
+            const lottery = val.filter(
+              (event) => event.type === ListingEventsTypeEnum.publicLottery,
+            );
+            return lottery.length
+              ? formatLocalDate(
+                  lottery[0].startTime,
                   'MM-DD-YYYY',
                   this.timeZone,
-                );
-                openHouseStr += `: ${date}`;
-                if (event.endTime) {
-                  const startTime = formatLocalDate(
-                    event.startTime,
-                    'hh:mmA',
-                    this.timeZone,
-                  );
-                  const endTime = formatLocalDate(
-                    event.endTime,
-                    'hh:mmA z',
-                    this.timeZone,
-                  );
-                  openHouseStr += ` (${startTime} - ${endTime})`;
-                }
-              }
-              return openHouseStr;
-            })
-            .filter((str) => str.length)
-            .join(', ');
+                )
+              : '';
+          },
         },
-      },
-      {
-        path: 'userAccounts',
-        label: 'Partners Who Have Access',
-        format: (val: User[]): string =>
-          val.map((user) => `${user.firstName} ${user.lastName}`).join(', '),
-      },
-    ];
+        {
+          path: 'listingEvents',
+          label: 'Lottery Start',
+          format: (val: ListingEvent[]): string => {
+            if (!val) return '';
+            const lottery = val.filter(
+              (event) => event.type === ListingEventsTypeEnum.publicLottery,
+            );
+            return lottery.length
+              ? formatLocalDate(lottery[0].startTime, 'hh:mmA z', this.timeZone)
+              : '';
+          },
+        },
+        {
+          path: 'listingEvents',
+          label: 'Lottery End',
+          format: (val: ListingEvent[]): string => {
+            if (!val) return '';
+            const lottery = val.filter(
+              (event) => event.type === ListingEventsTypeEnum.publicLottery,
+            );
+            return lottery.length
+              ? formatLocalDate(lottery[0].endTime, 'hh:mmA z', this.timeZone)
+              : '';
+          },
+        },
+        {
+          path: 'listingEvents',
+          label: 'Lottery Notes',
+          format: (val: ListingEvent[]): string => {
+            if (!val) return '';
+            const lottery = val.filter(
+              (event) => event.type === ListingEventsTypeEnum.publicLottery,
+            );
+            return lottery.length ? lottery[0].note : '';
+          },
+        },
+        {
+          path: 'listingMultiselectQuestions',
+          label: 'Housing Preferences',
+          format: (val: ListingMultiselectQuestion[]): string => {
+            return val
+              .filter(
+                (question) =>
+                  question.multiselectQuestions.applicationSection ===
+                  'preferences',
+              )
+              .map((question) => question.multiselectQuestions.text)
+              .join(',');
+          },
+        },
+        {
+          path: 'listingMultiselectQuestions',
+          label: 'Housing Programs',
+          format: (val: ListingMultiselectQuestion[]): string => {
+            return val
+              .filter(
+                (question) =>
+                  question.multiselectQuestions.applicationSection ===
+                  'programs',
+              )
+              .map((question) => question.multiselectQuestions.text)
+              .join(',');
+          },
+        },
+        {
+          path: 'applicationFee',
+          label: 'Application Fee',
+          format: this.formatCurrency,
+        },
+        {
+          path: 'depositHelperText',
+          label: 'Deposit Helper Text',
+        },
+        {
+          path: 'depositMin',
+          label: 'Deposit Min',
+          format: this.formatCurrency,
+        },
+        {
+          path: 'depositMax',
+          label: 'Deposit Max',
+          format: this.formatCurrency,
+        },
+        {
+          path: 'costsNotIncluded',
+          label: 'Costs Not Included',
+        },
+        {
+          path: 'amenities',
+          label: 'Property Amenities',
+        },
+        {
+          path: 'accessibility',
+          label: 'Additional Accessibility',
+        },
+        {
+          path: 'unitAmenities',
+          label: 'Unit Amenities',
+        },
+        {
+          path: 'smokingPolicy',
+          label: 'Smoking Policy',
+        },
+        {
+          path: 'petPolicy',
+          label: 'Pets Policy',
+        },
+        {
+          path: 'servicesOffered',
+          label: 'Services Offered',
+        },
+      ],
+    );
+
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableNeighborhoodAmenities,
+      )
+    ) {
+      headers.push(
+        ...[
+          {
+            path: 'listingNeighborhoodAmenities.groceryStores',
+            label: 'Neighborhood Amenities - Grocery Stores',
+          },
+          {
+            path: 'listingNeighborhoodAmenities.publicTransportation',
+            label: 'Neighborhood Amenities - Public Transportation',
+          },
+          {
+            path: 'listingNeighborhoodAmenities.schools',
+            label: 'Neighborhood Amenities - Schools',
+          },
+          {
+            path: 'listingNeighborhoodAmenities.parksAndCommunityCenters',
+            label: 'Neighborhood Amenities - Parks and Community Centers',
+          },
+          {
+            path: 'listingNeighborhoodAmenities.pharmacies',
+            label: 'Neighborhood Amenities - Pharmacies',
+          },
+          {
+            path: 'listingNeighborhoodAmenities.healthCareResources',
+            label: 'Neighborhood Amenities - Health Care Resources',
+          },
+        ],
+      );
+    }
+
+    headers.push(
+      ...[
+        {
+          path: 'creditHistory',
+          label: 'Eligibility Rules - Credit History',
+        },
+        {
+          path: 'rentalHistory',
+          label: 'Eligibility Rules - Rental History',
+        },
+        {
+          path: 'criminalBackground',
+          label: 'Eligibility Rules - Criminal Background',
+        },
+        {
+          path: 'rentalAssistance',
+          label: 'Eligibility Rules - Rental Assistance',
+        },
+        {
+          path: 'buildingSelectionCriteriaFileId',
+          label: 'Building Selection Criteria',
+          format: this.cloudinaryPdfFromId,
+        },
+        {
+          path: 'programRules',
+          label: 'Important Program Rules',
+        },
+        {
+          path: 'requiredDocuments',
+          label: 'Required Documents',
+        },
+        {
+          path: 'specialNotes',
+          label: 'Special Notes',
+        },
+        {
+          path: 'isWaitlistOpen',
+          label: 'Waitlist',
+          format: this.formatYesNo,
+        },
+      ],
+    );
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableMarketingStatus,
+      )
+    ) {
+      headers.push(
+        ...[
+          {
+            path: 'marketingType',
+            label: 'Marketing Status',
+            format: (val: string): string => {
+              if (!val) return '';
+              return val === MarketingTypeEnum.marketing
+                ? 'Marketing'
+                : 'Under Construction';
+            },
+          },
+          {
+            path: 'marketingSeason',
+            label: 'Marketing Season',
+            format: (val: string): string => {
+              if (!val) return '';
+              return val.charAt(0).toUpperCase() + val.slice(1);
+            },
+          },
+          {
+            path: 'marketingDate',
+            label: 'Marketing Start Date',
+            format: (val: string): string => formatLocalDate(val, 'YYYY'),
+          },
+        ],
+      );
+    }
+    headers.push(
+      ...[
+        {
+          path: 'leasingAgentName',
+          label: 'Leasing Agent Name',
+        },
+        {
+          path: 'leasingAgentEmail',
+          label: 'Leasing Agent Email',
+        },
+        {
+          path: 'leasingAgentPhone',
+          label: 'Leasing Agent Phone',
+        },
+        {
+          path: 'leasingAgentTitle',
+          label: 'Leasing Agent Title',
+        },
+        {
+          path: 'leasingAgentOfficeHours',
+          label: 'Leasing Agent Office Hours',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.street',
+          label: 'Leasing Agent Street Address',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.street2',
+          label: 'Leasing Agent Apt/Unit #',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.city',
+          label: 'Leasing Agent City',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.state',
+          label: 'Leasing Agent State',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.zipCode',
+          label: 'Leasing Agent Zip',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.street',
+          label: 'Leasing Agency Mailing Address',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.street2',
+          label: 'Leasing Agency Mailing Address Street 2',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.city',
+          label: 'Leasing Agency Mailing Address City',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.state',
+          label: 'Leasing Agency Mailing Address State',
+        },
+        {
+          path: 'listingsLeasingAgentAddress.zipCode',
+          label: 'Leasing Agency Mailing Address Zip',
+        },
+        {
+          path: 'listingsApplicationPickUpAddress.street',
+          label: 'Leasing Agency Pickup Address',
+        },
+        {
+          path: 'listingsApplicationPickUpAddress.street2',
+          label: 'Leasing Agency Pickup Address Street 2',
+        },
+        {
+          path: 'listingsApplicationPickUpAddress.city',
+          label: 'Leasing Agency Pickup Address City',
+        },
+        {
+          path: 'listingsApplicationPickUpAddress.state',
+          label: 'Leasing Agency Pickup Address State',
+        },
+        {
+          path: 'listingsApplicationPickUpAddress.zipCode',
+          label: 'Leasing Agency Pickup Address Zip',
+        },
+        {
+          path: 'applicationPickUpAddressOfficeHours',
+          label: 'Leasing Pick Up Office Hours',
+        },
+        {
+          path: 'digitalApplication',
+          label: 'Digital Application',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'applicationMethods',
+          label: 'Digital Application URL',
+          format: (val: ApplicationMethod[]): string => {
+            const method = val.filter(
+              (appMethod) =>
+                appMethod.type === ApplicationMethodsTypeEnum.ExternalLink,
+            );
+            return method.length ? method[0].externalReference : '';
+          },
+        },
+        {
+          path: 'paperApplication',
+          label: 'Paper Application',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'applicationMethods',
+          label: 'Paper Application URL',
+          format: (val: ApplicationMethod[]): string => {
+            const method = val.filter(
+              (appMethod) => appMethod.paperApplications.length > 0,
+            );
+            const paperApps = method.length ? method[0].paperApplications : [];
+            return paperApps.length
+              ? paperApps
+                  .map((app) => this.cloudinaryPdfFromId(app.assets.fileId))
+                  .join(', ')
+              : '';
+          },
+        },
+        {
+          path: 'referralOpportunity',
+          label: 'Referral Opportunity',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'applicationMailingAddressId',
+          label: 'Can applications be mailed in?',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'applicationPickUpAddressId',
+          label: 'Can applications be picked up?',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'applicationPickUpAddressId',
+          label: 'Can applications be dropped off?',
+          format: this.formatYesNo,
+        },
+        {
+          path: 'postmarkedApplicationsReceivedByDate',
+          label: 'Postmark',
+          format: (val: string): string =>
+            formatLocalDate(val, this.dateFormat, this.timeZone),
+        },
+        {
+          path: 'additionalApplicationSubmissionNotes',
+          label: 'Additional Application Submission Notes',
+        },
+        {
+          path: 'applicationDueDate',
+          label: 'Application Due Date',
+          format: (val: string): string =>
+            formatLocalDate(val, 'MM-DD-YYYY', this.timeZone),
+        },
+        {
+          path: 'applicationDueDate',
+          label: 'Application Due Time',
+          format: (val: string): string =>
+            formatLocalDate(val, 'hh:mmA z', this.timeZone),
+        },
+        {
+          path: 'listingEvents',
+          label: 'Open House',
+          format: (val: ListingEvent[]): string => {
+            if (!val) return '';
+            return val
+              .filter((event) => event.type === ListingEventsTypeEnum.openHouse)
+              .map((event) => {
+                let openHouseStr = '';
+                if (event.label) openHouseStr += `${event.label}`;
+                if (event.startTime) {
+                  const date = formatLocalDate(
+                    event.startTime,
+                    'MM-DD-YYYY',
+                    this.timeZone,
+                  );
+                  openHouseStr += `: ${date}`;
+                  if (event.endTime) {
+                    const startTime = formatLocalDate(
+                      event.startTime,
+                      'hh:mmA',
+                      this.timeZone,
+                    );
+                    const endTime = formatLocalDate(
+                      event.endTime,
+                      'hh:mmA z',
+                      this.timeZone,
+                    );
+                    openHouseStr += ` (${startTime} - ${endTime})`;
+                  }
+                }
+                return openHouseStr;
+              })
+              .filter((str) => str.length)
+              .join(', ');
+          },
+        },
+        {
+          path: 'userAccounts',
+          label: 'Partners Who Have Access',
+          format: (val: User[]): string =>
+            val.map((user) => `${user.firstName} ${user.lastName}`).join(', '),
+        },
+      ],
+    );
+
+    if (
+      doAnyJurisdictionHaveFeatureFlagSet(
+        user.jurisdictions,
+        FeatureFlagEnum.enableIsVerified,
+      )
+    )
+      headers.push({
+        path: 'isVerified',
+        label: 'Is Listing Verified',
+        format: this.formatYesNo,
+      });
 
     return headers;
   }
@@ -845,7 +1179,7 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
         label: 'AMI Chart',
       },
       {
-        path: 'unit.amiChart.items.0.percentOfAmi',
+        path: 'unit.amiPercentage',
         label: 'AMI Level',
       },
       {
@@ -857,6 +1191,106 @@ export class ListingCsvExporterService implements CsvExporterServiceInterface {
             : !isEmpty(val.monthlyRent)
             ? 'Fixed amount'
             : '',
+      },
+    ];
+  }
+
+  getUnitGroupCsvHeaders(): CsvHeader[] {
+    return [
+      {
+        path: 'listing.id',
+        label: 'Listing Id',
+      },
+      {
+        path: 'listing.name',
+        label: 'Listing Name',
+      },
+      {
+        path: 'unitGroup.id',
+        label: 'Unit Group Id',
+      },
+      {
+        path: 'unitGroup.unitTypes',
+        label: 'Unit Types',
+        format: (val: UnitType[]) =>
+          val.map((unitType) => unitTypeToReadable(unitType.name)).join(', '),
+      },
+      {
+        path: 'unitGroup.unitGroupAmiLevels',
+        label: 'AMI Chart',
+        format: (val: UnitGroupAmiLevel[]) =>
+          [...new Set(val.map((level) => level.amiChart?.name))].join(', '),
+      },
+      {
+        path: 'unitGroupSummary',
+        label: 'AMI Levels',
+        format: (unitGroupSummary: UnitGroupSummary) => {
+          return formatRange(
+            unitGroupSummary?.amiPercentageRange?.min,
+            unitGroupSummary?.amiPercentageRange?.max,
+            '',
+            '%',
+          );
+        },
+      },
+      {
+        path: 'unitGroup.unitGroupAmiLevels',
+        label: 'Rent Type',
+        format: (levels: UnitGroupAmiLevel[]) => getRentTypes(levels),
+      },
+      {
+        path: 'unitGroupSummary',
+        label: 'Monthly Rent',
+        format: (unitGroupSummary: UnitGroupSummary) =>
+          formatRentRange(
+            unitGroupSummary.rentRange,
+            unitGroupSummary.rentAsPercentIncomeRange,
+          ),
+      },
+      {
+        path: 'unitGroup.totalCount',
+        label: 'Affordable Unit Group Quantity',
+      },
+      {
+        path: 'unitGroup.totalAvailable',
+        label: 'Unit Group Vacancies',
+      },
+      {
+        path: 'unitGroup.openWaitlist',
+        label: 'Waitlist Status',
+        format: this.formatYesNo,
+      },
+      {
+        path: 'unitGroup.minOccupancy',
+        label: 'Minimum Occupancy',
+      },
+      {
+        path: 'unitGroup.maxOccupancy',
+        label: 'Maximum Occupancy',
+      },
+      {
+        path: 'unitGroup.sqFeetMin',
+        label: 'Minimum Sq ft',
+      },
+      {
+        path: 'unitGroup.sqFeetMax',
+        label: 'Maximum Sq ft',
+      },
+      {
+        path: 'unitGroup.floorMin',
+        label: 'Minimum Floor',
+      },
+      {
+        path: 'unitGroup.floorMax',
+        label: 'Maximum Floor',
+      },
+      {
+        path: 'unitGroup.bathroomMin',
+        label: 'Minimum Bathrooms',
+      },
+      {
+        path: 'unitGroup.bathroomMax',
+        label: 'Maximum Bathrooms',
       },
     ];
   }

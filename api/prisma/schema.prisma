@@ -275,13 +275,13 @@ model Demographics {
 }
 
 model FeatureFlags {
-  id                String          @id() @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
-  createdAt         DateTime        @default(now()) @map("created_at") @db.Timestamp(6)
-  updatedAt         DateTime        @updatedAt @map("updated_at") @db.Timestamp(6)
-  name              String          @unique()
-  description       String
-  active            Boolean         @default(true)
-  jurisdictions     Jurisdictions[]
+  id            String          @id() @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
+  createdAt     DateTime        @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt     DateTime        @updatedAt @map("updated_at") @db.Timestamp(6)
+  name          String          @unique()
+  description   String
+  active        Boolean         @default(true)
+  jurisdictions Jurisdictions[]
 
   @@map("feature_flags")
 }
@@ -342,8 +342,6 @@ model Jurisdictions {
   rentalAssistanceDefault     String                   @map("rental_assistance_default")
   enablePartnerSettings       Boolean                  @default(false) @map("enable_partner_settings")
   enablePartnerDemographics   Boolean                  @default(false) @map("enable_partner_demographics")
-  enableAccessibilityFeatures Boolean                  @default(false) @map("enable_accessibility_features")
-  enableUtilitiesIncluded     Boolean                  @default(false) @map("enable_utilities_included")
   enableGeocodingPreferences  Boolean                  @default(false) @map("enable_geocoding_preferences")
   enableGeocodingRadiusMethod Boolean                  @default(false) @map("enable_geocoding_radius_method")
   allowSingleUseCodeLogin     Boolean                  @default(false) @map("allow_single_use_code_login")
@@ -572,6 +570,9 @@ model Listings {
   resultId                              String?                       @map("result_id") @db.Uuid
   featuresId                            String?                       @unique() @map("features_id") @db.Uuid
   utilitiesId                           String?                       @unique() @map("utilities_id") @db.Uuid
+  includeCommunityDisclaimer            Boolean?                      @map("include_community_disclaimer")
+  communityDisclaimerTitle              String?                       @map("community_disclaimer_title")
+  communityDisclaimerDescription        String?                       @map("community_disclaimer_description")
   // START DETROIT SPECIFIC
   hrdId                                 String?                       @map("hrd_id")
   ownerCompany                          String?                       @map("owner_company")
@@ -611,8 +612,9 @@ model Listings {
   listingsApplicationPickUpAddress      Address?                      @relation("application_pick_up_address", fields: [applicationPickUpAddressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   listingsBuildingAddress               Address?                      @relation("building_address", fields: [buildingAddressId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   userAccounts                          UserAccounts[]
+  userAccountFavorites                  UserAccounts[]                @relation("favorite_listings")
   units                                 Units[]
-  unitGroup                             UnitGroup[]
+  unitGroups                            UnitGroup[]
   userPreferences                       UserPreferences[]
   unitsSummary                          UnitsSummary[]
   requestedChanges                      String?                       @map("requested_changes")
@@ -621,7 +623,7 @@ model Listings {
   requestedChangesUser                  UserAccounts?                 @relation("requested_changes_user", fields: [requestedChangesUserId], references: [id], onDelete: NoAction, onUpdate: NoAction)
   applicationLotteryPositions           ApplicationLotteryPositions[]
   applicationLotteryTotals              ApplicationLotteryTotal[]
-  copyOf                                Listings?                     @relation("copy_of", fields: [copyOfId], references: [id])
+  copyOf                                Listings?                     @relation("copy_of", fields: [copyOfId], references: [id], onUpdate: NoAction)
   Listings                              Listings[]                    @relation("copy_of")
 
   @@index([jurisdictionId])
@@ -715,7 +717,7 @@ model UnitAccessibilityPriorityTypes {
   updatedAt    DateTime       @updatedAt @map("updated_at") @db.Timestamp(6)
   name         String
   units        Units[]
-  unitGroup    UnitGroup[]
+  unitGroups   UnitGroup[]
   unitsSummary UnitsSummary[]
 
   @@map("unit_accessibility_priority_types")
@@ -856,6 +858,7 @@ model UserAccounts {
   userPreferences          UserPreferences?
   userRoles                UserRoles?
   requestedChangesListings Listings[]              @relation("requested_changes_user")
+  favoriteListings         Listings[]              @relation("favorite_listings")
 
   @@map("user_accounts")
 }
@@ -887,6 +890,8 @@ model ListingNeighborhoodAmenities {
 }
 
 model UnitGroup {
+  createdAt                      DateTime                        @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt                      DateTime                        @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
   maxOccupancy                   Int?                            @map("max_occupancy")
   minOccupancy                   Int?                            @map("min_occupancy")
   floorMin                       Int?                            @map("floor_min")
@@ -910,6 +915,8 @@ model UnitGroup {
 }
 
 model UnitGroupAmiLevels {
+  createdAt                    DateTime                         @default(now()) @map("created_at") @db.Timestamp(6)
+  updatedAt                    DateTime                         @default(now()) @updatedAt @map("updated_at") @db.Timestamp(6)
   id                           String                           @id() @default(dbgenerated("uuid_generate_v4()")) @db.Uuid
   amiPercentage                Int?                             @map("ami_percentage")
   monthlyRentDeterminationType MonthlyRentDeterminationTypeEnum @map("monthly_rent_determination_type")
@@ -975,6 +982,8 @@ enum LanguagesEnum {
   vi
   zh
   tl
+  bn
+  ar
 
   @@map("languages_enum")
 }

@@ -2,23 +2,31 @@ import * as React from "react"
 import { StandardTableData, t } from "@bloom-housing/ui-components"
 import { Listing, UnitTypeEnum } from "../types/backend-swagger"
 
+export const getOccupancy = (minOcc?: number | null, maxOcc?: number | null) => {
+  if (minOcc && maxOcc && minOcc < maxOcc) {
+    return `${minOcc}-${maxOcc} ${t("t.people")}`
+  }
+  if (minOcc && maxOcc && minOcc === maxOcc) {
+    return `${minOcc} ${minOcc === 1 ? t("t.person") : t("t.people")}`
+  }
+  if (!minOcc && maxOcc) {
+    return t("t.noMoreThan", {
+      amount: `${maxOcc} ${maxOcc === 1 ? t("t.person") : t("t.people")}`,
+    })
+  }
+  if (minOcc && !maxOcc) {
+    return t("t.atLeast", {
+      amount: `${minOcc} ${minOcc === 1 ? t("t.person") : t("t.people")}`,
+    })
+  }
+  return t("t.n/a")
+}
+
 export const occupancyTable = (listing: Listing): StandardTableData => {
   let occupancyData: StandardTableData = []
   if (listing.unitsSummarized && listing.unitsSummarized.byUnitType) {
     occupancyData = listing.unitsSummarized.byUnitType.map((unitSummary) => {
-      let occupancy = ""
-
-      if (unitSummary.occupancyRange.max == null) {
-        occupancy = `at least ${unitSummary.occupancyRange.min} ${
-          unitSummary.occupancyRange.min == 1 ? t("t.person") : t("t.people")
-        }`
-      } else if (unitSummary.occupancyRange.max > 1) {
-        occupancy = `${unitSummary.occupancyRange.min}-${unitSummary.occupancyRange.max} ${
-          unitSummary.occupancyRange.max == 1 ? t("t.person") : t("t.people")
-        }`
-      } else {
-        occupancy = `1 ${t("t.person")}`
-      }
+      const occupancy = getOccupancy(unitSummary.occupancyRange.min, unitSummary.occupancyRange.max)
 
       return {
         unitType: {
@@ -30,6 +38,21 @@ export const occupancyTable = (listing: Listing): StandardTableData => {
   }
 
   return occupancyData
+}
+
+export const stackedOccupancyTable = (listing: Listing) => {
+  if (listing.unitsSummarized && listing.unitsSummarized.byUnitType) {
+    return listing.unitsSummarized.byUnitType.map((unitSummary) => {
+      const occupancy = getOccupancy(unitSummary.occupancyRange.min, unitSummary.occupancyRange.max)
+
+      return {
+        unitType: {
+          cellText: t("listings.unitTypes." + unitSummary.unitTypes.name),
+        },
+        occupancy: { cellText: occupancy },
+      }
+    })
+  } else return []
 }
 
 export const getOccupancyDescription = (listing: Listing) => {

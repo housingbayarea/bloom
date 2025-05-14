@@ -25,7 +25,7 @@ import { ApiKeyGuard } from '../guards/api-key.guard';
 @ApiTags('scriptRunner')
 @UsePipes(new ValidationPipe(defaultValidationPipeOptions))
 @UseGuards(ApiKeyGuard, OptionalAuthGuard, AdminOrJurisdictionalAdminGuard)
-export class ScirptRunnerController {
+export class ScriptRunnerController {
   constructor(private readonly scriptRunnerService: ScriptRunnerService) {}
 
   @Put('exampleScript')
@@ -210,5 +210,29 @@ export class ScirptRunnerController {
     @Request() req: ExpressRequest,
   ): Promise<SuccessDTO> {
     return await this.scriptRunnerService.hideProgramsFromListings(req);
+  }
+
+  @Put('updatesWhatHappensInLotteryEmail')
+  @ApiOperation({
+    summary:
+      'A script that updates the "what happens next" content in lottery email',
+    operationId: 'updatesWhatHappensInLotteryEmail',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async updatesWhatHappensInLotteryEmail(
+    @Request() req: ExpressRequest,
+  ): Promise<SuccessDTO> {
+    return await this.scriptRunnerService.updatesWhatHappensInLotteryEmail(req);
+  }
+
+  @Put('addFeatureFlags')
+  @ApiOperation({
+    summary:
+      'A script that adds existing feature flags into the feature flag table',
+    operationId: 'addFeatureFlags',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async addFeatureFlags(@Request() req: ExpressRequest): Promise<SuccessDTO> {
+    return await this.scriptRunnerService.addFeatureFlags(req);
   }
 }

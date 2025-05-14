@@ -7,17 +7,18 @@ import {
   ReviewOrderTypeEnum,
 } from '@prisma/client';
 import { Request as ExpressRequest } from 'express';
+import { AmiChartService } from './ami-chart.service';
+import { EmailService } from './email.service';
+import { FeatureFlagService } from './feature-flag.service';
 import { PrismaService } from './prisma.service';
 import { SuccessDTO } from '../dtos/shared/success.dto';
 import { User } from '../dtos/users/user.dto';
 import { mapTo } from '../utilities/mapTo';
 import { DataTransferDTO } from '../dtos/script-runner/data-transfer.dto';
 import { BulkApplicationResendDTO } from '../dtos/script-runner/bulk-application-resend.dto';
-import { EmailService } from './email.service';
 import { Application } from '../dtos/applications/application.dto';
 import { AmiChartImportDTO } from '../dtos/script-runner/ami-chart-import.dto';
 import { AmiChartCreate } from '../dtos/ami-charts/ami-chart-create.dto';
-import { AmiChartService } from './ami-chart.service';
 import { AmiChartUpdate } from '../dtos/ami-charts/ami-chart-update.dto';
 import { AmiChartUpdateImportDTO } from '../dtos/script-runner/ami-chart-update-import.dto';
 import sanJoseRedlined from '../data/SanJoseRedlined.json';
@@ -39,9 +40,10 @@ import district10 from '../data/SanJoseDistrict10.json';
 @Injectable()
 export class ScriptRunnerService {
   constructor(
-    private prisma: PrismaService,
-    private emailService: EmailService,
     private amiChartService: AmiChartService,
+    private emailService: EmailService,
+    private featureFlagService: FeatureFlagService,
+    private prisma: PrismaService,
   ) {}
 
   /**
@@ -326,7 +328,7 @@ export class ScriptRunnerService {
   async addLotteryTranslations(req: ExpressRequest): Promise<SuccessDTO> {
     const requestingUser = mapTo(User, req['user']);
     await this.markScriptAsRunStart('add lottery translations', requestingUser);
-    this.addLotteryTranslationsHelper();
+    this.addLotteryTranslationsHelper(true);
     await this.markScriptAsComplete('add lottery translations', requestingUser);
 
     return { success: true };
@@ -347,7 +349,7 @@ export class ScriptRunnerService {
       'add lottery translations create if empty',
       requestingUser,
     );
-    this.addLotteryTranslationsHelper();
+    this.addLotteryTranslationsHelper(true);
     await this.markScriptAsComplete(
       'add lottery translations create if empty',
       requestingUser,
@@ -571,6 +573,87 @@ export class ScriptRunnerService {
   }
 
   /**
+   *
+   * @param req incoming request object
+   * @returns successDTO
+   * @description updates the "what happens next" content in lottery email
+   */
+  async updatesWhatHappensInLotteryEmail(
+    req: ExpressRequest,
+  ): Promise<SuccessDTO> {
+    const requestingUser = mapTo(User, req['user']);
+    await this.markScriptAsRunStart(
+      'update what happens next content in lottery email',
+      requestingUser,
+    );
+
+    await this.updateTranslationsForLanguage(LanguagesEnum.en, {
+      lotteryAvailable: {
+        whatHappensContent:
+          'The property manager will begin to contact applicants in the order of lottery rank, within each lottery preference. When the units are all filled, the property manager will stop contacting applicants. All the units could be filled before the property manager reaches your rank. If this happens, you will not be contacted.',
+      },
+    });
+    await this.updateTranslationsForLanguage(LanguagesEnum.es, {
+      lotteryAvailable: {
+        whatHappensContent:
+          'El administrador de la propiedad comenzará a comunicarse con los solicitantes en el orden de clasificación de la lotería, dentro de cada preferencia de la lotería. Cuando todas las unidades estén ocupadas, el administrador de la propiedad dejará de comunicarse con los solicitantes. Es posible que todas las unidades estén ocupadas antes de que el administrador de la propiedad alcance su clasificación. Si esto sucede, no se comunicarán con usted.',
+      },
+    });
+    await this.updateTranslationsForLanguage(LanguagesEnum.tl, {
+      lotteryAvailable: {
+        whatHappensContent:
+          'Ang tagapamahala ng ari-arian ay magsisimulang makipag-ugnayan sa mga aplikante sa pagkakasunud-sunod ng ranggo ng lottery, sa loob ng bawat kagustuhan sa lottery. Kapag napuno na ang lahat ng unit, hihinto na ang property manager sa pakikipag-ugnayan sa mga aplikante. Maaaring mapunan ang lahat ng unit bago maabot ng property manager ang iyong ranggo. Kung mangyari ito, hindi ka makontak.',
+      },
+    });
+    await this.updateTranslationsForLanguage(LanguagesEnum.vi, {
+      lotteryAvailable: {
+        whatHappensContent:
+          'Người quản lý bất động sản sẽ bắt đầu liên hệ với người nộp đơn theo thứ hạng xổ số, trong mỗi sở thích xổ số. Khi tất cả các đơn vị đã được lấp đầy, người quản lý bất động sản sẽ ngừng liên hệ với người nộp đơn. Tất cả các đơn vị có thể được lấp đầy trước khi người quản lý bất động sản đạt đến thứ hạng của bạn. Nếu điều này xảy ra, bạn sẽ không được liên hệ.',
+      },
+    });
+    await this.updateTranslationsForLanguage(LanguagesEnum.zh, {
+      lotteryAvailable: {
+        whatHappensContent:
+          '物业经理将按照抽签顺序开始联系申请人，每个抽签偏好内都是如此。当所有单元都已满时，物业经理将停止联系申请人。在物业经理达到您的排名之前，所有单元都可能已满。如果发生这种情况，您将不会被联系。',
+      },
+    });
+
+    await this.markScriptAsComplete(
+      'update what happens next content in lottery email',
+      requestingUser,
+    );
+    return { success: true };
+  }
+
+  /**
+   *
+   * @param req incoming request object
+   * @returns successDTO
+   * @description Adds all existing feature flags across Bloom to the database
+   */
+  async addFeatureFlags(req: ExpressRequest): Promise<SuccessDTO> {
+    const requestingUser = mapTo(User, req['user']);
+    await this.markScriptAsRunStart('add feature flags', requestingUser);
+
+    const results = await Promise.all(
+      this.featureFlags.map(async (flag) => {
+        try {
+          await this.featureFlagService.create(flag);
+        } catch (e) {
+          console.log(
+            `feature flag ${flag.name} failed to be created. Error: ${e}`,
+          );
+        }
+      }),
+    );
+
+    console.log(`Number of feature flags created: ${results.length}`);
+
+    await this.markScriptAsComplete('add feature flags', requestingUser);
+    return { success: true };
+  }
+
+  /**
     this is simply an example
   */
   async example(req: ExpressRequest): Promise<SuccessDTO> {
@@ -642,40 +725,58 @@ export class ScriptRunnerService {
     });
   }
 
-  async addLotteryTranslationsHelper() {
-    const updateForLanguage = async (
-      language: LanguagesEnum,
-      translationKeys: Record<string, Record<string, string>>,
-    ) => {
-      let translations;
-      translations = await this.prisma.translations.findFirst({
-        where: { language, jurisdictionId: null },
-      });
+  async updateTranslationsForLanguage(
+    language: LanguagesEnum,
+    newTranslations: Record<string, any>,
+    createIfMissing?: boolean,
+  ) {
+    let translations;
+    translations = await this.prisma.translations.findMany({
+      where: { language },
+    });
 
-      if (!translations) {
-        translations = await this.prisma.translations.create({
+    if (!translations?.length) {
+      if (createIfMissing) {
+        const createdTranslations = await this.prisma.translations.create({
           data: {
             language: language,
             translations: {},
             jurisdictions: undefined,
           },
         });
+        translations = [createdTranslations];
+      } else {
+        console.log(
+          `Translations for ${language} don't exist in Bloom database`,
+        );
+        return;
       }
+    }
 
-      const translationsJSON =
-        translations.translations as unknown as Prisma.JsonArray;
+    for (const translation of translations) {
+      const translationsJSON = translation.translations as Prisma.JsonObject;
+
+      Object.keys(newTranslations).forEach((key) => {
+        translationsJSON[key] = {
+          ...((translationsJSON[key] || {}) as Prisma.JsonObject),
+          ...newTranslations[key],
+        };
+      });
+
+      // technique taken from
+      // https://www.prisma.io/docs/orm/prisma-client/special-fields-and-types/working-with-json-fields#advanced-example-update-a-nested-json-key-value
+      const dataClause = Prisma.validator<Prisma.TranslationsUpdateInput>()({
+        translations: translationsJSON,
+      });
 
       await this.prisma.translations.update({
-        where: { id: translations.id },
-        data: {
-          translations: {
-            ...translationsJSON,
-            ...translationKeys,
-          },
-        },
+        where: { id: translation.id },
+        data: dataClause,
       });
-    };
+    }
+  }
 
+  async addLotteryTranslationsHelper(createIfMissing?: boolean) {
     const enKeys = {
       lotteryReleased: {
         header: 'Lottery results for %{listingName} are ready to be published',
@@ -776,10 +877,135 @@ export class ScriptRunnerService {
         otherOpportunities4: 'Housing Portal 幫助中心',
       },
     };
-    await updateForLanguage(LanguagesEnum.en, enKeys);
-    await updateForLanguage(LanguagesEnum.es, esKeys);
-    await updateForLanguage(LanguagesEnum.tl, tlKeys);
-    await updateForLanguage(LanguagesEnum.vi, viKeys);
-    await updateForLanguage(LanguagesEnum.zh, zhKeys);
+    await this.updateTranslationsForLanguage(
+      LanguagesEnum.en,
+      enKeys,
+      createIfMissing,
+    );
+    await this.updateTranslationsForLanguage(
+      LanguagesEnum.es,
+      esKeys,
+      createIfMissing,
+    );
+    await this.updateTranslationsForLanguage(
+      LanguagesEnum.tl,
+      tlKeys,
+      createIfMissing,
+    );
+    await this.updateTranslationsForLanguage(
+      LanguagesEnum.vi,
+      viKeys,
+      createIfMissing,
+    );
+    await this.updateTranslationsForLanguage(
+      LanguagesEnum.zh,
+      zhKeys,
+      createIfMissing,
+    );
   }
+
+  featureFlags = [
+    {
+      name: 'enableSingleUseCode',
+      description:
+        'When true, the backend allows for logging into this jurisdiction using the single use code flow',
+      active: false,
+    },
+    {
+      name: 'enableAccessibiliyFeatures',
+      description:
+        "When true, the 'accessibility features' section is displayed in listing creation/edit and the public listing view",
+      active: false,
+    },
+    {
+      name: 'enableGeocodingPreferences',
+      description:
+        'When true, preferences can be created with geocoding functionality and when an application is created/updated on a listing that is geocoding then the application gets geocoded',
+      active: false,
+    },
+    {
+      name: 'enableGeocodingRadiusMethod',
+      description:
+        'When true, preferences can be created with geocoding functionality that verifies via a mile radius',
+      active: false,
+    },
+    {
+      name: 'enableListingOpportunity',
+      description:
+        "When true, any newly published listing will send a gov delivery email to everyone that has signed up for the 'listing alerts'",
+      active: false,
+    },
+    {
+      name: 'enablePartnerDemographics',
+      description:
+        'When true, demographics data is included in application or lottery exports for partners',
+      active: false,
+    },
+    {
+      name: 'enablePartnerSettings',
+      description:
+        "When true, the 'settings' tab in the partner site is visible",
+      active: false,
+    },
+    {
+      name: 'enableUtilitiesIncluded',
+      description:
+        "When true, the 'utilities included' section is displayed in listing creation/edit and the public listing view",
+      active: false,
+    },
+    {
+      name: 'enableNeighborhoodAmenities',
+      description:
+        "When true, the 'neighborhood amenities' section is displayed in listing creation/edit and the public listing view",
+      active: false,
+    },
+    {
+      name: 'exportApplicationAsSpreadsheet',
+      description:
+        'When true, the application export is done as an Excel spreadsheet',
+      active: false,
+    },
+    {
+      name: 'limitClosedListingActions',
+      description:
+        'When true, availability of edit, republish, and reopen functionality is limited for closed listings',
+      active: false,
+    },
+    {
+      name: 'showLottery',
+      description:
+        'When true, show lottery tab on lottery listings on the partners site',
+      active: false,
+    },
+    {
+      name: 'showMandatedAccounts',
+      description:
+        'When true, require users to be logged in to submit an application on the public site',
+      active: false,
+    },
+    {
+      name: 'showProfessionalPartners',
+      description:
+        'When true, show a navigation bar link to professional partners',
+      active: false,
+    },
+    {
+      name: 'showPublicLottery',
+      description:
+        'When true, show lottery section on the user applications page',
+      active: false,
+    },
+    {
+      name: 'showPwdless',
+      description:
+        "When true, show the 'get code to sign in' button on public sign in page for the pwdless flow",
+      active: false,
+    },
+    {
+      name: 'showSmsMfa',
+      description:
+        "When true, show the 'sms' button option when a user goes through multi factor authentication",
+      active: false,
+    },
+  ];
 }

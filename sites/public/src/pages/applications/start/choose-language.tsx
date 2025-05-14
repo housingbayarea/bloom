@@ -1,5 +1,6 @@
 import React, { useCallback, useContext, useEffect, useState } from "react"
 import { useRouter } from "next/router"
+import dayjs from "dayjs"
 import { ImageCard, t } from "@bloom-housing/ui-components"
 import {
   imageUrlFromListing,
@@ -7,7 +8,7 @@ import {
   PageView,
   pushGtmEvent,
   AuthContext,
-  MessageContext,
+  useToastyRef,
   CustomIconMap,
 } from "@bloom-housing/shared-helpers"
 import {
@@ -22,11 +23,10 @@ import {
   AppSubmissionContext,
   retrieveApplicationConfig,
 } from "../../../lib/applications/AppSubmissionContext"
-import { useGetApplicationStatusProps } from "../../../lib/hooks"
 import { UserStatus } from "../../../lib/constants"
 import ApplicationFormLayout from "../../../layouts/application-form"
+import { getListingApplicationStatus } from "../../../lib/helpers"
 import styles from "../../../layouts/application-form.module.scss"
-import dayjs from "dayjs"
 
 const loadListing = async (
   listingId,
@@ -54,7 +54,7 @@ const ApplicationChooseLanguage = () => {
   const [listing, setListing] = useState(null)
   const context = useContext(AppSubmissionContext)
   const { initialStateLoaded, profile, listingsService } = useContext(AuthContext)
-  const { addToast } = useContext(MessageContext)
+  const toastyRef = useToastyRef()
   const { conductor } = context
 
   const listingId = router.query.listingId
@@ -86,6 +86,8 @@ const ApplicationChooseLanguage = () => {
   }, [router, conductor, context, listingId, initialStateLoaded, profile, listingsService])
 
   useEffect(() => {
+    const { addToast } = toastyRef.current
+
     if (listing && router.isReady) {
       const currentDate = dayjs()
       if (
@@ -93,11 +95,11 @@ const ApplicationChooseLanguage = () => {
         (router?.query?.preview !== "true" && listing?.status !== ListingsStatusEnum.active) ||
         (listing?.applicationDueDate && currentDate > dayjs(listing.applicationDueDate))
       ) {
-        // addToast(t("listings.applicationsClosedRedirect"), { variant: "alert" })
+        addToast(t("listings.applicationsClosedRedirect"), { variant: "alert" })
         void router.push(`/${router.locale}/listing/${listing?.id}/${listing?.urlSlug}`)
       }
     }
-  }, [listing, router, addToast])
+  }, [listing, router, toastyRef])
 
   const imageUrl = listing?.assets
     ? imageUrlFromListing(listing, parseInt(process.env.listingPhotoSize))[0]
@@ -117,7 +119,7 @@ const ApplicationChooseLanguage = () => {
     [conductor, context, listingId, router, listingsService]
   )
 
-  const { content: appStatusContent } = useGetApplicationStatusProps(listing)
+  const statusContent = getListingApplicationStatus(listing)
 
   return (
     <FormsLayout>
@@ -144,7 +146,7 @@ const ApplicationChooseLanguage = () => {
               }
               fullwidth
             >
-              {appStatusContent}
+              {statusContent?.content}
             </Message>
           </CardSection>
         )}

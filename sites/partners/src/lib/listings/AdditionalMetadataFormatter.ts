@@ -1,5 +1,8 @@
 import { listingFeatures, listingUtilities } from "@bloom-housing/shared-helpers"
-import { ReviewOrderTypeEnum } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
+import {
+  ReviewOrderTypeEnum,
+  YesNoEnum,
+} from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import Formatter from "./Formatter"
 
 export default class AdditionalMetadataFormatter extends Formatter {
@@ -55,35 +58,39 @@ export default class AdditionalMetadataFormatter extends Formatter {
 
     this.data.customMapPin = this.metadata.customMapPositionChosen
     this.data.yearBuilt = this.data.yearBuilt ? Number(this.data.yearBuilt) : null
-    if (!this.data.reservedCommunityTypes?.id) this.data.reservedCommunityTypes = null
+    if (!this.data.reservedCommunityTypes?.id) {
+      this.data.reservedCommunityTypes = null
+      this.data.includeCommunityDisclaimer = null
+      this.data.communityDisclaimerTitle = ""
+      this.data.communityDisclaimerDescription = ""
+    } else if (this.data.includeCommunityDisclaimerQuestion === YesNoEnum.no) {
+      this.data.communityDisclaimerTitle = ""
+      this.data.communityDisclaimerDescription = ""
+    }
     this.data.reviewOrderType =
       this.data.reviewOrderQuestion === "reviewOrderLottery"
         ? ReviewOrderTypeEnum.lottery
         : ReviewOrderTypeEnum.firstComeFirstServe
 
-    if (this.data.reviewOrderType !== ReviewOrderTypeEnum.lottery) {
-      this.data.lotteryOptIn = null
-    } else {
-      if (this.data.lotteryOptIn === null) delete this.data.lotteryOptIn
-    }
-
     if (this.data.listingAvailabilityQuestion === "openWaitlist") {
       this.data.reviewOrderType = ReviewOrderTypeEnum.waitlist
     }
 
-    if (this.data.listingFeatures) {
+    if (this.data.accessibilityFeatures) {
       this.data.listingFeatures = listingFeatures.reduce((acc, current) => {
+        const isSelected = this.data.accessibilityFeatures.some((feature) => feature === current)
         return {
           ...acc,
-          [current]: this.data.listingFeatures && this.data.listingFeatures[current],
+          [current]: isSelected,
         }
       }, {})
     }
-    if (this.data.listingUtilities) {
+    if (this.data.utilities) {
       this.data.listingUtilities = listingUtilities.reduce((acc, current) => {
+        const isSelected = this.data.utilities.some((utility) => utility === current)
         return {
           ...acc,
-          [current]: this.data.listingUtilities && this.data.listingUtilities[current],
+          [current]: isSelected,
         }
       }, {})
     }

@@ -1,3 +1,4 @@
+import { Logger } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import {
   LanguagesEnum,
@@ -8,11 +9,13 @@ import {
 import { randomUUID } from 'crypto';
 import { Request as ExpressRequest } from 'express';
 import { mockDeep } from 'jest-mock-extended';
-import { ScriptRunnerService } from '../../../src/services/script-runner.service';
-import { PrismaService } from '../../../src/services/prisma.service';
 import { User } from '../../../src/dtos/users/user.dto';
-import { EmailService } from '../../../src/services/email.service';
 import { AmiChartService } from '../../../src/services/ami-chart.service';
+import { EmailService } from '../../../src/services/email.service';
+import { FeatureFlagService } from '../../../src/services/feature-flag.service';
+import { JurisdictionService } from '../../../src/services/jurisdiction.service';
+import { PrismaService } from '../../../src/services/prisma.service';
+import { ScriptRunnerService } from '../../../src/services/script-runner.service';
 
 const externalPrismaClient = mockDeep<PrismaClient>();
 
@@ -33,6 +36,9 @@ describe('Testing script runner service', () => {
           },
         },
         AmiChartService,
+        FeatureFlagService,
+        JurisdictionService,
+        Logger,
       ],
     }).compile();
 
@@ -131,7 +137,7 @@ describe('Testing script runner service', () => {
     prisma.scriptRuns.findUnique = jest.fn().mockResolvedValue(null);
     prisma.scriptRuns.create = jest.fn().mockResolvedValue(null);
     prisma.scriptRuns.update = jest.fn().mockResolvedValue(null);
-    prisma.translations.findFirst = jest.fn().mockResolvedValue(undefined);
+    prisma.translations.findMany = jest.fn().mockResolvedValue(undefined);
     prisma.translations.update = jest.fn().mockResolvedValue(null);
     prisma.translations.create = jest.fn().mockReturnValue({
       language: LanguagesEnum.en,
@@ -790,6 +796,46 @@ describe('Testing script runner service', () => {
         applicationSection: MultiselectQuestionsApplicationSectionEnum.programs,
       },
     });
+  });
+
+  it('should create 16 feature flags', async () => {
+    const id = randomUUID();
+    const scriptName = 'add feature flags';
+
+    prisma.scriptRuns.findUnique = jest.fn().mockResolvedValue(null);
+    prisma.scriptRuns.create = jest.fn().mockResolvedValue(null);
+    prisma.scriptRuns.update = jest.fn().mockResolvedValue(null);
+    prisma.featureFlags.create = jest.fn().mockResolvedValue({ id: 'new id' });
+
+    const res = await service.addFeatureFlags({
+      user: {
+        id,
+      } as unknown as User,
+    } as unknown as ExpressRequest);
+
+    expect(res.success).toBe(true);
+
+    expect(prisma.scriptRuns.findUnique).toHaveBeenCalledWith({
+      where: {
+        scriptName,
+      },
+    });
+    expect(prisma.scriptRuns.create).toHaveBeenCalledWith({
+      data: {
+        scriptName,
+        triggeringUser: id,
+      },
+    });
+    expect(prisma.scriptRuns.update).toHaveBeenCalledWith({
+      data: {
+        didScriptRun: true,
+        triggeringUser: id,
+      },
+      where: {
+        scriptName,
+      },
+    });
+    expect(prisma.featureFlags.create).toHaveBeenCalledTimes(17);
   });
 
   // | ---------- HELPER TESTS BELOW ---------- | //

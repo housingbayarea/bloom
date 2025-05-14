@@ -42,8 +42,6 @@ const mockListing = (): Listing => {
       publicUrl: '',
       emailFromAddress: '',
       rentalAssistanceDefault: '',
-      enableAccessibilityFeatures: true,
-      enableUtilitiesIncluded: true,
     },
     units: [],
     unitsSummarized: undefined,
@@ -101,6 +99,10 @@ const mockListing = (): Listing => {
         },
       },
     ],
+    includeCommunityDisclaimer: true,
+    communityDisclaimerTitle: 'untranslated community disclaimer title',
+    communityDisclaimerDescription:
+      'untranslated community disclaimer description',
   };
 };
 
@@ -133,6 +135,8 @@ const translatedStrings = [
   'translated multiselect description',
   'translated multiselect subtext',
   'translated multiselect opt out text',
+  'translated community disclaimer title',
+  'translated community disclaimer description',
 ];
 
 describe('Testing translations service', () => {
@@ -395,4 +399,10 @@ const validateTranslatedFields = (listing: Listing) => {
   expect(
     listing.listingMultiselectQuestions[0].multiselectQuestions.optOutText,
   ).toEqual('translated multiselect opt out text');
+  expect(listing.communityDisclaimerTitle).toEqual(
+    'translated community disclaimer title',
+  );
+  expect(listing.communityDisclaimerDescription).toEqual(
+    'translated community disclaimer description',
+  );
 };

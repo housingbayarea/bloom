@@ -77,7 +77,14 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
 
   useEffect(() => {
     if (application?.householdMember) {
-      setHouseholdMembers(application.householdMember)
+      const householdMemberNum = application.householdMember.length
+      const orderedHouseholdMembers = application.householdMember
+        //reset order ids to show members in order user added them
+        .map((member, idx) => {
+          return { ...member, orderId: householdMemberNum - idx }
+        })
+        .sort((a, b) => a.orderId - b.orderId)
+      setHouseholdMembers(orderedHouseholdMembers)
     }
   }, [application, setHouseholdMembers])
 
@@ -153,6 +160,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
           void router.push(`/application/${result.id}`)
         } else {
           reset()
+          setHouseholdMembers([])
           clearErrors()
           setAlert(null)
           await router.push(`/listings/${listingId}/applications/add`)
