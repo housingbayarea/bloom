@@ -32,6 +32,10 @@ export enum FeatureFlagEnum {
 // Keep alphabetized for readability.
 export const featureFlagMap: { name: string; description: string }[] = [
   {
+    name: FeatureFlagEnum.disableCommonApplication,
+    description: 'When true, the common application is disabled',
+  },
+  {
     name: FeatureFlagEnum.disableJurisdictionalAdmin,
     description: 'When true, jurisdictional admins cannot be created',
   },
