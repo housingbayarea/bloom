@@ -3862,6 +3862,9 @@ export interface Listing {
   leasingAgentTitle?: string
 
   /**  */
+  managementWebsite?: string
+
+  /**  */
   name: string
 
   /**  */
@@ -4501,6 +4504,9 @@ export interface ListingCreate {
   leasingAgentTitle?: string
 
   /**  */
+  managementWebsite?: string
+
+  /**  */
   name: string
 
   /**  */
@@ -4809,6 +4815,9 @@ export interface ListingUpdate {
 
   /**  */
   leasingAgentTitle?: string
+
+  /**  */
+  managementWebsite?: string
 
   /**  */
   name: string
@@ -7006,16 +7015,17 @@ export enum UserRoleEnum {
 }
 
 export enum FeatureFlagEnum {
-  "example" = "example",
+  "disableCommonApplication" = "disableCommonApplication",
   "disableJurisdictionalAdmin" = "disableJurisdictionalAdmin",
   "enableAccessibilityFeatures" = "enableAccessibilityFeatures",
+  "enableCompanyWebsite" = "enableCompanyWebsite",
   "enableGeocodingPreferences" = "enableGeocodingPreferences",
   "enableGeocodingRadiusMethod" = "enableGeocodingRadiusMethod",
   "enableHomeType" = "enableHomeType",
   "enableIsVerified" = "enableIsVerified",
   "enableListingFavoriting" = "enableListingFavoriting",
   "enableListingOpportunity" = "enableListingOpportunity",
-  "enableListingPagination" = "enableListingPagination",
+  "enableListingsPagination" = "enableListingsPagination",
   "enableMarketingStatus" = "enableMarketingStatus",
   "enableNeighborhoodAmenities" = "enableNeighborhoodAmenities",
   "enablePartnerDemographics" = "enablePartnerDemographics",
@@ -7025,6 +7035,7 @@ export enum FeatureFlagEnum {
   "enableSingleUseCode" = "enableSingleUseCode",
   "enableUnitGroups" = "enableUnitGroups",
   "enableUtilitiesIncluded" = "enableUtilitiesIncluded",
+  "example" = "example",
   "hideCloseListingButton" = "hideCloseListingButton",
   "swapCommunityTypeWithPrograms" = "swapCommunityTypeWithPrograms",
 }
