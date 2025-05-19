@@ -7036,7 +7036,6 @@ export enum FeatureFlagEnum {
   "enableSingleUseCode" = "enableSingleUseCode",
   "enableUnitGroups" = "enableUnitGroups",
   "enableUtilitiesIncluded" = "enableUtilitiesIncluded",
-  "example" = "example",
   "hideCloseListingButton" = "hideCloseListingButton",
   "swapCommunityTypeWithPrograms" = "swapCommunityTypeWithPrograms",
 }
