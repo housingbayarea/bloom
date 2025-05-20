@@ -98,6 +98,10 @@ function BloomApp({ Component, router, pageProps }: AppProps) {
     }
   }, [locale, router.events])
 
+  if (!initialized) {
+    return null
+  }
+
   // NOTE: Seeds and UI-Components both use a NavigationContext to help internal links use Next's
   // routing system, so we'll include both here until UIC is no longer in use.
 
