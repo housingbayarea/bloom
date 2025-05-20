@@ -18,3 +18,16 @@ LISTINGS_QUERY = "/listings"
 
 [context.branch-deploy.environment]
 GTM_KEY = "GTM-KF22FJP"
+
+
+[[redirects]]
+  from = "/"
+  to = "https://housingbayarea.mtc.ca.gov/"
+  status = 301
+  force = true # COMMENT: ensure that we always redirect
+
+[[redirects]]
+  from = "/*"
+  to = "https://housingbayarea.mtc.ca.gov/"
+  status = 301
+  force = true # COMMENT: ensure that we always redirect
