@@ -7,7 +7,6 @@ import {
   MultiselectQuestion,
   PaperApplication,
   PaperApplicationCreate,
-  RegionEnum,
   Unit,
   UnitGroup,
   UnitGroupAmiLevel,
@@ -48,7 +47,6 @@ export type FormListing = Omit<Listing, "countyCode"> & {
   commonDigitalApplicationChoice?: YesNoEnum
   paperApplicationChoice?: YesNoEnum
   referralOpportunityChoice?: YesNoEnum
-  dueDateQuestionChoice?: YesNoEnum
   criteriaAttachType?: string
   includeCommunityDisclaimerQuestion?: YesNoEnum
   listingSection8Acceptance?: YesNoEnum
@@ -155,7 +153,7 @@ export const formDefaults: FormListing = {
   householdSizeMax: 0,
   householdSizeMin: 0,
   neighborhood: undefined,
-  region: RegionEnum.Greater_Downtown,
+  region: undefined,
   petPolicy: "",
   smokingPolicy: "",
   unitsAvailable: 0,

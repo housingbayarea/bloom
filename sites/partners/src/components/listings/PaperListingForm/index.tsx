@@ -40,11 +40,9 @@ import ApplicationAddress from "./sections/ApplicationAddress"
 import ApplicationDates from "./sections/ApplicationDates"
 import LotteryResults from "./sections/LotteryResults"
 import ApplicationTypes from "./sections/ApplicationTypes"
-import SelectAndOrder from "./sections/SelectAndOrder"
 import CommunityType from "./sections/CommunityType"
 import BuildingSelectionCriteria from "./sections/BuildingSelectionCriteria"
 import { getReadableErrorMessage } from "../PaperListingDetails/sections/helpers"
-import { useJurisdictionalMultiselectQuestionList } from "../../../lib/hooks"
 import { StatusBar } from "../../../components/shared/StatusBar"
 import { getListingStatusTag } from "../helpers"
 import RequestChangesDialog from "./dialogs/RequestChangesDialog"
@@ -55,6 +53,7 @@ import ListingApprovalDialog from "./dialogs/ListingApprovalDialog"
 import SaveBeforeExitDialog from "./dialogs/SaveBeforeExitDialog"
 import ListingVerification from "./sections/ListingVerification"
 import NeighborhoodAmenities from "./sections/NeighborhoodAmenities"
+import PreferencesAndPrograms from "./sections/PreferencesAndPrograms"
 
 type ListingFormProps = {
   listing?: FormListing
@@ -231,45 +230,51 @@ const ListingForm = ({ listing, editMode, setListingName }: ListingFormProps) =>
         try {
           setLoading(true)
           clearErrors()
+          const successful = await formMethods.trigger()
 
-          const dataPipeline = new ListingDataPipeline(formData, {
-            preferences,
-            programs,
-            units,
-            unitGroups,
-            openHouseEvents,
-            profile: profile,
-            latLong,
-            customMapPositionChosen,
-          })
-          const formattedData = await dataPipeline.run()
-          let result
-          if (editMode) {
-            result = await listingsService.update({
-              id: listing.id,
-              body: { id: listing.id, ...(formattedData as unknown as ListingUpdate) },
+          if (successful) {
+            const dataPipeline = new ListingDataPipeline(formData, {
+              preferences,
+              programs,
+              units,
+              unitGroups,
+              openHouseEvents,
+              profile: profile,
+              latLong,
+              customMapPositionChosen,
             })
-          } else {
-            result = await listingsService.create({
-              body: formattedData as unknown as ListingCreate,
-            })
-          }
-
-          reset(formData)
-
-          if (result) {
-            addToast(getToast(listing, listing?.status, formattedData?.status), {
-              variant: "success",
-            })
-
-            if (continueEditing) {
-              setAlert(null)
-              setListingName(result.name)
+            const formattedData = await dataPipeline.run()
+            let result
+            if (editMode) {
+              result = await listingsService.update({
+                id: listing.id,
+                body: { id: listing.id, ...(formattedData as unknown as ListingUpdate) },
+              })
             } else {
-              await router.push(`/listings/${result.id}`)
+              result = await listingsService.create({
+                body: formattedData as unknown as ListingCreate,
+              })
             }
+
+            reset(formData)
+
+            if (result) {
+              addToast(getToast(listing, listing?.status, formattedData?.status), {
+                variant: "success",
+              })
+
+              if (continueEditing) {
+                setAlert(null)
+                setListingName(result.name)
+              } else {
+                await router.push(`/listings/${result.id}`)
+              }
+            }
+            setLoading(false)
+          } else {
+            setLoading(false)
+            setAlert("form")
           }
-          setLoading(false)
         } catch (err) {
           reset(formData)
           setLoading(false)
@@ -375,40 +380,12 @@ const ListingForm = ({ listing, editMode, setListingName }: ListingFormProps) =>
                             disableUnitsAccordion={listing?.disableUnitsAccordion}
                             featureFlags={activeFeatureFlags}
                           />
-                          <SelectAndOrder
-                            addText={t("listings.addPreference")}
-                            drawerTitle={t("listings.addPreferences")}
-                            drawerSubtitle={
-                              process.env.showLottery && listing?.lotteryOptIn
-                                ? t("listings.lotteryPreferenceSubtitle")
-                                : null
-                            }
-                            editText={t("listings.editPreferences")}
-                            listingData={preferences || []}
-                            setListingData={setPreferences}
-                            subtitle={t("listings.sections.housingPreferencesSubtext")}
-                            title={t("listings.sections.housingPreferencesTitle")}
-                            drawerButtonText={t("listings.selectPreferences")}
-                            dataFetcher={useJurisdictionalMultiselectQuestionList}
-                            formKey={"preference"}
-                            applicationSection={
-                              MultiselectQuestionsApplicationSectionEnum.preferences
-                            }
-                          />
-                          <SelectAndOrder
-                            addText={"Add program"}
-                            drawerTitle={"Add programs"}
-                            editText={"Edit programs"}
-                            listingData={programs || []}
-                            setListingData={setPrograms}
-                            subtitle={
-                              "Tell us about any additional housing programs related to this listing."
-                            }
-                            title={"Housing Programs"}
-                            drawerButtonText={"Select programs"}
-                            dataFetcher={useJurisdictionalMultiselectQuestionList}
-                            formKey={"program"}
-                            applicationSection={MultiselectQuestionsApplicationSectionEnum.programs}
+                          <PreferencesAndPrograms
+                            listing={listing}
+                            preferences={preferences || []}
+                            setPreferences={setPreferences}
+                            programs={programs || []}
+                            setPrograms={setPrograms}
                           />
                           <AdditionalFees existingUtilities={listing?.listingUtilities} />
                           <BuildingFeatures existingFeatures={listing?.listingFeatures} />
