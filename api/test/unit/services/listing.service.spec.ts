@@ -734,6 +734,19 @@ describe('Testing listing service', () => {
                     },
                   },
                 },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: {
+                        some: {
+                          numBedrooms: {
+                            gte: 2,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               ],
             },
             {
@@ -804,6 +817,19 @@ describe('Testing listing service', () => {
                     some: {
                       numBedrooms: {
                         gte: 2,
+                      },
+                    },
+                  },
+                },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: {
+                        some: {
+                          numBedrooms: {
+                            gte: 2,
+                          },
+                        },
                       },
                     },
                   },
@@ -934,6 +960,19 @@ describe('Testing listing service', () => {
                   },
                 },
               },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: {
+                        numBedrooms: {
+                          gte: 2,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
             ],
           },
         ],
@@ -984,6 +1023,15 @@ describe('Testing listing service', () => {
                   some: {
                     numBedrooms: {
                       gte: 2,
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: { numBedrooms: { gte: 2 } },
                     },
                   },
                 },
@@ -1193,6 +1241,13 @@ describe('Testing listing service', () => {
                     },
                   },
                 },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: { some: { numBedrooms: { gte: 2 } } },
+                    },
+                  },
+                },
               ],
             },
             {
@@ -1264,6 +1319,13 @@ describe('Testing listing service', () => {
                       numBedrooms: {
                         gte: 2,
                       },
+                    },
+                  },
+                },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: { some: { numBedrooms: { gte: 2 } } },
                     },
                   },
                 },
@@ -1459,6 +1521,13 @@ describe('Testing listing service', () => {
                     numBedrooms: {
                       equals: 2,
                     },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: { some: { numBedrooms: { equals: 2 } } },
                   },
                 },
               },
@@ -1695,6 +1764,24 @@ describe('Testing listing service', () => {
                   some: {
                     monthlyRent: {
                       equals: monthlyRent,
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitGroupAmiLevels: {
+                      some: {
+                        OR: [
+                          {
+                            flatRentValue: {
+                              equals: monthlyRent,
+                            },
+                          },
+                          { percentageOfIncomeValue: { not: null } },
+                        ],
+                      },
                     },
                   },
                 },
@@ -2574,7 +2661,15 @@ describe('Testing listing service', () => {
 
       expect(listing.unitGroups).toEqual(mockedListing.unitGroups);
       expect(listing.unitGroupsSummarized.unitGroupSummary[0]).toEqual({
-        unitTypes: [UnitTypeEnum.SRO],
+        unitTypes: [
+          {
+            id: 'unitType 0',
+            createdAt: date,
+            updatedAt: date,
+            name: 'SRO',
+            numBedrooms: 0,
+          },
+        ],
         rentAsPercentIncomeRange: {
           min: 0,
           max: 30,
@@ -2599,7 +2694,15 @@ describe('Testing listing service', () => {
         },
       });
       expect(listing.unitGroupsSummarized.unitGroupSummary[2]).toEqual({
-        unitTypes: [UnitTypeEnum.oneBdrm],
+        unitTypes: [
+          {
+            id: 'unitType 2',
+            createdAt: date,
+            updatedAt: date,
+            name: 'oneBdrm',
+            numBedrooms: 2,
+          },
+        ],
         rentAsPercentIncomeRange: {
           min: 20,
           max: 50,
