@@ -37,10 +37,12 @@ const FormApplicationData = () => {
             register={register}
             error={errors?.dateSubmitted}
             watch={watch}
+            setValue={setValue}
             label={t("application.add.dateSubmitted")}
             errorMessage={t("errors.dateError")}
             required={!!isDateRequired}
             labelClass={"text__caps-spaced"}
+            dataTestId="dateSubmitted"
           />
         </Grid.Cell>
 
@@ -50,11 +52,13 @@ const FormApplicationData = () => {
             name="timeSubmitted"
             label={t("application.add.timeSubmitted")}
             register={register}
+            setValue={setValue}
             watch={watch}
             error={!!errors?.timeSubmitted}
             disabled={!isDateFilled}
             required={!!isDateFilled}
             labelClass={"text__caps-spaced"}
+            dataTestId="timeSubmitted"
           />
         </Grid.Cell>
 

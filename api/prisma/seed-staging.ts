@@ -71,6 +71,7 @@ export const stagingSeed = async (
         FeatureFlagEnum.enablePartnerSettings,
         FeatureFlagEnum.enableListingsPagination,
         FeatureFlagEnum.enableListingFavoriting,
+        FeatureFlagEnum.enableCompanyWebsite,
       ],
     }),
   });
@@ -96,7 +97,10 @@ export const stagingSeed = async (
         FeatureFlagEnum.enablePartnerSettings,
         FeatureFlagEnum.enableListingsPagination,
         FeatureFlagEnum.disableJurisdictionalAdmin,
+        FeatureFlagEnum.swapCommunityTypeWithPrograms,
         FeatureFlagEnum.enableListingFavoriting,
+        FeatureFlagEnum.enableCompanyWebsite,
+        FeatureFlagEnum.disableCommonApplication,
       ],
     }),
   });
@@ -335,6 +339,21 @@ export const stagingSeed = async (
         },
       }),
     });
+  await prismaClient.multiselectQuestions.create({
+    data: multiselectQuestionFactory(lakeviewJurisdiction.id, {
+      multiselectQuestion: {
+        text: 'Seniors',
+        description:
+          'Are you or anyone in your household 65 years of age or older?',
+        applicationSection: MultiselectQuestionsApplicationSectionEnum.programs,
+        optOutText: 'Prefer not to say',
+        options: [
+          { text: 'Yes', exclusive: true, ordinal: 1 },
+          { text: 'No', exclusive: true, ordinal: 2 },
+        ],
+      },
+    }),
+  });
   // create pre-determined values
   const unitTypes = await unitTypeFactoryAll(prismaClient);
   await unitAccessibilityPriorityTypeFactoryAll(prismaClient);

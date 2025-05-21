@@ -403,6 +403,50 @@ export class ListingService implements OnModuleInit {
       caseSensitive: true,
     });
 
+    // detect combined >=/<= monthlyRent filters and add one range filter
+    const rentParams =
+      params?.filter((f) => f[ListingFilterKeys.monthlyRent] !== undefined) ||
+      [];
+    const minRent = rentParams.find((f) => f.$comparison === Compare['>=']);
+    const maxRent = rentParams.find((f) => f.$comparison === Compare['<=']);
+    if (minRent && maxRent) {
+      const min = minRent[ListingFilterKeys.monthlyRent];
+      const max = maxRent[ListingFilterKeys.monthlyRent];
+      filters.push({
+        OR: [
+          {
+            units: {
+              some: {
+                AND: [
+                  { monthlyRent: { gte: min } },
+                  { monthlyRent: { lte: max } },
+                ],
+              },
+            },
+          },
+          {
+            unitGroups: {
+              some: {
+                unitGroupAmiLevels: {
+                  some: {
+                    OR: [
+                      {
+                        AND: [
+                          { flatRentValue: { gte: min } },
+                          { flatRentValue: { lte: max } },
+                        ],
+                      },
+                      { percentageOfIncomeValue: { not: null } },
+                    ],
+                  },
+                },
+              },
+            },
+          },
+        ],
+      });
+    }
+
     if (params?.length) {
       params.forEach((filter) => {
         if (filter[ListingFilterKeys.availabilities]) {
@@ -602,8 +646,7 @@ export class ListingService implements OnModuleInit {
             })),
           });
         }
-        // TODO: Handle bathrooms for unit groups
-        if (filter[ListingFilterKeys.bathrooms]) {
+        if (filter[ListingFilterKeys.bathrooms] !== undefined) {
           const builtFilter = buildFilter({
             $comparison: filter.$comparison,
             $include_nulls: false,
@@ -621,8 +664,7 @@ export class ListingService implements OnModuleInit {
             })),
           });
         }
-        // TODO: Handle bedrooms for unit groups
-        if (filter[ListingFilterKeys.bedrooms]) {
+        if (filter[ListingFilterKeys.bedrooms] !== undefined) {
           const builtFilter = buildFilter({
             $comparison: filter.$comparison,
             $include_nulls: false,
@@ -631,13 +673,26 @@ export class ListingService implements OnModuleInit {
             caseSensitive: true,
           });
           filters.push({
-            OR: builtFilter.map((filt) => ({
-              units: {
-                some: {
-                  numBedrooms: filt,
+            OR: [
+              ...builtFilter.map((filt) => ({
+                units: {
+                  some: {
+                    numBedrooms: filt,
+                  },
                 },
-              },
-            })),
+              })),
+              ...builtFilter.map((filt) => ({
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: {
+                        numBedrooms: filt,
+                      },
+                    },
+                  },
+                },
+              })),
+            ],
           });
         }
         if (filter[ListingFilterKeys.bedroomTypes] !== undefined) {
@@ -784,8 +839,8 @@ export class ListingService implements OnModuleInit {
             })),
           });
         }
-        // TODO: Handle monthly rent for unit groups
         if (filter[ListingFilterKeys.monthlyRent]) {
+          if (minRent && maxRent) return;
           const builtFilter = buildFilter({
             $comparison: filter.$comparison,
             $include_nulls: false,
@@ -794,13 +849,29 @@ export class ListingService implements OnModuleInit {
             caseSensitive: true,
           });
           filters.push({
-            OR: builtFilter.map((filt) => ({
-              units: {
-                some: {
-                  [ListingFilterKeys.monthlyRent]: filt,
+            OR: [
+              ...builtFilter.map((filt) => ({
+                units: {
+                  some: {
+                    [ListingFilterKeys.monthlyRent]: filt,
+                  },
                 },
-              },
-            })),
+              })),
+              ...builtFilter.map((filt) => ({
+                unitGroups: {
+                  some: {
+                    unitGroupAmiLevels: {
+                      some: {
+                        OR: [
+                          { flatRentValue: filt },
+                          { percentageOfIncomeValue: { not: null } },
+                        ],
+                      },
+                    },
+                  },
+                },
+              })),
+            ],
           });
         }
         if (filter[ListingFilterKeys.name]) {
@@ -1370,9 +1441,11 @@ export class ListingService implements OnModuleInit {
                       level.monthlyRentDeterminationType,
                     percentageOfIncomeValue: level.percentageOfIncomeValue,
                     flatRentValue: level.flatRentValue,
-                    amiChart: {
-                      connect: { id: level.amiChart.id },
-                    },
+                    amiChart: level.amiChart?.id
+                      ? {
+                          connect: { id: level.amiChart.id },
+                        }
+                      : undefined,
                   })),
                 },
                 unitAccessibilityPriorityTypes:
@@ -1552,6 +1625,7 @@ export class ListingService implements OnModuleInit {
 
     if (!dto.includeUnits) {
       delete mappedListing['units'];
+      delete mappedListing['unitGroups'];
     }
 
     const newListingData: ListingCreate = {
