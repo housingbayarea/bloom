@@ -2783,6 +2783,9 @@ export interface ListingFilterParams {
   $comparison: EnumListingFilterParamsComparison
 
   /**  */
+  availabilities?: FilterAvailabilityEnum[]
+
+  /**  */
   availability?: FilterAvailabilityEnum
 
   /**  */
@@ -2790,6 +2793,9 @@ export interface ListingFilterParams {
 
   /**  */
   bedrooms?: number
+
+  /**  */
+  bedroomTypes?: []
 
   /**  */
   city?: string
@@ -3203,6 +3209,21 @@ export interface ListingFeatures {
 
   /**  */
   mobility?: boolean
+
+  /**  */
+  barrierFreeUnitEntrance?: boolean
+
+  /**  */
+  loweredLightSwitch?: boolean
+
+  /**  */
+  barrierFreeBathroom?: boolean
+
+  /**  */
+  wideDoorways?: boolean
+
+  /**  */
+  loweredCabinets?: boolean
 }
 
 export interface ListingUtilities {
@@ -3551,7 +3572,7 @@ export interface UnitsSummarized {
 
 export interface UnitGroupSummary {
   /**  */
-  unitTypes?: string[]
+  unitTypes?: UnitType[]
 
   /**  */
   rentAsPercentIncomeRange?: MinMax
@@ -3863,6 +3884,9 @@ export interface Listing {
 
   /**  */
   leasingAgentTitle?: string
+
+  /**  */
+  managementWebsite?: string
 
   /**  */
   name: string
@@ -4504,6 +4528,9 @@ export interface ListingCreate {
   leasingAgentTitle?: string
 
   /**  */
+  managementWebsite?: string
+
+  /**  */
   name: string
 
   /**  */
@@ -4812,6 +4839,9 @@ export interface ListingUpdate {
 
   /**  */
   leasingAgentTitle?: string
+
+  /**  */
+  managementWebsite?: string
 
   /**  */
   name: string
@@ -6591,6 +6621,9 @@ export interface Login {
 
   /**  */
   mfaType?: MfaType
+
+  /**  */
+  reCaptchaToken?: string
 }
 
 export interface LoginViaSingleUseCode {
@@ -7010,8 +7043,10 @@ export enum UserRoleEnum {
 
 export enum FeatureFlagEnum {
   "example" = "example",
+  "disableCommonApplication" = "disableCommonApplication",
   "disableJurisdictionalAdmin" = "disableJurisdictionalAdmin",
   "enableAccessibilityFeatures" = "enableAccessibilityFeatures",
+  "enableCompanyWebsite" = "enableCompanyWebsite",
   "enableGeocodingPreferences" = "enableGeocodingPreferences",
   "enableGeocodingRadiusMethod" = "enableGeocodingRadiusMethod",
   "enableHomeType" = "enableHomeType",

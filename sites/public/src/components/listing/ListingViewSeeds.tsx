@@ -188,6 +188,11 @@ export const ListingViewSeeds = ({ listing, jurisdiction, profile, preview }: Li
         officeHours={listing.leasingAgentOfficeHours}
         phone={listing.leasingAgentPhone}
         title={listing.leasingAgentTitle}
+        managementWebsite={
+          isFeatureFlagOn(jurisdiction, FeatureFlagEnum.enableCompanyWebsite)
+            ? listing.managementWebsite
+            : undefined
+        }
       />
     </>
   )
@@ -204,12 +209,14 @@ export const ListingViewSeeds = ({ listing, jurisdiction, profile, preview }: Li
             }
             listingFavorited={listingFavorited}
             setListingFavorited={saveFavorite}
+            showHomeType={isFeatureFlagOn(jurisdiction, FeatureFlagEnum.enableHomeType)}
           />
           <RentSummary
             amiValues={getAmiValues(listing)}
             reviewOrderType={listing.reviewOrderType}
             unitsSummarized={listing.unitsSummarized}
             section8Acceptance={listing.section8Acceptance}
+            listing={listing}
           />
           <div className={styles["main-content"]}>
             <div className={styles["hide-desktop"]}>{ApplyBar}</div>
@@ -218,7 +225,21 @@ export const ListingViewSeeds = ({ listing, jurisdiction, profile, preview }: Li
               section8Acceptance={listing.section8Acceptance}
             />
             <Features features={getFeatures(listing, jurisdiction)}>{UnitFeatures}</Features>
-            <Neighborhood address={listing.listingsBuildingAddress} name={listing.name} />
+            <Neighborhood
+              address={listing.listingsBuildingAddress}
+              name={listing.name}
+              neighborhoodAmenities={
+                isFeatureFlagOn(jurisdiction, FeatureFlagEnum.enableNeighborhoodAmenities)
+                  ? listing.listingNeighborhoodAmenities
+                  : null
+              }
+              neighborhood={listing.neighborhood}
+              region={
+                isFeatureFlagOn(jurisdiction, FeatureFlagEnum.enableRegions)
+                  ? listing.region?.toString().replace("_", " ")
+                  : null
+              }
+            />
             <AdditionalInformation additionalInformation={getAdditionalInformation(listing)} />
           </div>
         </div>

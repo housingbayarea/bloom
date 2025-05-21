@@ -547,6 +547,11 @@ describe('Testing listing service', () => {
         hearing: true,
         visual: false,
         mobility: true,
+        barrierFreeUnitEntrance: false,
+        loweredLightSwitch: true,
+        barrierFreeBathroom: false,
+        wideDoorways: true,
+        loweredCabinets: false,
       },
       listingUtilities: {
         water: false,
@@ -729,6 +734,19 @@ describe('Testing listing service', () => {
                     },
                   },
                 },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: {
+                        some: {
+                          numBedrooms: {
+                            gte: 2,
+                          },
+                        },
+                      },
+                    },
+                  },
+                },
               ],
             },
             {
@@ -799,6 +817,19 @@ describe('Testing listing service', () => {
                     some: {
                       numBedrooms: {
                         gte: 2,
+                      },
+                    },
+                  },
+                },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: {
+                        some: {
+                          numBedrooms: {
+                            gte: 2,
+                          },
+                        },
                       },
                     },
                   },
@@ -929,6 +960,19 @@ describe('Testing listing service', () => {
                   },
                 },
               },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: {
+                        numBedrooms: {
+                          gte: 2,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
             ],
           },
         ],
@@ -979,6 +1023,15 @@ describe('Testing listing service', () => {
                   some: {
                     numBedrooms: {
                       gte: 2,
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: { numBedrooms: { gte: 2 } },
                     },
                   },
                 },
@@ -1188,6 +1241,13 @@ describe('Testing listing service', () => {
                     },
                   },
                 },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: { some: { numBedrooms: { gte: 2 } } },
+                    },
+                  },
+                },
               ],
             },
             {
@@ -1262,6 +1322,13 @@ describe('Testing listing service', () => {
                     },
                   },
                 },
+                {
+                  unitGroups: {
+                    some: {
+                      unitTypes: { some: { numBedrooms: { gte: 2 } } },
+                    },
+                  },
+                },
               ],
             },
             {
@@ -1277,6 +1344,185 @@ describe('Testing listing service', () => {
   });
 
   describe('Test buildWhereClause helper', () => {
+    it('should return a where clause for filter availabilities - closedWaitlist', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [FilterAvailabilityEnum.closedWaitlist],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                AND: [
+                  {
+                    unitGroups: {
+                      some: { openWaitlist: { equals: false } },
+                    },
+                  },
+                  {
+                    marketingType: {
+                      not: { equals: MarketingTypeEnum.comingSoon },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter availabilities - comingSoon', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [FilterAvailabilityEnum.comingSoon],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                marketingType: {
+                  equals: MarketingTypeEnum.comingSoon,
+                },
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter availabilities - openWaitlist', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [FilterAvailabilityEnum.openWaitlist],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                AND: [
+                  {
+                    unitGroups: {
+                      some: { openWaitlist: { equals: true } },
+                    },
+                  },
+                  {
+                    marketingType: {
+                      not: { equals: MarketingTypeEnum.comingSoon },
+                    },
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter availabilities - waitlistOpen', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [FilterAvailabilityEnum.waitlistOpen],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                reviewOrderType: {
+                  equals: ReviewOrderTypeEnum.waitlist,
+                },
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter availabilities - unitsAvailable', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [FilterAvailabilityEnum.unitsAvailable],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                unitsAvailable: {
+                  gte: 1,
+                },
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter availabilities - multiple', () => {
+      const filter = [
+        {
+          $comparison: 'IN',
+          availabilities: [
+            FilterAvailabilityEnum.openWaitlist,
+            FilterAvailabilityEnum.unitsAvailable,
+          ],
+        } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                AND: [
+                  {
+                    unitGroups: {
+                      some: { openWaitlist: { equals: true } },
+                    },
+                  },
+                  {
+                    marketingType: {
+                      not: { equals: MarketingTypeEnum.comingSoon },
+                    },
+                  },
+                ],
+              },
+              {
+                unitsAvailable: {
+                  gte: 1,
+                },
+              },
+            ],
+          },
+        ],
+      });
+    });
+
     it('should return a where clause for filter availability - closedWaitlist', () => {
       const filter = [
         {
@@ -1453,6 +1699,57 @@ describe('Testing listing service', () => {
                   some: {
                     numBedrooms: {
                       equals: 2,
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: {
+                        numBedrooms: {
+                          equals: 2,
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            ],
+          },
+        ],
+      });
+    });
+
+    it('should return a where clause for filter bedroomTypes', () => {
+      const filter = [
+        { $comparison: 'IN', bedroomTypes: [2, 4] } as ListingFilterParams,
+      ];
+      const whereClause = service.buildWhereClause(filter, '');
+
+      expect(whereClause).toStrictEqual({
+        AND: [
+          {
+            OR: [
+              {
+                units: {
+                  some: {
+                    numBedrooms: {
+                      in: [2, 4],
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitTypes: {
+                      some: {
+                        numBedrooms: {
+                          in: [2, 4],
+                        },
+                      },
                     },
                   },
                 },
@@ -1690,6 +1987,28 @@ describe('Testing listing service', () => {
                   some: {
                     monthlyRent: {
                       equals: monthlyRent,
+                    },
+                  },
+                },
+              },
+              {
+                unitGroups: {
+                  some: {
+                    unitGroupAmiLevels: {
+                      some: {
+                        OR: [
+                          {
+                            flatRentValue: {
+                              equals: monthlyRent,
+                            },
+                          },
+                          {
+                            percentageOfIncomeValue: {
+                              not: null,
+                            },
+                          },
+                        ],
+                      },
                     },
                   },
                 },
@@ -2598,7 +2917,15 @@ describe('Testing listing service', () => {
 
       expect(listing.unitGroups).toEqual(mockedListing.unitGroups);
       expect(listing.unitGroupsSummarized.unitGroupSummary[0]).toEqual({
-        unitTypes: [UnitTypeEnum.SRO],
+        unitTypes: [
+          {
+            id: 'unitType 0',
+            createdAt: date,
+            updatedAt: date,
+            name: 'SRO',
+            numBedrooms: 0,
+          },
+        ],
         rentAsPercentIncomeRange: {
           min: 0,
           max: 30,
@@ -2623,7 +2950,15 @@ describe('Testing listing service', () => {
         },
       });
       expect(listing.unitGroupsSummarized.unitGroupSummary[2]).toEqual({
-        unitTypes: [UnitTypeEnum.oneBdrm],
+        unitTypes: [
+          {
+            id: 'unitType 2',
+            createdAt: date,
+            updatedAt: date,
+            name: 'oneBdrm',
+            numBedrooms: 2,
+          },
+        ],
         rentAsPercentIncomeRange: {
           min: 20,
           max: 50,
@@ -3060,6 +3395,11 @@ describe('Testing listing service', () => {
               hearing: true,
               visual: false,
               mobility: true,
+              barrierFreeUnitEntrance: false,
+              loweredLightSwitch: true,
+              barrierFreeBathroom: false,
+              wideDoorways: true,
+              loweredCabinets: false,
             },
           },
           listingNeighborhoodAmenities: {
@@ -3546,6 +3886,11 @@ describe('Testing listing service', () => {
               hearing: true,
               visual: false,
               mobility: true,
+              barrierFreeUnitEntrance: false,
+              loweredLightSwitch: true,
+              barrierFreeBathroom: false,
+              wideDoorways: true,
+              loweredCabinets: false,
             },
           },
           listingNeighborhoodAmenities: {
@@ -4507,6 +4852,11 @@ describe('Testing listing service', () => {
         hearing: true,
         visual: false,
         mobility: true,
+        barrierFreeUnitEntrance: false,
+        loweredLightSwitch: true,
+        barrierFreeBathroom: false,
+        wideDoorways: true,
+        loweredCabinets: false,
       };
       const nestedNeighborhoodAmenities = {
         groceryStores: 'stores',

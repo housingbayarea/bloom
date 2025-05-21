@@ -86,6 +86,7 @@ describe("Listing Management Tests", () => {
     })
   })
 
+  // Fill out a First Come, First Serve (FCFS) listing
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   function fillOutListing(cy: Cypress.cy, listing: any): void {
     cy.intercept("GET", "/geocoding/v5/**", { fixture: "address" })
@@ -217,8 +218,8 @@ describe("Listing Management Tests", () => {
     cy.getByID("petPolicy").type(listing["petPolicy"])
     cy.getByID("servicesOffered").type(listing["servicesOffered"])
     if (listing["accessibilityFeatures"]) {
-      listing["accessibilityFeatures"].forEach((feature: string) => {
-        cy.getByID(feature.toLowerCase()).check()
+      listing["accessibilityFeatures"].forEach((feature: string[]) => {
+        cy.getByID(feature[0]).check()
       })
     }
     cy.getByID("creditHistory").type(listing["creditHistory"])
@@ -289,6 +290,13 @@ describe("Listing Management Tests", () => {
     cy.getByID("startTime.period").select("AM")
     cy.getByID("endTime.period").select("PM")
     cy.getByID("saveOpenHouseFormButton").contains("Save").click()
+
+    cy.getByID("applicationDueDateField.month").type(listing["date.month"])
+    cy.getByID("applicationDueDateField.day").type(listing["date.day"])
+    cy.getByID("applicationDueDateField.year").type((new Date().getFullYear() + 1).toString())
+    cy.getByID("applicationDueTimeField.hours").type(listing["startTime.hours"])
+    cy.getByID("applicationDueTimeField.minutes").type(listing["startTime.minutes"])
+    cy.getByID("applicationDueTimeField.period").select("PM")
     cy.getByID("publishButton").contains("Publish").click()
 
     cy.getByID("publishButtonConfirm").contains("Publish").click()
@@ -350,8 +358,8 @@ describe("Listing Management Tests", () => {
     cy.getByID("petPolicy").contains(listing["petPolicy"])
     cy.getByID("servicesOffered").contains(listing["servicesOffered"])
     if (listing["accessibilityFeatures"]) {
-      listing["accessibilityFeatures"].forEach((feature: string) => {
-        cy.getByID("accessibilityFeatures").contains(feature)
+      listing["accessibilityFeatures"].forEach((feature: string[]) => {
+        cy.getByID("accessibilityFeatures").contains(feature[1])
       })
     }
     cy.getByID("creditHistory").contains(listing["creditHistory"])
