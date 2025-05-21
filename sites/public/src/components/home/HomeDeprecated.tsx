@@ -130,7 +130,7 @@ export const HomeDeprecated = (props: HomeDeprecatedProps) => {
         <ActionBlock
           className="pb-0 -mb-1"
           header={t("welcome.howDoesItWork")}
-          icon={<Icon size="2xl">{CustomIconMap.frontDoor}</Icon>}
+          icon={<Icon size="2xl">{CustomIconMap.door}</Icon>}
           actions={[]}
         />
 

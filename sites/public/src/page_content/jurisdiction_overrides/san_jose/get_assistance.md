@@ -9,7 +9,7 @@ You can find and apply for affordable rental opportunities.
 
 ---
 
-<ContentIcon name="frontDoor" />
+<ContentIcon name="door" />
 
 ## Additional housing opportunities and resources
 
@@ -30,7 +30,7 @@ Puede encontrar y solicitar oportunidades de alquiler asequibles.
 
 ---
 
-<ContentIcon name="frontDoor" />
+<ContentIcon name="door" />
 
 ## Oportunidades adicionales de vivienda
 
@@ -51,7 +51,7 @@ Le invitamos a consultar otros recursos de vivienda de precio accesible.
 
 ---
 
-<ContentIcon name="frontDoor" />
+<ContentIcon name="" />
 
 ## 其他住房機會
 
@@ -72,7 +72,7 @@ Bạn có thể tìm và đăng ký các cơ hội cho thuê với giá cả ph�
 
 ---
 
-<ContentIcon name="frontDoor" />
+<ContentIcon name="door" />
 
 ## Các Cơ hội Nhà ở Bổ sung
 
@@ -93,7 +93,7 @@ Maaari kang maghanap at mag-aplay para sa abot-kayang pagkakataon sa pag-upa.
 
 ---
 
-<ContentIcon name="frontDoor" />
+<ContentIcon name="door" />
 
 ## Karagdagang Mga Oportunidad at Mapagkukunan ng Pabahay
 
