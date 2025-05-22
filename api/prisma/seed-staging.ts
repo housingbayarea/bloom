@@ -756,7 +756,7 @@ export const stagingSeed = async (
           minOccupancy: 1,
           monthlyRent: '1200',
           numBathrooms: 1,
-          numBedrooms: 5,
+          numBedrooms: 0,
           number: '101',
           sqFeet: '750.00',
           amiChart: { connect: { id: amiChart.id } },
