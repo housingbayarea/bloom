@@ -7152,6 +7152,7 @@ export enum FeatureFlagEnum {
   "enableUtilitiesIncluded" = "enableUtilitiesIncluded",
   "hideCloseListingButton" = "hideCloseListingButton",
   "swapCommunityTypeWithPrograms" = "swapCommunityTypeWithPrograms",
+  "enableWaitlistAdditionalFields" = "enableWaitlistAdditionalFields",
 }
 export enum EnumMultiselectQuestionFilterParamsComparison {
   "=" = "=",
