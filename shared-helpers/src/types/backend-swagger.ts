@@ -7120,6 +7120,7 @@ export enum UserRoleEnum {
 export enum FeatureFlagEnum {
   "disableCommonApplication" = "disableCommonApplication",
   "disableJurisdictionalAdmin" = "disableJurisdictionalAdmin",
+  "disableListingPreferences" = "disableListingPreferences",
   "enableAccessibilityFeatures" = "enableAccessibilityFeatures",
   "enableCompanyWebsite" = "enableCompanyWebsite",
   "enableGeocodingPreferences" = "enableGeocodingPreferences",
