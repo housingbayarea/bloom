@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react"
 import Layout from "../layouts/application"
 import Head from "next/head"
-import { Hero, t } from "@bloom-housing/ui-components"
+import { t } from "@bloom-housing/ui-components"
 import { PageView, pushGtmEvent, AuthContext } from "@bloom-housing/shared-helpers"
 import { Button } from "@bloom-housing/ui-seeds"
 import { UserStatus } from "../lib/constants"
