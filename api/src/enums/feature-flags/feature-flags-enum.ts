@@ -13,6 +13,7 @@ export enum FeatureFlagEnum {
   enableHomeType = 'enableHomeType',
   enableIsVerified = 'enableIsVerified',
   enableListingFavoriting = 'enableListingFavoriting',
+  enableListingFiltering = 'enableListingFiltering',
   enableListingOpportunity = 'enableListingOpportunity',
   enableListingPagination = 'enableListingPagination',
   enableMarketingStatus = 'enableMarketingStatus',
@@ -54,6 +55,11 @@ export const featureFlagMap: { name: string; description: string }[] = [
       "When true, the 'accessibility features' section is displayed in listing creation/edit and the public listing view",
   },
   {
+    name: FeatureFlagEnum.enableAdditionalResources,
+    description:
+      "When true, the 'learn more' section is displayed on the home page",
+  },
+  {
     name: FeatureFlagEnum.enableCompanyWebsite,
     description:
       'When true, allows partners to add company website information',
@@ -81,6 +87,11 @@ export const featureFlagMap: { name: string; description: string }[] = [
     name: FeatureFlagEnum.enableListingFavoriting,
     description:
       'When true, a Favorite button is shown for public listings and users can view their favorited listings',
+  },
+  {
+    name: FeatureFlagEnum.enableListingFiltering,
+    description:
+      'When true, a filter button is shown on listings browse and users can filter with the options in the drawer',
   },
   {
     name: FeatureFlagEnum.enableListingOpportunity,
