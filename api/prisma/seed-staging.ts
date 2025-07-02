@@ -74,6 +74,21 @@ export const stagingSeed = async (
         FeatureFlagEnum.enableWaitlistAdditionalFields,
       ],
       languages: Object.values(LanguagesEnum),
+      requiredListingFields: [
+        'listingsBuildingAddress',
+        'name',
+        'developer',
+        'listingImages',
+        'leasingAgentEmail',
+        'leasingAgentName',
+        'leasingAgentPhone',
+        'jurisdictions',
+        'units',
+        'digitalApplication',
+        'paperApplication',
+        'referralOpportunity',
+        'rentalAssistance',
+      ],
     }),
   });
   // jurisdiction with unit groups enabled
@@ -107,6 +122,7 @@ export const stagingSeed = async (
         FeatureFlagEnum.swapCommunityTypeWithPrograms,
         FeatureFlagEnum.enableFullTimeStudentQuestion,
       ],
+      requiredListingFields: ['name', 'listingsBuildingAddress'],
     }),
   });
   // Basic configuration jurisdiction
