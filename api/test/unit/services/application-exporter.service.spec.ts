@@ -21,6 +21,7 @@ import { Logger } from '@nestjs/common';
 import { SchedulerRegistry } from '@nestjs/schedule';
 import { GoogleTranslateService } from '../../../src/services/google-translate.service';
 import { unitTypeToReadable } from '../../../src/utilities/application-export-helpers';
+import { FeatureFlagEnum } from '../../../src/enums/feature-flags/feature-flags-enum';
 
 describe('Testing application export service', () => {
   let service: ApplicationExporterService;
@@ -70,6 +71,15 @@ describe('Testing application export service', () => {
 
     const applications = mockApplicationSet(5, new Date(), 1);
     prisma.applications.findMany = jest.fn().mockReturnValue(applications);
+    prisma.jurisdictions.findFirst = jest.fn().mockResolvedValue({
+      featureFlags: [
+        {
+          id: 'flag id',
+          name: FeatureFlagEnum.enableFullTimeStudentQuestion,
+          active: false,
+        },
+      ],
+    });
     prisma.listings.findUnique = jest.fn().mockResolvedValue({});
     permissionService.canOrThrow = jest.fn().mockResolvedValue(true);
 
