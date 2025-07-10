@@ -130,14 +130,15 @@ export default function RentalsFinder() {
             removeSrHeader
             mounted={true}
           />
-          <StepHeader
-            currentStep={sectionIndex + 1}
-            totalSteps={rentalFinderSections.length}
-            stepPreposition={t("finder.progress.stepPreposition")}
-            stepLabeling={sectionLabels}
-            priority={2}
-            className={styles["step-header"]}
-          />
+          {sectionIndex <= sectionLabels.length - 1 && (
+            <StepHeader
+              currentStep={sectionIndex + 1}
+              totalSteps={sectionLabels.length}
+              stepPreposition={t("finder.progress.stepPreposition")}
+              stepLabeling={sectionLabels}
+              priority={2}
+            />
+          )}
         </div>
         <BloomCard
           className={styles["questionnaire-card"]}
