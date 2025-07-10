@@ -88,6 +88,7 @@ export const stagingSeed = async (
         'paperApplication',
         'referralOpportunity',
         'rentalAssistance',
+        'applicationDueDate',
       ],
     }),
   });
