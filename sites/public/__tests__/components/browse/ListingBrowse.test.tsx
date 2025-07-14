@@ -1,9 +1,15 @@
 import React from "react"
 import { setupServer } from "msw/lib/node"
-import { fireEvent, render, screen, waitFor } from "@testing-library/react"
+import { fireEvent, render, screen, waitFor, within } from "@testing-library/react"
 import { listing, jurisdiction } from "@bloom-housing/shared-helpers/__tests__/testHelpers"
 import { ListingBrowse, TabsIndexEnum } from "../../../src/components/browse/ListingBrowse"
 import { mockNextRouter } from "../../testUtils"
+import userEvent from "@testing-library/user-event"
+import {
+  EnumUnitGroupAmiLevelMonthlyRentDeterminationType,
+  UnitTypeEnum,
+} from "@bloom-housing/shared-helpers/src/types/backend-swagger"
+import { FeatureFlagEnum } from "../../../../../api/dist/src/enums/feature-flags/feature-flags-enum"
 
 const server = setupServer()
 
@@ -50,7 +56,6 @@ describe("<ListingBrowse>", () => {
         listings={[]}
         tab={TabsIndexEnum.open}
         jurisdiction={jurisdiction}
-        multiselectData={[]}
         areFiltersActive={true}
       />
     )
@@ -81,7 +86,6 @@ describe("<ListingBrowse>", () => {
         listings={[]}
         tab={TabsIndexEnum.closed}
         jurisdiction={jurisdiction}
-        multiselectData={[]}
         areFiltersActive={true}
       />
     )
@@ -119,7 +123,6 @@ describe("<ListingBrowse>", () => {
             itemCount: 2,
           }}
           jurisdiction={jurisdiction}
-          multiselectData={[]}
         />
       )
 
@@ -171,7 +174,6 @@ describe("<ListingBrowse>", () => {
             itemCount: 2,
           }}
           jurisdiction={jurisdiction}
-          multiselectData={[]}
         />
       )
 
@@ -320,7 +322,6 @@ describe("<ListingBrowse>", () => {
               },
             ],
           }}
-          multiselectData={[]}
         />
       )
 
@@ -360,6 +361,8 @@ describe("<ListingBrowse>", () => {
               ...listing,
               units: [],
               unitGroups: [],
+              unitGroupsSummarized: undefined,
+              unitsSummarized: undefined,
             },
           ]}
           tab={TabsIndexEnum.open}
@@ -385,7 +388,6 @@ describe("<ListingBrowse>", () => {
               },
             ],
           }}
-          multiselectData={[]}
         />
       )
 
