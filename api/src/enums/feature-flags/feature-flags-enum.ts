@@ -2,10 +2,11 @@
 // Note, these are just used to keep backend and frontend in sync. We store feature flags as strings so this list might not include every flag.
 // Keep alphabetized for readability.
 export enum FeatureFlagEnum {
-  example = 'example', // sample feature flag for testing purposes
   disableCommonApplication = 'disableCommonApplication',
   disableJurisdictionalAdmin = 'disableJurisdictionalAdmin',
+  disableListingPreferences = 'disableListingPreferences',
   enableAccessibilityFeatures = 'enableAccessibilityFeatures',
+  enableAdditionalResources = 'enableAdditionalResources',
   enableCompanyWebsite = 'enableCompanyWebsite',
   enableGeocodingPreferences = 'enableGeocodingPreferences',
   enableGeocodingRadiusMethod = 'enableGeocodingRadiusMethod',
@@ -22,9 +23,10 @@ export enum FeatureFlagEnum {
   enableRegions = 'enableRegions',
   enableSection8Question = 'enableSection8Question',
   enableSingleUseCode = 'enableSingleUseCode',
+  enableUnderConstructionHome = 'enableUnderConstructionHome',
   enableUnitGroups = 'enableUnitGroups',
   enableUtilitiesIncluded = 'enableUtilitiesIncluded',
-  enableAdditionalResources = 'enableAdditionalResources',
+  example = 'example', // sample feature flag for testing purposes
   hideCloseListingButton = 'hideCloseListingButton',
   swapCommunityTypeWithPrograms = 'swapCommunityTypeWithPrograms',
   enableWaitlistAdditionalFields = 'enableWaitlistAdditionalFields',
@@ -42,6 +44,11 @@ export const featureFlagMap: { name: string; description: string }[] = [
   {
     name: FeatureFlagEnum.disableJurisdictionalAdmin,
     description: 'When true, jurisdictional admins cannot be created',
+  },
+  {
+    name: FeatureFlagEnum.disableListingPreferences,
+    description:
+      'When true listings will no longer support preferences section',
   },
   {
     name: FeatureFlagEnum.enableAccessibilityFeatures,
@@ -129,6 +136,11 @@ export const featureFlagMap: { name: string; description: string }[] = [
     name: FeatureFlagEnum.enableSingleUseCode,
     description:
       'When true, the backend allows for logging into this jurisdiction using the single use code flow',
+  },
+  {
+    name: FeatureFlagEnum.enableUnderConstructionHome,
+    description:
+      "When true, the 'under construction' section is displayed on the home page",
   },
   {
     name: FeatureFlagEnum.enableUnitGroups,
