@@ -48,6 +48,11 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
     listingDto?.jurisdictions.id
   )
 
+  const enableAdaOtherOption = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.enableAdaOtherOption,
+    listingDto?.jurisdictions.id
+  )
+
   const preferences = listingSectionQuestions(
     listingDto,
     MultiselectQuestionsApplicationSectionEnum.preferences
@@ -237,6 +242,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
                       listingUnitGroups={listingDto?.unitGroups}
                       applicationUnitTypes={application?.preferredUnitTypes}
                       applicationAccessibilityFeatures={application?.accessibility}
+                      enableOtherAdaOption={enableAdaOtherOption}
                       enableUnitGroups={enableUnitGroups}
                     />
 

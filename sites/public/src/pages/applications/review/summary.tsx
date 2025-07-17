@@ -146,6 +146,10 @@ const ApplicationSummary = () => {
             editMode
             validationError={validationError}
             enableUnitGroups={isFeatureFlagOn(conductor.config, FeatureFlagEnum.enableUnitGroups)}
+            enableAdaOtherOption={isFeatureFlagOn(
+              conductor.config,
+              FeatureFlagEnum.enableAdaOtherOption
+            )}
           />
 
           <CardSection divider={"flush"} className={"border-none"}>

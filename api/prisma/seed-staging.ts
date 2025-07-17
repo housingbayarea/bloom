@@ -83,6 +83,7 @@ export const stagingSeed = async (
         FeatureFlagEnum.disableJurisdictionalAdmin,
         FeatureFlagEnum.disableListingPreferences,
         FeatureFlagEnum.enableAccessibilityFeatures,
+        FeatureFlagEnum.enableAdaOtherOption,
         FeatureFlagEnum.enableAdditionalResources,
         FeatureFlagEnum.enableCompanyWebsite,
         FeatureFlagEnum.enableGeocodingRadiusMethod,
