@@ -76,10 +76,11 @@ const ApplicationIncome = () => {
     const { income, incomePeriod } = data
     const incomeValue = income.replaceAll(",", "")
     // Commenting out validation to not have income be a blocker https://github.com/bloom-housing/bloom/issues/3675
-    // // Skip validation of total income if the applicant has income vouchers.
-    // const validationError = application.incomeVouchers
-    //   ? null
-    //   : verifyIncome(listing, incomeValue, incomePeriod)
+    // Skip validation of total income if no units or the applicant has income vouchers.
+    // const validationError =
+    //   !listing.units?.length || application.incomeVouchers
+    //     ? null
+    //     : verifyIncome(listing, incomeValue, incomePeriod)
     // setIncomeError(validationError)
 
     // if (!validationError) {
