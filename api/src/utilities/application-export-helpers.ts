@@ -33,10 +33,6 @@ export const getExportHeaders = (
     user.jurisdictions,
     FeatureFlagEnum.enableAdaOtherOption,
   );
-  const enableFullTimeStudentQuestion = doAnyJurisdictionHaveFeatureFlagSet(
-    user.jurisdictions,
-    FeatureFlagEnum.enableFullTimeStudentQuestion,
-  );
 
   const headers: CsvHeader[] = [
     {
