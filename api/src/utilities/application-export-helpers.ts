@@ -506,6 +506,10 @@ export const getHouseholdCsvHeaders = (
         label: `Household Member (${j}) Last Name`,
       },
       {
+        path: `householdMember.${i}.firstName`,
+        label: `Household Member (${j}) First Name`,
+      },
+      {
         path: `householdMember.${i}.birthDay`,
         label: `Household Member (${j}) Birth Day`,
       },
