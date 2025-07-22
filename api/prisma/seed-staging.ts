@@ -47,7 +47,8 @@ export const stagingSeed = async (
     data: jurisdictionFactory(jurisdictionName, {
       listingApprovalPermissions: [
         UserRoleEnum.admin,
-        UserRoleEnum.jurisdictionAdmin,
+        // should be turned on for San Jose but breaks listing approval testing
+        // UserRoleEnum.jurisdictionAdmin,
       ],
       featureFlags: [
         FeatureFlagEnum.enableGeocodingPreferences,
