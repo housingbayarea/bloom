@@ -10,6 +10,7 @@ import { CsvHeader } from '../types/CsvExportInterface';
 import { formatLocalDate } from '../utilities/format-local-date';
 import { User } from 'src/dtos/users/user.dto';
 import { doAnyJurisdictionHaveFeatureFlagSet } from './feature-flag-utilities';
+
 /**
  *
  * @param maxHouseholdMembers the max number of household members on an application
@@ -28,11 +29,14 @@ export const getExportHeaders = (
   includeDemographics = false,
   forLottery = false,
   dateFormat = 'MM-DD-YYYY hh:mm:ssA z',
-  enableFullTimeStudentQuestion?: boolean,
 ): CsvHeader[] => {
   const enableAdaOtherOption = doAnyJurisdictionHaveFeatureFlagSet(
     user.jurisdictions,
     FeatureFlagEnum.enableAdaOtherOption,
+  );
+  const enableFullTimeStudentQuestion = doAnyJurisdictionHaveFeatureFlagSet(
+    user.jurisdictions,
+    FeatureFlagEnum.enableFullTimeStudentQuestion,
   );
 
   const headers: CsvHeader[] = [
