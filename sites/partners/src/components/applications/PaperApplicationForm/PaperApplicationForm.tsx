@@ -43,13 +43,18 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
   const { listingDto } = useSingleListingData(listingId)
   const { doJurisdictionsHaveFeatureFlagOn } = useContext(AuthContext)
 
+  const enableAdaOtherOption = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.enableAdaOtherOption,
+    listingDto?.jurisdictions.id
+  )
+
   const enableUnitGroups = doJurisdictionsHaveFeatureFlagOn(
     FeatureFlagEnum.enableUnitGroups,
     listingDto?.jurisdictions.id
   )
 
-  const enableAdaOtherOption = doJurisdictionsHaveFeatureFlagOn(
-    FeatureFlagEnum.enableAdaOtherOption,
+  const enableFullTimeStudentQuestion = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.enableFullTimeStudentQuestion,
     listingDto?.jurisdictions.id
   )
 
@@ -228,13 +233,16 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
                   <div className="info-card md:w-9/12">
                     <FormApplicationData />
 
-                    <FormPrimaryApplicant />
+                    <FormPrimaryApplicant
+                      enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
+                    />
 
                     <FormAlternateContact />
 
                     <FormHouseholdMembers
                       householdMembers={householdMembers}
                       setHouseholdMembers={setHouseholdMembers}
+                      enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
                     />
 
                     <FormHouseholdDetails
@@ -244,6 +252,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
                       applicationAccessibilityFeatures={application?.accessibility}
                       enableOtherAdaOption={enableAdaOtherOption}
                       enableUnitGroups={enableUnitGroups}
+                      enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
                     />
 
                     <FormMultiselectQuestions

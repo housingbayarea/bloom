@@ -83,6 +83,15 @@ describe('Testing application export service', () => {
 
     const applications = mockApplicationSet(5, new Date(), 1);
     prisma.applications.findMany = jest.fn().mockReturnValue(applications);
+    prisma.jurisdictions.findFirst = jest.fn().mockResolvedValue({
+      featureFlags: [
+        {
+          id: 'flag id',
+          name: FeatureFlagEnum.enableFullTimeStudentQuestion,
+          active: false,
+        },
+      ],
+    });
     prisma.listings.findUnique = jest.fn().mockResolvedValue({});
     permissionService.canOrThrow = jest.fn().mockResolvedValue(true);
 

@@ -33,6 +33,7 @@ const FormHouseholdDetails = ({
   listingUnitGroups,
   enableOtherAdaOption,
   enableUnitGroups,
+  enableFullTimeStudentQuestion,
 }: FormHouseholdDetailsProps) => {
   const formMethods = useFormContext()
   // eslint-disable-next-line @typescript-eslint/unbound-method
@@ -144,7 +145,13 @@ const FormHouseholdDetails = ({
           </FieldValue>
         </Grid.Row>
         <Grid.Row columns="3">
-          <FieldValue label={t("application.household.householdStudent.title")}>
+          <FieldValue
+            label={
+              enableFullTimeStudentQuestion
+                ? t("application.household.householdStudentAll.title")
+                : t("application.household.householdStudent.title")
+            }
+          >
             <div className="flex h-12 items-center">
               <Field
                 id="application.householdStudentYes"

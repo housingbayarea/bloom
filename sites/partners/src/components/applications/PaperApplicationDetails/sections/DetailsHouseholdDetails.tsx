@@ -10,7 +10,10 @@ type DetailsHouseholdDetailsProps = {
   enableFullTimeStudentQuestion?: boolean
 }
 
-const DetailsHouseholdDetails = ({ enableAdaOtherOption }: DetailsHouseholdDetailsProps) => {
+const DetailsHouseholdDetails = ({
+  enableAdaOtherOption,
+  enableFullTimeStudentQuestion,
+}: DetailsHouseholdDetailsProps) => {
   const application = useContext(ApplicationContext)
 
   const accessibilityLabels = (accessibility) => {
@@ -64,7 +67,11 @@ const DetailsHouseholdDetails = ({ enableAdaOtherOption }: DetailsHouseholdDetai
       <Grid.Row>
         <FieldValue
           id="householdStudent"
-          label={t("application.household.householdStudent.title")}
+          label={
+            enableFullTimeStudentQuestion
+              ? t("application.household.householdStudentAll.title")
+              : t("application.household.householdStudent.title")
+          }
           testId="householdStudent"
         >
           {application.householdStudent ? t("t.yes") : t("t.no")}
