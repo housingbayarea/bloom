@@ -77,6 +77,15 @@ describe("<ListingBrowse>", () => {
     await waitFor(() => {
       expect(replaceMock).toBeCalledWith("/")
     })
+    expect(
+      screen.queryAllByRole("heading", {
+        level: 2,
+        name: /no listings currently have open applications/i,
+      })
+    ).toBeDefined()
+    expect(screen.queryByRole("button", { name: /previous/i })).not.toBeInTheDocument()
+    expect(screen.queryByRole("button", { name: /next/i })).not.toBeInTheDocument()
+    expect(screen.queryByText(/page \d* of \d*/i)).not.toBeInTheDocument()
   })
 
   it("shows empty state, closed listings with filters", async () => {
@@ -396,6 +405,68 @@ describe("<ListingBrowse>", () => {
 
       const listingCard = listingName.parentElement.parentElement
       expect(within(listingCard).queryByRole("table")).not.toBeInTheDocument()
+    })
+  })
+
+  it("shows empty state, open listings with filters", async () => {
+    const { replaceMock } = mockNextRouter({ bedroomTypes: "fiveBdrm" })
+    render(
+      <ListingBrowse
+        listings={[]}
+        tab={TabsIndexEnum.open}
+        jurisdiction={jurisdiction}
+        multiselectData={[]}
+        areFiltersActive={true}
+      />
+    )
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /no matching listings with open applications/i,
+      })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(/try removing some of your filters or show all listings./i)
+    ).toBeInTheDocument()
+
+    const showAllButton = screen.getByRole("button", { name: /^Show all listings$/i })
+    expect(showAllButton).toBeInTheDocument()
+
+    await userEvent.click(showAllButton)
+    await waitFor(() => {
+      expect(replaceMock).toBeCalledWith("/")
+    })
+  })
+
+  it("shows empty state, closed listings with filters", async () => {
+    const { replaceMock } = mockNextRouter({ bedroomTypes: "fiveBdrm" })
+    render(
+      <ListingBrowse
+        listings={[]}
+        tab={TabsIndexEnum.closed}
+        jurisdiction={jurisdiction}
+        multiselectData={[]}
+        areFiltersActive={true}
+      />
+    )
+
+    expect(
+      screen.getByRole("heading", {
+        level: 2,
+        name: /no matching listings with closed applications/i,
+      })
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(/try removing some of your filters or show all listings./i)
+    ).toBeInTheDocument()
+
+    const showAllButton = screen.getByRole("button", { name: /^Show all listings$/i })
+    expect(showAllButton).toBeInTheDocument()
+
+    await userEvent.click(showAllButton)
+    await waitFor(() => {
+      expect(replaceMock).toBeCalledWith("/")
     })
   })
 
