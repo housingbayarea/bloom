@@ -21,7 +21,7 @@ async function main() {
     case 'production':
       // Setting up a production database we would just need the bare minimum such as jurisdiction
       const jurisdictionId = await prisma.jurisdictions.create({
-        data: jurisdictionFactory(jurisdictionName as string),
+        data: jurisdictionFactory((jurisdictionName as string) || 'San Jose'),
       });
       await unitTypeFactoryAll(prisma);
       await unitAccessibilityPriorityTypeFactoryAll(prisma);
@@ -30,13 +30,13 @@ async function main() {
     case 'staging':
       // Staging setup should have realistic looking data with a preset list of listings
       // along with all of the required tables (ami, users, etc)
-      stagingSeed(prisma, jurisdictionName as string);
+      stagingSeed(prisma, (jurisdictionName as string) || 'San Jose');
       break;
     case 'development':
     default:
       // Development is less realistic data, but can be more experimental and also should
       // be partially randomized so we cover all bases
-      devSeeding(prisma, jurisdictionName as string);
+      devSeeding(prisma, (jurisdictionName as string) || 'San Jose');
       break;
   }
 }
