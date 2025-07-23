@@ -35,6 +35,11 @@ export default function ApplicationsList() {
   const { applicationsService, doJurisdictionsHaveFeatureFlagOn } = useContext(AuthContext)
   const [errorAlert, setErrorAlert] = useState(false)
 
+  const enableAdaOtherOption = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.enableAdaOtherOption,
+    listingDto?.jurisdictions.id
+  )
+
   const [membersDrawer, setMembersDrawer] = useState<MembersDrawer>(null)
 
   const enableFullTimeStudentQuestion = doJurisdictionsHaveFeatureFlagOn(
@@ -146,6 +151,7 @@ export default function ApplicationsList() {
 
                 <DetailsHouseholdDetails
                   enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
+                  enableAdaOtherOption={enableAdaOtherOption}
                 />
 
                 <DetailsMultiselectQuestions

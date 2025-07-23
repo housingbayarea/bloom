@@ -43,14 +43,9 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
   const { listingDto } = useSingleListingData(listingId)
   const { doJurisdictionsHaveFeatureFlagOn } = useContext(AuthContext)
 
-  const preferences = listingSectionQuestions(
-    listingDto,
-    MultiselectQuestionsApplicationSectionEnum.preferences
-  )
-
-  const programs = listingSectionQuestions(
-    listingDto,
-    MultiselectQuestionsApplicationSectionEnum.programs
+  const enableAdaOtherOption = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.enableAdaOtherOption,
+    listingDto?.jurisdictions.id
   )
 
   const enableUnitGroups = doJurisdictionsHaveFeatureFlagOn(
@@ -61,6 +56,16 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
   const enableFullTimeStudentQuestion = doJurisdictionsHaveFeatureFlagOn(
     FeatureFlagEnum.enableFullTimeStudentQuestion,
     listingDto?.jurisdictions.id
+  )
+
+  const preferences = listingSectionQuestions(
+    listingDto,
+    MultiselectQuestionsApplicationSectionEnum.preferences
+  )
+
+  const programs = listingSectionQuestions(
+    listingDto,
+    MultiselectQuestionsApplicationSectionEnum.programs
   )
 
   const units = listingDto?.units
@@ -245,6 +250,7 @@ const ApplicationForm = ({ listingId, editMode, application }: ApplicationFormPr
                       listingUnitGroups={listingDto?.unitGroups}
                       applicationUnitTypes={application?.preferredUnitTypes}
                       applicationAccessibilityFeatures={application?.accessibility}
+                      enableOtherAdaOption={enableAdaOtherOption}
                       enableUnitGroups={enableUnitGroups}
                       enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
                     />
