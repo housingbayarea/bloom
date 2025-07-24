@@ -5701,6 +5701,9 @@ export interface JurisdictionCreate {
 
   /**  */
   duplicateListingPermissions: UserRoleEnum[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface JurisdictionUpdate {
@@ -5748,6 +5751,9 @@ export interface JurisdictionUpdate {
 
   /**  */
   duplicateListingPermissions: UserRoleEnum[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface FeatureFlag {
@@ -5830,6 +5836,9 @@ export interface Jurisdiction {
 
   /**  */
   featureFlags: FeatureFlag[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface MultiselectQuestionCreate {
