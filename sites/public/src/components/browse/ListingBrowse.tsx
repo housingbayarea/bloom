@@ -70,6 +70,10 @@ export const ListingBrowse = (props: ListingBrowseProps) => {
     FeatureFlagEnum.enableListingFiltering
   )
 
+  const jurisdictionActiveFeatureFlags = props.jurisdiction.featureFlags
+    .filter((featureFlag) => featureFlag.active)
+    .map((entry) => entry.name)
+
   useEffect(() => {
     pushGtmEvent<ListingList>({
       event: "pageView",
@@ -167,6 +171,7 @@ export const ListingBrowse = (props: ListingBrowseProps) => {
         onClose={() => setIsFilterDrawerOpen(false)}
         onSubmit={(data) => onFilterSubmit(data)}
         filterState={filterState}
+        activeFeatureFlags={jurisdictionActiveFeatureFlags}
       />
       <LoadingState loading={isLoading}>
         <div className={styles["listing-directory"]}>
