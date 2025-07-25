@@ -66,7 +66,7 @@ describe('Testing application export service', () => {
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',
-      jurisdictions: [{ id: 'juris id' }],
+      jurisdictions: [{ id: 'juris id', featureFlags: [] }],
     } as unknown as User;
 
     const applications = mockApplicationSet(5, new Date(), 1);
@@ -110,7 +110,7 @@ describe('Testing application export service', () => {
         listingId: randomUUID(),
         includeDemographics: false,
       } as unknown as ApplicationCsvQueryParams,
-      requestingUser.id,
+      requestingUser,
     );
 
     const headerRow =
@@ -140,7 +140,7 @@ describe('Testing application export service', () => {
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',
-      jurisdictions: [{ id: 'juris id' }],
+      jurisdictions: [{ id: 'juris id', featureFlags: [] }],
     } as unknown as User;
 
     const applications = mockApplicationSet(3, new Date());
@@ -168,7 +168,7 @@ describe('Testing application export service', () => {
         listingId: 'test',
         includeDemographics: true,
       } as unknown as ApplicationCsvQueryParams,
-      requestingUser.id,
+      requestingUser,
     );
 
     const headerRow =
@@ -200,7 +200,7 @@ describe('Testing application export service', () => {
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',
-      jurisdictions: [{ id: 'juris id' }],
+      jurisdictions: [{ id: 'juris id', featureFlags: [] }],
     } as unknown as User;
 
     const applications = mockApplicationSet(5, new Date());
@@ -235,7 +235,7 @@ describe('Testing application export service', () => {
       .mockReturnValue('Studio');
     const exportResponse = await service.csvExport(
       { listingId: randomUUID() } as unknown as ApplicationCsvQueryParams,
-      requestingUser.id,
+      requestingUser,
     );
 
     const mockedStream = new PassThrough();
@@ -262,7 +262,7 @@ describe('Testing application export service', () => {
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',
-      jurisdictions: [{ id: 'juris id' }],
+      jurisdictions: [{ id: 'juris id', featureFlags: [] }],
     } as unknown as User;
 
     const applications = mockApplicationSet(5, new Date());
@@ -300,7 +300,7 @@ describe('Testing application export service', () => {
         listingId: randomUUID(),
         timeZone: 'America/New_York',
       } as unknown as ApplicationCsvQueryParams,
-      requestingUser.id,
+      requestingUser,
     );
 
     const mockedStream = new PassThrough();
@@ -324,10 +324,16 @@ describe('Testing application export service', () => {
     jest.setSystemTime(new Date('2024-01-01'));
 
     const requestingUser = {
+      id: 'test_user_id',
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',
-      jurisdictions: [{ id: 'juris id' }],
+      jurisdictions: [
+        {
+          id: 'juris id',
+          featureFlags: [],
+        },
+      ],
     } as unknown as User;
 
     const applications = mockApplicationSet(5, new Date());
@@ -368,7 +374,7 @@ describe('Testing application export service', () => {
         listingId: randomUUID(),
         timeZone: 'America/New_York',
       } as unknown as ApplicationCsvQueryParams,
-      requestingUser.id,
+      requestingUser,
     );
 
     const mockedStream = new PassThrough();
