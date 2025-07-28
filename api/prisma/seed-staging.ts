@@ -194,7 +194,7 @@ export const stagingSeed = async (
     }),
   });
   // create a partner
-  await prismaClient.userAccounts.create({
+  const partnerUser = await prismaClient.userAccounts.create({
     data: await userFactory({
       roles: { isPartner: true },
       email: 'partner@example.com',
@@ -466,6 +466,7 @@ export const stagingSeed = async (
         multiselectQuestionPrograms,
       ],
       applications: [await applicationFactory(), await applicationFactory()],
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: mainJurisdiction.id,
@@ -653,6 +654,7 @@ export const stagingSeed = async (
           ],
         }),
       ],
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: mainJurisdiction.id,
@@ -677,15 +679,18 @@ export const stagingSeed = async (
           },
         },
       ],
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: mainJurisdiction.id,
       listing: valleyHeightsSeniorCommunity,
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: mainJurisdiction.id,
       listing: littleVillageApartments,
       multiselectQuestions: [workInCityQuestion],
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: mainJurisdiction.id,
@@ -827,6 +832,7 @@ export const stagingSeed = async (
           },
         },
       ],
+      userAccounts: [{ id: partnerUser.id }],
     },
     {
       jurisdictionId: lakeviewJurisdiction.id,
@@ -927,6 +933,7 @@ export const stagingSeed = async (
         unitGroups?: Prisma.UnitGroupCreateWithoutListingsInput[];
         multiselectQuestions?: MultiselectQuestions[];
         applications?: Prisma.ApplicationsCreateInput[];
+        userAccounts?: Prisma.UserAccountsWhereUniqueInput[];
       },
       index,
     ) => {
@@ -939,6 +946,7 @@ export const stagingSeed = async (
         multiselectQuestions: value.multiselectQuestions,
         applications: value.applications,
         afsLastRunSetInPast: true,
+        userAccounts: value.userAccounts,
       });
       const savedListing = await prismaClient.listings.create({
         data: listing,
