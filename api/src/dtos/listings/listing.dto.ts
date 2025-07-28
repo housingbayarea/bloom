@@ -29,6 +29,7 @@ import {
   ReviewOrderTypeEnum,
 } from '@prisma/client';
 import { EnforceLowerCase } from '../../decorators/enforce-lower-case.decorator';
+import { SanitizeHtml } from '../../decorators/sanitize-html.decorator';
 import { ListingMultiselectQuestion } from './listing-multiselect-question.dto';
 import { ApplicationMethod } from '../application-methods/application-method.dto';
 import { Asset } from '../assets/asset.dto';
@@ -339,7 +340,9 @@ class Listing extends AbstractDTO {
 
   @Expose()
   @IsString({ groups: [ValidationsGroupsEnum.default] })
+  @MaxLength(4096, { groups: [ValidationsGroupsEnum.default] })
   @ApiPropertyOptional()
+  @SanitizeHtml()
   whatToExpect?: string;
 
   @Expose()
