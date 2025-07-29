@@ -7167,6 +7167,7 @@ export enum FeatureFlagEnum {
   "disableCommonApplication" = "disableCommonApplication",
   "disableJurisdictionalAdmin" = "disableJurisdictionalAdmin",
   "disableListingPreferences" = "disableListingPreferences",
+  "disableWorkInRegion" = "disableWorkInRegion",
   "enableAccessibilityFeatures" = "enableAccessibilityFeatures",
   "enableAdditionalResources" = "enableAdditionalResources",
   "enableCompanyWebsite" = "enableCompanyWebsite",
