@@ -54,7 +54,7 @@ const FormMultiselectQuestions = ({
   const allOptionFieldNames = useMemo(() => {
     const keys = []
     questions?.forEach((listingQuestion) =>
-      listingQuestion?.multiselectQuestions.options.forEach((option) =>
+      listingQuestion?.multiselectQuestions?.options?.forEach((option) =>
         keys.push(
           fieldName(
             listingQuestion?.multiselectQuestions.text,
@@ -195,7 +195,7 @@ const FormMultiselectQuestions = ({
           value: !!option.text,
           onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
             uncheckOptions(getAllOptions(question, applicationSection), setValue)
-            setValue(optionFieldName, e.target.value)
+            setValue(optionFieldName, e.target?.value)
           },
         }}
       />
