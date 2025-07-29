@@ -7,6 +7,9 @@ import { MultiselectQuestion } from '../dtos/multiselect-questions/multiselect-q
 import { UnitType } from '../dtos/unit-types/unit-type.dto';
 import { CsvHeader } from '../types/CsvExportInterface';
 import { formatLocalDate } from '../utilities/format-local-date';
+import { User } from 'src/dtos/users/user.dto';
+import { FeatureFlagEnum } from '../enums/feature-flags/feature-flags-enum';
+import { doAnyJurisdictionHaveFeatureFlagSet } from './feature-flag-utilities';
 
 /**
  *
@@ -22,11 +25,20 @@ export const getExportHeaders = (
   maxHouseholdMembers: number,
   multiSelectQuestions: MultiselectQuestion[],
   timeZone: string,
+  user: User,
   includeDemographics = false,
   forLottery = false,
   dateFormat = 'MM-DD-YYYY hh:mm:ssA z',
-  enableFullTimeStudentQuestion?: boolean,
 ): CsvHeader[] => {
+  const enableFullTimeStudentQuestion = doAnyJurisdictionHaveFeatureFlagSet(
+    user.jurisdictions,
+    FeatureFlagEnum.enableFullTimeStudentQuestion,
+  );
+  const disableWorkInRegion = doAnyJurisdictionHaveFeatureFlagSet(
+    user.jurisdictions,
+    FeatureFlagEnum.disableWorkInRegion,
+  );
+
   const headers: CsvHeader[] = [
     {
       path: 'id',
@@ -111,12 +123,15 @@ export const getExportHeaders = (
         path: 'contactPreferences',
         label: 'Primary Applicant Preferred Contact Type',
       },
-      {
-        path: 'applicant.workInRegion',
-        label: 'Primary Applicant Work in Region',
-      },
     ],
   );
+
+  if (!disableWorkInRegion) {
+    headers.push({
+      path: 'applicant.workInRegion',
+      label: 'Primary Applicant Work in Region',
+    });
+  }
 
   if (enableFullTimeStudentQuestion) {
     headers.push({
