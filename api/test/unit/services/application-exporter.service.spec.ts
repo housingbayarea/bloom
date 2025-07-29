@@ -452,6 +452,7 @@ describe('Testing application export service', () => {
     jest.setSystemTime(new Date('2024-01-01'));
 
     const requestingUser = {
+      id: 'test_user_id',
       firstName: 'requesting fName',
       lastName: 'requesting lName',
       email: 'requestingUser@email.com',

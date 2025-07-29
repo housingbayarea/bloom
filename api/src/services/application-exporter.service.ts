@@ -157,7 +157,7 @@ export class ApplicationExporterService {
   /**
    *
    * @param queryParams
-   * @param user_id
+   * @param user
    * @returns a promise containing a file read stream
    */
   async csvExport<QueryParams extends ApplicationCsvQueryParams>(
@@ -171,20 +171,21 @@ export class ApplicationExporterService {
       }-${new Date().getTime()}.csv`,
     );
 
-    await this.createCsv(filename, queryParams, user);
+    await this.createCsv(filename, user, queryParams);
     return createReadStream(filename);
   }
 
   /**
    *
    * @param filename
+   * @param user
    * @param queryParams
    * @returns a promise with SuccessDTO
    */
   async createCsv<QueryParams extends ApplicationCsvQueryParams>(
     filename: string,
-    queryParams: QueryParams,
     user: User,
+    queryParams: QueryParams,
   ): Promise<void> {
     const applications = await this.prisma.applications.findMany({
       select: {

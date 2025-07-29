@@ -427,7 +427,6 @@ describe('Testing application export helpers', () => {
         process.env.TIME_ZONE,
         requestingUser,
       );
-
       const testHeaders = [
         ...csvHeaders,
         {
