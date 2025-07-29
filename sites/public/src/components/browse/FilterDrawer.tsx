@@ -30,7 +30,7 @@ export interface FilterDrawerProps {
 
 const FilterDrawer = (props: FilterDrawerProps) => {
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { register, handleSubmit, getValues, setValue } = useForm({ mode: "onBlur" })
+  const { register, handleSubmit, getValues, setValue } = useForm()
 
   const enableUnitGroups = props.activeFeatureFlags?.some(
     (entry) => entry === FeatureFlagEnum.enableUnitGroups
