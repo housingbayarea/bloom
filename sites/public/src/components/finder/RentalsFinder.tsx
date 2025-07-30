@@ -213,7 +213,6 @@ export default function RentalsFinder() {
               stepPreposition={t("finder.progress.stepPreposition")}
               stepLabeling={sectionLabels}
               priority={2}
-              className={styles["step-header"]}
             />
           )}
         </div>
