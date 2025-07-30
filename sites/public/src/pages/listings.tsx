@@ -1,14 +1,25 @@
 import React from "react"
-import { Jurisdiction, Listing } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
-import { fetchClosedListings, fetchJurisdictionByName, fetchOpenListings } from "../lib/hooks"
-import { ListingBrowse, TabsIndexEnum } from "../components/browse/ListingBrowse"
-import { ListingBrowseDeprecated } from "../components/browse/ListingBrowseDeprecated"
+import { useRouter } from "next/router"
+import {
+  FeatureFlagEnum,
+  Jurisdiction,
+  Listing,
+  MultiselectQuestion,
+} from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import {
   decodeQueryToFilterData,
   encodeFilterDataToBackendFilters,
   isFiltered,
 } from "../components/browse/FilterDrawerHelpers"
-import { useRouter } from "next/router"
+import { ListingBrowse, TabsIndexEnum } from "../components/browse/ListingBrowse"
+import { ListingBrowseDeprecated } from "../components/browse/ListingBrowseDeprecated"
+import { isFeatureFlagOn } from "../lib/helpers"
+import {
+  fetchClosedListings,
+  fetchJurisdictionByName,
+  fetchMultiselectData,
+  fetchOpenListings,
+} from "../lib/hooks"
 
 export interface ListingsProps {
   openListings: Listing[]
@@ -22,6 +33,7 @@ export interface ListingsProps {
   }
   jurisdiction: Jurisdiction
   areFiltersActive: boolean
+  multiselectData: MultiselectQuestion[]
 }
 
 export default function ListingsPage(props: ListingsProps) {
@@ -34,6 +46,7 @@ export default function ListingsPage(props: ListingsProps) {
           listings={props.openListings}
           tab={TabsIndexEnum.open}
           jurisdiction={props.jurisdiction}
+          multiselectData={props.multiselectData}
           paginationData={props.paginationData}
           key={router.asPath}
           areFiltersActive={props.areFiltersActive}
@@ -64,6 +77,12 @@ export async function getServerSideProps(context: { req: any; query: any }) {
     closedListings = await fetchClosedListings(context.req, Number(context.query.page) || 1)
   }
   const jurisdiction = await fetchJurisdictionByName(context.req)
+  const multiselectData = isFeatureFlagOn(
+    jurisdiction,
+    FeatureFlagEnum.swapCommunityTypeWithPrograms
+  )
+    ? await fetchMultiselectData(context.req, jurisdiction?.id)
+    : null
 
   return {
     props: {
@@ -72,6 +91,7 @@ export async function getServerSideProps(context: { req: any; query: any }) {
       paginationData: openListings?.items?.length ? openListings.meta : null,
       jurisdiction: jurisdiction,
       areFiltersActive,
+      multiselectData: multiselectData,
     },
   }
 }

@@ -74,6 +74,22 @@ export const stagingSeed = async (
         FeatureFlagEnum.enableWaitlistAdditionalFields,
       ],
       languages: Object.values(LanguagesEnum),
+      requiredListingFields: [
+        'listingsBuildingAddress',
+        'name',
+        'developer',
+        'listingImages',
+        'leasingAgentEmail',
+        'leasingAgentName',
+        'leasingAgentPhone',
+        'jurisdictions',
+        'units',
+        'digitalApplication',
+        'paperApplication',
+        'referralOpportunity',
+        'rentalAssistance',
+        'applicationDueDate',
+      ],
     }),
   });
   // jurisdiction with unit groups enabled
@@ -108,6 +124,7 @@ export const stagingSeed = async (
         FeatureFlagEnum.swapCommunityTypeWithPrograms,
         FeatureFlagEnum.enableFullTimeStudentQuestion,
       ],
+      requiredListingFields: ['name', 'listingsBuildingAddress'],
     }),
   });
   // Basic configuration jurisdiction
@@ -380,6 +397,22 @@ export const stagingSeed = async (
       },
     }),
   });
+
+  // add extra programs to support filtering by "community type"
+  await Promise.all(
+    [...new Array(3)].map(
+      async () =>
+        await prismaClient.multiselectQuestions.create({
+          data: multiselectQuestionFactory(lakeviewJurisdiction.id, {
+            multiselectQuestion: {
+              applicationSection:
+                MultiselectQuestionsApplicationSectionEnum.programs,
+            },
+          }),
+        }),
+    ),
+  );
+
   // create pre-determined values
   const unitTypes = await unitTypeFactoryAll(prismaClient);
   await unitAccessibilityPriorityTypeFactoryAll(prismaClient);
