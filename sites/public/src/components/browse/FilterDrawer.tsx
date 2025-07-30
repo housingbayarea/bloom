@@ -7,6 +7,7 @@ import {
   HomeTypeEnum,
   ListingFilterKeys,
   MultiselectQuestion,
+  FeatureFlagEnum,
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import styles from "./FilterDrawer.module.scss"
 import {
@@ -27,11 +28,16 @@ export interface FilterDrawerProps {
   onClose: () => void
   onSubmit: (data: FilterData) => void
   multiselectData: MultiselectQuestion[]
+  activeFeatureFlags?: FeatureFlagEnum[]
 }
 
 const FilterDrawer = (props: FilterDrawerProps) => {
   // eslint-disable-next-line @typescript-eslint/unbound-method
   const { register, handleSubmit, getValues, setValue } = useForm()
+
+  const enableUnitGroups = props.activeFeatureFlags?.some(
+    (entry) => entry === FeatureFlagEnum.enableUnitGroups
+  )
 
   return (
     <Drawer
@@ -61,7 +67,7 @@ const FilterDrawer = (props: FilterDrawerProps) => {
             fields={buildDefaultFilterFields(
               ListingFilterKeys.availabilities,
               "listings.availability",
-              getAvailabilityValues(),
+              getAvailabilityValues(enableUnitGroups),
               props.filterState
             )}
             register={register}
