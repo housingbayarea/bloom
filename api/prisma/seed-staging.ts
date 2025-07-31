@@ -110,6 +110,7 @@ export const stagingSeed = async (
         FeatureFlagEnum.enableListingFiltering,
         FeatureFlagEnum.enableListingOpportunity,
         FeatureFlagEnum.enableListingPagination,
+        FeatureFlagEnum.enableListingUpdatedAt,
         FeatureFlagEnum.enableMarketingStatus,
         FeatureFlagEnum.enableNeighborhoodAmenities,
         FeatureFlagEnum.enablePartnerDemographics,
