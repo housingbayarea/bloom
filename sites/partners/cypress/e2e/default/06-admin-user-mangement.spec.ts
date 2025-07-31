@@ -144,9 +144,9 @@ describe("Admin User Mangement Tests", () => {
         []
       )
     })
-    cy.getByTestId("jurisdictions").first().click()
-    cy.getByTestId("listings_Alameda").first().click({ force: true })
-    cy.getByTestId("listings_Alameda").last().click({ force: true })
+    cy.getByTestId("jurisdictions").last().click()
+    cy.getByTestId("listings_San Jose").first().click({ force: true })
+    cy.getByTestId("listings_San Jose").last().click({ force: true })
     cy.getByID("invite-user").click()
     cy.getByTestId("toast-alert").contains("Invite sent").should("have.text", "Invite sent")
   })

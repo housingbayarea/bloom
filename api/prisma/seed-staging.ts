@@ -40,18 +40,31 @@ export const stagingSeed = async (
   prismaClient: PrismaClient,
   jurisdictionName: string,
 ) => {
-  // add additional jurisdictions
-  const sanMateoJurisdiction = await prismaClient.jurisdictions.create({
-    data: jurisdictionFactory('San Mateo'),
-  });
-  const sanJoseJurisdiction = await prismaClient.jurisdictions.create({
-    data: jurisdictionFactory('San Jose'),
-  });
   // Seed feature flags
   await createAllFeatureFlags(prismaClient);
-  // create main jurisdiction with as many feature flags turned on as possible
+  // create main jurisdiction as similar to production as possible
   const mainJurisdiction = await prismaClient.jurisdictions.create({
     data: jurisdictionFactory(jurisdictionName, {
+      listingApprovalPermissions: [
+        UserRoleEnum.admin,
+        // should be turned on for San Jose but breaks listing approval testing
+        // UserRoleEnum.jurisdictionAdmin,
+      ],
+      featureFlags: [
+        FeatureFlagEnum.enableGeocodingPreferences,
+        FeatureFlagEnum.enablePartnerSettings,
+      ],
+      languages: [
+        LanguagesEnum.en,
+        LanguagesEnum.es,
+        LanguagesEnum.zh,
+        LanguagesEnum.vi,
+      ],
+    }),
+  });
+  // jurisdiction with as many feature flags turned on as possible
+  const bloomingtonJurisdiction = await prismaClient.jurisdictions.create({
+    data: jurisdictionFactory('Bloomington', {
       listingApprovalPermissions: [UserRoleEnum.admin],
       featureFlags: [
         FeatureFlagEnum.enableAccessibilityFeatures,
@@ -158,6 +171,7 @@ export const stagingSeed = async (
       confirmedAt: new Date(),
       jurisdictionIds: [
         mainJurisdiction.id,
+        bloomingtonJurisdiction.id,
         lakeviewJurisdiction.id,
         bridgeBayJurisdiction.id,
         nadaHill.id,
@@ -174,11 +188,10 @@ export const stagingSeed = async (
       confirmedAt: new Date(),
       jurisdictionIds: [
         mainJurisdiction.id,
+        bloomingtonJurisdiction.id,
         lakeviewJurisdiction.id,
         bridgeBayJurisdiction.id,
         nadaHill.id,
-        sanMateoJurisdiction.id,
-        sanJoseJurisdiction.id,
       ],
       acceptedTerms: true,
       password: 'abcdef',
@@ -243,6 +256,7 @@ export const stagingSeed = async (
       confirmedAt: new Date(),
       jurisdictionIds: [
         mainJurisdiction.id,
+        bloomingtonJurisdiction.id,
         lakeviewJurisdiction.id,
         bridgeBayJurisdiction.id,
         nadaHill.id,
@@ -270,9 +284,6 @@ export const stagingSeed = async (
   });
   await prismaClient.amiChart.create({
     data: amiChartFactory(8, lakeviewJurisdiction.id),
-  });
-  await prismaClient.amiChart.create({
-    data: amiChartFactory(8, sanJoseJurisdiction.id),
   });
   // Create map layers
   await prismaClient.mapLayers.create({
@@ -955,10 +966,7 @@ export const stagingSeed = async (
             .toLowerCase()
             .replaceAll(' ', '-')}@example.com`,
           confirmedAt: new Date(),
-          jurisdictionIds: [
-            savedListing.jurisdictionId,
-            sanMateoJurisdiction.id,
-          ],
+          jurisdictionIds: [savedListing.jurisdictionId],
           acceptedTerms: true,
           listings: [savedListing.id],
         }),

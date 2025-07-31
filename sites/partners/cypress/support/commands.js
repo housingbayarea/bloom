@@ -411,7 +411,7 @@ Cypress.Commands.add("addMinimalListing", (listingName, isLottery, isApproval, j
   cy.contains("New Listing")
   cy.fixture("minimalListing").then((listing) => {
     if (jurisdiction) {
-      cy.getByID("jurisdictions.id").select("Alameda")
+      cy.getByID("jurisdictions.id").select("San Jose")
       cy.getByID("jurisdictions.id-error").should("have.length", 0)
     }
     cy.getByID("name").type(listingName)
