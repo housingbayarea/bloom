@@ -19,6 +19,8 @@ import {
   SearchSection,
   unitTypeMapping,
   unitTypesSorted,
+  unitTypesSortedByUnitGroups,
+  unitTypeUnitGroupsMapping,
 } from "./FilterDrawerHelpers"
 import { isTrue } from "../../lib/helpers"
 
@@ -94,8 +96,12 @@ const FilterDrawer = (props: FilterDrawerProps) => {
             groupLabel={t("listings.unitTypes.bedroomSize")}
             fields={buildDefaultFilterFields(
               ListingFilterKeys.bedroomTypes,
-              unitTypesSorted.map((unitType) => t(unitTypeMapping[unitType].labelKey)),
-              unitTypesSorted,
+              enableUnitGroups
+                ? unitTypesSortedByUnitGroups.map((unitType) =>
+                    t(unitTypeUnitGroupsMapping[unitType].labelKey)
+                  )
+                : unitTypesSorted.map((unitType) => t(unitTypeMapping[unitType].labelKey)),
+              enableUnitGroups ? unitTypesSortedByUnitGroups : unitTypesSorted,
               props.filterState
             )}
             register={register}
