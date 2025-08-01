@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import Markdown from "markdown-to-jsx"
 import {
   FeatureFlagEnum,
   Jurisdiction,
@@ -135,7 +136,7 @@ export const ListingViewSeeds = ({ listing, jurisdiction, profile, preview }: Li
     <>
       {listing.whatToExpect && (
         <InfoCard heading={t("whatToExpect.label")}>
-          <div>{listing.whatToExpect}</div>
+          <Markdown className={"bloom-markdown"}>{listing.whatToExpect}</Markdown>
         </InfoCard>
       )}
     </>
