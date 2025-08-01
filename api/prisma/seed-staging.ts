@@ -269,10 +269,13 @@ export const stagingSeed = async (
     data: amiChartFactory(10, mainJurisdiction.id),
   });
   await prismaClient.amiChart.create({
+    data: amiChartFactory(10, mainJurisdiction.id, 2),
+  });
+  const lakeviewAmiChart = await prismaClient.amiChart.create({
     data: amiChartFactory(8, lakeviewJurisdiction.id),
   });
   await prismaClient.amiChart.create({
-    data: amiChartFactory(8, sanJoseJurisdiction.id),
+    data: amiChartFactory(8, lakeviewJurisdiction.id, 2),
   });
   // Create map layers
   await prismaClient.mapLayers.create({
@@ -850,7 +853,7 @@ export const stagingSeed = async (
               monthlyRentDeterminationType:
                 MonthlyRentDeterminationTypeEnum.flatRent,
               flatRentValue: 1400.0,
-              amiChart: { connect: { id: amiChart.id } },
+              amiChart: { connect: { id: lakeviewAmiChart.id } },
             },
           },
           unitTypes: {
@@ -882,7 +885,7 @@ export const stagingSeed = async (
               monthlyRentDeterminationType:
                 MonthlyRentDeterminationTypeEnum.percentageOfIncome,
               percentageOfIncomeValue: 30.0,
-              amiChart: { connect: { id: amiChart.id } },
+              amiChart: { connect: { id: lakeviewAmiChart.id } },
             },
           },
           unitTypes: {
@@ -908,7 +911,7 @@ export const stagingSeed = async (
               monthlyRentDeterminationType:
                 MonthlyRentDeterminationTypeEnum.flatRent,
               flatRentValue: 1800.0,
-              amiChart: { connect: { id: amiChart.id } },
+              amiChart: { connect: { id: lakeviewAmiChart.id } },
             },
           },
           unitTypes: {
