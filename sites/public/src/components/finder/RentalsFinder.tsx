@@ -41,7 +41,7 @@ export default function RentalsFinder() {
   const formMethods = useForm<FilterData>()
 
   // eslint-disable-next-line @typescript-eslint/unbound-method
-  const { reset, handleSubmit, getValues } = formMethods
+  const { reset, handleSubmit, getValues, errors } = formMethods
 
   const rentalFinderSections: FinderSection[] = useMemo(
     () => [
@@ -153,6 +153,7 @@ export default function RentalsFinder() {
   const isLastStep = stepIndex === rentalFinderSections[sectionIndex]?.sectionSteps.length - 1
 
   const onNextClick = useCallback(() => {
+    if (Object.keys(errors).length > 0) return
     setFormData((prev) => ({ ...prev, ...getValues() }))
     if (isLastStep) {
       setSectionIndex((prev) => prev + 1)
@@ -160,7 +161,7 @@ export default function RentalsFinder() {
     } else {
       setStepIndex((prev) => prev + 1)
     }
-  }, [isLastStep, getValues])
+  }, [errors, isLastStep, getValues])
 
   const onPreviousClick = useCallback(() => {
     if (JSON.stringify(getValues()) !== JSON.stringify(formData)) {
@@ -213,7 +214,6 @@ export default function RentalsFinder() {
               stepPreposition={t("finder.progress.stepPreposition")}
               stepLabeling={sectionLabels}
               priority={2}
-              className={styles["step-header"]}
             />
           )}
         </div>

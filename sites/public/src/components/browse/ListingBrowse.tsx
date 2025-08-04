@@ -6,6 +6,7 @@ import {
   Jurisdiction,
   Listing,
   FeatureFlagEnum,
+  MultiselectQuestion,
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import {
   AuthContext,
@@ -48,6 +49,7 @@ export interface PaginationData {
 export interface ListingBrowseProps {
   listings: Listing[]
   jurisdiction: Jurisdiction
+  multiselectData: MultiselectQuestion[]
   paginationData?: PaginationData
   tab: TabsIndexEnum
   areFiltersActive?: boolean
@@ -69,6 +71,10 @@ export const ListingBrowse = (props: ListingBrowseProps) => {
     props.jurisdiction,
     FeatureFlagEnum.enableListingFiltering
   )
+
+  const jurisdictionActiveFeatureFlags = props.jurisdiction.featureFlags
+    .filter((featureFlag) => featureFlag.active)
+    .map((entry) => entry.name)
 
   useEffect(() => {
     pushGtmEvent<ListingList>({
@@ -167,6 +173,8 @@ export const ListingBrowse = (props: ListingBrowseProps) => {
         onClose={() => setIsFilterDrawerOpen(false)}
         onSubmit={(data) => onFilterSubmit(data)}
         filterState={filterState}
+        multiselectData={props.multiselectData}
+        activeFeatureFlags={jurisdictionActiveFeatureFlags}
       />
       <LoadingState loading={isLoading}>
         <div className={styles["listing-directory"]}>

@@ -12,7 +12,8 @@ import {
   multiselectQuestionFormat,
   unitTypeToReadable,
 } from '../../../src/utilities/application-export-helpers';
-import { User } from 'src/dtos/users/user.dto';
+import { User } from '../../../src/dtos/users/user.dto';
+import { FeatureFlagEnum } from '../../../src/enums/feature-flags/feature-flags-enum';
 
 describe('Testing application export helpers', () => {
   const address = {
@@ -222,6 +223,10 @@ describe('Testing application export helpers', () => {
       label: 'Accessibility Hearing',
     },
     {
+      path: 'accessibility.other',
+      label: 'Accessibility Other',
+    },
+    {
       path: 'householdExpectingChanges',
       label: 'Expecting Household Changes',
     },
@@ -360,7 +365,14 @@ describe('Testing application export helpers', () => {
         jurisdictions: [
           {
             id: 'juris id',
-            featureFlags: [],
+            featureFlags: [
+              {
+                name: FeatureFlagEnum.enableAdaOtherOption,
+                description: '',
+                active: true,
+                jurisdictions: [],
+              },
+            ],
           },
         ],
       } as unknown as User;
@@ -397,7 +409,14 @@ describe('Testing application export helpers', () => {
         jurisdictions: [
           {
             id: 'juris id',
-            featureFlags: [],
+            featureFlags: [
+              {
+                name: FeatureFlagEnum.enableAdaOtherOption,
+                description: '',
+                active: true,
+                jurisdictions: [],
+              },
+            ],
           },
         ],
       } as unknown as User;

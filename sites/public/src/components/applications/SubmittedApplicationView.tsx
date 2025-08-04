@@ -69,6 +69,9 @@ const SubmittedApplicationView = ({
           }
           editMode={false}
           enableUnitGroups={doJurisdictionsHaveFeatureFlagOn(FeatureFlagEnum.enableUnitGroups)}
+          enableAdaOtherOption={doJurisdictionsHaveFeatureFlagOn(
+            FeatureFlagEnum.enableAdaOtherOption
+          )}
           enableFullTimeStudentQuestion={doJurisdictionsHaveFeatureFlagOn(
             FeatureFlagEnum.enableFullTimeStudentQuestion
           )}

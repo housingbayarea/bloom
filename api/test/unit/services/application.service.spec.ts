@@ -33,6 +33,7 @@ import { AlternateContactRelationship } from '../../../src/enums/applications/al
 import { HouseholdMemberRelationship } from '../../../src/enums/applications/household-member-relationship-enum';
 import { PublicAppsViewQueryParams } from '../../../src/dtos/applications/public-apps-view-params.dto';
 import { ApplicationsFilterEnum } from '../../../src/enums/applications/filter-enum';
+import { FeatureFlagEnum } from '../../../src/enums/feature-flags/feature-flags-enum';
 
 export const mockApplication = (options: {
   date: Date;
@@ -193,6 +194,7 @@ export const mockCreateApplicationData = (
       mobility: false,
       vision: false,
       hearing: false,
+      other: false,
     },
     alternateContact: {
       type: AlternateContactRelationship.other,
@@ -328,6 +330,7 @@ const detailView = {
       mobility: true,
       vision: true,
       hearing: true,
+      other: true,
     },
   },
   applicationsMailingAddress: {
@@ -522,6 +525,7 @@ const baseView = {
       mobility: true,
       vision: true,
       hearing: true,
+      other: true,
     },
   },
   applicationsMailingAddress: {
@@ -697,7 +701,19 @@ describe('Testing application service', () => {
     firstName: 'requesting fName',
     lastName: 'requesting lName',
     email: 'requestingUser@email.com',
-    jurisdictions: [{ id: 'juris id' }],
+    jurisdictions: [
+      {
+        id: 'juris id',
+        featureFlags: [
+          {
+            name: FeatureFlagEnum.enableAdaOtherOption,
+            description: '',
+            active: true,
+            jurisdictions: [],
+          },
+        ],
+      },
+    ],
   } as unknown as User;
   const date = new Date();
 
@@ -1536,6 +1552,7 @@ describe('Testing application service', () => {
             mobility: false,
             vision: false,
             hearing: false,
+            other: false,
           },
         },
         alternateContact: {
@@ -1846,6 +1863,7 @@ describe('Testing application service', () => {
             mobility: false,
             vision: false,
             hearing: false,
+            other: false,
           },
         },
         alternateContact: {
@@ -2077,6 +2095,7 @@ describe('Testing application service', () => {
             mobility: false,
             vision: false,
             hearing: false,
+            other: false,
           },
         },
         alternateContact: {
@@ -2335,6 +2354,7 @@ describe('Testing application service', () => {
             mobility: true,
             vision: true,
             hearing: true,
+            other: true,
           },
         },
         applicationsMailingAddress: {
