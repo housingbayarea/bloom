@@ -117,6 +117,10 @@ export default () => {
             conductor.config,
             FeatureFlagEnum.enableAdaOtherOption
           )}
+          enableFullTimeStudentQuestion={isFeatureFlagOn(
+            conductor.config,
+            FeatureFlagEnum.enableFullTimeStudentQuestion
+          )}
         />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <CardSection

@@ -14,6 +14,7 @@ import {
   AuthContext,
   mergeDeep,
 } from "@bloom-housing/shared-helpers"
+import { FeatureFlagEnum } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import FormsLayout from "../../../layouts/forms"
 import { disableContactFormOption, isFeatureFlagOn } from "../../../lib/helpers"
 import { useFormConductor } from "../../../lib/hooks"
@@ -25,7 +26,6 @@ import {
 import { UserStatus } from "../../../lib/constants"
 import ApplicationFormLayout from "../../../layouts/application-form"
 import styles from "../../../layouts/application-form.module.scss"
-import { FeatureFlagEnum } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 
 const ApplicationAddress = () => {
   const { profile } = useContext(AuthContext)
@@ -53,6 +53,9 @@ const ApplicationAddress = () => {
       "applicant.phoneNumberType": application.applicant.phoneNumberType,
       sendMailToMailingAddress: application.sendMailToMailingAddress,
       "applicant.workInRegion": application.applicant.workInRegion,
+      ...(enableFullTimeStudentQuestion && {
+        "applicant.fullTimeStudent": application.applicant.fullTimeStudent,
+      }),
       "applicant.applicantAddress.state": application.applicant.applicantAddress.state,
     },
     shouldFocusError: false,

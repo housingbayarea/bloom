@@ -298,7 +298,7 @@ export function getColDefs(
       minWidth: 50,
       valueFormatter: ({ value }) => {
         if (!value) return ""
-        return formatYesNoLabel(value)
+        return t(`t.${value}`)
       },
     })
   }
@@ -313,7 +313,7 @@ export function getColDefs(
       minWidth: 50,
       valueFormatter: ({ value }) => {
         if (!value) return ""
-        return formatYesNoLabel(value)
+        return t(`t.${value}`)
       },
     })
   }
@@ -612,7 +612,7 @@ export function getColDefs(
         minWidth: 50,
         valueFormatter: ({ value }) => {
           if (value?.length < householdIndex) return ""
-          return formatYesNoLabel(value[i]?.workInRegion)
+          return t(`t.${value[i]?.workInRegion}`)
         },
       }
     )
@@ -626,7 +626,7 @@ export function getColDefs(
         minWidth: 50,
         valueFormatter: ({ value }) => {
           if (value?.length < householdIndex) return ""
-          return formatYesNoLabel(value[i]?.fullTimeStudent)
+          return t(`t.${value[i]?.fullTimeStudent}`)
         },
       })
     }
