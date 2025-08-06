@@ -246,7 +246,7 @@ const FormUnits = ({
                   <div className="flex gap-3">
                     <Button
                       type="button"
-                      className="font-semibold"
+                      className={"font-semibold darker-link"}
                       onClick={() => editUnitGroup(unitGroup.tempId)}
                       variant="text"
                       size="sm"
@@ -255,7 +255,7 @@ const FormUnits = ({
                     </Button>
                     <Button
                       type="button"
-                      className="font-semibold text-alert"
+                      className={"font-semibold darker-alert"}
                       onClick={() => setUnitDeleteModal(unitGroup.tempId)}
                       variant="text"
                       size="sm"
@@ -279,7 +279,7 @@ const FormUnits = ({
                 <div className="flex gap-3">
                   <Button
                     type="button"
-                    className="font-semibold"
+                    className={"font-semibold darker-link"}
                     onClick={() => editUnit(unit.tempId)}
                     variant="text"
                     size="sm"
@@ -288,7 +288,7 @@ const FormUnits = ({
                   </Button>
                   <Button
                     type="button"
-                    className="font-semibold text-alert"
+                    className={"font-semibold darker-alert"}
                     onClick={() => setUnitDeleteModal(unit.tempId)}
                     variant="text"
                     size="sm"
