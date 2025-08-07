@@ -60,6 +60,22 @@ export const stagingSeed = async (
         LanguagesEnum.zh,
         LanguagesEnum.vi,
       ],
+      requiredListingFields: [
+        'listingsBuildingAddress',
+        'name',
+        'developer',
+        'listingImages',
+        'leasingAgentEmail',
+        'leasingAgentName',
+        'leasingAgentPhone',
+        'jurisdictions',
+        'units',
+        'digitalApplication',
+        'paperApplication',
+        'referralOpportunity',
+        'rentalAssistance',
+        'applicationDueDate',
+      ],
     }),
   });
   // jurisdiction with as many feature flags turned on as possible
