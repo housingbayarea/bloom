@@ -5119,6 +5119,9 @@ export interface Accessibility {
 
   /**  */
   hearing?: boolean
+
+  /**  */
+  other?: boolean
 }
 
 export interface Demographic {
@@ -5701,6 +5704,9 @@ export interface JurisdictionCreate {
 
   /**  */
   duplicateListingPermissions: UserRoleEnum[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface JurisdictionUpdate {
@@ -5748,6 +5754,9 @@ export interface JurisdictionUpdate {
 
   /**  */
   duplicateListingPermissions: UserRoleEnum[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface FeatureFlag {
@@ -5830,6 +5839,9 @@ export interface Jurisdiction {
 
   /**  */
   featureFlags: FeatureFlag[]
+
+  /**  */
+  requiredListingFields: []
 }
 
 export interface MultiselectQuestionCreate {
@@ -6176,6 +6188,9 @@ export interface AccessibilityUpdate {
 
   /**  */
   hearing?: boolean
+
+  /**  */
+  other?: boolean
 }
 
 export interface DemographicUpdate {
@@ -7167,7 +7182,9 @@ export enum FeatureFlagEnum {
   "disableCommonApplication" = "disableCommonApplication",
   "disableJurisdictionalAdmin" = "disableJurisdictionalAdmin",
   "disableListingPreferences" = "disableListingPreferences",
+  "disableWorkInRegion" = "disableWorkInRegion",
   "enableAccessibilityFeatures" = "enableAccessibilityFeatures",
+  "enableAdaOtherOption" = "enableAdaOtherOption",
   "enableAdditionalResources" = "enableAdditionalResources",
   "enableCompanyWebsite" = "enableCompanyWebsite",
   "enableGeocodingPreferences" = "enableGeocodingPreferences",
@@ -7178,6 +7195,7 @@ export enum FeatureFlagEnum {
   "enableListingFiltering" = "enableListingFiltering",
   "enableListingOpportunity" = "enableListingOpportunity",
   "enableListingPagination" = "enableListingPagination",
+  "enableListingUpdatedAt" = "enableListingUpdatedAt",
   "enableMarketingStatus" = "enableMarketingStatus",
   "enableNeighborhoodAmenities" = "enableNeighborhoodAmenities",
   "enablePartnerDemographics" = "enablePartnerDemographics",

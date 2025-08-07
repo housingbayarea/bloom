@@ -113,6 +113,10 @@ export default () => {
           hidePreferences={true}
           hidePrograms={true}
           enableUnitGroups={isFeatureFlagOn(conductor.config, FeatureFlagEnum.enableUnitGroups)}
+          enableAdaOtherOption={isFeatureFlagOn(
+            conductor.config,
+            FeatureFlagEnum.enableAdaOtherOption
+          )}
         />
         <Form onSubmit={handleSubmit(onSubmit)}>
           <CardSection
