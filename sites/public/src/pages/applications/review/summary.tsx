@@ -150,6 +150,10 @@ const ApplicationSummary = () => {
               conductor.config,
               FeatureFlagEnum.enableAdaOtherOption
             )}
+            enableFullTimeStudentQuestion={isFeatureFlagOn(
+              conductor.config,
+              FeatureFlagEnum.enableFullTimeStudentQuestion
+            )}
           />
 
           <CardSection divider={"flush"} className={"border-none"}>
