@@ -3,6 +3,7 @@ import { useRouter } from "next/router"
 import { useCallback, useMemo, useState } from "react"
 import { BloomCard, CustomIconMap, listingFeatures } from "@bloom-housing/shared-helpers"
 import {
+  FeatureFlagEnum,
   ListingFilterKeys,
   MultiselectQuestion,
   RegionEnum,
