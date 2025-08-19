@@ -71,7 +71,7 @@ export default function RentalsFinder({ activeFeatureFlags, multiselectData }: R
               />
             ),
           },
-          ...(activeFeatureFlags.some((flag) => flag == FeatureFlagEnum.enableRegions)
+          ...(activeFeatureFlags?.some((flag) => flag == FeatureFlagEnum.enableRegions)
             ? [
                 {
                   question: t("finder.region.question"),
@@ -97,7 +97,7 @@ export default function RentalsFinder({ activeFeatureFlags, multiselectData }: R
           },
         ],
       },
-      ...(activeFeatureFlags.some((flag) => flag == FeatureFlagEnum.enableAccessibilityFeatures)
+      ...(activeFeatureFlags?.some((flag) => flag == FeatureFlagEnum.enableAccessibilityFeatures)
         ? [
             {
               sectionTitle: t("t.accessibility"),
@@ -128,7 +128,7 @@ export default function RentalsFinder({ activeFeatureFlags, multiselectData }: R
           {
             question: t("finder.building.question"),
             subtitle: t("finder.building.subtitle"),
-            content: activeFeatureFlags.some(
+            content: activeFeatureFlags?.some(
               (flag) => flag === FeatureFlagEnum.swapCommunityTypeWithPrograms
             ) ? (
               <FinderMultiselectQuestion
