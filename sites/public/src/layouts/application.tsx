@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { NextRouter, useRouter } from "next/router"
-import Head from "next/head"
 import Markdown from "markdown-to-jsx"
+import Head from "next/head"
 import HomeIcon from "@heroicons/react/24/solid/HomeIcon"
 import { JurisdictionFooterSection as SanMateoFooter } from "../page_content/jurisdiction_overrides/san_mateo/jurisdiction-footer-section"
 import { JurisdictionFooterSection as SanJoseFooter } from "../page_content/jurisdiction_overrides/san_jose/JurisdictionFooterSection"
@@ -11,10 +11,11 @@ import { JursidictionSiteNotice as SanJoseNotice } from "../page_content/jurisdi
 import { Message, Toast, Icon } from "@bloom-housing/ui-seeds"
 import { MenuLink, t, SiteHeader as UICSiteHeader } from "@bloom-housing/ui-components"
 import { AuthContext, MessageContext } from "@bloom-housing/shared-helpers"
-import { HeaderLink, SiteHeader } from "../patterns/SiteHeader"
-import styles from "./application.module.scss"
 import { User } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import { ToastProps } from "@bloom-housing/ui-seeds/src/blocks/Toast"
+import { MetaTags } from "../components/shared/MetaTags"
+import { HeaderLink, SiteHeader } from "../patterns/SiteHeader"
+import styles from "./application.module.scss"
 
 const isMessageActive = (windowEnv: string) => {
   let isActive = false
@@ -212,7 +213,14 @@ const getHeaderLinks = (
   return headerLinks
 }
 
-const Layout = (props) => {
+interface LayoutProps {
+  children: React.ReactNode
+  metaDescription?: string
+  metaImage?: string
+  pageTitle?: string
+}
+
+const Layout = (props: LayoutProps) => {
   const { profile, signOut } = useContext(AuthContext)
   const { toastMessagesRef, addToast } = useContext(MessageContext)
   const router = useRouter()
@@ -235,7 +243,16 @@ const Layout = (props) => {
     <div className="site-wrapper">
       <div className="site-content">
         <Head>
-          <title>{t("nav.siteTitle")}</title>
+          <title>
+            {props.pageTitle ? `${props.pageTitle} - ${t("nav.siteTitle")}` : t("nav.siteTitle")}
+          </title>
+          {props.pageTitle && (
+            <MetaTags
+              title={props.pageTitle}
+              description={props.metaDescription ?? ""}
+              image={props.metaImage ?? ""}
+            />
+          )}
         </Head>
         {process.env.showNewSeedsDesigns ? (
           <SiteHeader
