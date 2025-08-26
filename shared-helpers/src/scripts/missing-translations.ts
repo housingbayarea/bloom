@@ -1,185 +1,57 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 // Prints out keys/strings that exist in the english file but not in a foreign language translation file
-// Temporarily update the ui-components tsconfig to include `"module": "commonjs"`
-// from the scripts folder run `yarn ts-node scripts/missing-translations > hba-missing-translations.csv`
+// example: `ts-node missing-translations > missing-foreign-keys.json`
+const englishTranslations = require("../locales/general.json")
+const spanishTranslations = require("../locales/es.json")
+const chineseTranslations = require("../locales/zh.json")
+const vietnameseTranslations = require("../locales/vi.json")
+const tagalogTranslations = require("../locales/tl.json")
+const arabicTranslations = require("../locales/ar.json")
+const bengaliTranslations = require("../locales/bn.json")
 
 function main() {
   type TranslationsType = {
     [key: string]: string
   }
 
-  type JurisdictionOverrideMap = {
-    [key: string]: MissingTranslation[]
-  }
-
-  type MissingTranslation = {
-    [key: string]: TranslationInfo
-  }
-
-  type TranslationInfo = {
-    value: string
-    location: string
-    jurisOverrides: string[]
-  }
-  const jurisdictions = ["alameda", "san_jose", "san_mateo"]
-
-  const jurisOverrideTracker: JurisdictionOverrideMap[] = []
-
-  const enBaseTranslations = require("../locales/general.json")
-  const esBaseTranslations = require("../locales/es.json")
-  const zhBaseTranslations = require("../locales/zh.json")
-  const viBaseTranslations = require("../locales/vi.json")
-  const tlBaseTranslations = require("../locales/tl.json")
-
-  const baseTranslations = [
-    {
-      baseTranslations: esBaseTranslations,
-      language: "Spanish",
-    },
-    {
-      baseTranslations: zhBaseTranslations,
-      language: "Chinese",
-    },
-    {
-      baseTranslations: viBaseTranslations,
-      language: "Vietnamese",
-    },
-    {
-      baseTranslations: tlBaseTranslations,
-      language: "Tagalog",
-    },
+  const allTranslations = [
+    { translationKeys: spanishTranslations, language: "Spanish" },
+    { translationKeys: chineseTranslations, language: "Chinese" },
+    { translationKeys: vietnameseTranslations, language: "Vietnamese" },
+    { translationKeys: tagalogTranslations, language: "Tagalog" },
+    { translationKeys: arabicTranslations, language: "Arabic" },
+    { translationKeys: bengaliTranslations, language: "Bengali" },
   ]
 
-  let missing = false
-  const enOverrideTranslations = require("../../sites/public/page_content/locale_overrides/general.json")
-
-  const findMissingBaseTranslations = (
-    enBaseTranslations: TranslationsType,
-    checkBaseTranslations: TranslationsType,
-    jurisOverrideTracker: JurisdictionOverrideMap[]
+  const findMissingStrings = (
+    baseTranslations: TranslationsType,
+    checkedTranslations: TranslationsType
   ) => {
-    const missingTranslations: MissingTranslation[] = []
-    const enBaseKeys = Object.keys(enBaseTranslations)
-    const checkBaseKeys = Object.keys(checkBaseTranslations)
-    enBaseKeys.forEach((key) => {
-      const jurisOverrideArr: string[] = []
-      Object.entries(jurisOverrideTracker).forEach((entry) => {
-        if (Object.keys(entry[1]).includes(key)) jurisOverrideArr.push(entry[0])
-      })
-      if (
-        // not overriden by all jurisdictions
-        jurisOverrideArr.length !== jurisdictions.length &&
-        // not overriden by hba-wide override file
-        !Object.keys(enOverrideTranslations).includes(key) &&
-        // doesn't have translations
-        !checkBaseKeys.includes(key)
-      ) {
-        missingTranslations[key] = {
-          value: enBaseTranslations[key],
-          location: "ui-components",
-          jurisOverrides: jurisOverrideArr.toString(),
-        }
+    const baseKeys = Object.keys(baseTranslations)
+    const checkedKeys = Object.keys(checkedTranslations)
+    const missingKeys: string[] = []
+    baseKeys.forEach((key) => {
+      if (checkedKeys.indexOf(key) < 0) {
+        missingKeys.push(key)
       }
     })
-    return missingTranslations
+    return missingKeys
   }
-  jurisdictions.forEach((jurisdiction) => {
-    const enJurisTranslations = require(`../../sites/public/page_content/jurisdiction_overrides/${jurisdiction}/locale_overrides/general.json`)
-    const esJurisTranslations = require(`../../sites/public/page_content/jurisdiction_overrides/${jurisdiction}/locale_overrides/es.json`)
-    const zhJurisTranslations = require(`../../sites/public/page_content/jurisdiction_overrides/${jurisdiction}/locale_overrides/zh.json`)
-    const viJurisTranslations = require(`../../sites/public/page_content/jurisdiction_overrides/${jurisdiction}/locale_overrides/vi.json`)
-    let tlJurisTranslations = null
-    if (jurisdiction === "alameda") {
-      tlJurisTranslations = require(`../../sites/public/page_content/jurisdiction_overrides/${jurisdiction}/locale_overrides/tl.json`)
-    }
 
-    const jurisTranslations = [
-      {
-        jurisTranslations: esJurisTranslations,
-        language: "Spanish",
-      },
-      {
-        jurisTranslations: zhJurisTranslations,
-        language: "Chinese",
-      },
-      {
-        jurisTranslations: viJurisTranslations,
-        language: "Vietnamese",
-      },
-    ]
-
-    if (jurisdiction === "alameda") {
-      jurisTranslations.push({
-        jurisTranslations: tlJurisTranslations,
-        language: "Tagalog",
-      })
-    }
-
-    const findMissingOverrideTranslations = (
-      enJurisTranslations: TranslationsType,
-      checkJurisTranslations: TranslationsType,
-      enOverrideTranslations: TranslationsType
-    ) => {
-      const missingTranslations: MissingTranslation[] = []
-      //Comparison of jurisdictional files
-      const enJurisKeys = Object.keys(enJurisTranslations)
-      const checkJurisKeys = Object.keys(checkJurisTranslations)
-      enJurisKeys.forEach((key) => {
-        if (!checkJurisKeys.includes(key)) {
-          missingTranslations[key] = {
-            value: enJurisTranslations[key],
-            location: `${jurisdiction} override`,
-          }
-        }
-      })
-      //Comparison of override files
-      const enOverrideKeys = Object.keys(enOverrideTranslations)
-      enOverrideKeys.forEach((key) => {
-        //don't need to check for translations since no other override files
-        if (!enJurisKeys.includes(key)) {
-          missingTranslations[key] = {
-            value: enOverrideTranslations[key],
-            location: "General Override",
-          }
-        }
-      })
-      return missingTranslations
-    }
-
-    console.log(`------------${jurisdiction} translations------------`)
-    jurisTranslations.forEach((translationSet) => {
-      console.log(`Missing Public Site ${translationSet.language} Translations:`)
-      const missingOverrideTranslations: MissingTranslation[] = findMissingOverrideTranslations(
-        enJurisTranslations,
-        translationSet.jurisTranslations,
-        enOverrideTranslations
-      )
-      if (missingOverrideTranslations.length) missing = true
-
-      Object.entries(missingOverrideTranslations).forEach((entry) =>
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        console.log(`${entry[0]},${entry[1].location},"${entry[1].value}"`)
-      )
-    })
-    jurisOverrideTracker[jurisdiction] = enJurisTranslations
-  })
-  console.log("------------Shared translations------------")
-  baseTranslations.forEach((translationSet) => {
-    const missingBaseTranslations = findMissingBaseTranslations(
-      enBaseTranslations,
-      translationSet.baseTranslations,
-      jurisOverrideTracker
+  let missingTranslations = false
+  allTranslations.forEach((foreignKeys) => {
+    console.log("--------------------")
+    console.log(`Missing Public Site ${foreignKeys.language} Translations:`)
+    const missingPublicSiteTranslations = findMissingStrings(
+      englishTranslations,
+      foreignKeys.translationKeys
     )
-    if (missingBaseTranslations.length) missing = true
-
-    Object.entries(missingBaseTranslations).forEach((entry) =>
-      console.log(
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        `${entry[0]},${entry[1].location},"${entry[1].value}","${entry[1].jurisOverrides}"`
-      )
+    if (missingPublicSiteTranslations.length > 0) missingTranslations = true
+    missingPublicSiteTranslations.forEach((missingKey) =>
+      console.log(`${missingKey},${JSON.stringify(englishTranslations[missingKey])}`)
     )
   })
-  if (missing) throw Error
+  if (missingTranslations) throw Error
 }
 
 void main()
