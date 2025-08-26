@@ -13,6 +13,7 @@ import {
   ReviewOrderTypeEnum,
   YesNoEnum,
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
+import { fieldHasError, fieldMessage, getLabel } from "../../../../lib/helpers"
 import SectionWithGrid from "../../../shared/SectionWithGrid"
 import styles from "../ListingForm.module.scss"
 
@@ -22,7 +23,7 @@ type RankingsAndResultsProps = {
   requiredFields: string[]
 }
 
-const RankingsAndResults = ({ isAdmin, listing }: RankingsAndResultsProps) => {
+const RankingsAndResults = ({ isAdmin, listing, requiredFields }: RankingsAndResultsProps) => {
   const formMethods = useFormContext()
   const { doJurisdictionsHaveFeatureFlagOn } = useContext(AuthContext)
 
@@ -347,9 +348,12 @@ const RankingsAndResults = ({ isAdmin, listing }: RankingsAndResultsProps) => {
         <Grid.Row columns={3}>
           <Grid.Cell className="seeds-grid-span-2">
             <Textarea
-              label={t("listings.whatToExpectLabel")}
+              label={getLabel("whatToExpect", requiredFields, t("listings.whatToExpectLabel"))}
               name={"whatToExpect"}
               id={"whatToExpect"}
+              errorMessage={
+                fieldHasError(errors?.whatToExpect) ? fieldMessage(errors.whatToExpect) : ""
+              }
               fullWidth={true}
               register={register}
             />

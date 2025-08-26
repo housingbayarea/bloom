@@ -2013,21 +2013,20 @@
     tailwindcss-rtl "^0.9.0"
     typesafe-actions "^5.1.0"
 
-"@bloom-housing/ui-seeds@1.22.3":
-  version "1.22.3"
-  resolved "https://registry.yarnpkg.com/@bloom-housing/ui-seeds/-/ui-seeds-1.22.3.tgz#93f378347656682acebcbde58b512a2d8245bd23"
-  integrity sha512-qs2doiAeTOS+jLmSA+vTDymxBbWzyidYBpgyGsOlW4ERPQH79R7jmYoDLcLFwuVQzk5DrMcdeFYRpDZCwXkjbg==
+"@bloom-housing/ui-seeds@1.22.4":
+  version "1.22.4"
+  resolved "https://registry.yarnpkg.com/@bloom-housing/ui-seeds/-/ui-seeds-1.22.4.tgz#bc54c14154574c1a7a38a4da1af6d0c1d9e0909f"
+  integrity sha512-Z7IQk/qkuSAkl9cVP/qHXWEm96izz77QpmSpiv1LzGGLL7zj7gsg3KO+qqmt33ZRxESVEDKB1m09pucpeS81Jw==
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^6.3.0"
     "@fortawesome/react-fontawesome" "^0.2.0"
     "@heroicons/react" "^2.0.18"
-    "@types/markdown-to-jsx" "^6.11.2"
     "@types/mdx" "^2.0.3"
     "@types/node" "^16.7.13"
     "@types/react" "^18.0.0"
     "@types/react-dom" "^18.0.0"
     focus-trap-react "^11.0.3"
-    markdown-to-jsx "^6.11.4"
+    markdown-to-jsx "^7.7.12"
     react "^18.2.0"
     react-dom "^18.2.0"
     react-tabs "^6.0.0"
@@ -2384,6 +2383,11 @@
   version "2.1.1"
   resolved "https://registry.npmjs.org/@heroicons/react/-/react-2.1.1.tgz"
   integrity sha512-JyyN9Lo66kirbCMuMMRPtJxtKJoIsXKS569ebHGGRKbl8s4CtUfLnyKJxteA+vIKySocO4s1SkTkGS4xtG/yEA==
+
+"@heroicons/react@^2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@heroicons/react/-/react-2.2.0.tgz#0c05124af50434a800773abec8d3af6a297d904b"
+  integrity sha512-LMcepvRaS9LYHJGsF0zzmgKCUim/X3N/DQKc4jepAXJ7l8QxJ1PmxJzqplF2Z3FE4PqBAIGyJAQ/w4B5dsqbtQ==
 
 "@humanwhocodes/config-array@^0.13.0":
   version "0.13.0"
@@ -9964,6 +9968,11 @@ markdown-to-jsx@^6.11.4:
   dependencies:
     prop-types "^15.6.2"
     unquote "^1.1.0"
+
+markdown-to-jsx@^7.7.12:
+  version "7.7.13"
+  resolved "https://registry.yarnpkg.com/markdown-to-jsx/-/markdown-to-jsx-7.7.13.tgz#8144d89e396cdf3264bec7c97a21bc47cfc0773b"
+  integrity sha512-DiueEq2bttFcSxUs85GJcQVrOr0+VVsPfj9AEUPqmExJ3f8P/iQNvZHltV4tm1XVhu1kl0vWBZWT3l99izRMaA==
 
 memoize-one@^5.1.1:
   version "5.2.1"
