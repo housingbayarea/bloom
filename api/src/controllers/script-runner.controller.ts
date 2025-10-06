@@ -236,4 +236,17 @@ export class ScriptRunnerController {
       req,
     );
   }
+
+  @Put('correctLegacyMSQData')
+  @ApiOperation({
+    summary:
+      'A script that targets specific applications with legacy MSQ select data that no longer matches the updated MSQs',
+    operationId: 'correctLegacyMSQData',
+  })
+  @ApiOkResponse({ type: SuccessDTO })
+  async correctLegacyMSQData(
+    @Request() req: ExpressRequest,
+  ): Promise<SuccessDTO> {
+    return await this.scriptRunnerService.correctLegacyMSQData(req);
+  }
 }
