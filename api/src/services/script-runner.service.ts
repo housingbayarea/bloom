@@ -1055,14 +1055,14 @@ export class ScriptRunnerService {
   legacyPreferenceEliminations = [
     {
       questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
-      questionKey: 'Live or Work in the City of San Mateo',
+      questionKey: 'Live or work in the City of San Mateo',
       optionKey: 'I dont want this preference',
       optionReplacement: '',
     },
     // Query does not work because the apostrephe in optionKey cause the SQL query to break
     // {
     //   questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
-    //   questionKey: 'Live or Work in the City of San Mateo',
+    //   questionKey: 'Live or work in the City of San Mateo',
     //   optionKey: "I don't want this preference",
     //   optionReplacement: '',
     // },
@@ -1079,21 +1079,21 @@ export class ScriptRunnerService {
     },
     {
       questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
-      questionKey: 'Live or Work in the City of San Mateo',
+      questionKey: 'Live or work in the City of San Mateo',
       optionKey:
         'At least one member of my household lives in the City of San Mateo',
       optionReplacement: 'Live in the City of San Mateo',
     },
     {
       questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
-      questionKey: 'Live or Work in the City of San Mateo',
+      questionKey: 'Live or work in the City of San Mateo',
       optionKey:
         'At least one member of my household works in the City of San Mateo',
       optionReplacement: 'Work in the City of San Mateo',
     },
     {
       questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
-      questionKey: 'Live or Work in the City of San Mateo',
+      questionKey: 'Live or work in the City of San Mateo',
       optionKey:
         'Al menos un miembro de mi hogar trabaja en la ciudad de San Mateo',
       optionReplacement: 'Work in the City of San Mateo',

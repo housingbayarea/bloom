@@ -917,7 +917,7 @@ describe('Testing script runner service', () => {
         preferences: [
           {
             claimed: true,
-            key: 'Live or Work in the City of San Mateo',
+            key: 'Live or work in the City of San Mateo',
             options: options,
             multiselectQuestionId: expect.anything(),
           },
