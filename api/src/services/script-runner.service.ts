@@ -925,6 +925,10 @@ export class ScriptRunnerService {
       rawQuery,
     );
 
+    console.log(
+      `Found ${applications.length} applications for optionKey: ${this.legacyProgramReplacement.optionKey}`,
+    );
+
     for (const { id, programs } of applications) {
       const questionIndex = programs.findIndex(({ key }) => {
         return key === this.legacyProgramReplacement.questionKey;
@@ -1047,6 +1051,9 @@ export class ScriptRunnerService {
 
     const applications: Application[] = await this.prisma.$queryRawUnsafe(
       rawQuery,
+    );
+    console.log(
+      `Found ${applications.length} applications for optionKey: ${optionKey}`,
     );
 
     return applications;
