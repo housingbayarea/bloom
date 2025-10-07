@@ -803,7 +803,10 @@ export class ScriptRunnerService {
     // Live and work in Foster City
     console.log('Start: Live and work in Foster City');
     const liveAndWorkfosterCityString = 'Live and work in Foster City';
-    const fosterCityListingId = 'c965d92c-72c8-4cc7-8e87-9a77ce324f84';
+    const fosterCityListingIds = [
+      'c965d92c-72c8-4cc7-8e87-9a77ce324f84',
+      '4bf22fb2-8775-43df-a4d5-33b84687a779',
+    ];
     const liveOrWorkFosterCityId = 'ea6177d3-2f03-4c1f-b12d-4e51d093c6a3';
     const liveOrWorkFosterCityMSQ =
       await this.prisma.multiselectQuestions.findUniqueOrThrow({
@@ -812,7 +815,7 @@ export class ScriptRunnerService {
       });
     const fosterCityApplications = await this.prisma.applications.findMany({
       select: { id: true, preferences: true },
-      where: { listingId: fosterCityListingId },
+      where: { listingId: { in: fosterCityListingIds } },
     });
     for (const { id, preferences } of fosterCityApplications) {
       const mappedPreferences =
