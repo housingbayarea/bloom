@@ -892,6 +892,116 @@ describe('Testing script runner service', () => {
     });
   }, 100000);
 
+  it('should correct legacy MSQ data', async () => {
+    const id = randomUUID();
+    const scriptName = 'correct legacy MSQ data';
+
+    prisma.scriptRuns.findUnique = jest.fn().mockResolvedValue(null);
+    prisma.scriptRuns.create = jest.fn().mockResolvedValue(null);
+    prisma.scriptRuns.update = jest.fn().mockResolvedValue(null);
+    prisma.applications.findMany = jest.fn().mockResolvedValue([]);
+    prisma.applications.update = jest.fn().mockResolvedValue(null);
+    prisma.multiselectQuestions.findUniqueOrThrow = jest
+      .fn()
+      .mockResolvedValue(null);
+
+    const options1 = [
+      {
+        checked: true,
+        key: 'I dont want this preference',
+      },
+    ];
+    function application1(options) {
+      return {
+        id: 'applicationId1',
+        preferences: [
+          {
+            claimed: true,
+            key: 'Live or work in the City of San Mateo',
+            options: options,
+            multiselectQuestionId: expect.anything(),
+          },
+        ],
+      };
+    }
+
+    const options2v1 = [
+      {
+        checked: false,
+        key: 'example',
+      },
+      {
+        checked: true,
+        key: 'Berkeley Housing Authority Project Based Voucher Section 8 apartments',
+      },
+    ];
+    const options2v2 = [
+      {
+        checked: false,
+        key: 'example',
+      },
+      {
+        checked: true,
+        key: 'I would like to be considered for Berkeley Housing Authority Project Based Voucher Section 8 apartments',
+      },
+    ];
+    function application2(options) {
+      return {
+        id: 'applicationId2',
+        preferences: [
+          {
+            claimed: true,
+            key: 'Berkeley Housing Authority Apartments',
+            options: options,
+            multiselectQuestionId: expect.anything(),
+          },
+        ],
+      };
+    }
+    prisma.$queryRawUnsafe = jest
+      .fn()
+      .mockResolvedValueOnce([application1(options1)])
+      .mockResolvedValueOnce([application2(options2v1)])
+      .mockResolvedValue([]);
+
+    const res = await service.correctLegacyMSQData({
+      user: {
+        id,
+      } as unknown as User,
+    } as unknown as ExpressRequest);
+
+    expect(res.success).toBe(true);
+
+    expect(prisma.scriptRuns.findUnique).toHaveBeenCalledWith({
+      where: {
+        scriptName,
+      },
+    });
+    expect(prisma.scriptRuns.create).toHaveBeenCalledWith({
+      data: {
+        scriptName,
+        triggeringUser: id,
+      },
+    });
+    expect(prisma.scriptRuns.update).toHaveBeenCalledWith({
+      data: {
+        didScriptRun: true,
+        triggeringUser: id,
+      },
+      where: {
+        scriptName,
+      },
+    });
+    expect(prisma.applications.update).toHaveBeenNthCalledWith(1, {
+      data: { preferences: application1([]).preferences },
+      where: { id: application1([]).id },
+    });
+    expect(prisma.applications.update).toHaveBeenNthCalledWith(2, {
+      data: { preferences: application2(options2v2).preferences },
+      where: { id: application2(options2v2).id },
+    });
+  });
+
   // | ---------- HELPER TESTS BELOW ---------- | //
   it('should mark script run as started if no script run present in db', async () => {
     prisma.scriptRuns.findUnique = jest.fn().mockResolvedValue(null);

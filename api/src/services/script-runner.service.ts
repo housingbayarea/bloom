@@ -17,6 +17,7 @@ import { User } from '../dtos/users/user.dto';
 import { mapTo } from '../utilities/mapTo';
 import { BulkApplicationResendDTO } from '../dtos/script-runner/bulk-application-resend.dto';
 import { Application } from '../dtos/applications/application.dto';
+import { ApplicationMultiselectQuestion } from '../dtos/applications/application-multiselect-question.dto';
 import { AmiChartImportDTO } from '../dtos/script-runner/ami-chart-import.dto';
 import { AmiChartCreate } from '../dtos/ami-charts/ami-chart-create.dto';
 import { AmiChartUpdate } from '../dtos/ami-charts/ami-chart-update.dto';
@@ -790,6 +791,174 @@ export class ScriptRunnerService {
   }
 
   /**
+   *
+   * @param req incoming request object
+   * @returns successDTO
+   * @description targets specific applications with legacy MSQ select data that no longer matches the updated MSQs
+   */
+  async correctLegacyMSQData(req: ExpressRequest): Promise<SuccessDTO> {
+    const requestingUser = mapTo(User, req['user']);
+    await this.markScriptAsRunStart('correct legacy MSQ data', requestingUser);
+
+    // Live and work in Foster City
+    console.log('Start: Live and work in Foster City');
+    const liveAndWorkfosterCityString = 'Live and work in Foster City';
+    const fosterCityListingIds = [
+      'c965d92c-72c8-4cc7-8e87-9a77ce324f84',
+      '4bf22fb2-8775-43df-a4d5-33b84687a779',
+    ];
+    const liveOrWorkFosterCityId = 'ea6177d3-2f03-4c1f-b12d-4e51d093c6a3';
+    const liveOrWorkFosterCityMSQ =
+      await this.prisma.multiselectQuestions.findUniqueOrThrow({
+        select: { id: true, text: true },
+        where: { id: liveOrWorkFosterCityId },
+      });
+    const fosterCityApplications = await this.prisma.applications.findMany({
+      select: { id: true, preferences: true },
+      where: { listingId: { in: fosterCityListingIds } },
+    });
+    for (const { id, preferences } of fosterCityApplications) {
+      const mappedPreferences =
+        preferences as unknown[] as ApplicationMultiselectQuestion[];
+      const updatedPreferences = mappedPreferences.map((preference) => {
+        if (preference.key === liveAndWorkfosterCityString) {
+          return {
+            key: liveOrWorkFosterCityMSQ.text,
+            claimed: preference.claimed,
+            multiselectQuestionId: liveOrWorkFosterCityMSQ.id,
+            options: preference.options,
+          };
+        }
+        return preference;
+      });
+
+      await this.prisma.applications.update({
+        data: {
+          preferences: updatedPreferences as unknown as Prisma.JsonArray,
+        },
+        where: { id: id },
+      });
+    }
+    console.log('End: Live and work in Foster City');
+
+    // Preference Selection Eliminations
+    console.log('Start: Preference Selection Eliminations');
+    for (const { questionId, questionKey, optionKey } of this
+      .legacyPreferenceEliminations) {
+      const applications =
+        await this.queryForApplicationsByPreferenceSelections(
+          questionKey,
+          optionKey,
+        );
+
+      for (const { id, preferences } of applications) {
+        const questionIndex = preferences.findIndex(({ key }) => {
+          return key === questionKey;
+        });
+        const optionIndex = preferences[questionIndex]?.options.findIndex(
+          ({ key }) => {
+            return key === optionKey;
+          },
+        );
+
+        preferences[questionIndex].multiselectQuestionId = questionId;
+        preferences[questionIndex].options.splice(optionIndex);
+
+        await this.prisma.applications.update({
+          data: { preferences: preferences as unknown as Prisma.JsonArray },
+          where: { id: id },
+        });
+      }
+    }
+    console.log('End: Preference Selection Eliminations');
+
+    // Preference Selection Replacements
+    console.log('Start: Preference Selection Replacements');
+    for (const { questionId, questionKey, optionKey, optionReplacement } of this
+      .legacyPreferenceReplacements) {
+      const applications =
+        await this.queryForApplicationsByPreferenceSelections(
+          questionKey,
+          optionKey,
+        );
+
+      for (const { id, preferences } of applications) {
+        const questionIndex = preferences.findIndex(({ key }) => {
+          return key === questionKey;
+        });
+        const optionIndex = preferences[questionIndex]?.options.findIndex(
+          ({ key }) => {
+            return key === optionKey;
+          },
+        );
+
+        preferences[questionIndex].multiselectQuestionId = questionId;
+        preferences[questionIndex].options[optionIndex].key = optionReplacement;
+
+        await this.prisma.applications.update({
+          data: { preferences: preferences as unknown as Prisma.JsonArray },
+          where: { id: id },
+        });
+      }
+    }
+    console.log('End: Preference Selection Replacements');
+
+    // Program Selection Replacement
+    console.log('Start: Program Selection Replacement');
+
+    const rawQuery = `SELECT 
+        id,
+        programs
+      FROM applications,
+        jsonb_array_elements(programs) WITH ORDINALITY arr(item, index)
+      WHERE EXISTS (
+        SELECT
+          1
+        FROM jsonb_array_elements(programs) elem
+        WHERE elem @> '{"key": "${this.legacyProgramReplacement.questionKey}"}'
+          AND exists (
+            SELECT
+              1
+            FROM jsonb_array_elements(elem -> 'options') opt
+            WHERE opt @> '{"key": "${this.legacyProgramReplacement.optionKey}"}'
+          )
+    )`;
+
+    const applications: Application[] = await this.prisma.$queryRawUnsafe(
+      rawQuery,
+    );
+
+    console.log(
+      `Found ${applications.length} applications for optionKey: ${this.legacyProgramReplacement.optionKey}`,
+    );
+
+    for (const { id, programs } of applications) {
+      const questionIndex = programs.findIndex(({ key }) => {
+        return key === this.legacyProgramReplacement.questionKey;
+      });
+      const optionIndex = programs[questionIndex]?.options.findIndex(
+        ({ key }) => {
+          return key === this.legacyProgramReplacement.optionKey;
+        },
+      );
+
+      programs[questionIndex].multiselectQuestionId =
+        this.legacyProgramReplacement.questionId;
+      programs[questionIndex].options[optionIndex].key =
+        this.legacyProgramReplacement.optionReplacement;
+
+      await this.prisma.applications.update({
+        data: { programs: programs as unknown as Prisma.JsonArray },
+        where: { id: id },
+      });
+    }
+    console.log('End: Program Selection Replacement');
+
+    await this.markScriptAsComplete('correct legacy MSQ data', requestingUser);
+    return { success: true };
+  }
+
+  /**
     this is simply an example
   */
   async example(req: ExpressRequest): Promise<SuccessDTO> {
@@ -860,6 +1029,154 @@ export class ScriptRunnerService {
       },
     });
   }
+
+  async queryForApplicationsByPreferenceSelections(
+    questionKey: string,
+    optionKey: string,
+  ): Promise<Application[]> {
+    const rawQuery = `SELECT 
+        id,
+        preferences
+      FROM applications,
+        jsonb_array_elements(preferences) WITH ORDINALITY arr(item, index)
+      WHERE EXISTS (
+        SELECT
+          1
+        FROM jsonb_array_elements(preferences) elem
+        WHERE elem @> '{"key": "${questionKey}"}'
+          AND exists (
+            SELECT
+              1
+            FROM jsonb_array_elements(elem -> 'options') opt
+            WHERE opt @> '{"key": "${optionKey}"}'
+          )
+    )`;
+
+    const applications: Application[] = await this.prisma.$queryRawUnsafe(
+      rawQuery,
+    );
+    console.log(
+      `Found ${applications.length} applications for optionKey: ${optionKey}`,
+    );
+
+    return applications;
+  }
+
+  legacyPreferenceEliminations = [
+    {
+      questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
+      questionKey: 'Live or work in the City of San Mateo',
+      optionKey: 'I dont want this preference',
+      optionReplacement: '',
+    },
+    // Query does not work because the apostrephe in optionKey cause the SQL query to break
+    // {
+    //   questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
+    //   questionKey: 'Live or work in the City of San Mateo',
+    //   optionKey: "I don't want this preference",
+    //   optionReplacement: '',
+    // },
+  ];
+
+  legacyPreferenceReplacements = [
+    {
+      questionId: 'a1ac9802-1941-40a9-b5b2-91f018495c58',
+      questionKey: 'Berkeley Housing Authority Apartments',
+      optionKey:
+        'Berkeley Housing Authority Project Based Voucher Section 8 apartments',
+      optionReplacement:
+        'I would like to be considered for Berkeley Housing Authority Project Based Voucher Section 8 apartments',
+    },
+    {
+      questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
+      questionKey: 'Live or work in the City of San Mateo',
+      optionKey:
+        'At least one member of my household lives in the City of San Mateo',
+      optionReplacement: 'Live in the City of San Mateo',
+    },
+    {
+      questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
+      questionKey: 'Live or work in the City of San Mateo',
+      optionKey:
+        'At least one member of my household works in the City of San Mateo',
+      optionReplacement: 'Work in the City of San Mateo',
+    },
+    {
+      questionId: '0016357d-68de-4ddc-9b9a-9d6c9637653c',
+      questionKey: 'Live or work in the City of San Mateo',
+      optionKey:
+        'Al menos un miembro de mi hogar trabaja en la ciudad de San Mateo',
+      optionReplacement: 'Work in the City of San Mateo',
+    },
+    {
+      questionId: 'cc6eeb1b-3520-49dd-b7f6-5b0137b014eb',
+      questionKey: 'Live or Work in South San Francisco ',
+      optionKey: 'Live of Work in South San Francisco ',
+      optionReplacement: 'Live or Work in South San Francisco ',
+    },
+    {
+      questionId: 'b814415e-4f22-40ba-9141-f415132c1bb9',
+      questionKey: 'City of Emeryville Housing Preferences',
+      optionKey: 'Al menos un miembro de mi hogar vive en Emeryville',
+      optionReplacement:
+        'At least one member of my household lives in the Emeryville',
+    },
+    {
+      questionId: 'b814415e-4f22-40ba-9141-f415132c1bb9',
+      questionKey: 'City of Emeryville Housing Preferences',
+      optionKey:
+        'Tengo un hijo matriculado en el Distrito Escolar Unificado de Emeryville (EUSD) o en el Centro de Desarrollo Infantil de Emeryville (ECDC)',
+      optionReplacement:
+        'I have a child enrolled in the Emeryville Unified School District (EUSD) or Emeryville Child Development Center (ECDC)',
+    },
+    {
+      questionId: 'c0db7bda-7d82-47b2-99c4-7ca283dcaa76',
+      questionKey: 'San Andreas Regional Center (SARC)',
+      optionKey: 'No quiero esta preferencia-undefined',
+      optionReplacement: "I don't want this preference",
+    },
+    {
+      questionId: 'c0db7bda-7d82-47b2-99c4-7ca283dcaa76',
+      questionKey: 'San Andreas Regional Center (SARC)',
+      optionKey: '我不想要这个偏好-undefined',
+      optionReplacement: "I don't want this preference",
+    },
+    {
+      questionId: 'c0db7bda-7d82-47b2-99c4-7ca283dcaa76',
+      questionKey: 'San Andreas Regional Center (SARC)',
+      optionKey: 'Tôi không muốn sở thích này-undefined',
+      optionReplacement: "I don't want this preference",
+    },
+    {
+      questionId: '2b40b947-6f2a-4dab-9268-66414584be03',
+      questionKey:
+        ' Estoy preinscrito en el Departamento de Vivienda con preferencia para vivir/trabajar para viviendas de alquiler por debajo del precio del mercado (BMR) y estuve preinscrito antes de enero de 2022',
+      optionKey: 'Vive en la Ciudad de San Mateo',
+      optionReplacement: 'Yes, I am a City of San Mateo Registered Renter ',
+    },
+    {
+      questionId: '2b40b947-6f2a-4dab-9268-66414584be03',
+      questionKey:
+        ' Estoy preinscrito en el Departamento de Vivienda con preferencia para vivir/trabajar para viviendas de alquiler por debajo del precio del mercado (BMR) y estuve preinscrito antes de enero de 2022',
+      optionKey: 'Vivir o Trabajar en la Ciudad de San Mateo',
+      optionReplacement: 'Yes, I am a City of San Mateo Registered Renter ',
+    },
+    {
+      questionId: '2b40b947-6f2a-4dab-9268-66414584be03',
+      questionKey:
+        ' Estoy preinscrito en el Departamento de Vivienda con preferencia para vivir/trabajar para viviendas de alquiler por debajo del precio del mercado (BMR) y estuve preinscrito antes de enero de 2022',
+      optionKey:
+        'No estoy preinscrito en el Departamento de Vivienda con preferencia de vivir/trabajar para viviendas de alquiler por debajo del precio del mercado (BMR).',
+      optionReplacement: 'No, I am not a City of San Mateo Registered Renter ',
+    },
+  ];
+
+  legacyProgramReplacement = {
+    questionId: 'f67f4178-5ef3-486c-9dac-edd0a0827a7b',
+    questionKey: 'Flat Rent & Rent Based on Income',
+    optionKey: 'Apartamento asequible con alquiler fijo',
+    optionReplacement: 'Affordable apartment with flat rent',
+  };
 
   async updateTranslationsForLanguage(
     language: LanguagesEnum,
