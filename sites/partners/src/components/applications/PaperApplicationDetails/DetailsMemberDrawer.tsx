@@ -16,6 +16,7 @@ type DetailsMemberDrawerProps = {
   membersDrawer: MembersDrawer
   setMembersDrawer: (member: MembersDrawer) => void
   enableFullTimeStudentQuestion?: boolean
+  disableWorkInRegion?: boolean
 }
 
 const DetailsMemberDrawer = ({
@@ -23,6 +24,7 @@ const DetailsMemberDrawer = ({
   membersDrawer,
   setMembersDrawer,
   enableFullTimeStudentQuestion,
+  disableWorkInRegion,
 }: DetailsMemberDrawerProps) => {
   return (
     <Drawer
@@ -82,16 +84,20 @@ const DetailsMemberDrawer = ({
                   }
                 />
 
-                <FieldValue
-                  label={t("application.add.workInRegion")}
-                  children={
-                    membersDrawer?.workInRegion === YesNoEnum.yes
-                      ? t("t.yes")
-                      : membersDrawer?.workInRegion === YesNoEnum.no
-                      ? t("t.no")
-                      : t("t.n/a")
-                  }
-                />
+                {!disableWorkInRegion && (
+                  <Grid.Cell>
+                    <FieldValue
+                      label={t("application.add.workInRegion")}
+                      children={
+                        membersDrawer?.workInRegion === YesNoEnum.yes
+                          ? t("t.yes")
+                          : membersDrawer?.workInRegion === YesNoEnum.no
+                          ? t("t.no")
+                          : t("t.n/a")
+                      }
+                    />
+                  </Grid.Cell>
+                )}
 
                 {enableFullTimeStudentQuestion && (
                   <FieldValue

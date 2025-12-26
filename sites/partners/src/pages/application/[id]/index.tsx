@@ -40,6 +40,11 @@ export default function ApplicationsList() {
     listingDto?.jurisdictions.id
   )
 
+  const disableWorkInRegion = doJurisdictionsHaveFeatureFlagOn(
+    FeatureFlagEnum.disableWorkInRegion,
+    listingDto?.jurisdictions.id
+  )
+
   const [membersDrawer, setMembersDrawer] = useState<MembersDrawer>(null)
 
   const enableFullTimeStudentQuestion = doJurisdictionsHaveFeatureFlagOn(
@@ -140,6 +145,7 @@ export default function ApplicationsList() {
 
                 <DetailsPrimaryApplicant
                   enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
+                  disableWorkInRegion={disableWorkInRegion}
                 />
 
                 <DetailsAlternateContact />
@@ -147,6 +153,7 @@ export default function ApplicationsList() {
                 <DetailsHouseholdMembers
                   setMembersDrawer={setMembersDrawer}
                   enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
+                  disableWorkInRegion={disableWorkInRegion}
                 />
 
                 <DetailsHouseholdDetails
@@ -188,6 +195,7 @@ export default function ApplicationsList() {
         membersDrawer={membersDrawer}
         setMembersDrawer={setMembersDrawer}
         enableFullTimeStudentQuestion={enableFullTimeStudentQuestion}
+        disableWorkInRegion={disableWorkInRegion}
       />
     </ApplicationContext.Provider>
   )
