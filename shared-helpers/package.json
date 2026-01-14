@@ -23,6 +23,7 @@
     "tough-cookie": "^5.1.2"
   },
   "devDependencies": {
+    "@google-cloud/translate": "^9.2.0",
     "@testing-library/jest-dom": "5.17.0",
     "@testing-library/react": "14.0.0",
     "@types/jest": "^26.0.14",
