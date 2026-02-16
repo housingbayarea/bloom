@@ -12,20 +12,16 @@ afterEach(cleanup)
 
 describe("<MainDetails>", () => {
   it("shows nothing if no listing", () => {
-    const { queryByText } = render(
-      <MainDetails listing={null} dueDateContent={[]} jurisdiction={jurisdiction} />
-    )
+    const { queryByText } = render(<MainDetails listing={null} jurisdiction={jurisdiction} />)
     expect(queryByText(listing.name)).toBeNull()
   })
   it("shows all content", () => {
-    const { getByText, getByRole, getByAltText } = render(
-      <MainDetails listing={listing} dueDateContent={[]} jurisdiction={jurisdiction} />
-    )
-    expect(getByRole("heading", { level: 1 })).toHaveTextContent(listing.name)
-    expect(getByText(oneLineAddress(listing.listingsBuildingAddress))).toBeDefined()
-    expect(getByText("View on Map")).toBeDefined()
-    expect(getByText(listing.developer)).toBeDefined()
-    expect(getByAltText("A picture of the building")).toBeDefined()
+    render(<MainDetails listing={listing} jurisdiction={jurisdiction} />)
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(listing.name)
+    expect(screen.getByText(oneLineAddress(listing.listingsBuildingAddress))).toBeDefined()
+    expect(screen.getByText("View on map")).toBeDefined()
+    expect(screen.getByText(listing.developer)).toBeDefined()
+    expect(screen.getByAltText("A picture of the building")).toBeDefined()
   })
   it("shows no tags", () => {
     const { queryByTestId } = render(
@@ -35,7 +31,6 @@ describe("<MainDetails>", () => {
           reviewOrderType: ReviewOrderTypeEnum.lottery,
           reservedCommunityTypes: null,
         }}
-        dueDateContent={[]}
         jurisdiction={jurisdiction}
       />
     )
@@ -49,7 +44,6 @@ describe("<MainDetails>", () => {
           reviewOrderType: ReviewOrderTypeEnum.lottery,
           reservedCommunityTypes: { id: "id", name: "veteran" },
         }}
-        dueDateContent={[]}
         jurisdiction={jurisdiction}
       />
     )

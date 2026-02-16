@@ -18,7 +18,7 @@ describe("helpers", () => {
   describe("getStatusPrefix", () => {
     it("should return correctly for closed listings", () => {
       expect(getStatusPrefix({ ...listing, status: ListingsStatusEnum.closed }, false)).toEqual({
-        label: "Applications Closed",
+        label: "Applications closed",
         variant: "secondary-inverse",
       })
     })
@@ -35,7 +35,7 @@ describe("helpers", () => {
           false
         )
       ).toEqual({
-        label: "First Come First Serve",
+        label: "First come first serve",
         variant: "primary",
       })
     })
@@ -52,7 +52,7 @@ describe("helpers", () => {
           true
         )
       ).toEqual({
-        label: "Under Construction",
+        label: "Under construction",
         variant: "warn",
       })
     })
@@ -67,7 +67,7 @@ describe("helpers", () => {
           false
         )
       ).toEqual({
-        label: "Applications Closed",
+        label: "Applications closed",
         variant: "secondary-inverse",
       })
     })
@@ -99,7 +99,7 @@ describe("helpers", () => {
           false
         )
       ).toEqual({
-        label: "Open Waitlist",
+        label: "Open waitlist",
         variant: "secondary",
       })
     })
@@ -129,7 +129,7 @@ describe("helpers", () => {
         new Date(2026, 1, 1, 10, 30, 0),
         false
       )
-      expect(result).toContain("Application Due:")
+      expect(result).toContain("Application due:")
       expect(result).toContain("10:30AM")
     })
     it("should return date but hide time", () => {
@@ -142,7 +142,7 @@ describe("helpers", () => {
         new Date(2026, 1, 1, 10, 30, 0),
         true
       )
-      expect(result).toContain("Application Due:")
+      expect(result).toContain("Application due:")
       expect(result).not.toContain("10:30AM")
     })
   })
@@ -170,7 +170,7 @@ describe("helpers", () => {
         null,
         false
       )
-    ).toEqual("Applications Open")
+    ).toEqual("Applications open")
   })
 
   describe("getListingStatusMessage", () => {
@@ -188,7 +188,7 @@ describe("helpers", () => {
           false
         )
       )
-      expect(view.getByText("Applications Closed")).toBeDefined()
+      expect(view.getByText("Applications closed")).toBeDefined()
     })
   })
   it("should return correctly for open listing with date", () => {

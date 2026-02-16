@@ -23,8 +23,8 @@ describe("<RentSummary>", () => {
       />
     )
     expect(getAllByText("Rent").length).toBeGreaterThan(0)
-    expect(getByText("Unit Type")).toBeDefined()
-    expect(getByText("Minimum Income")).toBeDefined()
+    expect(getByText("Unit type")).toBeDefined()
+    expect(getByText("Minimum income")).toBeDefined()
     expect(getByText("Availability")).toBeDefined()
   })
   it("shows all content for multiple percentages", () => {
@@ -47,10 +47,10 @@ describe("<RentSummary>", () => {
       />
     )
     expect(getAllByText("Rent").length).toBeGreaterThan(0)
-    expect(getByText("30% AMI Unit")).toBeDefined()
-    expect(getByText("60% AMI Unit")).toBeDefined()
-    expect(getAllByText("Unit Type").length).toBe(2)
-    expect(getAllByText("Minimum Income").length).toBe(2)
+    expect(getByText("30% AMI unit")).toBeDefined()
+    expect(getByText("60% AMI unit")).toBeDefined()
+    expect(getAllByText("Unit type").length).toBe(2)
+    expect(getAllByText("Minimum income").length).toBe(2)
     expect(getAllByText("Availability").length).toBe(2)
   })
 })
