@@ -1,5 +1,4 @@
 <RenderIf language="default">
-
 1. ## Find Apartments Accepting Applications (Listings)
 
   <p class="markdown__lead">Find high-quality, affordable rental housing opportunities located throughout San José on the listing page of this Housing Portal.</p>
@@ -146,7 +145,6 @@
 </RenderIf>
 
 <RenderIf language="es">
-
 1. ## Encontrar Apartamentos a través de la Aceptación de Solicitudes (Anuncios)
 
   <p class="markdown__lead">Podrá encontrar alquileres de viviendas de alta calidad y económicos en todo San José en la página del anuncio en este Portal de Viviendas.</p>
@@ -295,7 +293,6 @@
 </RenderIf>
 
 <RenderIf language="zh">
-
 1. ## 尋找公寓受理申請（刊登資訊）
 
   <p class="markdown__lead">聖荷西市 Doorway 門戶網站是灣區幾個類似的網站之一，旨在簡化尋找和申請可負擔租 房的過程。本指南介紹可負擔住房以及如何申請。</p>
@@ -444,7 +441,6 @@
 </RenderIf>
 
 <RenderIf language="vi">
-
 1. ## Tìm các căn hộ đang nhận đơn đăng ký (Danh sách)
 
   <p class="markdown__lead">Tìm các cơ hội thuê nhà chất lượng cao, giá cả phải chăng tại San José trên trang danh sách của Cổng thông tin nhà ở này.</p>

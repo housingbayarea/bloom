@@ -1,5 +1,4 @@
 <RenderIf language="default">
-
 1. ## Find Apartments Accepting Applications (Listings)
 
   <p class="markdown__lead">Find high-quality, affordable housing opportunities located throughout the Bay Area.</p>
@@ -130,7 +129,6 @@
 </RenderIf>
 
 <RenderIf language="es">
-
 1. ## Busque apartamentos que estén aceptando solicitudes (listados).
 
   <p class="markdown__lead">Busque oportunidades de viviendas asequibles de alta calidad, que estén ubicadas a lo largo del Área de la Bahía.</p>
@@ -260,7 +258,6 @@ sitio web de la propiedad antes de ponerse en contacto con el gerente de la prop
 </RenderIf>
 
 <RenderIf language="zh">
-
 1. ## 尋找接受申請的公寓（刊登物件）
 
   <p class="markdown__lead">尋找整個灣區的高品質社會住宅機會。</p>
@@ -389,7 +386,6 @@ sitio web de la propiedad antes de ponerse en contacto con el gerente de la prop
 </RenderIf>
 
 <RenderIf language="vi">
-
 1. ## Tìm Căn Hộ Chấp Nhận Đơn Đăng Kí (Danh sách)
 
   <p class="markdown__lead">Tìm các cơ hội thuê nhà ở bình dân chất lượng cao ở khắp Khu vực Vịnh.</p>

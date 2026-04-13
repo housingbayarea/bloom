@@ -1,5 +1,4 @@
 <RenderIf language="default">
-
 1. ## Find Apartments Accepting Applications (Listings)
 
   <p class="markdown__lead">Find high-quality, affordable rental housing opportunities located throughout Alameda County on the listing page of this Housing Portal.</p>
@@ -146,7 +145,6 @@
 </RenderIf>
 
 <RenderIf language="es">
-
 1. ## Encontrar Apartamentos a través de la Aceptación de Solicitudes (Anuncios)
 
   <p class="markdown__lead">Podrá encontrar alquileres de viviendas de alta calidad y económicos en todo el Condado de Alameda en la página del anuncio en este Portal de Viviendas.</p>
@@ -295,7 +293,6 @@
 </RenderIf>
 
 <RenderIf language="zh">
-
 1. ## 尋找公寓受理申請（刊登資訊）
 
   <p class="markdown__lead">在此住房入口網站的刊登資訊頁面上，尋找阿拉米達郡全區中可負擔的優質租屋機會。</p>
@@ -444,7 +441,6 @@
 </RenderIf>
 
 <RenderIf language="vi">
-
 1. ## Tìm các căn hộ đang nhận đơn đăng ký (Danh sách)
 
   <p class="markdown__lead">Tìm các cơ hội thuê nhà chất lượng cao, giá cả phải chăng tại Quận Alameda trên trang danh sách của Cổng thông tin nhà ở này.</p>
@@ -593,7 +589,6 @@
 </RenderIf>
 
 <RenderIf language="tl">
-
 1. ## Maghanap ng mga Apartment na Tumatanggap ng Application (Mga Lista)
 
   <p class="markdown__lead">Maghanap ng mataas ang kalidad, abot-kayang oportunidad ng pabahay na matatagpuan sa buong Alameda County.</p>

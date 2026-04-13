@@ -1,5 +1,4 @@
 <RenderIf language="default">
-
 1. #### Find Apartments Accepting Applications (Listings)
 
   Find high-quality, affordable housing opportunities located throughout the Bay Area.
@@ -23,7 +22,6 @@
 </RenderIf>
 
 <RenderIf language="es">
-
 1. #### Encontrar Apartamentos que Acepten Solicitudes (Anuncios)
 
   Podrá encontrar viviendas de alta calidad y a precios accesibles ubicadas en todo el Condado de Alameda.
@@ -47,7 +45,6 @@
 </RenderIf>
 
 <RenderIf language="zh">
-
 1. #### 尋找公寓受理申請（刊登資訊）
 
   尋找阿拉米達郡全區中可負擔的優質住房機會。
@@ -71,7 +68,6 @@
 </RenderIf>
 
 <RenderIf language="vi">
-
 1. #### Tìm các căn hộ đang nhận đơn đăng ký (Danh sách)
 
   Tìm cơ hội nhà ở chất lượng cao, giá cả phải chăng tại Quận Alameda.
