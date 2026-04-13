@@ -11,6 +11,7 @@ import {
   StandardTableData,
 } from "@bloom-housing/ui-components"
 import { Button, Card, Drawer, Grid } from "@bloom-housing/ui-seeds"
+import { AuthContext } from "@bloom-housing/shared-helpers"
 import { cloudinaryFileUploader, fieldMessage, fieldHasError } from "../../../../lib/helpers"
 import {
   ApplicationMethodCreate,
@@ -21,7 +22,6 @@ import {
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import { FormListing } from "../../../../lib/listings/formTypes"
 import SectionWithGrid from "../../../shared/SectionWithGrid"
-import { AuthContext } from "@bloom-housing/shared-helpers"
 
 interface Methods {
   digital: ApplicationMethodCreate
@@ -235,16 +235,6 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
       >
         <Grid.Row columns={2}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.digitalApplication) &&
-                digitalApplicationChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isDigitalApplication")}
-            </p>
-
             <FieldGroup
               name="digitalApplicationChoice"
               type="radio"
@@ -252,6 +242,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
               error={fieldHasError(errors?.digitalApplication) && digitalApplicationChoice === null}
               errorMessage={fieldMessage(errors?.digitalApplication)}
               groupSubNote={t("listings.requiredToPublish")}
+              fieldLabelClassName={`seeds-m-bs-2`}
+              groupLabel={t("listings.isDigitalApplication")}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
@@ -367,16 +359,6 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
           )}
         <Grid.Row columns={2}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.paperApplication) &&
-                paperApplicationChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isPaperApplication")}
-            </p>
-
             <FieldGroup
               name="paperApplicationChoice"
               type="radio"
@@ -384,6 +366,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
               error={fieldHasError(errors?.paperApplication) && paperApplicationChoice === null}
               errorMessage={fieldMessage(errors?.paperApplication)}
               register={register}
+              groupLabel={t("listings.isPaperApplication")}
+              fieldLabelClassName={`seeds-m-bs-2`}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
@@ -473,21 +457,13 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
         )}
         <Grid.Row columns={1}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.referralOpportunity) &&
-                referralOpportunityChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isReferralOpportunity")}
-            </p>
-
             <FieldGroup
               name="referralOpportunityChoice"
               type="radio"
               register={register}
+              groupLabel={t("listings.isReferralOpportunity")}
               groupSubNote={t("listings.requiredToPublish")}
+              fieldLabelClassName={`seeds-m-bs-2`}
               error={
                 fieldHasError(errors?.referralOpportunity) && referralOpportunityChoice === null
               }
