@@ -26,14 +26,14 @@
   "scripts": {
     "link:uic": "cd node_modules/react && yarn link && cd ../../../ui-components && yarn link 'react' && yarn link && cd ../bloom && yarn link '@bloom-housing/ui-components'",
     "unlink:uic": "yarn unlink @bloom-housing/ui-components && cd ../ui-components && yarn unlink react && yarn unlink && yarn install --force && cd ../bloom/node_modules/react && yarn unlink && cd ../.. && yarn install --force",
-    "dev:app:public": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/public && yarn dev",
-    "test:app:public": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/public && yarn test",
-    "test:app:public:headless": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/public && yarn test:headless",
+    "dev:app:public": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/public && yarn dev",
+    "test:app:public": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/public && yarn test",
+    "test:app:public:headless": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/public && yarn test:headless",
     "test:app:public:unit": "cd sites/public && yarn test:unit:coverage",
     "build:app:public": "cd sites/public && yarn build",
-    "dev:app:partners": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/partners && yarn dev",
-    "test:app:partners": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/partners && yarn test",
-    "test:app:partners:headless": "wait-on \"http-get://localhost:${PORT:-3100}/\" && cd sites/partners && yarn test:headless",
+    "dev:app:partners": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/partners && yarn dev",
+    "test:app:partners": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/partners && yarn test",
+    "test:app:partners:headless": "wait-on \"http-get://127.0.0.1:${PORT:-3100}/\" && cd sites/partners && yarn test:headless",
     "test:app:partners:unit": "cd sites/partners && yarn test:unit:coverage",
     "build:app:partners": "cd sites/partners && yarn build",
     "dev:backend": "cd api && yarn dev",
@@ -59,7 +59,7 @@
     "@commitlint/config-conventional": "^13.1.0",
     "@types/jest": "^26.0.14",
     "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
+    "@typescript-eslint/parser": "^7.18.0",
     "commitizen": "^4.3.1",
     "concurrently": "^5.3.0",
     "eslint": "^8.0.1",
@@ -73,10 +73,10 @@
     "jest": "^26.5.3",
     "lint-staged": "^10.4.0",
     "prettier": "^2.8.8",
-    "react": "18.2.0",
-    "react-test-renderer": "18.2.0",
+    "react": "19.2.3",
+    "react-test-renderer": "19.2.3",
     "ts-jest": "^26.4.1",
-    "typescript": "4.6.4",
+    "typescript": "4.9.5",
     "wait-on": "^9.0.5"
   },
   "prettier": {
@@ -93,5 +93,10 @@
     "*.{js,ts,tsx}": "eslint"
   },
   "dependencies": {},
+  "resolutions": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "@fortawesome/react-fontawesome": "3.1.0"
+  },
   "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }

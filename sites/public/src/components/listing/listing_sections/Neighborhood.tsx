@@ -1,7 +1,7 @@
 import * as React from "react"
-import { ListingMap, t } from "@bloom-housing/ui-components"
+import { t } from "@bloom-housing/ui-components"
 import { HeadingGroup, Link } from "@bloom-housing/ui-seeds"
-import { oneLineAddress } from "@bloom-housing/shared-helpers"
+import { oneLineAddress, Map } from "@bloom-housing/shared-helpers"
 import {
   Address,
   ListingNeighborhoodAmenities,
@@ -37,7 +37,7 @@ export const Neighborhood = ({
       priority={2}
     >
       <div className={`${styles["mobile-inline-collapse-padding"]} seeds-m-bs-section`}>
-        <ListingMap address={getGenericAddress(address)} listingName={name} />
+        <Map address={getGenericAddress(address)} listingName={name} />
         <Link href={googleMapsHref} newWindowTarget={true} className={"seeds-m-bs-4"}>
           {t("t.getDirections")}
         </Link>
@@ -45,8 +45,7 @@ export const Neighborhood = ({
           <HeadingGroup
             heading={t("t.neighborhood")}
             subheading={neighborhood}
-            size={"lg"}
-            headingPriority={3}
+            headingProps={{ priority: 3, size: "lg" }}
             className={`${styles["heading-group"]} seeds-m-bs-section`}
           />
         )}
@@ -54,8 +53,7 @@ export const Neighborhood = ({
           <HeadingGroup
             heading={t("t.region")}
             subheading={region}
-            size={"lg"}
-            headingPriority={3}
+            headingProps={{ priority: 3, size: "lg" }}
             className={`${styles["heading-group"]} seeds-m-bs-section`}
           />
         )}
@@ -64,8 +62,7 @@ export const Neighborhood = ({
             <HeadingGroup
               heading={t("listings.sections.neighborhoodAmenitiesTitle")}
               subheading={t("listings.sections.neighborhoodAmenitiesSubtitle")}
-              size={"lg"}
-              headingPriority={3}
+              headingProps={{ priority: 3, size: "lg" }}
               className={`${styles["heading-group"]} seeds-m-bs-section`}
             />
             {Object.keys(neighborhoodAmenities).map((amenity, index) => {
@@ -74,8 +71,7 @@ export const Neighborhood = ({
                 <HeadingGroup
                   heading={t(`listings.amenities.${amenity}`)}
                   subheading={neighborhoodAmenities[amenity]}
-                  size={"lg"}
-                  headingPriority={4}
+                  headingProps={{ priority: 4, size: "lg" }}
                   className={`${styles["heading-group"]} ${styles["nested-heading-group"]} seeds-m-bs-content`}
                   key={index}
                 />
