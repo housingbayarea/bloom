@@ -19,7 +19,7 @@ describe("Listing Management Tests", () => {
     cy.getByID("jurisdictions.id-error").contains("This field is required")
     // Fill out minimum fields and errors get removed
     cy.getByID("jurisdictions.id").select("San Jose")
-    cy.getByID("jurisdictions.id-error").should("have.length", 0)
+    cy.getByID("jurisdictions.id").should("not.have.attr", "aria-invalid", "true")
     cy.getByID("name").type("Test - error messaging")
     cy.getByID("name-error").should("to.be.empty")
     cy.getByID("saveDraftButton").contains("Save as Draft").click()
