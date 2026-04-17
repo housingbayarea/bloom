@@ -5,7 +5,8 @@ import { useSWRConfig } from "swr"
 import { useRouter } from "next/router"
 import { GridApi } from "ag-grid-community"
 import { useForm } from "react-hook-form"
-import { t, AlertBox, useMutate, AgTable, useAgTable, Field } from "@bloom-housing/ui-components"
+import { t, AlertBox, useMutate, Field } from "@bloom-housing/ui-components"
+import { AgTable, useAgTable } from "@bloom-housing/ui-components/ag-table"
 import { Button, Dialog, Icon, Tag } from "@bloom-housing/ui-seeds"
 import ChevronLeftIcon from "@heroicons/react/20/solid/ChevronLeftIcon"
 import {
@@ -18,7 +19,7 @@ import {
 import { AuthContext } from "@bloom-housing/shared-helpers"
 import { useSingleFlaggedApplication } from "../../../lib/hooks"
 import Layout from "../../../layouts"
-import { getCols } from "./applicationsCols"
+import { getCols } from "../../../lib/applications/applicationsCols"
 import { NavigationHeader } from "../../../components/shared/NavigationHeader"
 import { StatusBar } from "../../../components/shared/StatusBar"
 

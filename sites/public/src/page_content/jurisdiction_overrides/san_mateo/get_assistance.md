@@ -19,7 +19,6 @@ We encourage you to browse other affordable housing resources.
 
 </RenderIf>
 <RenderIf language="es">
-
 <ContentIcon name="home" outlined />
 
 ## Cómo realizar la solicitud para una vivienda asequible

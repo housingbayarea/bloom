@@ -8,11 +8,10 @@ import {
   MinimalTable,
   Select,
   Textarea,
-  PhoneField,
-  PhoneMask,
   StandardTableData,
 } from "@bloom-housing/ui-components"
 import { Button, Card, Drawer, Grid } from "@bloom-housing/ui-seeds"
+import { AuthContext } from "@bloom-housing/shared-helpers"
 import { cloudinaryFileUploader, fieldMessage, fieldHasError } from "../../../../lib/helpers"
 import {
   ApplicationMethodCreate,
@@ -23,12 +22,52 @@ import {
 } from "@bloom-housing/shared-helpers/src/types/backend-swagger"
 import { FormListing } from "../../../../lib/listings/formTypes"
 import SectionWithGrid from "../../../shared/SectionWithGrid"
-import { AuthContext } from "@bloom-housing/shared-helpers"
 
 interface Methods {
   digital: ApplicationMethodCreate
   paper: ApplicationMethodCreate
   referral: ApplicationMethodCreate
+}
+
+/**
+ * Input for the phone fields need to be masked to make sure the format of
+ * "(123) 456-7890" is the only accepted form.
+ * Limit characters to only values allowed and auto-add phone formatting
+ */
+export const phoneMask = (incomingNewValue: string): string => {
+  // Remove all non number characters
+  let newValue = incomingNewValue.replace(/[^0-9]/g, "")
+
+  const NUMBER = "number"
+
+  // Add the additional characters to the proper spots
+  ;[
+    "(",
+    NUMBER,
+    NUMBER,
+    NUMBER,
+    ")",
+    " ",
+    NUMBER,
+    NUMBER,
+    NUMBER,
+    "-",
+    NUMBER,
+    NUMBER,
+    NUMBER,
+    NUMBER,
+  ].forEach((value, index) => {
+    if (newValue[index] || incomingNewValue.length > index) {
+      if (value !== NUMBER && value !== newValue[index]) {
+        newValue = `${newValue.slice(0, index)}${value}${newValue.slice(index)}`
+      }
+    }
+  })
+  // Only allow a total of 14 character (10 numbers and 4 additional characters)
+  if (newValue.length > 14) {
+    newValue = newValue.slice(0, 14)
+  }
+  return newValue
 }
 
 const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
@@ -84,6 +123,7 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
     id: "",
     url: "",
   })
+  const referralPhoneRef = React.useRef("")
   const resetDrawerState = () => {
     setProgressValue(0)
     setCloudinaryData({
@@ -195,16 +235,6 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
       >
         <Grid.Row columns={2}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.digitalApplication) &&
-                digitalApplicationChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isDigitalApplication")}
-            </p>
-
             <FieldGroup
               name="digitalApplicationChoice"
               type="radio"
@@ -212,6 +242,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
               error={fieldHasError(errors?.digitalApplication) && digitalApplicationChoice === null}
               errorMessage={fieldMessage(errors?.digitalApplication)}
               groupSubNote={t("listings.requiredToPublish")}
+              fieldLabelClassName={`seeds-m-bs-2`}
+              groupLabel={t("listings.isDigitalApplication")}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
@@ -327,16 +359,6 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
           )}
         <Grid.Row columns={2}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.paperApplication) &&
-                paperApplicationChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isPaperApplication")}
-            </p>
-
             <FieldGroup
               name="paperApplicationChoice"
               type="radio"
@@ -344,6 +366,8 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
               error={fieldHasError(errors?.paperApplication) && paperApplicationChoice === null}
               errorMessage={fieldMessage(errors?.paperApplication)}
               register={register}
+              groupLabel={t("listings.isPaperApplication")}
+              fieldLabelClassName={`seeds-m-bs-2`}
               fields={[
                 {
                   ...yesNoRadioOptions[0],
@@ -433,21 +457,13 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
         )}
         <Grid.Row columns={1}>
           <Grid.Cell>
-            <p
-              className={`field-label m-4 ml-0 ${
-                fieldHasError(errors?.referralOpportunity) &&
-                referralOpportunityChoice === null &&
-                "text-alert"
-              }`}
-            >
-              {t("listings.isReferralOpportunity")}
-            </p>
-
             <FieldGroup
               name="referralOpportunityChoice"
               type="radio"
               register={register}
+              groupLabel={t("listings.isReferralOpportunity")}
               groupSubNote={t("listings.requiredToPublish")}
+              fieldLabelClassName={`seeds-m-bs-2`}
               error={
                 fieldHasError(errors?.referralOpportunity) && referralOpportunityChoice === null
               }
@@ -489,28 +505,25 @@ const ApplicationTypes = ({ listing }: { listing: FormListing }) => {
         {referralOpportunityChoice === YesNoEnum.yes && (
           <Grid.Row columns={3}>
             <Grid.Cell>
-              <PhoneField
+              <Field
                 label={t("listings.referralContactPhone")}
                 name="referralContactPhone"
                 id="referralContactPhone"
+                defaultValue={methods.referral ? methods.referral.phoneNumber : ""}
+                register={register}
                 placeholder={t("t.phoneNumberPlaceholder")}
-                mask={() => (
-                  <PhoneMask
-                    name="referralContactPhone"
-                    value={methods.referral ? methods.referral.phoneNumber : ""}
-                    placeholder={t("t.phoneNumberPlaceholder")}
-                    onChange={(e) => {
-                      setMethods({
-                        ...methods,
-                        referral: {
-                          ...methods.referral,
-                          phoneNumber: e,
-                        },
-                      })
-                    }}
-                  />
-                )}
-                controlClassName={"control"}
+                onChange={(e) => {
+                  const newValue = phoneMask(e.target.value)
+                  referralPhoneRef.current = newValue
+                  e.target.value = newValue
+                  setMethods({
+                    ...methods,
+                    referral: {
+                      ...methods.referral,
+                      phoneNumber: e.target.value,
+                    },
+                  })
+                }}
               />
             </Grid.Cell>
             <Grid.Cell className="seeds-grid-span-2">

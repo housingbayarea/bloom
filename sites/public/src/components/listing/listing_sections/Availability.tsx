@@ -168,7 +168,12 @@ export const Availability = ({ listing, jurisdiction }: AvailabilityProps) => {
           <p className={styles["bold-subheader"]}>{subtitle}</p>
         )}
         {statusMessage && (
-          <p className={`${listingStyles["thin-heading-sm"]} seeds-m-bs-label`}>{statusMessage}</p>
+          <p
+            className={`${listingStyles["thin-heading-sm"]} seeds-m-bs-label`}
+            suppressHydrationWarning
+          >
+            {statusMessage}
+          </p>
         )}
         {content && <p className={"seeds-m-bs-label"}>{content}</p>}
         {subheading && subheading}

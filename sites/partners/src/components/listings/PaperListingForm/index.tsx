@@ -1,11 +1,16 @@
 import React, { useState, useCallback, useContext, useEffect } from "react"
 import { useRouter } from "next/router"
 import dayjs from "dayjs"
-import { t, Form, AlertBox, LoadingOverlay, LatitudeLongitude } from "@bloom-housing/ui-components"
+import { t, Form, AlertBox, LoadingOverlay } from "@bloom-housing/ui-components"
 import { Button, Icon, Tabs } from "@bloom-housing/ui-seeds"
 import ChevronLeftIcon from "@heroicons/react/20/solid/ChevronLeftIcon"
 import ChevronRightIcon from "@heroicons/react/20/solid/ChevronRightIcon"
-import { AuthContext, MessageContext, listingSectionQuestions } from "@bloom-housing/shared-helpers"
+import {
+  AuthContext,
+  MessageContext,
+  listingSectionQuestions,
+  LatitudeLongitude,
+} from "@bloom-housing/shared-helpers"
 import {
   FeatureFlag,
   FeatureFlagEnum,
@@ -95,6 +100,7 @@ const ListingForm = ({ listing, editMode, setListingName }: ListingFormProps) =>
   const defaultValues = editMode ? listing : formDefaults
   const formMethods = useForm<FormListing>({
     defaultValues,
+    mode: "onBlur",
     shouldUnregister: false,
   })
 
