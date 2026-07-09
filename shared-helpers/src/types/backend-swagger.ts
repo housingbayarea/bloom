@@ -5,12 +5,23 @@
 /** Generate by swagger-axios-codegen */
 /* eslint-disable */
 // @ts-nocheck
-import axiosStatic, { AxiosInstance, AxiosRequestConfig } from "axios"
+import axiosStatic from "axios"
+import type { AxiosInstance, AxiosRequestConfig } from "axios"
 
 export interface IRequestOptions extends AxiosRequestConfig {
-  /** only in axios interceptor config*/
+  /**
+   * show loading status
+   */
   loading?: boolean
+  /**
+   * display error message
+   */
   showError?: boolean
+  /**
+   * indicates whether Authorization credentials are required for the request
+   * @default true
+   */
+  withAuthorization?: boolean
 }
 
 export interface IRequestConfig {
@@ -112,8 +123,6 @@ export class RootService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -126,8 +135,6 @@ export class RootService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -139,10 +146,6 @@ export class RootService {
       let url = basePath + "/clearTempFiles"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -186,8 +189,6 @@ export class ListingsService {
         search: params["search"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -227,6 +228,10 @@ export class ListingsService {
       let url = basePath + "/listings"
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
+
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
 
       let data = params.body
 
@@ -273,8 +278,6 @@ export class ListingsService {
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { timeZone: params["timeZone"] }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -286,8 +289,6 @@ export class ListingsService {
       let url = basePath + "/listings/mapMarkers"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -310,8 +311,6 @@ export class ListingsService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { view: params["view"] }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -346,10 +345,6 @@ export class ListingsService {
       let url = basePath + "/listings/closeListings"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -398,8 +393,6 @@ export class ListingsService {
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { view: params["view"] }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -418,8 +411,6 @@ export class ListingsService {
       url = url.replace("{multiselectQuestionId}", params["multiselectQuestionId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -457,8 +448,6 @@ export class ApplicationFlaggedSetsService {
         search: params["search"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -492,8 +481,6 @@ export class ApplicationFlaggedSetsService {
         search: params["search"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -512,8 +499,6 @@ export class ApplicationFlaggedSetsService {
       url = url.replace("{afsId}", params["afsId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -549,10 +534,6 @@ export class ApplicationFlaggedSetsService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -573,10 +554,6 @@ export class ApplicationFlaggedSetsService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
       configs.params = { listingId: params["listingId"], force: params["force"] }
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -622,8 +599,6 @@ export class AmiChartsService {
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { jurisdictionId: params["jurisdictionId"] }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -664,6 +639,10 @@ export class AmiChartsService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -686,8 +665,6 @@ export class AmiChartsService {
       url = url.replace("{amiChartId}", params["amiChartId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -733,8 +710,6 @@ export class ReservedCommunityTypesService {
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { jurisdictionId: params["jurisdictionId"] }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -775,6 +750,10 @@ export class ReservedCommunityTypesService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -797,8 +776,6 @@ export class ReservedCommunityTypesService {
       url = url.replace("{reservedCommunityTypeId}", params["reservedCommunityTypeId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -836,8 +813,6 @@ export class UnitTypesService {
       let url = basePath + "/unitTypes"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -879,6 +854,10 @@ export class UnitTypesService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -901,8 +880,6 @@ export class UnitTypesService {
       url = url.replace("{unitTypeId}", params["unitTypeId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -940,8 +917,6 @@ export class UnitAccessibilityPriorityTypesService {
       let url = basePath + "/unitAccessibilityPriorityTypes"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -983,6 +958,10 @@ export class UnitAccessibilityPriorityTypesService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -1008,8 +987,6 @@ export class UnitAccessibilityPriorityTypesService {
       )
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1047,8 +1024,6 @@ export class UnitRentTypesService {
       let url = basePath + "/unitRentTypes"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1090,6 +1065,10 @@ export class UnitRentTypesService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -1112,8 +1091,6 @@ export class UnitRentTypesService {
       url = url.replace("{unitRentTypeId}", params["unitRentTypeId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1151,8 +1128,6 @@ export class JurisdictionsService {
       let url = basePath + "/jurisdictions"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1194,6 +1169,10 @@ export class JurisdictionsService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -1216,8 +1195,6 @@ export class JurisdictionsService {
       url = url.replace("{jurisdictionId}", params["jurisdictionId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1260,8 +1237,6 @@ export class JurisdictionsService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1283,8 +1258,6 @@ export class MultiselectQuestionsService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { filter: params["filter"] }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1326,6 +1299,10 @@ export class MultiselectQuestionsService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -1348,8 +1325,6 @@ export class MultiselectQuestionsService {
       url = url.replace("{multiselectQuestionId}", params["multiselectQuestionId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1418,8 +1393,6 @@ export class ApplicationsService {
         markedAsDuplicate: params["markedAsDuplicate"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1460,6 +1433,10 @@ export class ApplicationsService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -1482,8 +1459,6 @@ export class ApplicationsService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { userId: params["userId"] }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1512,8 +1487,6 @@ export class ApplicationsService {
         includeLotteryApps: params["includeLotteryApps"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1540,8 +1513,6 @@ export class ApplicationsService {
         includeDemographics: params["includeDemographics"],
         timeZone: params["timeZone"],
       }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1570,8 +1541,6 @@ export class ApplicationsService {
         timeZone: params["timeZone"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1598,8 +1567,6 @@ export class ApplicationsService {
         includeDemographics: params["includeDemographics"],
         timeZone: params["timeZone"],
       }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1628,8 +1595,6 @@ export class ApplicationsService {
         timeZone: params["timeZone"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1648,8 +1613,6 @@ export class ApplicationsService {
       url = url.replace("{applicationId}", params["applicationId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -1760,8 +1723,6 @@ export class UserService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1779,6 +1740,10 @@ export class UserService {
       let url = basePath + "/user"
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
+
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
 
       let data = params.body
 
@@ -1839,8 +1804,6 @@ export class UserService {
         search: params["search"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -1852,8 +1815,6 @@ export class UserService {
       let url = basePath + "/user/csv"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -2006,8 +1967,6 @@ export class UserService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2071,8 +2030,6 @@ export class UserService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2132,8 +2089,6 @@ export class AuthService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2167,8 +2122,6 @@ export class AuthService {
       let url = basePath + "/auth/requestNewToken"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -2236,8 +2189,6 @@ export class MapLayersService {
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
       configs.params = { jurisdictionId: params["jurisdictionId"] }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2252,10 +2203,6 @@ export class ScriptRunnerService {
       let url = basePath + "/scriptRunner/exampleScript"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2335,10 +2282,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2351,10 +2294,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2366,10 +2305,6 @@ export class ScriptRunnerService {
       let url = basePath + "/scriptRunner/optOutExistingLotteries"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2405,10 +2340,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2423,10 +2354,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2438,10 +2365,6 @@ export class ScriptRunnerService {
       let url = basePath + "/scriptRunner/insertSanJoseMapLayers"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2455,10 +2378,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2470,10 +2389,6 @@ export class ScriptRunnerService {
       let url = basePath + "/scriptRunner/updatesWhatHappensInLotteryEmail"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2487,10 +2402,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2503,10 +2414,6 @@ export class ScriptRunnerService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2518,10 +2425,6 @@ export class ScriptRunnerService {
       let url = basePath + "/scriptRunner/correctLegacyMSQData"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2537,8 +2440,6 @@ export class FeatureFlagsService {
       let url = basePath + "/featureFlags"
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -2602,6 +2503,10 @@ export class FeatureFlagsService {
 
       const configs: IRequestConfig = getConfigs("delete", "application/json", url, options)
 
+      /** 适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body */
+
+      console.warn("适配移动开发（iOS13 等版本），只有 POST、PUT 等请求允许带body")
+
       let data = params.body
 
       configs.data = data
@@ -2640,10 +2545,6 @@ export class FeatureFlagsService {
 
       const configs: IRequestConfig = getConfigs("post", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2662,8 +2563,6 @@ export class FeatureFlagsService {
       url = url.replace("{featureFlagId}", params["featureFlagId"] + "")
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -2717,8 +2616,6 @@ export class LotteryService {
         timeZone: params["timeZone"],
       }
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2745,8 +2642,6 @@ export class LotteryService {
         includeDemographics: params["includeDemographics"],
         timeZone: params["timeZone"],
       }
-
-      /** 适配ios13，get请求不允许带body */
 
       axios(configs, resolve, reject)
     })
@@ -2789,8 +2684,6 @@ export class LotteryService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2803,10 +2696,6 @@ export class LotteryService {
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
 
-      let data = null
-
-      configs.data = data
-
       axios(configs, resolve, reject)
     })
   }
@@ -2818,10 +2707,6 @@ export class LotteryService {
       let url = basePath + "/lottery/expireLotteries"
 
       const configs: IRequestConfig = getConfigs("put", "application/json", url, options)
-
-      let data = null
-
-      configs.data = data
 
       axios(configs, resolve, reject)
     })
@@ -2842,8 +2727,6 @@ export class LotteryService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
-
       axios(configs, resolve, reject)
     })
   }
@@ -2863,18 +2746,33 @@ export class LotteryService {
 
       const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
-      /** 适配ios13，get请求不允许带body */
+      axios(configs, resolve, reject)
+    })
+  }
+}
+
+export class ExternalListingsService {
+  /**
+   * Get an object of externalized system data details
+   */
+  externalize(options: IRequestOptions = {}): Promise<ExternalizedDetails> {
+    return new Promise((resolve, reject) => {
+      let url = basePath + "/externalListings"
+
+      const configs: IRequestConfig = getConfigs("get", "application/json", url, options)
 
       axios(configs, resolve, reject)
     })
   }
 }
 
+/** SuccessDTO */
 export interface SuccessDTO {
   /**  */
   success: boolean
 }
 
+/** ListingFilterParams */
 export interface ListingFilterParams {
   /**  */
   $comparison: EnumListingFilterParamsComparison
@@ -2946,6 +2844,7 @@ export interface ListingFilterParams {
   zipCode?: string
 }
 
+/** ListingsQueryBody */
 export interface ListingsQueryBody {
   /**  */
   page?: number
@@ -2969,6 +2868,7 @@ export interface ListingsQueryBody {
   search?: string
 }
 
+/** ListingsQueryParams */
 export interface ListingsQueryParams {
   /**  */
   page?: number
@@ -2992,16 +2892,19 @@ export interface ListingsQueryParams {
   search?: string
 }
 
+/** ListingFilterKeyDTO */
 export interface ListingFilterKeyDTO {
   /**  */
   value?: ListingFilterKeys
 }
 
+/** ListingsRetrieveParams */
 export interface ListingsRetrieveParams {
   /**  */
   view?: ListingViews
 }
 
+/** PaginationAllowsAllQueryParams */
 export interface PaginationAllowsAllQueryParams {
   /**  */
   page?: number
@@ -3010,6 +2913,7 @@ export interface PaginationAllowsAllQueryParams {
   limit?: number | "all"
 }
 
+/** IdDTO */
 export interface IdDTO {
   /**  */
   id: string
@@ -3021,6 +2925,7 @@ export interface IdDTO {
   ordinal?: number
 }
 
+/** MultiselectLink */
 export interface MultiselectLink {
   /**  */
   title: string
@@ -3029,6 +2934,7 @@ export interface MultiselectLink {
   url: string
 }
 
+/** MultiselectOption */
 export interface MultiselectOption {
   /**  */
   text: string
@@ -3070,6 +2976,7 @@ export interface MultiselectOption {
   mapPinPosition?: string
 }
 
+/** MultiselectQuestion */
 export interface MultiselectQuestion {
   /**  */
   id: string
@@ -3114,6 +3021,7 @@ export interface MultiselectQuestion {
   applicationSection: MultiselectQuestionsApplicationSectionEnum
 }
 
+/** ListingMultiselectQuestion */
 export interface ListingMultiselectQuestion {
   /**  */
   multiselectQuestions: MultiselectQuestion
@@ -3122,6 +3030,7 @@ export interface ListingMultiselectQuestion {
   ordinal?: number
 }
 
+/** Asset */
 export interface Asset {
   /**  */
   id: string
@@ -3139,6 +3048,7 @@ export interface Asset {
   label: string
 }
 
+/** PaperApplication */
 export interface PaperApplication {
   /**  */
   id: string
@@ -3156,6 +3066,7 @@ export interface PaperApplication {
   assets: Asset
 }
 
+/** ApplicationMethod */
 export interface ApplicationMethod {
   /**  */
   id: string
@@ -3185,6 +3096,7 @@ export interface ApplicationMethod {
   paperApplications?: PaperApplication[]
 }
 
+/** ListingEvent */
 export interface ListingEvent {
   /**  */
   id: string
@@ -3220,6 +3132,7 @@ export interface ListingEvent {
   assets?: Asset
 }
 
+/** Address */
 export interface Address {
   /**  */
   id: string
@@ -3258,6 +3171,7 @@ export interface Address {
   longitude?: number
 }
 
+/** ListingImage */
 export interface ListingImage {
   /**  */
   assets: Asset
@@ -3266,6 +3180,7 @@ export interface ListingImage {
   ordinal?: number
 }
 
+/** ListingFeatures */
 export interface ListingFeatures {
   /**  */
   elevator?: boolean
@@ -3328,6 +3243,7 @@ export interface ListingFeatures {
   loweredCabinets?: boolean
 }
 
+/** ListingUtilities */
 export interface ListingUtilities {
   /**  */
   water?: boolean
@@ -3354,6 +3270,7 @@ export interface ListingUtilities {
   internet?: boolean
 }
 
+/** AmiChartItem */
 export interface AmiChartItem {
   /**  */
   percentOfAmi: number
@@ -3365,6 +3282,7 @@ export interface AmiChartItem {
   income: number
 }
 
+/** AmiChart */
 export interface AmiChart {
   /**  */
   id: string
@@ -3385,6 +3303,7 @@ export interface AmiChart {
   jurisdictions: IdDTO
 }
 
+/** UnitType */
 export interface UnitType {
   /**  */
   id: string
@@ -3402,6 +3321,7 @@ export interface UnitType {
   numBedrooms: number
 }
 
+/** UnitRentType */
 export interface UnitRentType {
   /**  */
   id: string
@@ -3416,6 +3336,7 @@ export interface UnitRentType {
   name: UnitRentTypeEnum
 }
 
+/** UnitAccessibilityPriorityType */
 export interface UnitAccessibilityPriorityType {
   /**  */
   id: string
@@ -3430,6 +3351,7 @@ export interface UnitAccessibilityPriorityType {
   name: string
 }
 
+/** UnitAmiChartOverride */
 export interface UnitAmiChartOverride {
   /**  */
   id: string
@@ -3444,6 +3366,7 @@ export interface UnitAmiChartOverride {
   items: AmiChartItem[]
 }
 
+/** Unit */
 export interface Unit {
   /**  */
   id: string
@@ -3512,6 +3435,7 @@ export interface Unit {
   unitAmiChartOverrides?: UnitAmiChartOverride
 }
 
+/** UnitGroupAmiLevel */
 export interface UnitGroupAmiLevel {
   /**  */
   id: string
@@ -3538,6 +3462,7 @@ export interface UnitGroupAmiLevel {
   amiChart?: AmiChart
 }
 
+/** UnitGroup */
 export interface UnitGroup {
   /**  */
   id: string
@@ -3591,6 +3516,7 @@ export interface UnitGroup {
   unitTypes?: UnitType[]
 }
 
+/** MinMaxCurrency */
 export interface MinMaxCurrency {
   /**  */
   min: string
@@ -3599,6 +3525,7 @@ export interface MinMaxCurrency {
   max: string
 }
 
+/** MinMax */
 export interface MinMax {
   /**  */
   min: number
@@ -3607,6 +3534,7 @@ export interface MinMax {
   max: number
 }
 
+/** UnitSummary */
 export interface UnitSummary {
   /**  */
   unitTypes: UnitType
@@ -3633,6 +3561,7 @@ export interface UnitSummary {
   floorRange?: MinMax
 }
 
+/** UnitSummaryByAMI */
 export interface UnitSummaryByAMI {
   /**  */
   percent: string
@@ -3641,6 +3570,7 @@ export interface UnitSummaryByAMI {
   byUnitType: UnitSummary[]
 }
 
+/** HMI */
 export interface HMI {
   /**  */
   columns: object
@@ -3649,6 +3579,7 @@ export interface HMI {
   rows: object[]
 }
 
+/** UnitsSummarized */
 export interface UnitsSummarized {
   /**  */
   unitTypes: UnitType[]
@@ -3672,6 +3603,7 @@ export interface UnitsSummarized {
   hmi: HMI
 }
 
+/** UnitGroupSummary */
 export interface UnitGroupSummary {
   /**  */
   unitTypes?: UnitType[]
@@ -3701,6 +3633,7 @@ export interface UnitGroupSummary {
   bathroomRange?: MinMax
 }
 
+/** HMIColumns */
 export interface HMIColumns {
   /**  */
   "20"?: number
@@ -3754,6 +3687,7 @@ export interface HMIColumns {
   householdSize: string
 }
 
+/** HouseholdMaxIncomeSummary */
 export interface HouseholdMaxIncomeSummary {
   /**  */
   columns: HMIColumns
@@ -3762,6 +3696,7 @@ export interface HouseholdMaxIncomeSummary {
   rows: HMIColumns[]
 }
 
+/** UnitGroupsSummarized */
 export interface UnitGroupsSummarized {
   /**  */
   unitGroupSummary: UnitGroupSummary[]
@@ -3770,6 +3705,7 @@ export interface UnitGroupsSummarized {
   householdMaxIncomeSummary: HouseholdMaxIncomeSummary
 }
 
+/** UnitsSummary */
 export interface UnitsSummary {
   /**  */
   id: string
@@ -3823,6 +3759,7 @@ export interface UnitsSummary {
   totalAvailable?: number
 }
 
+/** ApplicationLotteryTotal */
 export interface ApplicationLotteryTotal {
   /**  */
   listingId: string
@@ -3834,6 +3771,7 @@ export interface ApplicationLotteryTotal {
   total: number
 }
 
+/** ListingNeighborhoodAmenities */
 export interface ListingNeighborhoodAmenities {
   /**  */
   groceryStores?: string
@@ -3854,6 +3792,7 @@ export interface ListingNeighborhoodAmenities {
   healthCareResources?: string
 }
 
+/** Listing */
 export interface Listing {
   /**  */
   id: string
@@ -4192,6 +4131,7 @@ export interface Listing {
   listingNeighborhoodAmenities?: ListingNeighborhoodAmenities
 }
 
+/** PaginationMeta */
 export interface PaginationMeta {
   /**  */
   currentPage: number
@@ -4209,6 +4149,7 @@ export interface PaginationMeta {
   totalPages: number
 }
 
+/** PaginatedListing */
 export interface PaginatedListing {
   /**  */
   items: Listing[]
@@ -4217,6 +4158,7 @@ export interface PaginatedListing {
   meta: PaginationMeta
 }
 
+/** ListingMapMarker */
 export interface ListingMapMarker {
   /**  */
   id: string
@@ -4228,11 +4170,13 @@ export interface ListingMapMarker {
   lng: number
 }
 
+/** UnitAmiChartOverrideCreate */
 export interface UnitAmiChartOverrideCreate {
   /**  */
   items: AmiChartItem[]
 }
 
+/** UnitCreate */
 export interface UnitCreate {
   /**  */
   amiPercentage?: string
@@ -4292,6 +4236,7 @@ export interface UnitCreate {
   unitAmiChartOverrides?: UnitAmiChartOverrideCreate
 }
 
+/** UnitGroupAmiLevelCreate */
 export interface UnitGroupAmiLevelCreate {
   /**  */
   amiPercentage?: number
@@ -4309,6 +4254,7 @@ export interface UnitGroupAmiLevelCreate {
   amiChart?: IdDTO
 }
 
+/** UnitGroupCreate */
 export interface UnitGroupCreate {
   /**  */
   maxOccupancy?: number
@@ -4353,6 +4299,7 @@ export interface UnitGroupCreate {
   unitGroupAmiLevels?: UnitGroupAmiLevelCreate[]
 }
 
+/** AssetCreate */
 export interface AssetCreate {
   /**  */
   fileId: string
@@ -4364,6 +4311,7 @@ export interface AssetCreate {
   id?: string
 }
 
+/** PaperApplicationCreate */
 export interface PaperApplicationCreate {
   /**  */
   language: LanguagesEnum
@@ -4372,6 +4320,7 @@ export interface PaperApplicationCreate {
   assets?: AssetCreate
 }
 
+/** ApplicationMethodCreate */
 export interface ApplicationMethodCreate {
   /**  */
   type: ApplicationMethodsTypeEnum
@@ -4392,6 +4341,7 @@ export interface ApplicationMethodCreate {
   paperApplications?: PaperApplicationCreate[]
 }
 
+/** UnitsSummaryCreate */
 export interface UnitsSummaryCreate {
   /**  */
   unitTypes: IdDTO
@@ -4442,6 +4392,7 @@ export interface UnitsSummaryCreate {
   totalAvailable?: number
 }
 
+/** ListingImageCreate */
 export interface ListingImageCreate {
   /**  */
   ordinal?: number
@@ -4450,6 +4401,7 @@ export interface ListingImageCreate {
   assets: AssetCreate
 }
 
+/** AddressCreate */
 export interface AddressCreate {
   /**  */
   placeName?: string
@@ -4479,6 +4431,7 @@ export interface AddressCreate {
   longitude?: number
 }
 
+/** ListingEventCreate */
 export interface ListingEventCreate {
   /**  */
   type: ListingEventsTypeEnum
@@ -4505,6 +4458,7 @@ export interface ListingEventCreate {
   assets?: AssetCreate
 }
 
+/** ListingCreate */
 export interface ListingCreate {
   /**  */
   additionalApplicationSubmissionNotes?: string
@@ -4804,6 +4758,7 @@ export interface ListingCreate {
   requestedChangesUser?: IdDTO
 }
 
+/** ListingDuplicate */
 export interface ListingDuplicate {
   /**  */
   name: string
@@ -4815,6 +4770,7 @@ export interface ListingDuplicate {
   storedListing: IdDTO
 }
 
+/** ListingUpdate */
 export interface ListingUpdate {
   /**  */
   id: string
@@ -5117,6 +5073,7 @@ export interface ListingUpdate {
   requestedChangesUser?: IdDTO
 }
 
+/** Accessibility */
 export interface Accessibility {
   /**  */
   id: string
@@ -5140,6 +5097,7 @@ export interface Accessibility {
   other?: boolean
 }
 
+/** Demographic */
 export interface Demographic {
   /**  */
   id: string
@@ -5166,6 +5124,7 @@ export interface Demographic {
   race: string[]
 }
 
+/** Applicant */
 export interface Applicant {
   /**  */
   id: string
@@ -5222,6 +5181,7 @@ export interface Applicant {
   applicantAddress: Address
 }
 
+/** AlternateContact */
 export interface AlternateContact {
   /**  */
   id: string
@@ -5257,6 +5217,7 @@ export interface AlternateContact {
   address: Address
 }
 
+/** HouseholdMember */
 export interface HouseholdMember {
   /**  */
   id: string
@@ -5307,6 +5268,7 @@ export interface HouseholdMember {
   householdMemberAddress: Address
 }
 
+/** ApplicationMultiselectQuestionOption */
 export interface ApplicationMultiselectQuestionOption {
   /**  */
   key: string
@@ -5321,6 +5283,7 @@ export interface ApplicationMultiselectQuestionOption {
   extraData?: AllExtraDataTypes[]
 }
 
+/** ApplicationMultiselectQuestion */
 export interface ApplicationMultiselectQuestion {
   /**  */
   multiselectQuestionId: string
@@ -5335,6 +5298,7 @@ export interface ApplicationMultiselectQuestion {
   options: ApplicationMultiselectQuestionOption[]
 }
 
+/** ApplicationLotteryPosition */
 export interface ApplicationLotteryPosition {
   /**  */
   listingId: string
@@ -5349,6 +5313,7 @@ export interface ApplicationLotteryPosition {
   ordinal: number
 }
 
+/** Application */
 export interface Application {
   /**  */
   id: string
@@ -5465,6 +5430,7 @@ export interface Application {
   applicationLotteryPositions: ApplicationLotteryPosition[]
 }
 
+/** ApplicationFlaggedSet */
 export interface ApplicationFlaggedSet {
   /**  */
   id: string
@@ -5503,6 +5469,7 @@ export interface ApplicationFlaggedSet {
   applications: Application[]
 }
 
+/** ApplicationFlaggedSetPaginationMeta */
 export interface ApplicationFlaggedSetPaginationMeta {
   /**  */
   currentPage: number
@@ -5523,6 +5490,7 @@ export interface ApplicationFlaggedSetPaginationMeta {
   totalFlagged: number
 }
 
+/** PaginatedAfs */
 export interface PaginatedAfs {
   /**  */
   items: ApplicationFlaggedSet[]
@@ -5531,6 +5499,7 @@ export interface PaginatedAfs {
   meta: ApplicationFlaggedSetPaginationMeta
 }
 
+/** AfsMeta */
 export interface AfsMeta {
   /**  */
   totalCount?: number
@@ -5548,6 +5517,7 @@ export interface AfsMeta {
   totalEmailPendingCount?: number
 }
 
+/** AfsResolve */
 export interface AfsResolve {
   /**  */
   afsId: string
@@ -5559,11 +5529,13 @@ export interface AfsResolve {
   applications: IdDTO[]
 }
 
+/** AmiChartQueryParams */
 export interface AmiChartQueryParams {
   /**  */
   jurisdictionId?: string
 }
 
+/** AmiChartCreate */
 export interface AmiChartCreate {
   /**  */
   items: AmiChartItem[]
@@ -5575,6 +5547,7 @@ export interface AmiChartCreate {
   jurisdictions: IdDTO
 }
 
+/** AmiChartUpdate */
 export interface AmiChartUpdate {
   /**  */
   id: string
@@ -5586,11 +5559,13 @@ export interface AmiChartUpdate {
   name: string
 }
 
+/** ReservedCommunityTypeQueryParams */
 export interface ReservedCommunityTypeQueryParams {
   /**  */
   jurisdictionId?: string
 }
 
+/** ReservedCommunityType */
 export interface ReservedCommunityType {
   /**  */
   id: string
@@ -5611,6 +5586,7 @@ export interface ReservedCommunityType {
   jurisdictions: IdDTO
 }
 
+/** ReservedCommunityTypeCreate */
 export interface ReservedCommunityTypeCreate {
   /**  */
   name: string
@@ -5622,6 +5598,7 @@ export interface ReservedCommunityTypeCreate {
   jurisdictions: IdDTO
 }
 
+/** ReservedCommunityTypeUpdate */
 export interface ReservedCommunityTypeUpdate {
   /**  */
   id: string
@@ -5633,6 +5610,7 @@ export interface ReservedCommunityTypeUpdate {
   description?: string
 }
 
+/** UnitTypeCreate */
 export interface UnitTypeCreate {
   /**  */
   name: UnitTypeEnum
@@ -5641,6 +5619,7 @@ export interface UnitTypeCreate {
   numBedrooms: number
 }
 
+/** UnitTypeUpdate */
 export interface UnitTypeUpdate {
   /**  */
   id: string
@@ -5652,11 +5631,13 @@ export interface UnitTypeUpdate {
   numBedrooms: number
 }
 
+/** UnitAccessibilityPriorityTypeCreate */
 export interface UnitAccessibilityPriorityTypeCreate {
   /**  */
   name: string
 }
 
+/** UnitAccessibilityPriorityTypeUpdate */
 export interface UnitAccessibilityPriorityTypeUpdate {
   /**  */
   id: string
@@ -5665,11 +5646,13 @@ export interface UnitAccessibilityPriorityTypeUpdate {
   name: string
 }
 
+/** UnitRentTypeCreate */
 export interface UnitRentTypeCreate {
   /**  */
   name: UnitRentTypeEnum
 }
 
+/** UnitRentTypeUpdate */
 export interface UnitRentTypeUpdate {
   /**  */
   id: string
@@ -5678,6 +5661,7 @@ export interface UnitRentTypeUpdate {
   name: UnitRentTypeEnum
 }
 
+/** JurisdictionCreate */
 export interface JurisdictionCreate {
   /**  */
   name: string
@@ -5725,6 +5709,7 @@ export interface JurisdictionCreate {
   requiredListingFields: []
 }
 
+/** JurisdictionUpdate */
 export interface JurisdictionUpdate {
   /**  */
   id: string
@@ -5775,6 +5760,7 @@ export interface JurisdictionUpdate {
   requiredListingFields: []
 }
 
+/** FeatureFlag */
 export interface FeatureFlag {
   /**  */
   id: string
@@ -5798,6 +5784,7 @@ export interface FeatureFlag {
   jurisdictions: IdDTO[]
 }
 
+/** Jurisdiction */
 export interface Jurisdiction {
   /**  */
   id: string
@@ -5860,6 +5847,7 @@ export interface Jurisdiction {
   requiredListingFields: []
 }
 
+/** MultiselectQuestionCreate */
 export interface MultiselectQuestionCreate {
   /**  */
   text: string
@@ -5892,6 +5880,7 @@ export interface MultiselectQuestionCreate {
   applicationSection: MultiselectQuestionsApplicationSectionEnum
 }
 
+/** MultiselectQuestionUpdate */
 export interface MultiselectQuestionUpdate {
   /**  */
   id: string
@@ -5927,11 +5916,13 @@ export interface MultiselectQuestionUpdate {
   applicationSection: MultiselectQuestionsApplicationSectionEnum
 }
 
+/** MultiselectQuestionQueryParams */
 export interface MultiselectQuestionQueryParams {
   /**  */
   filter?: string[]
 }
 
+/** MultiselectQuestionFilterParams */
 export interface MultiselectQuestionFilterParams {
   /**  */
   $comparison: EnumMultiselectQuestionFilterParamsComparison
@@ -5943,6 +5934,7 @@ export interface MultiselectQuestionFilterParams {
   applicationSection?: MultiselectQuestionsApplicationSectionEnum
 }
 
+/** AddressInput */
 export interface AddressInput {
   /**  */
   type: InputType
@@ -5954,6 +5946,7 @@ export interface AddressInput {
   value: AddressCreate
 }
 
+/** BooleanInput */
 export interface BooleanInput {
   /**  */
   type: InputType
@@ -5965,6 +5958,7 @@ export interface BooleanInput {
   value: boolean
 }
 
+/** TextInput */
 export interface TextInput {
   /**  */
   type: InputType
@@ -5976,6 +5970,7 @@ export interface TextInput {
   value: string
 }
 
+/** PaginatedApplication */
 export interface PaginatedApplication {
   /**  */
   items: Application[]
@@ -5984,6 +5979,7 @@ export interface PaginatedApplication {
   meta: PaginationMeta
 }
 
+/** PublicAppsFiltered */
 export interface PublicAppsFiltered {
   /**  */
   id: string
@@ -6100,6 +6096,7 @@ export interface PublicAppsFiltered {
   listings: Listing
 }
 
+/** PublicAppsCount */
 export interface PublicAppsCount {
   /**  */
   total: number
@@ -6114,6 +6111,7 @@ export interface PublicAppsCount {
   open: number
 }
 
+/** PublicAppsViewResponse */
 export interface PublicAppsViewResponse {
   /**  */
   displayApplications: PublicAppsFiltered[]
@@ -6122,6 +6120,7 @@ export interface PublicAppsViewResponse {
   applicationsCount: PublicAppsCount
 }
 
+/** ApplicantUpdate */
 export interface ApplicantUpdate {
   /**  */
   firstName?: string
@@ -6169,6 +6168,7 @@ export interface ApplicantUpdate {
   applicantWorkAddress: AddressCreate
 }
 
+/** AlternateContactUpdate */
 export interface AlternateContactUpdate {
   /**  */
   type?: AlternateContactRelationship
@@ -6195,6 +6195,7 @@ export interface AlternateContactUpdate {
   address: AddressCreate
 }
 
+/** AccessibilityUpdate */
 export interface AccessibilityUpdate {
   /**  */
   mobility?: boolean
@@ -6209,6 +6210,7 @@ export interface AccessibilityUpdate {
   other?: boolean
 }
 
+/** DemographicUpdate */
 export interface DemographicUpdate {
   /**  */
   ethnicity?: string
@@ -6226,6 +6228,7 @@ export interface DemographicUpdate {
   race: string[]
 }
 
+/** HouseholdMemberUpdate */
 export interface HouseholdMemberUpdate {
   /**  */
   orderId?: number
@@ -6270,6 +6273,7 @@ export interface HouseholdMemberUpdate {
   householdMemberWorkAddress?: AddressCreate
 }
 
+/** ApplicationCreate */
 export interface ApplicationCreate {
   /**  */
   appUrl?: string
@@ -6362,6 +6366,7 @@ export interface ApplicationCreate {
   preferredUnitTypes: IdDTO[]
 }
 
+/** ApplicationUpdate */
 export interface ApplicationUpdate {
   /**  */
   id: string
@@ -6457,16 +6462,19 @@ export interface ApplicationUpdate {
   preferredUnitTypes: IdDTO[]
 }
 
+/** CreatePresignedUploadMetadata */
 export interface CreatePresignedUploadMetadata {
   /**  */
   parametersToSign: object
 }
 
+/** CreatePresignedUploadMetadataResponse */
 export interface CreatePresignedUploadMetadataResponse {
   /**  */
   signature: string
 }
 
+/** EmailAndAppUrl */
 export interface EmailAndAppUrl {
   /**  */
   email: string
@@ -6475,6 +6483,7 @@ export interface EmailAndAppUrl {
   appUrl?: string
 }
 
+/** UserRole */
 export interface UserRole {
   /**  */
   isAdmin?: boolean
@@ -6489,6 +6498,7 @@ export interface UserRole {
   isSuperAdmin?: boolean
 }
 
+/** User */
 export interface User {
   /**  */
   id: string
@@ -6566,11 +6576,13 @@ export interface User {
   favoriteListings?: IdDTO[]
 }
 
+/** UserFilterParams */
 export interface UserFilterParams {
   /**  */
   isPortalUser?: boolean
 }
 
+/** PaginatedUser */
 export interface PaginatedUser {
   /**  */
   items: User[]
@@ -6579,6 +6591,7 @@ export interface PaginatedUser {
   meta: PaginationMeta
 }
 
+/** UserCreate */
 export interface UserCreate {
   /**  */
   firstName: string
@@ -6629,6 +6642,7 @@ export interface UserCreate {
   jurisdictions?: IdDTO[]
 }
 
+/** UserInvite */
 export interface UserInvite {
   /**  */
   firstName: string
@@ -6670,16 +6684,19 @@ export interface UserInvite {
   jurisdictions: IdDTO[]
 }
 
+/** RequestSingleUseCode */
 export interface RequestSingleUseCode {
   /**  */
   email: string
 }
 
+/** ConfirmationRequest */
 export interface ConfirmationRequest {
   /**  */
   token: string
 }
 
+/** UserFavoriteListing */
 export interface UserFavoriteListing {
   /**  */
   id: string
@@ -6688,6 +6705,7 @@ export interface UserFavoriteListing {
   action: ModificationEnum
 }
 
+/** UserUpdate */
 export interface UserUpdate {
   /**  */
   id: string
@@ -6741,6 +6759,7 @@ export interface UserUpdate {
   jurisdictions?: IdDTO[]
 }
 
+/** Login */
 export interface Login {
   /**  */
   email: string
@@ -6758,6 +6777,7 @@ export interface Login {
   reCaptchaToken?: string
 }
 
+/** LoginViaSingleUseCode */
 export interface LoginViaSingleUseCode {
   /**  */
   email: string
@@ -6766,6 +6786,7 @@ export interface LoginViaSingleUseCode {
   singleUseCode: string
 }
 
+/** RequestMfaCode */
 export interface RequestMfaCode {
   /**  */
   email: string
@@ -6780,6 +6801,7 @@ export interface RequestMfaCode {
   phoneNumber?: string
 }
 
+/** RequestMfaCodeResponse */
 export interface RequestMfaCodeResponse {
   /**  */
   phoneNumber?: string
@@ -6791,6 +6813,7 @@ export interface RequestMfaCodeResponse {
   phoneNumberVerified?: boolean
 }
 
+/** UpdatePassword */
 export interface UpdatePassword {
   /**  */
   password: string
@@ -6802,6 +6825,7 @@ export interface UpdatePassword {
   token: string
 }
 
+/** Confirm */
 export interface Confirm {
   /**  */
   token: string
@@ -6810,6 +6834,7 @@ export interface Confirm {
   password?: string
 }
 
+/** MapLayer */
 export interface MapLayer {
   /**  */
   id: string
@@ -6821,11 +6846,13 @@ export interface MapLayer {
   jurisdictionId: string
 }
 
+/** BulkApplicationResendDTO */
 export interface BulkApplicationResendDTO {
   /**  */
   listingId: string
 }
 
+/** AmiChartImportDTO */
 export interface AmiChartImportDTO {
   /**  */
   values: string
@@ -6837,6 +6864,7 @@ export interface AmiChartImportDTO {
   jurisdictionId: string
 }
 
+/** AmiChartUpdateImportDTO */
 export interface AmiChartUpdateImportDTO {
   /**  */
   values: string
@@ -6845,6 +6873,7 @@ export interface AmiChartUpdateImportDTO {
   amiId: string
 }
 
+/** CommunityTypeDTO */
 export interface CommunityTypeDTO {
   /**  */
   id: string
@@ -6856,6 +6885,7 @@ export interface CommunityTypeDTO {
   description?: string
 }
 
+/** FeatureFlagAssociate */
 export interface FeatureFlagAssociate {
   /**  */
   id: string
@@ -6867,6 +6897,7 @@ export interface FeatureFlagAssociate {
   remove: string[]
 }
 
+/** FeatureFlagCreate */
 export interface FeatureFlagCreate {
   /**  */
   name: FeatureFlagEnum
@@ -6878,6 +6909,7 @@ export interface FeatureFlagCreate {
   active: boolean
 }
 
+/** FeatureFlagUpdate */
 export interface FeatureFlagUpdate {
   /**  */
   id: string
@@ -6889,6 +6921,7 @@ export interface FeatureFlagUpdate {
   active: boolean
 }
 
+/** ApplicationCsvQueryParams */
 export interface ApplicationCsvQueryParams {
   /**  */
   id: string
@@ -6900,6 +6933,7 @@ export interface ApplicationCsvQueryParams {
   timeZone?: string
 }
 
+/** ListingLotteryStatus */
 export interface ListingLotteryStatus {
   /**  */
   id: string
@@ -6908,6 +6942,7 @@ export interface ListingLotteryStatus {
   lotteryStatus: LotteryStatusEnum
 }
 
+/** LotteryActivityLogItem */
 export interface LotteryActivityLogItem {
   /**  */
   status: string
@@ -6919,6 +6954,7 @@ export interface LotteryActivityLogItem {
   logDate: Date
 }
 
+/** PublicLotteryResult */
 export interface PublicLotteryResult {
   /**  */
   ordinal: number
@@ -6927,12 +6963,49 @@ export interface PublicLotteryResult {
   multiselectQuestionId?: string
 }
 
+/** PublicLotteryTotal */
 export interface PublicLotteryTotal {
   /**  */
   total: number
 
   /**  */
   multiselectQuestionId?: string
+}
+
+/** ExternalizedListing */
+export interface ExternalizedListing {
+  /**  */
+  id: string
+
+  /**  */
+  name?: string
+
+  /**  */
+  ordinal?: number
+
+  /**  */
+  contentUpdatedAt: Date
+
+  /**  */
+  jurisdictionId: string
+}
+
+/** ExternalizedDetails */
+export interface ExternalizedDetails {
+  /**  */
+  jurisdictions: IdDTO[]
+
+  /**  */
+  listings: ExternalizedListing[]
+
+  /**  */
+  reservedCommunityTypes: IdDTO[]
+
+  /**  */
+  unitRentTypes: IdDTO[]
+
+  /**  */
+  unitTypes: IdDTO[]
 }
 
 export enum FilterAvailabilityEnum {

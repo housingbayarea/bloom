@@ -63,6 +63,7 @@ import {
   createSimpleListing,
 } from './helpers';
 import { ApplicationFlaggedSetService } from '../../../src/services/application-flagged-set.service';
+import { randomUUID } from 'crypto';
 
 const testEmailService = {
   confirmation: jest.fn(),
@@ -1437,6 +1438,31 @@ describe('Testing Permissioning of endpoints as Jurisdictional Admin in the corr
       await request(app.getHttpServer())
         .get(`/featureFlags/example`)
         .set({ passkey: process.env.API_PASS_KEY || '' })
+        .set('Cookie', cookies)
+        .expect(403);
+    });
+  });
+
+  describe('Testing external listing endpoints', () => {
+    it('should succeed for externalize endpoint', async () => {
+      await request(app.getHttpServer())
+        .get(`/externalListings`)
+        .set({ passkey: process.env.API_PASS_KEY || '' })
+        .set('Cookie', cookies)
+        .expect(200);
+    });
+
+    it.skip('should error as forbidden for ingest endpoint', async () => {
+      const body = {
+        externalURL: 'externalJurisdictionName.com',
+        jurisdictionId: randomUUID(),
+        targetName: 'externalJurisdictionName',
+      };
+
+      await request(app.getHttpServer())
+        .put(`/externalListings/ingest`)
+        .set({ passkey: process.env.API_PASS_KEY || '' })
+        .send(body)
         .set('Cookie', cookies)
         .expect(403);
     });
