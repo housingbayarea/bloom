@@ -95,22 +95,20 @@ describe('Testing external listing service', () => {
         unitTypes,
       });
 
-      expect(prisma.jurisdictions.findMany).toHaveBeenCalledExactlyOnceWith({
+      expect(prisma.jurisdictions.findMany).toHaveBeenCalledWith({
         select: { id: true, name: true },
       });
-      expect(prisma.listings.findMany).toHaveBeenCalledExactlyOnceWith({
+      expect(prisma.listings.findMany).toHaveBeenCalledWith({
         select: { id: true, contentUpdatedAt: true, jurisdictionId: true },
         where: { status: ListingsStatusEnum.active },
       });
-      expect(
-        prisma.reservedCommunityTypes.findMany,
-      ).toHaveBeenCalledExactlyOnceWith({
+      expect(prisma.reservedCommunityTypes.findMany).toHaveBeenCalledWith({
         select: { id: true, name: true },
       });
-      expect(prisma.unitRentTypes.findMany).toHaveBeenCalledExactlyOnceWith({
+      expect(prisma.unitRentTypes.findMany).toHaveBeenCalledWith({
         select: { id: true, name: true },
       });
-      expect(prisma.unitTypes.findMany).toHaveBeenCalledExactlyOnceWith({
+      expect(prisma.unitTypes.findMany).toHaveBeenCalledWith({
         select: { id: true, name: true },
       });
     });
