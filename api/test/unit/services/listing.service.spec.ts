@@ -774,8 +774,9 @@ describe('Testing listing service', () => {
           listingNeighborhoodAmenities: true,
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
           unitGroups: {
@@ -895,8 +896,9 @@ describe('Testing listing service', () => {
           listingNeighborhoodAmenities: true,
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
           unitGroups: {
@@ -1275,8 +1277,9 @@ describe('Testing listing service', () => {
           listingNeighborhoodAmenities: true,
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
           unitGroups: {
@@ -2263,8 +2266,9 @@ describe('Testing listing service', () => {
           listingNeighborhoodAmenities: true,
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
           unitGroups: {
@@ -2745,8 +2749,9 @@ describe('Testing listing service', () => {
           listingNeighborhoodAmenities: true,
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
           unitGroups: {
@@ -3036,8 +3041,9 @@ describe('Testing listing service', () => {
           },
           units: {
             include: {
-              unitTypes: true,
               unitAmiChartOverrides: true,
+              unitRentTypes: true,
+              unitTypes: true,
             },
           },
         },

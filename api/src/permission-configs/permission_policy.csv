@@ -82,6 +82,8 @@ p, partner, paperApplication, true, read
 p, admin, mapLayers, true, .*
 p, jurisdictionAdmin, mapLayers, true, .*
 
+p, admin, externalListings, true, .*
+
 p, admin, featureFlags, true, .*
 
 g, admin, jurisdictionAdmin

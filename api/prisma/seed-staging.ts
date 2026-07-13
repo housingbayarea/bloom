@@ -11,6 +11,7 @@ import {
 import { jurisdictionFactory } from './seed-helpers/jurisdiction-factory';
 import { listingFactory } from './seed-helpers/listing-factory';
 import { amiChartFactory } from './seed-helpers/ami-chart-factory';
+import { unitRentTypeFactoryAll } from './seed-helpers/unit-rent-type-factory';
 import { userFactory } from './seed-helpers/user-factory';
 import { unitTypeFactoryAll } from './seed-helpers/unit-type-factory';
 import { unitAccessibilityPriorityTypeFactoryAll } from './seed-helpers/unit-accessibility-priority-type-factory';
@@ -444,6 +445,7 @@ export const stagingSeed = async (
 
   // create pre-determined values
   const unitTypes = await unitTypeFactoryAll(prismaClient);
+  await unitRentTypeFactoryAll(prismaClient);
   await unitAccessibilityPriorityTypeFactoryAll(prismaClient);
   await reservedCommunityTypeFactoryAll(mainJurisdiction.id, prismaClient);
   // list of predefined listings WARNING: images only work if image setup is cloudinary on exygy account

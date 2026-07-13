@@ -110,8 +110,9 @@ views.base = {
   ...views.fundamentals,
   units: {
     include: {
-      unitTypes: true,
       unitAmiChartOverrides: true,
+      unitRentTypes: true,
+      unitTypes: true,
     },
   },
   unitGroups: {
