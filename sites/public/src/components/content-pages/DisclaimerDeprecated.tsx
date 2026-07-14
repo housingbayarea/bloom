@@ -39,7 +39,7 @@ const DisclaimerDeprecated = () => {
   const pageTitle = <>{t("pageTitle.disclaimer")}</>
 
   return (
-    <Layout>
+    <Layout pageTitle={t("pageTitle.disclaimer")}>
       <PageHeader inverse={true} title={pageTitle} />
       <MarkdownSection>
         <Markdown
