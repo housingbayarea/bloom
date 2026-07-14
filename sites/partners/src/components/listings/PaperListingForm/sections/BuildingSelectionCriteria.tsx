@@ -124,7 +124,7 @@ const BuildingSelectionCriteria = () => {
           <div className="flex gap-3">
             <Button
               type="button"
-              className="font-semibold uppercase my-0"
+              className={"font-semibold darker-link"}
               onClick={() => {
                 setDrawerState(true)
               }}
@@ -135,7 +135,7 @@ const BuildingSelectionCriteria = () => {
             </Button>
             <Button
               type="button"
-              className="font-semibold text-alert"
+              className={"font-semibold darker-alert"}
               onClick={() => {
                 setCloudinaryData({ ...cloudinaryData, id: "" })
                 deletePDF()
@@ -161,7 +161,7 @@ const BuildingSelectionCriteria = () => {
           <div className="flex gap-3">
             <Button
               type="button"
-              className="font-semibold"
+              className={"font-semibold darker-link"}
               onClick={() => {
                 setDrawerState(true)
               }}
@@ -172,7 +172,7 @@ const BuildingSelectionCriteria = () => {
             </Button>
             <Button
               type="button"
-              className="font-semibold text-alert"
+              className={"font-semibold darker-alert"}
               onClick={() => {
                 setValue("buildingSelectionCriteria", "")
               }}
